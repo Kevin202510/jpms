@@ -43,7 +43,7 @@
 
 <?php include('layouts/head.php'); ?>
 <?php include('layouts/header.php'); ?>
-<?php include('layouts/sidebaremployeer.php'); ?>
+<?php include('layouts/sidebar.php'); ?>
 
 <section class="section profile">
 <div class="container-fluid">

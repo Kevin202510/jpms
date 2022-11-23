@@ -28,12 +28,12 @@
 
       <!-- End Login Page Nav -->
 
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a class="nav-link collapsed" href="skills.php">
           <i class="bi bi-card-list"></i>
           <span>Skills</span>
         </a>
-      </li>
+      </li> -->
 
     </ul>
 
