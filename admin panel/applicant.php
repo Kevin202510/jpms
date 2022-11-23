@@ -66,7 +66,7 @@
         </thead>
         <tbody>
         <?php 
-            $query = "SELECT * FROM `users` LEFT JOIN roles ON roles.id = users.user_role_id where users.user_role_id = 3";
+            $query = "SELECT * FROM `users` LEFT JOIN roles ON roles.id = users.user_role_id where users.user_role_id = 4";
             $result = $crudapi->getData($query);
             $number = 1;
             foreach ($result as $key => $data) {

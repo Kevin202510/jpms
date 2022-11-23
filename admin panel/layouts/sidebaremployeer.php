@@ -3,28 +3,29 @@
     <ul class="sidebar-nav" id="sidebar-nav">
    
        <li class="nav-item">
-        <a class="nav-link collapsed" href="applicantlist.php">
+        <a class="nav-link collapsed" href="employerindex.php">
           <i class="bi bi-person-circle"></i>
-          <span>Applicants</span>
+          <span>Employer</span>
         </a>
       </li><!-- End Profile Page Nav -->
 
       <li class="nav-heading">Pages</li>
 
     <li class="nav-item">
-        <a class="nav-link collapsed" href="applicantlist.php">
+        <a class="nav-link collapsed" href="job_post.php">
           <i class="bi bi-person-circle"></i>
-          <span>Applicants</span>
+          <span>Job Post</span>
         </a>
       </li><!-- End Profile Page Nav -->
 
  
       <li class="nav-item">
-        <a class="nav-link collapsed" href="userslist.php">
+        <a class="nav-link collapsed" href="applicant.php">
           <i class="bi bi-card-list"></i>
-          <span>Job Post</span>
+          <span>Applicant</span>
         </a>
-      </li><!-- End Register Page Nav -->
+      </li>
+      <!-- End Register Page Nav -->
 
       <!-- End Login Page Nav -->
 
