@@ -5,6 +5,7 @@
 
     if(isset($_POST['addjobs'])) { 
 
+    $job_company_name = $crudapi->escape_string($_POST['job_company_name']);    
     $jobs_name = $crudapi->escape_string($_POST['jobs_name']);
     $jobs_address = $crudapi->escape_string($_POST['jobs_address']);
     $jobs_description = $crudapi->escape_string($_POST['jobs_description']);
@@ -13,16 +14,18 @@
     $jobs_preferred_time = $crudapi->escape_string($_POST['jobs_preferred_time']);
     $jobs_r_experience = $crudapi->escape_string($_POST['jobs_r_experience']);
     $jobs_vacancy_count = $crudapi->escape_string($_POST['jobs_vacancy_count']);
-    //$jobs_user_id = $crudapi->escape_string($_POST['jobs_user_id']);
+    $job_expected_salary = $crudapi->escape_string($_POST['job_expected_salary']);
+    $jobs_user_id = $crudapi->escape_string($_POST['jobs_user_id']);
       
-    $result = $crudapi->execute("INSERT INTO jobs(jobs_name,jobs_address,jobs_description,jobs_r_skills,jobs_r_education_id,jobs_preferred_time,jobs_r_experience,jobs_vacancy_count,jobs_user_id) VALUES('$jobs_name','$jobs_address','$jobs_description','$jobs_r_skills','$jobs_r_education_id','$jobs_preferred_time','$jobs_r_experience','$jobs_vacancy_count','3')");
+    $result = $crudapi->execute("INSERT INTO jobs(job_company_name,jobs_name,jobs_address,jobs_description,jobs_preferred_time,jobs_r_skills,jobs_r_education_id,jobs_r_experience,jobs_vacancy_count,job_expected_salary,jobs_user_id)VALUES('j$ob_company_name','$jobs_name','$jobs_address','$jobs_description','$jobs_r_skills','$jobs_r_education_id','$jobs_preferred_time','$jobs_r_experience','$jobs_vacancy_count','$job_expected_salary','3')");
     
     echo '<script>alert("ADDED SUCCESS");</script>';
     // echo '<script>window.reload();</script>';
 }
      if(isset($_POST['editexp'])) {  
 
-    $jobs_id = $crudapi->escape_string($_POST['jobs_id']);    
+    $jobs_id = $crudapi->escape_string($_POST['jobs_id']);
+    $job_company_name = $crudapi->escape_string($_POST['job_company_name']);    
     $jobs_name = $crudapi->escape_string($_POST['jobs_name']);
     $jobs_address = $crudapi->escape_string($_POST['jobs_address']);
     $jobs_description = $crudapi->escape_string($_POST['jobs_description']);
@@ -31,10 +34,11 @@
     $jobs_preferred_time = $crudapi->escape_string($_POST['jobs_preferred_time']);
     $jobs_r_experience = $crudapi->escape_string($_POST['jobs_r_experience']);
     $jobs_vacancy_count = $crudapi->escape_string($_POST['jobs_vacancy_count']);
+    $job_expected_salary = $crudapi->escape_string($_POST['job_expected_salary']);
     
       
-    $result = $crudapi->execute("UPDATE jobs SET jobs_name='$jobs_name',jobs_address='$jobs_address',jobs_description='$jobs_description',jobs_r_skills='$jobs_r_skills',jobs_r_education_id=
-        '$jobs_r_education_id',jobs_preferred_time='$jobs_preferred_time',jobs_r_experience='$jobs_r_experience',jobs_vacancy_count='$jobs_vacancy_count'
+    $result = $crudapi->execute("UPDATE jobs SET job_company_name='$job_company_name',jobs_name='$jobs_name',jobs_address='$jobs_address',jobs_description='$jobs_description',jobs_r_skills='$jobs_r_skills',jobs_r_education_id=
+        '$jobs_r_education_id',jobs_preferred_time='$jobs_preferred_time',jobs_r_experience='$jobs_r_experience',jobs_vacancy_count='$jobs_vacancy_count',job_expected_salary='$job_expected_salary'
      WHERE jobs_id = '$jobs_id' ");
     
     echo '<script>alert("UPDATED SUCCESS");</script>';
@@ -75,7 +79,7 @@ if(isset($_POST['deleteexp'])) {
             <th scope="col">Education</th>
             <th scope="col">Preferred Time</th>
             <th scope="col">Experience</th>
-            <th scope="col">Vavancy</th>
+            <th scope="col">Vacancy</th>
           </tr>
         </thead>
         <tbody>
@@ -87,6 +91,7 @@ if(isset($_POST['deleteexp'])) {
         ?>
             <tr>
               <th scope="row"><?php echo $number; ?></th>
+              <td><?php echo $data["job_company_name"] ?></td>
               <td><?php echo $data["jobs_name"] ?></td>
               <td><?php echo $data["jobs_address"] ?></td>
               <td><?php echo $data["jobs_description"] ?></td>
@@ -95,6 +100,7 @@ if(isset($_POST['deleteexp'])) {
               <td><?php echo $data["jobs_preferred_time"] ?></td>
               <td><?php echo $data["jobs_r_experience"] ?></td>
               <td><?php echo $data["jobs_vacancy_count"] ?></td>
+              <td><?php echo $data["job_expected_salary"] ?></td>
               <td><?php echo $data["jobs_user_id"] ?></td>
               <td>
 
@@ -146,11 +152,16 @@ if(isset($_POST['deleteexp'])) {
                 </div>
                 <div class="modal-body">
                 <form method="POST">
-                    <input type="hidden" class="form-control" name="ae_id" id="ae_id">
-                    <input type="hidden" class="form-control" name="ae_user_id" id="ae_user_id">
+                    <input type="hidden" class="form-control" name="jobs_id" id="jobs_id">
+                    <input type="hidden" class="form-control" name="jobs_user_id" id="jobs_user_id">
 
                     <div class="form-group">
                         <label for="exampleInputPassword1">Comapany Name</label>
+                        <input type="text" class="form-control" name="job_company_name" id="job_company_name" placeholder="Comapany Name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Position</label>
                         <input type="text" class="form-control" name="jobs_name" id="jobs_name" placeholder="Comapany Name" required>
                     </div>
 
@@ -201,7 +212,12 @@ if(isset($_POST['deleteexp'])) {
                     <div class="form-group">
                         <label for="exampleInputPassword1">Vacancy</label>
                         <input type="number" class="form-control" name="jobs_vacancy_count" id="jobs_vacancy_count" placeholder="Vacancy"required>
-                    </div>                
+                    </div> 
+                    
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Salary</label>
+                        <input type="number" class="form-control" name="job_expected_salary" id="job_expected_salary" placeholder="Vacancy"required>
+                    </div>
                 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -232,6 +248,11 @@ if(isset($_POST['deleteexp'])) {
 
                     <div class="form-group">
                         <label for="exampleInputPassword1">Comapany Name</label>
+                        <input type="text" class="form-control" name="job_company_name" id="job_company_name" placeholder="Comapany Name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Position</label>
                         <input type="text" class="form-control" name="jobs_name" id="jobs_names" placeholder="Comapany Name" required>
                     </div>
 
@@ -285,6 +306,11 @@ if(isset($_POST['deleteexp'])) {
                     <div class="form-group">
                         <label for="exampleInputPassword1">Vacancy</label>
                         <input type="number" class="form-control" name="jobs_vacancy_count" id="jobs_vacancy_counts" placeholder="Vacancy"required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Salary</label>
+                        <input type="number" class="form-control" name="job_expected_salary" id="job_expected_salary" placeholder="Vacancy"required>
                     </div>
 
                 
@@ -349,6 +375,7 @@ if(isset($_POST['deleteexp'])) {
             var emp = JSON.parse(data);
             $("#jobs_ids").val(emp[0].jobs_id);
             $("#jobs_user_ids").val(emp[0].jobs_user_id);
+            $("#job_company_names").val(emp[0].job_company_name);
             $("#jobs_names").val(emp[0].jobs_name);
             $("#jobs_addresss").val(emp[0].jobs_address);
             $("#jobs_descriptions").val(emp[0].jobs_description);
@@ -357,6 +384,7 @@ if(isset($_POST['deleteexp'])) {
             $("#jobs_preferred_times").val(emp[0].jobs_preferred_time);
             $("#jobs_r_experiences").val(emp[0].jobs_r_experience);
             $("#jobs_vacancy_counts").val(emp[0].jobs_vacancy_count);
+            $("#job_expected_salarys").val(emp[0].job_expected_salary);
             
         });
 
