@@ -5,7 +5,7 @@
        <li class="nav-item">
         <a class="nav-link collapsed" href="applicantlist.php">
           <i class="bi bi-person-circle"></i>
-          <span>Applicants</span>
+          <span>ADMIN</span>
         </a>
       </li><!-- End Profile Page Nav -->
 
