@@ -119,21 +119,6 @@ if(isset($_POST['deleteexp'])) {
       </table>
     </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   </div>
 </div>
 </section>
