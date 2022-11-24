@@ -15,118 +15,200 @@
                         MY PROFILE
                     </div>
                     <div class="card-body">
-                        <form>
-                        <?php 
-                                $query = "SELECT * FROM `users` LEFT JOIN roles ON roles.id = users.user_role_id LEFT JOIN applicant_additional_info on users.user_role_id where users.user_role_id = 4";
-                                $result = $crudapi->getData($query);
-                                foreach ($result as $key => $data) {
-                            ?>
-                        <div class="form-group">
+
+
+                  
+                                <div class="card-body">
+                                        <?php 
+                                        $query = "SELECT * FROM `users` where user_id = 1";
+                                        $result = $crudapi->getData($query);
+                                        foreach ($result as $key => $data) {
+                                    ?>
+                                    <div class="card">
+                                        <div class="card-header">
+                                             
+                                        </div>
+                                        <div class="card-body">
+                                            <p>
+                                            <div class="form-group">
+                                                   <img style="width:200px; " src="profiles/limboprofile.webp">
+                                              </div>
+                                              <div class=form-group >
+                                                 Full Name <?php echo strtoupper($data["user_fname"]." ".$data["user_lname"]); ?> <br>
+                                                 Address <?php echo strtoupper($data["address"]) ?><br>
+                                                 Contact<?php echo strtoupper($data["user_contact"]) ?> <br>
+                                                 Email<?php echo strtoupper($data["user_email"]) ?><br> 
+                                               </div> 
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <?php } ?>
+                                </div>
+                           
+
+
+
+
+
+   <div class="card">
+                                <div class="card-header">
+                                Education
+                                </div>
+                                <div class="card-body">
+
+                                <?php 
+                                       $query = "SELECT * FROM `applicant_educationbg` where aebg_user_id = 1";
+                                       $result = $crudapi->getData($query);
+                                       foreach ($result as $key => $data) {
+                                    ?>
+                                    <div class="card">
+                                        <div class="card-header"  style="text-align:center;">
+                                        School Name <?php echo strtoupper($data["aebg_school_name"]) ?>
+                                        </div>
+                                        <div class="card-body"  style="text-align:center;">
+                                            <p>
+                                               
+                                                Graduate year <?php echo strtoupper($data["aebg_year_graduate"]) ?><br>
+                                                Attainment <?php echo strtoupper($data["aebg_education_attainment_id"]) ?>  <br>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <?php } ?>
+                                </div>
+                            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            <hr>
+
+                            <div class="card">
+                                <div class="card-header">
+                                Education
+                                </div>
+                                <div class="card-body">
+
+                                <?php 
+                                       $query = "SELECT * FROM `applicant_educationbg` where aebg_user_id = 1";
+                                       $result = $crudapi->getData($query);
+                                       foreach ($result as $key => $data) {
+                                    ?>
+                                    <div class="card">
+                                        <div class="card-header"  style="text-align:center;">
+                                        School Name <?php echo strtoupper($data["aebg_school_name"]) ?>
+                                        </div>
+                                        <div class="card-body"  style="text-align:center;">
+                                            <p>
+                                               
+                                                Graduate year <?php echo strtoupper($data["aebg_year_graduate"]) ?><br>
+                                                Attainment <?php echo strtoupper($data["aebg_education_attainment_id"]) ?>  <br>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <?php } ?>
+                                </div>
+                            </div>
+
+
+
                           
-                              <img style="width:200px; " src="profiles/limboprofile.webp">
-                            
-                              </div>
-
-                        </div>
-                      
-
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Full Name</label>
-                                <p><?php echo strtoupper($data["user_fname"]." ".$data["user_lname"]); ?></p>
-                               
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputPassword1">Address</label>
-                                <p><?php echo strtoupper($data["address"]) ?></p>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Contact</label>
-                                <p><?php echo strtoupper($data["user_contact"]) ?></p>
-                                
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputPassword1">Email</label>
-                                <p><?php echo strtoupper($data["user_email"]) ?></p>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="exampleInputPassword1">Expected Salary</label>
-                                <p><?php echo strtoupper($data["aai_expected_salary"]) ?></p>
+                            <hr>
+                            <div class="card">
+                                <div class="card-header">
+                                    EXPERIENCES
+                                </div>
+                                <div class="card-body">
+                                        <?php 
+                                        $query = "SELECT * FROM `applicant_experience` where ae_user_id = 1";
+                                        $result = $crudapi->getData($query);
+                                        foreach ($result as $key => $data) {
+                                    ?>
+                                    <div class="card">
+                                        <div class="card-header"  style="text-align:center;">
+                                            Company Name <?php echo strtoupper($data["ae_companyname"]) ?>
+                                        </div>
+                                        <div class="card-body"  style="text-align:center;">
+                                            <p>
+                                                Company Address <?php echo strtoupper($data["ae_companyaddress"]) ?> <br>
+                                                Position <?php echo strtoupper($data["ae_position"]) ?><br>
+                                                ( <?php echo strtoupper($data["ae_from"])." - ".strtoupper($data["ae_to"]) ?> )<br>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <?php } ?>
+                                </div>
                             </div>
 
-                            <div class="form-group">
-                                <label for="exampleInputPassword1">Prepered location</label>
-                                <p><?php echo strtoupper($data["aai_location"]) ?></p>
-                            </div>
                          
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Email address</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                            <hr>
+                            <div class="card">
+                                <div class="card-header">
+                                    Skills
+                                </div>
+                                <div class="card-body">
+                                        <?php 
+                                        $query = "SELECT * FROM `applicant_skills` where as_user_id = 1";
+                                        $result = $crudapi->getData($query);
+                                        foreach ($result as $key => $data) {
+                                    ?>
+                                    <div class="card">
+                                        <div class="card-header">
+                                            
+                                        </div>
+                                        <div class="card-body" style="text-align:center;">
+                                            <p>
+                                            Skills<?php echo strtoupper($data["as_skillname"]) ?> <br>
+                                              
+                                               
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <?php } ?>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="exampleInputPassword1">Password</label>
-                                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+
+
+                            <hr>
+                            <div class="card">
+                                <div class="card-header">
+                                Applicant Additional Info
+                                </div>
+                                <div class="card-body">
+                                        <?php 
+                                        $query = "SELECT * FROM `applicant_additional_info` where aai_user_id = 1";
+                                        $result = $crudapi->getData($query);
+                                        foreach ($result as $key => $data) {
+                                    ?>
+                                    <div class="card">
+                                        <div class="card-header">
+                                            
+                                        </div>
+                                        <div class="card-body" style="text-align:center;">
+                                            <p>
+                                            Expected Salary<?php echo strtoupper($data["aai_expected_salary"]) ?> <br>
+                                                 Preferrer Location<?php echo strtoupper($data["aai_location"]) ?> <br>
+                                                Position Work<?php echo strtoupper($data["aai_wfh_os"]) ?><br>  
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <?php } ?>
+                                </div>
                             </div>
-                            <div class="form-group form-check">
-                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Email address</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputPassword1">Password</label>
-                                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                            </div>
-                            <div class="form-group form-check">
-                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Email address</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputPassword1">Password</label>
-                                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                            </div>
-                            <div class="form-group form-check">
-                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Email address</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputPassword1">Password</label>
-                                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                            </div>
-                            <div class="form-group form-check">
-                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Email address</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputPassword1">Password</label>
-                                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                            </div>
-                            <div class="form-group form-check">
-                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                            <?php } ?>
+   
+
+                          
+                            <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
                         </form>
                     </div>
                 </div>
