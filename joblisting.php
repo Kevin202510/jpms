@@ -71,17 +71,17 @@
                                         </div>
                                         <div class="job-tittle job-tittle2">
                                             <a href="#">
-                                                <h4><?php echo strtoupper($data['jobs_name']); ?></h4>
+                                                <h4><?php echo strtoupper($data['job_company_name']); ?></h4>
                                             </a>
                                             <ul>
-                                                <li>Creative Agency</li>
-                                                <li><i class="fas fa-map-marker-alt"></i>Athens, Greece</li>
-                                                <li>$3500 - $4000</li>
+                                                <li><?php echo strtoupper($data['jobs_name']); ?></li>
+                                                <li><i class="fas fa-map-marker-alt"></i><?php echo strtoupper($data['jobs_address']); ?></li>
+                                                <li><?php echo strtoupper($data['job_expected_salary']); ?></li>
                                             </ul>
                                         </div>
                                     </div>
                                     <div class="items-link items-link2 f-right">
-                                        <a href="job_details.html">Full Time</a>
+                                        <a href="job_details.php">Full Time</a>
                                         <span>7 hours ago</span>
                                     </div>
                                 </div>

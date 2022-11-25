@@ -75,7 +75,7 @@ if(isset($_POST['deleteexp'])) {
             <th scope="col">Education</th>
             <th scope="col">Preferred Time</th>
             <th scope="col">Experience</th>
-            <th scope="col">Vavancy</th>
+            <th scope="col">Vacancy</th>
           </tr>
         </thead>
         <tbody>
@@ -112,21 +112,6 @@ if(isset($_POST['deleteexp'])) {
         </tbody>
       </table>
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   </div>
 </div>
