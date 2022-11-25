@@ -5,18 +5,6 @@
     <?php include('applicantsviews/header.php'); ?>
     <main>
 
-
-    <?php 
-           
-
-
-        //    $query = " SELECT * FROM `jobs` WHERE jobs_name LIKE '%developer%' AND jobs_address LIKE '%manila%';";
-        //    $result = $crudapi->getData($query);
-        //    $number = 1;
-        //    foreach ($result as $key => $data) {}
-       ?>
-
-
         <!-- slider Area Start-->
         <div class="slider-area ">
             <!-- Mobile Menu -->
@@ -34,13 +22,13 @@
                         <div class="row">
                             <div class="col-xl-6">
                                 <!-- form -->
-                                <form action="" class="search-box" method="post">
+                                <form action="joblisting.php" class="search-box" method="post">
 
                                     <div class="input-form"> 
                                         <input type="text" name="job_name" id="job_name" placeholder="Job Tittle ">
                                     </div>
                                     <div class="input-form">
-                                        <input type="text" name="Location" id="Location" placeholder="Location">
+                                        <input type="text" name="job_address" id="job_address" placeholder="Location">
                                     </div>
 
                                   
