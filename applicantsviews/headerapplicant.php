@@ -23,7 +23,7 @@
                                             <li><a href="applicant_exp.php">Experiences</a></li>
                                             <li><a href="applicant_educ.php">Educations</a>
                                             <li><a href="applicant_add_info.php">Additional Info</a>
-                                            <li><a href="skills.php">Skills</a>
+                                            <li><a href="applicant_skills.php">Skills</a>
                                             <li><a href="applicant_educ_attainment.php">Education Attainment</a>
                                            
                                           
