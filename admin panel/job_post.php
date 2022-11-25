@@ -3,84 +3,108 @@
     include_once("classes/CRUDAPI.php");
     $crudapi = new CRUDAPI();
 
-    if(isset($_POST['addNewEmployee'])) {	
+    if(isset($_POST['addjobs'])) { 
 
-      $FNAME = $crudapi->escape_string($_POST['FNAME']);
-      $LNAME = $crudapi->escape_string($_POST['LNAME']);
-      $ADDRESS = $crudapi->escape_string($_POST['ADDRESS']);
-      $CONTACT = $crudapi->escape_string($_POST['CONTACT']);
-      $USERNAME = $crudapi->escape_string($_POST['USERNAME']);
-      $PASSWORD = $crudapi->escape_string($_POST['PASSWORD']);
-      $ROLE_ID = $crudapi->escape_string($_POST['ROLE_ID']);
-        
-      $result = $crudapi->execute("INSERT INTO users(ROLE_ID,FNAME,LNAME,ADDRESS,CONTACT,USERNAME,PASSWORD) VALUES('$ROLE_ID','$FNAME','$LNAME','$ADDRESS','$CONTACT','$USERNAME','$PASSWORD')");
+    $jobs_name = $crudapi->escape_string($_POST['jobs_name']);
+    $jobs_address = $crudapi->escape_string($_POST['jobs_address']);
+    $jobs_description = $crudapi->escape_string($_POST['jobs_description']);
+    $jobs_r_skills = $crudapi->escape_string($_POST['jobs_r_skills']);
+    $jobs_r_education_id = $crudapi->escape_string($_POST['jobs_r_education_id']);
+    $jobs_preferred_time = $crudapi->escape_string($_POST['jobs_preferred_time']);
+    $jobs_r_experience = $crudapi->escape_string($_POST['jobs_r_experience']);
+    $jobs_vacancy_count = $crudapi->escape_string($_POST['jobs_vacancy_count']);
+    //$jobs_user_id = $crudapi->escape_string($_POST['jobs_user_id']);
+      
+    $result = $crudapi->execute("INSERT INTO jobs(jobs_name,jobs_address,jobs_description,jobs_r_skills,jobs_r_education_id,jobs_preferred_time,jobs_r_experience,jobs_vacancy_count,jobs_user_id) VALUES('$jobs_name','$jobs_address','$jobs_description','$jobs_r_skills','$jobs_r_education_id','$jobs_preferred_time','$jobs_r_experience','$jobs_vacancy_count','3')");
+    
+    echo '<script>alert("ADDED SUCCESS");</script>';
+    // echo '<script>window.reload();</script>';
+}
+     if(isset($_POST['editexp'])) {  
 
-      echo '<script>alert("ADDED SUCCESS");</script>';
-      header("location: usermanagement.php");
-    }else if(isset($_POST['editEmployee'])) {	
+    $jobs_id = $crudapi->escape_string($_POST['jobs_id']);    
+    $jobs_name = $crudapi->escape_string($_POST['jobs_name']);
+    $jobs_address = $crudapi->escape_string($_POST['jobs_address']);
+    $jobs_description = $crudapi->escape_string($_POST['jobs_description']);
+    $jobs_r_skills = $crudapi->escape_string($_POST['jobs_r_skills']);
+    $jobs_r_education_id = $crudapi->escape_string($_POST['jobs_r_education_id']);
+    $jobs_preferred_time = $crudapi->escape_string($_POST['jobs_preferred_time']);
+    $jobs_r_experience = $crudapi->escape_string($_POST['jobs_r_experience']);
+    $jobs_vacancy_count = $crudapi->escape_string($_POST['jobs_vacancy_count']);
+    
+      
+    $result = $crudapi->execute("UPDATE jobs SET jobs_name='$jobs_name',jobs_address='$jobs_address',jobs_description='$jobs_description',jobs_r_skills='$jobs_r_skills',jobs_r_education_id=
+        '$jobs_r_education_id',jobs_preferred_time='$jobs_preferred_time',jobs_r_experience='$jobs_r_experience',jobs_vacancy_count='$jobs_vacancy_count'
+     WHERE jobs_id = '$jobs_id' ");
+    
+    echo '<script>alert("UPDATED SUCCESS");</script>';
+    header("location:employerindex.php");
+}
+if(isset($_POST['deleteexp'])) {  
 
-      $FNAME = $crudapi->escape_string($_POST['FNAME']);
-      $LNAME = $crudapi->escape_string($_POST['LNAME']);
-      $ADDRESS = $crudapi->escape_string($_POST['ADDRESS']);
-      $CONTACT = $crudapi->escape_string($_POST['CONTACT']);
-      $USERNAME = $crudapi->escape_string($_POST['USERNAME']);
-      $PASSWORD = $crudapi->escape_string($_POST['PASSWORD']);
-      $ROLE_ID = $crudapi->escape_string($_POST['ROLE_ID']);
-      $USER_ID = $crudapi->escape_string($_POST['USER_ID']);
-        
-      $result = $crudapi->execute("UPDATE users SET ROLE_ID='$ROLE_ID',FNAME='$FNAME',LNAME='$LNAME',ADDRESS='$ADDRESS',CONTACT='$CONTACT',USERNAME='$USERNAME',PASSWORD='$PASSWORD' WHERE USER_ID = '$USER_ID' ");
-
-      echo '<script>alert("UPDATED SUCCESS");</script>';
-      header("location: usermanagement.php");
-    }else if(isset($_POST['deleteEmployee'])){
-      $result = $crudapi->delete('USER_ID',$_POST['USER_ID'], 'users');
-      echo '<script>alert("DELETED SUCCESS");</script>';
-      header("location: usermanagement.php");
-    }
-
-
-  ?>
-
+    $jobs_id = $crudapi->escape_string($_POST['jobs_id']);
+      
+    $result = $crudapi->execute("DELETE from jobs WHERE jobs_id = '$jobs_id' ");
+    
+    echo '<script>alert("DELETED SUCCESS");</script>';
+    header("location:employerindex.php");
+}       
+?>
 <?php include('layouts/head.php'); ?>
 <?php include('layouts/header.php'); ?>
 <?php include('layouts/sidebaremployeer.php'); ?>
 
 <section class="section profile">
+
 <div class="container-fluid">
-  <div class="card">
+  <div class="card" style="margin-bottom:30px;">
     <div class="card-header">
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#usersModal" style="float:right;">ADD</button>
+      <button type="button" class="btn btn-primary" id="jobs" style="float:right;">ADD</button>
     </div>
-    <div class="card-body">
+
+
+<div class="card-body">
       <table class="table">
         <thead class="thead-dark">
           <tr>
             <th scope="col">#</th>
-            <th scope="col">ROLENAME</th>
-            <th scope="col">FULLNAME</th>
-            <th scope="col">ADDRESS</th>
-            <th scope="col">CONTACT</th>
-            <th scope="col">USERNAME</th>
-            <th scope="col">ACTION</th>
+            <th scope="col">Campany Name</th>
+            <th scope="col">Address</th>
+            <th scope="col">Description</th>
+            <th scope="col">Skill</th>
+            <th scope="col">Education</th>
+            <th scope="col">Preferred Time</th>
+            <th scope="col">Experience</th>
+            <th scope="col">Vavancy</th>
           </tr>
         </thead>
         <tbody>
         <?php 
-            $query = "SELECT * FROM `users` LEFT JOIN roles ON roles.id = users.user_role_id where users.user_role_id = 3";
+            $query = "SELECT * FROM `jobs` left join users on users.user_id = jobs.jobs_user_id where jobs.jobs_user_id=3";
             $result = $crudapi->getData($query);
             $number = 1;
             foreach ($result as $key => $data) {
         ?>
             <tr>
               <th scope="row"><?php echo $number; ?></th>
-              <td><?php echo $data["display_name"] ?></td>
-              <td><?php echo strtoupper($data["user_fname"]." ".$data["user_lname"]); ?></td>
-              <td><?php echo strtoupper($data["user_contact"]) ?></td>
-              <td><?php echo $data["user_email"] ?></td>
+              <td><?php echo $data["jobs_name"] ?></td>
+              <td><?php echo $data["jobs_address"] ?></td>
+              <td><?php echo $data["jobs_description"] ?></td>
+              <td><?php echo $data["jobs_r_skills"] ?></td>
+              <td><?php echo $data["jobs_r_education_id"] ?></td>
+              <td><?php echo $data["jobs_preferred_time"] ?></td>
+              <td><?php echo $data["jobs_r_experience"] ?></td>
+              <td><?php echo $data["jobs_vacancy_count"] ?></td>
+              <td><?php echo $data["jobs_user_id"] ?></td>
               <td>
+
+
+
+
+
                 <div class="btn-group" role="group" aria-label="Basic example">
-                  <button type="button" data-id="<?php echo $data['user_id']; ?>" class="btn btn-primary" id="editbtn">EDIT</button>
-                  <button type="button" data-id="<?php echo $data['user_id']; ?>" class="btn btn-danger" id="deletebtn">DELETE</button>
+                  <button type="button" data-id="<?php echo $data['jobs_id']; ?>" class="btn btn-primary" id="editbtn">EDIT</button>
+                  <button type="button" data-id="<?php echo $data['jobs_id']; ?>" class="btn btn-danger" id="deletebtn">DELETE</button>
                 </div>
               </td>
             </tr>
@@ -88,8 +112,266 @@
         </tbody>
       </table>
     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   </div>
 </div>
 </section>
 
+
+<!-- ADDMODAL -->
+
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                <form method="POST">
+                    <input type="hidden" class="form-control" name="ae_id" id="ae_id">
+                    <input type="hidden" class="form-control" name="ae_user_id" id="ae_user_id">
+
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Comapany Name</label>
+                        <input type="text" class="form-control" name="jobs_name" id="jobs_name" placeholder="Comapany Name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Comapany Address</label>
+                        <input type="text" class="form-control" name="jobs_address" id="jobs_address" placeholder="Comapany Address"required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Description</label>
+                        <input type="text" class="form-control" name="jobs_description" id="jobs_description" placeholder="Description"required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Skills</label>
+                        <input type="text" class="form-control" name="jobs_r_skills" id="jobs_r_skills" placeholder="Skills"required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Education</label>
+                        <select name="jobs_r_education_id" id="jobs_r_education_id">
+                          <?php 
+           
+                              $query = "SELECT * FROM `education_attainment`";
+                              $result = $crudapi->getData($query);
+                              $number = 1;
+                              foreach ($result as $key => $data) {
+                          ?>
+                          <option value="<?php echo $data['ea_id']; ?>"><?php echo $data['ea_name']; ?></option>
+                        <?php }?>
+                        </select>
+                        <!-- <input type="text" class="form-control" name="jobs_r_education_id" id="jobs_r_education_id" placeholder="Education"required> -->
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Preferred Time</label>
+                        <select name="jobs_preferred_time" id="jobs_preferred_time">
+
+                            <option value="1">Full Time</option>
+                            <option value="0">Part Time</option>
+
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Experience</label>
+                        <input type="text" class="form-control" name="jobs_r_experience" id="jobs_r_experience" placeholder="Experience"required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Vacancy</label>
+                        <input type="number" class="form-control" name="jobs_vacancy_count" id="jobs_vacancy_count" placeholder="Vacancy"required>
+                    </div>                
+                
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary" name="addjobs">ADD</button>
+                    </div>
+                </form>
+                </div>
+               
+                </div>
+            </div>
+         </div>
+
+
+         <!-- UpdateMODAL -->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                <form method="POST">
+                    <input type="hidden" class="form-control" name="jobs_id" id="jobs_ids">
+                    <input type="hidden" class="form-control" name="jobs_user_id" id="jobs_user_ids">
+
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Comapany Name</label>
+                        <input type="text" class="form-control" name="jobs_name" id="jobs_names" placeholder="Comapany Name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Comapany Address</label>
+                        <input type="text" class="form-control" name="jobs_address" id="jobs_addresss" placeholder="Comapany Address"required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Description</label>
+                        <input type="text" class="form-control" name="jobs_description" id="jobs_descriptions" placeholder="Description"required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Skills</label>
+                        <input type="text" class="form-control" name="jobs_r_skills" id="jobs_r_skillss" placeholder="Skills"required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Education</label>
+                        <select name="jobs_r_education_id" id="jobs_r_education_ids">
+                          <?php 
+           
+                              $query = "SELECT * FROM `education_attainment`";
+                              $result = $crudapi->getData($query);
+                              $number = 1;
+                              foreach ($result as $key => $data) {
+                          ?>
+                          <option value="<?php echo $data['ea_id']; ?>"><?php echo $data['ea_name']; ?></option>
+                        <?php }?>
+                        </select>
+
+
+                        <div class="form-group">
+                        <label for="exampleInputPassword1">Preferred Time</label>
+                        <select name="jobs_preferred_time" id="jobs_preferred_time">
+
+                            <option value="1">Full Time</option>
+                            <option value="0">Part Time</option>
+
+                         </select>
+                        <!-- <input type="text" class="form-control" name="jobs_r_education_id" id="jobs_r_education_id" placeholder="Education"required> -->
+                    </div>
+                </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Experience</label>
+                        <input type="text" class="form-control" name="jobs_r_experience" id="jobs_r_experiences" placeholder="Experience"required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Vacancy</label>
+                        <input type="number" class="form-control" name="jobs_vacancy_count" id="jobs_vacancy_counts" placeholder="Vacancy"required>
+                    </div>
+
+                
+                
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary" name="editexp">Update changes</button>
+                    </div>
+                </form>
+                </div>
+               
+                </div>
+            </div>
+         </div>
+
+<!-- delete -->
+         <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                <form method="POST">
+                    <input type="hidden" class="form-control" name="jobs_id" id="jobs_idss">
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary" name="deleteexp">Delete</button>
+                    </div>
+                </form>
+                </div>
+               
+                </div>
+            </div>
+         </div>
+
+
+    
+ 
+ 
+
+
+
+
 <?php include('layouts/footer.php'); ?>
+
+<script>
+  $(document).ready(function(){
+    $("#jobs").click(function(){
+        // $("#ae_user_id").val($("user_id").val());
+        $("#exampleModal").modal("show");
+    });
+  })
+
+  $("body").on('click','#editbtn',function(e){
+        // alert($(e.currentTarget).data('id'));
+        var USER_IDs = $(e.currentTarget).data('id');
+        $.post("update_jobs.php",{USER_ID: USER_IDs},function(data,status){
+            var emp = JSON.parse(data);
+            $("#jobs_ids").val(emp[0].jobs_id);
+            $("#jobs_user_ids").val(emp[0].jobs_user_id);
+            $("#jobs_names").val(emp[0].jobs_name);
+            $("#jobs_addresss").val(emp[0].jobs_address);
+            $("#jobs_descriptions").val(emp[0].jobs_description);
+            $("#jobs_r_skillss").val(emp[0].jobs_r_skills);
+            $("#jobs_r_education_ids").val(emp[0].jobs_r_education_id);
+            $("#jobs_preferred_times").val(emp[0].jobs_preferred_time);
+            $("#jobs_r_experiences").val(emp[0].jobs_r_experience);
+            $("#jobs_vacancy_counts").val(emp[0].jobs_vacancy_count);
+            
+        });
+
+
+
+        $("#editModal").modal("show");
+
+    });
+
+
+    $("body").on('click','#deletebtn',function(e){
+        
+        var USER_ID_DELETE = $(e.currentTarget).data('id');
+        $("#jobs_idss").val(USER_ID_DELETE);
+        $("#deleteModal").modal("show");
+
+    });
+</script>

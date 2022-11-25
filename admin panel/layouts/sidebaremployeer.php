@@ -25,6 +25,14 @@
           <span>Applicant</span>
         </a>
       </li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="jobapplicant.php">
+          <i class="bi bi-card-list"></i>
+          <span>Job Applicant</span>
+        </a>
+      </li>
+
       <!-- End Register Page Nav -->
 
       <!-- End Login Page Nav -->
