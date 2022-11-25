@@ -32,26 +32,24 @@
                         </div>
                         <!-- Search Box -->
                         <div class="row">
-                            <div class="col-xl-8">
+                            <div class="col-xl-6">
                                 <!-- form -->
                                 <form action="" class="search-box" method="post">
 
                                     <div class="input-form"> 
-                                        <input type="text" name="jobtitle" id="jobtitle" placeholder="Job Tittle ">
+                                        <input type="text" name="job_name" id="job_name" placeholder="Job Tittle ">
                                     </div>
-                                     
                                     <div class="input-form">
                                         <input type="text" name="Location" id="Location" placeholder="Location">
                                     </div>
 
                                   
                                     <div class="search-form">
-                                        <a type="Submit" href="#">Find job</a>
+                                        <input type="Submit" name="findjobs" value="Find Jobs" class="btn head-btn21">
                                     </div>  
                                 </form> 
                             </div>
                         </div>
-                    </div>
                 </div>
             </div>
         </div>
