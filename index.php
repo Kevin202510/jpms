@@ -1,3 +1,43 @@
+<?php 
+
+include_once("classes/CRUDAPI.php");
+$crudapi = new CRUDAPI(); 
+
+if(isset($_POST['register'])) {	
+
+    $user_fname = $crudapi->escape_string($_POST['user_fname']);
+    $user_lname = $crudapi->escape_string($_POST['user_lname']);
+    $user_contact = $crudapi->escape_string($_POST['user_contact']);
+    $user_email = $crudapi->escape_string($_POST['user_email']);
+    $address = $crudapi->escape_string($_POST['address']);
+    $user_password  = $crudapi->escape_string($_POST['user_password']);
+    $conuser_password  = $crudapi->escape_string($_POST['conuser_password']);
+
+    if($user_password != $conuser_password){
+        echo '<script>alert("password did not match");</script>';
+        echo "<script type='text/javascript'>
+              $(document).ready(function(){
+              $('#exampleModalLong').modal('show');
+                 });
+               </script>";
+
+    }
+    else{
+        echo '<script>alert("password match");</script>';
+
+                $hashed_password = md5($user_password);
+
+    }
+      
+    $result = $crudapi->execute("INSERT INTO users(user_fname,user_lname,user_contact,user_email,address,user_password) VALUES('$user_fname','$user_lname','$user_contact','$user_email','$address','$hashed_password')");
+      echo '<script>alert("REGISTERED SUCCESS");</script>';
+      header("location:index.php");  
+    }   
+
+?>
+
+
+
 <?php include('applicantsviews/head.php'); ?>
     <!-- Preloader Start -->
     
@@ -31,7 +71,6 @@
                                         <input type="text" name="job_address" id="job_address" placeholder="Location">
                                     </div>
 
-                                  
                                     <div class="search-form">
                                         <input type="Submit" name="findjobs" value="Find Jobs" class="btn head-btn21">
                                     </div>  
@@ -168,7 +207,132 @@
                              <a href="#" class="border-btn22">Upload your cv</a> 
                             <!-- <div class="openBtn"> -->
       <!-- <button class="border-btn2 openButton" onclick="openForm()"><strong>resume</strong></button> -->
+      </main>
 
-    </main>
+
+<!-- register MODAL -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                             <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                             </button>
+                           </div>
+                    <div class="modal-body">
+                        <form method="POST">
+
+                             <div class="form-group">
+                                 <label for="exampleInputPassword1">First Name</label>
+                                 <input type="text" class="form-control" name="user_fname" id="user_fname" placeholder="First Name" required>
+                            </div>
+
+                             <div class="form-group">
+                                 <label for="exampleInputPassword1">Last Name</label>
+                                 <input type="text" class="form-control" name="user_lname" id="user_lname" placeholder="Last Name" required>
+                            </div>
+
+                             <div class="form-group">
+                                 <label for="exampleInputPassword1">Contact</label>
+                                 <input type="text" class="form-control" name="user_contact" id="user_contact" placeholder="Contact" required>
+                            </div>
+
+                             <div class="form-group">
+                                 <label for="exampleInputPassword1">Email</label>
+                                 <input type="text" class="form-control" name="user_email" id="user_email" placeholder="Email" required>
+                             </div>
+
+                             <div class="form-group">
+                                 <label for="exampleInputPassword1">Address</label>
+                                 <input type="text" class="form-control" name="address" id="address" placeholder="Address" required>
+                             </div>
+
+                             <div class="form-group">
+                                 <label for="exampleInputPassword1">Password</label>
+                                 <input type="text" class="form-control" name="user_password" id="user_password" placeholder="Password" required>
+                             </div>
+
+                             <div class="form-group">
+                                 <label for="exampleInputPassword1">Confirm Password</label>
+                                 <input type="text" class="form-control" name="conuser_password" id="conuser_password" placeholder="Confirm Password" required>
+                             </div>
+
+                     <!-- <div class="form-group">
+                        <label for="exampleInputPassword1">Role</label><br>
+                        <select name="" id="" >
+                            <option value="1">employee</option>
+                            <option value="2">employer</option>
+                        </select>
+                     </div>  -->
+                     
+
+                                <div class="modal-footer">
+                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                     <button type="submit" class="btn btn-primary" name="register">REGISTERED</button>
+                               </div>
+                         </form>
+                    </div>
+                </div>
+            </div>
+         </div>
+<!-- register MODAL -->
+
+
+
+<!-- login MODAL -->
+<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                             <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                             </button>
+                           </div>
+                    <div class="modal-body">
+                        <form method="POST">
+
+                             <div class="form-group">
+                                 <label for="exampleInputPassword1">Email</label>
+                                 <input type="text" class="form-control" name="user_email" id="user_email" placeholder="Email" required>
+                             </div>
+
+                             <div class="form-group">
+                                 <label for="exampleInputPassword1">Password</label>
+                                 <input type="text" class="form-control" name="user_password" id="user_password" placeholder="Password" required>
+                             </div>
+
+
+                                <div class="modal-footer">
+                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                     <button type="submit" class="btn btn-primary" name="login">LOGIN</button>
+                               </div>
+                         </form>
+                    </div>
+                </div>
+            </div>
+         </div>
+<!-- login MODAL -->
+
+
 <?php include('applicantsviews/footer.php'); ?>
 <?php include('applicantsviews/script.php'); ?>
+
+<script>
+  $(document).ready(function(){
+    $("#registers").click(function(){
+        // $("#as_user_id").val($("user_id").val());
+        $("#exampleModal").modal("show");
+    });
+  })
+
+
+  $(document).ready(function(){
+    $("#logins").click(function(){
+        // $("#as_user_id").val($("user_id").val());
+        $("#exampleModal2").modal("show");
+    });
+  })
+ 
+</script>

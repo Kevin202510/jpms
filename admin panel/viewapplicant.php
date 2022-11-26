@@ -1,21 +1,24 @@
-<?php include('applicantsviews/head.php'); ?>
-    <!-- Preloader Start -->
-    
-    <!-- Preloader Start -->
-    <?php include('applicantsviews/headerapplicant.php'); ?>
-  <?php    
-  include_once("admin panel/classes/CRUDAPI.php");
-    $crudapi = new CRUDAPI(); ?>
-    <main>
-        <!-- Our Services Start -->
-        <div class="our-services" style="margin-bottom:20px;">
+<?php 
+  
+    include_once("classes/CRUDAPI.php");
+    $crudapi = new CRUDAPI();
+
+  ?>
+
+<?php include('layouts/head.php'); ?>
+<?php include('layouts/header.php'); ?>
+<?php include('layouts/sidebaremployeer.php'); ?>
+
+
+         <!-- Our Services Start -->
+         <div class="our-services" style="margin-bottom:20px;">
             <div class="container">
                 <div class="card" style="background-color:#20c997;">
                    <div class="card-body">
 
               
                 <div class="card" style="background-color:#F1CBFF;">
-                                <div class="card-header">
+                                <div class="card-header" style="background-color:#F1CBFF;">
                                   MY PROFILE
                                 </div>
                      <div class="card-body">
@@ -167,6 +170,4 @@
             </div>
         </div>
 
-    </main>
-<?php include('applicantsviews/footer.php'); ?>
-<?php include('applicantsviews/script.php'); ?>
+        <?php include('layouts/footer.php'); ?>

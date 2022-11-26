@@ -41,9 +41,6 @@
                         <!-- job single -->
 
 
-
-                     
-
                         <div class="single-job-items mb-50">
                  
                             <div class="job-items">

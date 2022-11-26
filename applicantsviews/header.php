@@ -39,12 +39,12 @@
 
 
 <!-- Button trigger modal -->
-<button type="button" class="btn head-btn1" data-toggle="modal" data-target="#exampleModalLong">
+<button type="button" class="btn head-btn1" id="registers">
   Register
 </button>
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+<!-- <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
         <div class="modal-header">
@@ -96,7 +96,7 @@
                       <option selected>Select Your Position</option>
                       <option value="employee">Employee</option>
                       <option value="employer">Employer</option>
-                      <!-- <option value="3">Three</option> -->
+                      <option value="3">Three</option> 
                     </select>
                   </div>
                 </div>
@@ -112,19 +112,19 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
 
 
 
 
 
 <!--  Button trigger modal -->
-<button type="button"  class="btn head-btn21" data-toggle="modal" data-target="#modalform2">
+<button type="button"  class="btn head-btn21" id="logins">
   Login
 </button>
 
 <!-- Modal -->
-<div class="modal fade" id="modalform2" tabindex="-1" role="dialog" aria-labelledby="modalloginform" aria-hidden="true">
+<!-- <div class="modal fade" id="modalform2" tabindex="-1" role="dialog" aria-labelledby="modalloginform" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
                 <div class="modal-header">
@@ -166,7 +166,7 @@
          </div>       
     </div> 
   </div>
-</div>
+</div> -->
 
                        
                                      </div>

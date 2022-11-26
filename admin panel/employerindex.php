@@ -17,7 +17,7 @@
     $job_expected_salary = $crudapi->escape_string($_POST['job_expected_salary']);
     $jobs_user_id = $crudapi->escape_string($_POST['jobs_user_id']);
       
-    $result = $crudapi->execute("INSERT INTO jobs(job_company_name,jobs_name,jobs_address,jobs_description,jobs_preferred_time,jobs_r_skills,jobs_r_education_id,jobs_r_experience,jobs_vacancy_count,job_expected_salary,jobs_user_id)VALUES('j$ob_company_name','$jobs_name','$jobs_address','$jobs_description','$jobs_r_skills','$jobs_r_education_id','$jobs_preferred_time','$jobs_r_experience','$jobs_vacancy_count','$job_expected_salary','3')");
+    $result = $crudapi->execute("INSERT INTO jobs(job_company_name,jobs_name,jobs_address,jobs_description,jobs_preferred_time,jobs_r_skills,jobs_r_education_id,jobs_r_experience,jobs_vacancy_count,job_expected_salary,jobs_user_id)VALUES('$job_company_name','$jobs_name','$jobs_address','$jobs_description','$jobs_r_skills','$jobs_r_education_id','$jobs_preferred_time','$jobs_r_experience','$jobs_vacancy_count','$job_expected_salary','3')");
     
     echo '<script>alert("ADDED SUCCESS");</script>';
     // echo '<script>window.reload();</script>';
@@ -73,6 +73,7 @@ if(isset($_POST['deleteexp'])) {
           <tr>
             <th scope="col">#</th>
             <th scope="col">Campany Name</th>
+            <th scope="col">Position Name</th>
             <th scope="col">Address</th>
             <th scope="col">Description</th>
             <th scope="col">Skill</th>
@@ -80,6 +81,7 @@ if(isset($_POST['deleteexp'])) {
             <th scope="col">Preferred Time</th>
             <th scope="col">Experience</th>
             <th scope="col">Vacancy</th>
+            <th scope="col">Salary</th>
           </tr>
         </thead>
         <tbody>
@@ -101,12 +103,8 @@ if(isset($_POST['deleteexp'])) {
               <td><?php echo $data["jobs_r_experience"] ?></td>
               <td><?php echo $data["jobs_vacancy_count"] ?></td>
               <td><?php echo $data["job_expected_salary"] ?></td>
-              <td><?php echo $data["jobs_user_id"] ?></td>
+             
               <td>
-
-
-
-
 
                 <div class="btn-group" role="group" aria-label="Basic example">
                   <button type="button" data-id="<?php echo $data['jobs_id']; ?>" class="btn btn-primary" id="editbtn">EDIT</button>
@@ -187,7 +185,7 @@ if(isset($_POST['deleteexp'])) {
                         <select name="jobs_preferred_time" id="jobs_preferred_time">
 
                             <option value="1">Full Time</option>
-                            <option value="0">Part Time</option>
+                            <option value="2">Part Time</option>
 
                     <div class="form-group">
                         <label for="exampleInputPassword1">Experience</label>
@@ -210,7 +208,6 @@ if(isset($_POST['deleteexp'])) {
                     </div>
                 </form>
                 </div>
-               
                 </div>
             </div>
          </div>
@@ -276,7 +273,7 @@ if(isset($_POST['deleteexp'])) {
                         <select name="jobs_preferred_time" id="jobs_preferred_time">
 
                             <option value="1">Full Time</option>
-                            <option value="0">Part Time</option>
+                            <option value="2">Part Time</option>
 
                          </select>
                         <!-- <input type="text" class="form-control" name="jobs_r_education_id" id="jobs_r_education_id" placeholder="Education"required> -->

@@ -39,9 +39,9 @@
               <td><?php echo strtoupper($data["aai_expected_salary"]) ?></td>
               
               <td>
-                <div class="btn-group" role="group" aria-label="Basic example">
-                  <button type="button" >VIEW</button>
-                </div>
+                        <div class="items-link items-link2 f-right">
+                          <a href="viewapplicant.php"><i style="font-size:30px;" class="bi bi-eye-fill"></i></a>
+                       </div>
               </td>
             </tr>
           <?php $number++; } ?>

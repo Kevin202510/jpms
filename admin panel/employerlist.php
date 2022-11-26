@@ -45,51 +45,97 @@
 <?php include('layouts/header.php'); ?>
 <?php include('layouts/sidebar.php'); ?>
 
-<section class="section profile">
-<div class="container-fluid">
-  <div class="card">
-    <div class="card-header">
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#usersModal" style="float:right;">ADD</button>
+<style type="text/css">
+
+body{
+  color: #566787;
+  background:#f5f5f5;
+  font-family: 'varela round', Sans-seif;
+  font-size: 13px;
+}
+
+
+    .table-wrapper{
+background: #fff;
+padding: 20px 25px;
+margin: 30px 0;
+border-radius: 3px;
+box-shadow: 0 1px 1px rgba(0,0,0,.05);
+}
+.table-title{
+
+  padding-bottom: 15px;
+  background: linear-gradient(to right, #14620b, #106ee3);
+  color: #fff;
+  padding: 16px 30px;
+  margin: -20px -25px 10px;
+  border-radius: 3px 3px 0 0;
+}
+  </style>
+
+<div class="container">
+      <div class="table-wrapper">
+        <div class="table-title">
+          <div class="row">
+            <div class="col-sm-6">
+
+          <h5><b>Employers List</b></h5>
+           
+        </div>
+      </div>
     </div>
-    <div class="card-body">
-      <table class="table">
-        <thead class="thead-dark">
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">ROLENAME</th>
-            <th scope="col">FULLNAME</th>
-            <th scope="col">ADDRESS</th>
-            <th scope="col">CONTACT</th>
-            <th scope="col">USERNAME</th>
-            <th scope="col">ACTION</th>
-          </tr>
-        </thead>
-        <tbody>
-        <?php 
-            $query = "SELECT * FROM `users` LEFT JOIN roles ON roles.id = users.user_role_id where users.user_role_id = 3";
-            $result = $crudapi->getData($query);
-            $number = 1;
-            foreach ($result as $key => $data) {
-        ?>
-            <tr>
+
+       <table class="table table-striped table-hover">
+            <thead>
+              <tr>
+                   <th scope="col">#</th>
+                   <th scope="col">Campany Name</th>
+                   <th scope="col">Position Name</th>
+                   <th scope="col">Address</th>
+                   <th scope="col">Description</th>
+                   <th scope="col">Skill</th>
+                   <th scope="col">Education</th>
+                   <th scope="col">Preferred Time</th>
+                   <th scope="col">Experience</th>
+                   <th scope="col">Vacancy</th>
+                   <th scope="col">Salary</th>
+                   <th scope="col">Action</th>
+                   
+             <tr>
+            </thead>
+            <tbody>
+                <?php 
+                      $query = "SELECT * FROM `jobs` left join users on users.user_id = jobs.jobs_user_id where jobs.jobs_user_id=3";
+                      $result = $crudapi->getData($query);
+                      $number = 1;
+                      foreach ($result as $key => $data) {
+                ?>
+           <tr>
               <th scope="row"><?php echo $number; ?></th>
-              <td><?php echo $data["display_name"] ?></td>
-              <td><?php echo strtoupper($data["user_fname"]." ".$data["user_lname"]); ?></td>
-              <td><?php echo strtoupper($data["user_contact"]) ?></td>
-              <td><?php echo $data["user_email"] ?></td>
+              <td><?php echo $data["job_company_name"] ?></td>
+              <td><?php echo $data["jobs_name"] ?></td>
+              <td><?php echo $data["jobs_address"] ?></td>
+              <td><?php echo $data["jobs_description"] ?></td>
+              <td><?php echo $data["jobs_r_skills"] ?></td>
+              <td><?php echo $data["jobs_r_education_id"] ?></td>
+              <td><?php echo $data["jobs_preferred_time"] ?></td>
+              <td><?php echo $data["jobs_r_experience"] ?></td>
+              <td><?php echo $data["jobs_vacancy_count"] ?></td>
+              <td><?php echo $data["job_expected_salary"] ?></td>
+ 
               <td>
-                <div class="btn-group" role="group" aria-label="Basic example">
-                  <button type="button" data-id="<?php echo $data['user_id']; ?>" class="btn btn-primary" id="editbtn">EDIT</button>
-                  <button type="button" data-id="<?php echo $data['user_id']; ?>" class="btn btn-danger" id="deletebtn">DELETE</button>
-                </div>
+                   <div class="btn-group" role="group" aria-label="Basic example">
+                       <button type="button" data-id="<?php echo $data['jobs_id']; ?>" id="editbtn" style="border: transparent; color: green; background: transparent;"><i class="bi bi-pencil-fill"></i></button>
+                       <button type="button" data-id="<?php echo $data['jobs_id']; ?>" id="deletebtn" style="border: transparent; color: red; background: transparent;"> <i class="bi bi-trash-fill"></i></button>
+                    </div>
+
               </td>
-            </tr>
+              </tr>
           <?php $number++; } ?>
         </tbody>
       </table>
-    </div>
-  </div>
 </div>
-</section>
+</div>
+
 
 <?php include('layouts/footer.php'); ?>

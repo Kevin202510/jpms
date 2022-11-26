@@ -41,41 +41,61 @@ if(isset($_POST['deleteskills'])) {
     <!-- Preloader Start -->
     <?php include('applicantsviews/headerapplicant.php'); ?>
     <main>
+
+
         <!-- Our Services Start -->
-
-
         <section class="section profile">
 <div class="container-fluid" style="padding:30px;">
   <div class="card" style="margin-bottom:30px; padding:30px;">
-    <div class="card-header">
-      <button type="button" class="btn btn-primary" id="addskills" style="float:right;">ADD</button>
+    <div class="card-header" style="background-color:#1AA478;"> 
+        <label Style="font-size:30px;">SKILLS</label>
+      <button type="button" class="btn btn-primary" id="addskills" style="float:right; background-color:#0A5F42;">ADD</button>
     </div>
-    <div class="card-body">
-        <div class="row">
-    <?php 
-           
-           $query = "SELECT * FROM `applicant_skills` left join users on users.user_id = applicant_skills.as_user_id where applicant_skills.as_user_id=1";
-           $result = $crudapi->getData($query);
-           $number = 1;
-           foreach ($result as $key => $data) {
-       ?>
-    <div class="card" style="width: 18rem; margin-right:10px;">
-        <div class="card-body">
-            <h5 class="card-title"><?php echo $data["as_skillname"] ?></h5>
-            <p class="card-text"><?php echo $data["as_skillname"] ?></p>
-            <div class="btn-group" role="group" aria-label="Basic example">
-            <button type="button" data-id="<?php echo $data['as_id']; ?>" class="btn btn-primary" id="editbtn"><i class="fa fa-pencil-alt"></i></button>
-                  <button type="button" data-id="<?php echo $data['as_id']; ?>" class="btn btn-danger" id="deletebtn"><i class="fa fa-trash-alt"></i></button>
+    <div class="card-body" style="background-color:#F1CBFF;">
+        
+            <div class="container-fluid">
+                <div class="row">
+                    <!-- Left content -->
+                    
+                    <!-- Right content -->
+                    <div class="col-xl-12 col-lg-12 col-md-12">
+                        <!-- Featured_job_start -->
+                        <section class="featured-job-area">
+                            <div class="container">
+                                  
+                                <?php 
+         
+                                     $query = "SELECT * FROM `applicant_skills` left join users on users.user_id = applicant_skills.as_user_id where applicant_skills.as_user_id=1";
+                                      $result = $crudapi->getData($query);
+                                      $number = 1;
+                                      foreach ($result as $key => $data) {
+                                  ?>
+                                <div class="single-job-items mb-30">
+                                    <div class="job-items">
+                                       
+                                        <div class="job-tittle job-tittle2">
+                                            <a href="#">
+                                                <h2><?php echo strtoupper($data['as_skillname']); ?></h2>
+
+                                            </a>
+
+                                        </div>
+                                    </div>
+                                    <div class="items-link items-link2 f-right">
+                                        <button type="button" data-id="<?php echo $data['as_id']; ?>" class="btns" style="background-color:#ad96b1;border:none;border-radius:50px;" id="editbtn"><i style="color:black" class="fa fa-pencil-alt"></i></button>
+                                        <button type="button" data-id="<?php echo $data['as_id']; ?>" class="btns" id="deletebtn"  style="background-color:#ad96b1;border:none;border-radius:50px;"><i  style="color:red;" class="fa fa-trash-alt"></i></button>
+                                    </div>
+                                </div>
+                                <?php }?>
+                            </div>
+                        </section>
+                        <!-- Featured_job_end -->
+                
+                </div>
             </div>
-            <input type="hidden" value="<?php echo $data["as_user_id"] ?>" id="user_id">
         </div>
-    </div>
-    <?php $number++; } ?>
-    </div>
-    </div>
-  </div>
-</div>
-</section>
+
+
 
 
 <!-- ADDMODAL -->
@@ -101,7 +121,7 @@ if(isset($_POST['deleteskills'])) {
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary" name="addskills">Save changes</button>
+                        <button type="submit" class="btn btn-primary" name="addskills">SUBMIT</button>
                     </div>
                 </form>
                 </div>
@@ -135,7 +155,7 @@ if(isset($_POST['deleteskills'])) {
                 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary" name="editskills">Update changes</button>
+                        <button type="submit" class="btn btn-primary" name="editskills">UPDATE</button>
                     </div>
                 </form>
                 </div>
@@ -159,7 +179,7 @@ if(isset($_POST['deleteskills'])) {
                     <input type="hidden" class="form-control" name="as_id" id="as_idss">
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary" name="deleteskills">Delete</button>
+                        <button type="submit" class="btn btn-primary" name="deleteskills">DELETE</button>
                     </div>
                 </form>
                 </div>

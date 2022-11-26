@@ -21,10 +21,11 @@
                                             <li><a href="index.php">Home</a></li>
                                             <li><a href="applicantinformation.php">My Profile</a></li>
                                             <li><a href="applicant_exp.php">Experiences</a></li>
-                                            <li><a href="applicant_educ.php">Educations</a>
-                                            <li><a href="applicant_add_info.php">Additional Info</a>
-                                            <li><a href="applicant_skills.php">Skills</a>
-                                            <li><a href="applicant_educ_attainment.php">Education Attainment</a>
+                                            <li><a href="applicant_educ.php">Educations</a></li>
+                                            <li><a href="applicant_skills.php">Skills</a></li>
+                                            <li><a href="applicant_add_info.php">Additional Info</a></li>
+                                            
+                                          
                                            
                                           
                                         </ul>

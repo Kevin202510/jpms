@@ -50,38 +50,65 @@ if(isset($_POST['deleteinfo'])) {
     <!-- Preloader Start -->
     <?php include('applicantsviews/headerapplicant.php'); ?>
     <main>
+
     <section class="section profile">
-<div class="container-fluid">
-  <div class="card" style="margin-bottom:30px;">
-    <div class="card-header">
-      <button type="button" class="btn btn-primary" id="addinfos" style="float:right;">ADD</button>
+<div class="container-fluid" style="padding:30px;">
+  <div class="card" style="margin-bottom:30px; padding:30px;">
+    <div class="card-header" style="background-color:#1AA478;"> 
+        <label Style="font-size:30px;">Additional Info</label>
+      <button type="button" class="btn btn-primary" id="addinfos" style="float:right;  background-color:#0A5F42;">ADD</button>
     </div>
-    <div class="card-body">
-        <div class="row">
-    <?php 
-           
-           $query = "SELECT * FROM `applicant_additional_info` left join users on users.user_id = applicant_additional_info.aai_user_id where applicant_additional_info.aai_user_id=1";
-           $result = $crudapi->getData($query);
-           $number = 1;
-           foreach ($result as $key => $data) {
-       ?>
-    <div class="card" style="width: 18rem; margin-right:10px;">
-        <div class="card-body">
-            <h5 class="card-title"><?php echo $data["aai_expected_salary"] ?></h5>
-            <p class="card-text"><?php echo $data["aai_expected_salary"] ?> <br><?php echo $data["aai_location"] ?> <br><?php echo $data["aai_wfh_os"] ?></p>
-            <div class="btn-group" role="group" aria-label="Basic example">
-            <button type="button" data-id="<?php echo $data['aai_id']; ?>" class="btn btn-primary" id="editbtn"><i class="fa fa-pencil-alt"></i></button>
-                  <button type="button" data-id="<?php echo $data['aai_id']; ?>" class="btn btn-danger" id="deletebtn"><i class="fa fa-trash-alt"></i></button>
+    <div class="card-body" style="background-color:#F1CBFF;">
+        
+            <div class="container-fluid">
+                <div class="row">
+                    <!-- Left content -->
+                    
+                    <!-- Right content -->
+                    <div class="col-xl-12 col-lg-12 col-md-12">
+                        <!-- Featured_job_start -->
+                        <section class="featured-job-area">
+                            <div class="container">
+                                  
+                                <?php 
+         
+                                     $query = "SELECT * FROM `applicant_additional_info` left join users on users.user_id = applicant_additional_info.aai_user_id where applicant_additional_info.aai_user_id=1";
+                                     $result = $crudapi->getData($query);
+                                     $number = 1;
+                                     foreach ($result as $key => $data) {
+                                  ?>
+                                <div class="single-job-items mb-30">
+                                    <div class="job-items">
+                                       
+                                        <div class="job-tittle job-tittle2">
+                                            <a href="#">
+                                               
+
+                                            </a>
+                                            <ul>
+                                          
+                                                <li style="font-size:20px; color:black;"><i class="fa-solid fa-peso-sign">PHP</i><?php echo strtoupper($data['aai_expected_salary']); ?></li>
+                                                <li style="font-size:20px; color:black;"><i class="fa fa-map-marker-alt"></i><?php echo strtoupper($data['aai_location']); ?></li>
+                                                <li style="font-size:20px; color:black;"><i class="fas fa-briefcase"></i><?php echo strtoupper($data['aai_wfh_os']); ?></li>
+                                                
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="items-link items-link2 f-right">
+                                        <button type="button" data-id="<?php echo $data['aai_id']; ?>" class="btns" style="background-color:#ad96b1;border:none;border-radius:50px;" id="editbtn"><i style="color:black" class="fa fa-pencil-alt"></i></button>
+                                        <button type="button" data-id="<?php echo $data['aai_id']; ?>" class="btns" id="deletebtn"  style="background-color:#ad96b1;border:none;border-radius:50px;"><i  style="color:red;" class="fa fa-trash-alt"></i></button>
+                                    </div>
+                                </div>
+                                <?php }?>
+                            </div>
+                        </section>
+                        <!-- Featured_job_end -->
+                
+                </div>
             </div>
-            <input type="hidden" value="<?php echo $data["aai_user_id"] ?>" id="user_id">
         </div>
-    </div>
-    <?php $number++; } ?>
-    </div>
-    </div>
-  </div>
-</div>
-</section>
+
+
 
 
 <!-- ADDMODAL -->
@@ -112,7 +139,7 @@ if(isset($_POST['deleteinfo'])) {
 
                     <div class="form-group">
                         <label for="exampleInputPassword1">Preferred Work</label>
-                        <input type="text" class="form-control" name="aai_wfh_os" id="aai_wfh_os" placeholder="Preferred Word"required>
+                        <input type="text" class="form-control" name="aai_wfh_os" id="aai_wfh_os" placeholder="Preferred Work"required>
                     </div>
 
                     <div class="modal-footer">

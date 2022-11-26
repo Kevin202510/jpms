@@ -2,12 +2,13 @@
 
     <ul class="sidebar-nav" id="sidebar-nav">
    
-       <li class="nav-item">
+       <!-- <li class="nav-item">
         <a class="nav-link collapsed" href="employerindex.php">
           <i class="bi bi-person-circle"></i>
           <span>Employer</span>
         </a>
-      </li><!-- End Profile Page Nav -->
+      </li> -->
+      <!-- End Profile Page Nav -->
 
       <li class="nav-heading">Pages</li>
 

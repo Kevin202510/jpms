@@ -7,10 +7,10 @@ if(isset($_POST['addeduc'])) {
     $aebg_user_id = $crudapi->escape_string($_POST['aebg_user_id']);
     $aebg_school_name = $crudapi->escape_string($_POST['aebg_school_name']);
     $aebg_year_graduate = $crudapi->escape_string($_POST['aebg_year_graduate']);
-    $aebg_education_attainment_id = $crudapi->escape_string($_POST['aebg_year_graduate']);
+    $aebg_education_attainment_id = $crudapi->escape_string($_POST['aebg_education_attainment_id']);
  
       
-    $result = $crudapi->execute("INSERT INTO applicant_educationbg(aebg_user_id,aebg_school_name,aebg_year_graduate,aebg_education_attainment_id) VALUES('1','$aebg_school_name','$aebg_year_graduate','$aebg_education_attainment_id')");
+    $result = $crudapi->execute("INSERT INTO applicant_educationbg (aebg_user_id,aebg_school_name,aebg_year_graduate,aebg_education_attainment_id) VALUES('1','$aebg_school_name','$aebg_year_graduate','$aebg_education_attainment_id')");
     
     echo '<script>alert("ADDED SUCCESS");</script>';
     // echo '<script>window.reload();</script>';
@@ -50,40 +50,64 @@ if(isset($_POST['deleteeduc'])) {
     <?php include('applicantsviews/headerapplicant.php'); ?>
     <main>
 
- <section class="section profile">
-<div class="container-fluid">
-  <div class="card" style="margin-bottom:30px;">
-    <div class="card-header">
-      <button type="button" class="btn btn-primary" id="addeducs" style="float:right;">ADD</button>
+    <section class="section profile">
+<div class="container-fluid" style="padding:30px;">
+  <div class="card" style="margin-bottom:30px; padding:30px;">
+    <div class="card-header"  style="background-color:#1AA478;"> 
+        <label Style="font-size:30px;">EDUCATION</label>
+      <button type="button" class="btn btn-primary" id="addeducs" style="float:right;  background-color:#0A5F42;">ADD</button>
     </div>
-    <div class="card-body">
-    <div class="row">
-    <?php 
-           
-           $query = "SELECT * FROM `applicant_educationbg` left join users on users.user_id = applicant_educationbg.aebg_user_id  where applicant_educationbg.aebg_user_id =1";
-           $result = $crudapi->getData($query);
-           $number = 1;
-           foreach ($result as $key => $data) {
-       ?>
-    <div class="card" style="width: 18rem; margin-right:10px;">
-        <div class="card-body">
-            <h5 class="card-title"><?php echo $data["aebg_user_id"] ?></h5>
-            <p class="card-text"><?php echo $data["aebg_school_name"] ?> <br><?php echo $data["aebg_year_graduate"] ?> <br><?php echo $data["aebg_education_attainment_id"] ?></p>
-            <div class="btn-group" role="group" aria-label="Basic example">
-            <button type="button" data-id="<?php echo $data['aebg_id']; ?>" class="btn btn-primary" id="editbtn"><i class="fa fa-pencil-alt"></i></button>
-                  <button type="button" data-id="<?php echo $data['aebg_id']; ?>" class="btn btn-danger" id="deletebtn"><i class="fa fa-trash-alt"></i></button>
-            </div>
-            <input type="hidden" value="<?php echo $data["aebg_user_id"] ?>" id="user_id">
-        </div>
-    </div>
-    <?php $number++; } ?>
-    </div>
-    </div>
-  </div>
-</div>
-</section>
+    <div class="card-body" style="background-color:#F1CBFF;">
+        
+            <div class="container-fluid">
+                <div class="row">
+                    <!-- Left content -->
+                    
+                    <!-- Right content -->
+                    <div class="col-xl-12 col-lg-12 col-md-12">
+                        <!-- Featured_job_start -->
+                        <section class="featured-job-area">
+                            <div class="container">
+                                  
+                                <?php 
+         
+                                    $query = "SELECT * FROM `applicant_educationbg` left join users on users.user_id = applicant_educationbg.aebg_user_id  where applicant_educationbg.aebg_user_id =1";
+                                          $result = $crudapi->getData($query);
+                                          $number = 1;
+                                         foreach ($result as $key => $data) {
+                                  ?>
+                                <div class="single-job-items mb-30">
+                                    <div class="job-items">
 
- 
+
+                                       
+                                        <div class="job-tittle job-tittle2">
+                                            <a href="#">
+                                                <h3><?php echo strtoupper($data['aebg_school_name']); ?></h3>
+
+                                            </a>
+                                            <ul>
+                                                <li><i class="fas fa-calendar"></i><?php echo strtoupper($data['aebg_year_graduate']); ?></li>
+                                                <li><i class="fas fa-graduation-cap"></i><?php echo strtoupper($data['aebg_education_attainment_id']); ?></li>
+                                    
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="items-link items-link2 f-right">
+                                        <button type="button" data-id="<?php echo $data['aebg_id']; ?>" class="btns" style="background-color:#ad96b1;border:none;border-radius:50px;" id="editbtn"><i style="color:black" class="fa fa-pencil-alt"></i></button>
+                                        <button type="button" data-id="<?php echo $data['aebg_id']; ?>" class="btns" id="deletebtn"  style="background-color:#ad96b1;border:none;border-radius:50px;"><i  style="color:red;" class="fa fa-trash-alt"></i></button>
+                                    </div>
+                                </div>
+                                <?php }?>
+                            </div>
+                        </section>
+                        <!-- Featured_job_end -->
+                
+                </div>
+            </div>
+        </div>
+
+
 
 <!-- ADDMODAL -->
 
@@ -98,7 +122,7 @@ if(isset($_POST['deleteeduc'])) {
                 </div>
                 <div class="modal-body">
                 <form method="POST">
-                    <input type="hidden" class="form-control" name="aebg_id " id="aebg_id ">
+                    <input type="hidden" class="form-control" name="aebg_id" id="aebg_id">
                     <input type="hidden" class="form-control" name="aebg_user_id" id="aebg_user_id">
 
                     <div class="form-group">
@@ -108,11 +132,11 @@ if(isset($_POST['deleteeduc'])) {
 
                     <div class="form-group">
                         <label for="exampleInputPassword1">Year of Graduate</label>
-                        <input type="text" class="form-control" name="aebg_year_graduate" id="aebg_year_graduate" placeholder="Year of Graduate"required>
+                        <input type="date" class="form-control" name="aebg_year_graduate" id="aebg_year_graduate" placeholder="Year of Graduate"required>
                     </div>
 
                     <div class="form-group">
-                        <select name="aebg_education_attainment_id" id="aebg_education_attainment_ids">
+                        <select name="aebg_education_attainment_id" id="aebg_education_attainment_id">
                         <?php $query = "SELECT * FROM `education_attainment`";
                             $result = $crudapi->getData($query);
                             $number = 1;
@@ -125,7 +149,7 @@ if(isset($_POST['deleteeduc'])) {
                 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary" name="addeduc">Save changes</button>
+                        <button type="submit" class="btn btn-primary" name="addeduc">Save</button>
                     </div>
                 </form>
                 </div>
@@ -157,7 +181,7 @@ if(isset($_POST['deleteeduc'])) {
 
                     <div class="form-group">
                         <label for="exampleInputPassword1">Year of Graduate</label>
-                        <input type="text" class="form-control" name="aebg_year_graduate" id="aebg_year_graduates" placeholder="Year of Graduate"required>
+                        <input type="date" class="form-control" name="aebg_year_graduate" id="aebg_year_graduates" placeholder="Year of Graduate"required>
                     </div>
 
                     <div class="form-group">
@@ -229,7 +253,7 @@ if(isset($_POST['deleteeduc'])) {
         $.post("updateapplicant_educ.php",{USER_ID: USER_IDs},function(data,status){
             var emp = JSON.parse(data);
             $("#aebg_ids").val(emp[0].aebg_id);
-            $("#aebg_user_id").val(emp[0].aebg_user_idebg_id);
+            $("#aebg_user_ids").val(emp[0].aebg_user_idebg_id);
             $("#aebg_school_names").val(emp[0].aebg_school_name);
             $("#aebg_year_graduates").val(emp[0].aebg_year_graduate);
             $("#aebg_education_attainment_ids").val(emp[0].aebg_education_attainment_id);
