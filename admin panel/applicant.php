@@ -9,105 +9,59 @@
 <?php include('layouts/header.php'); ?>
 <?php include('layouts/sidebaremployeer.php'); ?>
 
-
-<style type="text/css">
-
-body{
-  color: #566787;
-  background:#f5f5f5;
-  font-family: 'varela round', Sans-seif;
-  font-size: 13px;
-}
-
-
-    .table-wrapper{
-background: #fff;
-padding: 20px 25px;
-margin: 30px 0;
-border-radius: 3px;
-box-shadow: 0 1px 1px rgba(0,0,0,.05);
-}
-.table-title{
-
-  padding-bottom: 15px;
-  background: linear-gradient(to right, #14620b, #106ee3);
-  color: #fff;
-  padding: 16px 30px;
-  margin: -20px -25px 10px;
-  border-radius: 3px 3px 0 0;
-}
-  </style>
-
-<div class="container">
-      <div class="table-wrapper">
-        <div class="table-title">
-          <div class="row">
-            <div class="col-md-12">
-           
-          <h5><b>Post Jobs</b></h5>
-
-          <div class="search-bar" style="float:right;">
-      <form class="search-form d-flex align-items-center" method="POST" action="#">
-        <input type="text" name="query" placeholder="Search" title="Enter search keyword">
-        <button type="submit" title="Search"><i class="bi bi-search"></i></button>
-      </form>
-      </div>
-
-          </div><!-- End Search Bar -->
-         
-          </div>
-
-         
-    </div>
-
-       <table class="table table-striped table-hover">
-            <thead>
-              <tr>
-              <th scope="col">#</th>
+<section class="section profile">
+<div class="container-fluid">
+  <div class="card">
+    
+    <div class="card-body">
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">#</th>
             <th scope="col">Full NAme</th>
-            <th scope="col">Contact</th>
-            <th scope="col">Email</th>
+            <th scope="col">Position</th>
+            <th scope="col">Salary</th>
             
-             <tr>
-            </thead>
-            <tbody>
-                <?php 
-                     $query = "SELECT * FROM `users` LEFT JOIN roles ON roles.id = users.user_role_id where users.user_role_id = 4";
-                     $result = $crudapi->getData($query);
-                     $number = 1;
-                     foreach ($result as $key => $data) {
-                ?>
-                 <tr>
-                 <th scope="row"><?php echo $number; ?></th>
+          </tr>
+        </thead>
+        <tbody>
+        <?php 
+            $query = "SELECT * FROM `users` LEFT JOIN roles ON roles.id = users.user_role_id Left JOIN applicant_experience ON roles.id = users.user_role_id Left JOIN applicant_additional_info ON roles.id = users.user_role_id where users.user_role_id = 4";
+            $result = $crudapi->getData($query);
+            $number = 1;
+            foreach ($result as $key => $data) {
+        ?>
+            <tr>
+              <th scope="row"><?php echo $number; ?></th>
               
               <td><?php echo strtoupper($data["user_fname"]." ".$data["user_lname"]); ?></td>
-              <td><?php echo strtoupper($data["user_contact"]) ?></td>
-              <td><?php echo strtoupper($data["user_email"]) ?></td>
-         
+              <td><?php echo strtoupper($data["ae_position"]) ?></td>
+              <td><?php echo strtoupper($data["aai_expected_salary"]) ?></td>
               
-                     <td>
-              
-              
-                       <div class="items-link items-link2 f-right">
-                          <a href="#"><i style="font-size:15px;" class="bi bi-eye-fill"></i></a>
-                          <button type="button" data-id="<?php echo $data['jobs_id']; ?>" id="editbtn" style="border: transparent; color: green; background: transparent;"><i class="bi bi-pencil-fill"></i></button>
-                       <button type="button" data-id="<?php echo $data['jobs_id']; ?>" id="deletebtn" style="border: transparent; color: red; background: transparent;"> <i class="bi bi-trash-fill"></i></button>
-                       </div>
-                     
+              <td>
+                <div class="btn-group" role="group" aria-label="Basic example">
+                <button type="button" data-id="<?php echo $data['jobs_id']; ?>" class="btn btn-primary" id="view">View</button>
+
+
+                  
+                </div>
               </td>
-              </tr>
+            </tr>
           <?php $number++; } ?>
+
         </tbody>
       </table>
-</div>
-</div>
 
+
+
+
+ <!-- ViewMODAL -->
 
 <?php
          
          include_once("classes/CRUDAPI.php");
          $crudapi = new CRUDAPI(); 
-         $query = "SELECT * FROM `users` LEFT JOIN roles ON roles.id = users.user_role_id where users.user_role_id = 4";
+         $query = "SELECT * FROM `jobs` left join users on users.user_id = jobs.jobs_id where jobs.jobs_id=1";
          $result = $crudapi->getData($query);
          $number = 1;
          foreach ($result as $key => $data) {
@@ -123,165 +77,111 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                     </button>
                 </div>
                 <div class="modal-body">
-
-                 <!-- Our Services Start -->
-        <div class="our-services" style="margin-bottom:20px;">
+                <!-- job post company Start -->
+        <div class="job-post-company pt-120 pb-120">
             <div class="container">
-                <div class="card" style="background-color:#20c997;">
-                   <div class="card-body">
+                <div class="row justify-content-between">
+                    <!-- Left Content -->
+                    <div class="col-xl-7 col-lg-8">
+                        <!-- job single -->
 
-              
-                <div class="card" style="background-color:#F1CBFF;">
-                                <div class="card-header">
-                                  MY PROFILE
+
+                        <div class="single-job-items mb-50">
+                 
+                            <div class="job-items">
+                                <div class="company-img company-img-details">
+                                    <a href="#"><img src="assets/img/icon/job-list1.png" alt=""></a>
                                 </div>
-                     <div class="card-body">
-                                    
-                                <?php 
-                                       
-                                       $query = "SELECT * FROM `users` where user_id = 1";
-                                       $result = $crudapi->getData($query);
-                                       foreach ($result as $key => $data) {
-                                 ?>
-                                   
+                                <div class="job-tittle">
+                                    <a href="#">
+                                        <h4><?php echo strtoupper($data['job_company_name']); ?></h4>
+                                    </a>
+                                    <ul>
+                                        <li><?php echo strtoupper($data['jobs_name']); ?></li>
+                                        <li><i class="fas fa-map-marker-alt"></i><?php echo strtoupper($data['jobs_address']); ?></li>
+                                        <li><?php echo strtoupper($data['job_expected_salary']); ?></li>
+                                    </ul>
+                                </div>
+                            </div>
                            
-                                        
-                                <div class="card-body">
-                                        <p>
-                                     <div class="form-group">
-                                               <img style="width:200px; " src="profiles/limboprofile.webp">
-                                     </div>
-
-
-                                          <div class=form-group >
-                                             Full Name <?php echo strtoupper($data["user_fname"]." ".$data["user_lname"]); ?> <br>
-                                             Address <?php echo strtoupper($data["address"]) ?><br>
-                                             Contact<?php echo strtoupper($data["user_contact"]) ?> <br>
-                                             Email<?php echo strtoupper($data["user_email"]) ?><br> 
-
-                                         </div> 
-                                        </p>
-                                   
+                        </div>
+                          <!-- job single End -->
+                       
+                        <div class="job-post-details">
+                            <div class="post-details1 mb-50">
+                                <!-- Small Section Tittle -->
+                                <div class="small-section-tittle">
+                                    <h4>Job Description</h4>
                                 </div>
-                             
-                       <?php } ?>
-                     </div>
-                </div>
-     
+                                <p><?php echo strtoupper($data['jobs_description']); ?></p>
+                            </div>
+                            <div class="post-details2  mb-50">
+                                 <!-- Small Section Tittle -->
+                                <div class="small-section-tittle">
+                                    <h4>Required Knowledge, Skills, and Abilities</h4>
+                                </div>
+                               <ul>
+                                   <li>System Software Development</li>
+                                   <li>Mobile Applicationin iOS/Android/Tizen or other platform</li>
+                                   <li>Research and code , libraries, APIs and frameworks</li>
+                                   <li>Strong knowledge on software development life cycle</li>
+                                   <li>Strong problem solving and debugging skills</li>
+                               </ul>
+                            </div>
+                            <div class="post-details2  mb-50">
+                                 <!-- Small Section Tittle -->
+                                <div class="small-section-tittle">
+                                    <h4>Education + Experience</h4>
+                                </div>
+                               <ul>
+                                   <li>3 or more years of professional design experience</li>
+                                   <li>Direct response email experience</li>
+                                   <li>Ecommerce website design experience</li>
+                                   <li>Familiarity with mobile and web apps preferred</li>
+                                   <li>Experience using Invision a plus</li>
+                               </ul>
+                            </div>
+                        </div>
 
-                <hr>
-
-                 <div class="card" style="background-color:#F1CBFF;">
-                           <div class="card-header">
-                               EDUCATION
+                    </div>
+                    <!-- Right Content -->
+                    <div class="col-xl-4 col-lg-4">
+                        <div class="post-details3  mb-50">
+                            <!-- Small Section Tittle -->
+                           <div class="small-section-tittle">
+                               <h4>Job Overview</h4>
                            </div>
-                     <div class="card-body">
-        
-                        <?php 
-                           $query = "SELECT * FROM `applicant_educationbg` where aebg_user_id = 1";
-                           $result = $crudapi->getData($query);
-                           foreach ($result as $key => $data) {
-                        ?>
-              
-            
-                        <div class="card-body"  style="text-align:center;">
-                           <p>
-                               School Name <?php echo strtoupper($data["aebg_school_name"]) ?> <br>
-                               Attainment <?php echo strtoupper($data["aebg_education_attainment_id"])?>  <br>
-                               Graduate year <?php echo strtoupper($data["aebg_year_graduate"]) ?>
-                           </p>
+                          <ul>
+                              <li>Posted date : <span>12 Aug 2019</span></li>
+                              <li>Location : <span><?php echo strtoupper($data['jobs_address']); ?></span></li>
+                              <li>Vacancy : <span><?php echo strtoupper($data['jobs_vacancy_count']); ?></span></li>
+                              <li>Job nature : <span>Full time</span></li>
+                              <li>Salary :  <span><?php echo strtoupper($data['job_expected_salary']); ?></span></li>
+                              <li>Application date : <span>12 Sep 2020</span></li>
+                          </ul>
+                         <div class="apply-btn2">
+                            <a href="#" class="btn">Apply Now</a>
+                         </div>
+                        
                        </div>
-        
-                <?php } ?>
-             </div>
-           </div>
-  
-                            <hr>
-                            <div class="card" style="background-color:#F1CBFF;">
-                                <div class="card-header">
-                                    EXPERIENCES
-                                </div>
-                                <div class="card-body">
-                                    
-                                        <?php 
-                                        $query = "SELECT * FROM `applicant_experience` where ae_user_id = 1";
-                                        $result = $crudapi->getData($query);
-                                        foreach ($result as $key => $data) {
-                                    ?>
-                                
-                                      
-
-                                        <div class="card-body"  style="text-align:center;">
-                                            <p>
-                                            Company Name <?php echo strtoupper($data["ae_companyname"]) ?>
-                                                Company Address <?php echo strtoupper($data["ae_companyaddress"]) ?> <br>
-                                                Position <?php echo strtoupper($data["ae_position"]) ?><br>
-                                                ( <?php echo strtoupper($data["ae_from"])." - ".strtoupper($data["ae_to"]) ?> )<br>
-                                            </p>
-                                        </div>
-                                    
-                                    <?php } ?>
-                                </div>
-                            </div>
-
-                         
-                            <hr>
-                            <div class="card" style="background-color:#F1CBFF;">
-                                <div class="card-header">
-                                    Skills
-                                </div>
-                                <div class="card-body">
-                                   
-                                        <?php 
-                                        $query = "SELECT * FROM `applicant_skills` where as_user_id = 1";
-                                        $result = $crudapi->getData($query);
-                                        foreach ($result as $key => $data) {
-                                    ?>
-                                   
-                                        <div class="card-body" style="text-align:center;">
-                                            <p>
-                                            Skills<?php echo strtoupper($data["as_skillname"]) ?> <br>
-                                              
-                                               
-                                            </p>
-                                        </div>
-                                    
-                                    <?php } ?>
-                                </div>
-                            </div>
-
-
-                            <hr>
-                            <div class="card" style="background-color:#F1CBFF;">
-                                <div class="card-header">
-                                Applicant Additional Info
-                                </div>
-                                <div class="card-body">
-                                        <?php 
-                                        $query = "SELECT * FROM `applicant_additional_info` where aai_user_id = 1";
-                                        $result = $crudapi->getData($query);
-                                        foreach ($result as $key => $data) {
-                                    ?>
-                                   
-                                        
-                                        <div class="card-body" style="text-align:center;">
-                                            <p>
-                                            Expected Salary<?php echo strtoupper($data["aai_expected_salary"]) ?> <br>
-                                                 Preferrer Location<?php echo strtoupper($data["aai_location"]) ?> <br>
-                                                Position Work<?php echo strtoupper($data["aai_wfh_os"]) ?><br>  
-                                            </p>
-                                        </div>
-                                    
-                                    <?php } ?>
-                                </div>
-                            </div>
-                     
-
+                        <div class="post-details4  mb-50">
+                            <!-- Small Section Tittle -->
+                           <div class="small-section-tittle">
+                               <h4>Company Information</h4>
+                           </div>
+                              <span>Colorlib</span>
+                              <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+                            <ul>
+                                <li>Name: <span><?php echo strtoupper($data["user_fname"]." ".$data["user_lname"]); ?></span></li>
+                                <li>Cotact: <span><?php echo $data["user_contact"] ?></span></span></li>
+                                <li>Email: <span><?php echo $data["user_email"] ?></span></li>
+                            </ul>
+                       </div>
                     </div>
                 </div>
             </div>
+           
         </div>
-            
                 </div>
                 </div>
             </div>
@@ -289,11 +189,15 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
          <?php }?>
 <!-- View    -->
 
-
+    </div>
+  </div>
+</div>
+</section>
 
 <?php include('layouts/footer.php'); ?>
 
 <script>
+
 $("body").on('click','#view',function(e){
 
 var USER_IDs = $(e.currentTarget).data('id');
@@ -317,5 +221,4 @@ $.post("update_jobs.php",{USER_ID: USER_IDs},function(data,status){
 $("#viewModal").modal("show");
 
 });
-
 </script>
