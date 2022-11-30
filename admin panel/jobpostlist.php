@@ -2,25 +2,7 @@
 
 include_once("classes/CRUDAPI.php");
 $crudapi = new CRUDAPI(); 
-if(isset($_POST['addjobs'])) { 
 
-    $job_company_name = $crudapi->escape_string($_POST['job_company_name']);    
-    $jobs_name = $crudapi->escape_string($_POST['jobs_name']);
-    $jobs_address = $crudapi->escape_string($_POST['jobs_address']);
-    $jobs_description = $crudapi->escape_string($_POST['jobs_description']);
-    $jobs_r_skills = $crudapi->escape_string($_POST['jobs_r_skills']);
-    $jobs_r_education_id = $crudapi->escape_string($_POST['jobs_r_education_id']);
-    $jobs_preferred_time = $crudapi->escape_string($_POST['jobs_preferred_time']);
-    $jobs_r_experience = $crudapi->escape_string($_POST['jobs_r_experience']);
-    $jobs_vacancy_count = $crudapi->escape_string($_POST['jobs_vacancy_count']);
-    $job_expected_salary = $crudapi->escape_string($_POST['job_expected_salary']);
-    $jobs_user_id = $crudapi->escape_string($_POST['jobs_user_id']);
-      
-    $result = $crudapi->execute("INSERT INTO jobs(job_company_name,jobs_name,jobs_address,jobs_description,jobs_preferred_time,jobs_r_skills,jobs_r_education_id,jobs_r_experience,jobs_vacancy_count,job_expected_salary,jobs_user_id)VALUES('$job_company_name','$jobs_name','$jobs_address','$jobs_description','$jobs_r_skills','$jobs_r_education_id','$jobs_preferred_time','$jobs_r_experience','$jobs_vacancy_count','$job_expected_salary','3')");
-    
-    echo '<script>alert("ADDED SUCCESS");</script>';
-    // echo '<script>window.reload();</script>';
-}
      if(isset($_POST['editjob'])) {  
 
     $jobs_id = $crudapi->escape_string($_POST['jobs_id']);
@@ -50,12 +32,12 @@ if(isset($_POST['deletejob'])) {
     $result = $crudapi->execute("DELETE from jobs WHERE jobs_id = '$jobs_id' ");
     
     echo '<script>alert("DELETED SUCCESS");</script>';
-    header("location:job_post.php");
+    header("location:jobpostlist.php");
 }       
 ?>
 <?php include('layouts/head.php'); ?>
 <?php include('layouts/header.php'); ?>
-<?php include('layouts/sidebaremployeer.php'); ?>
+<?php include('layouts/sidebar.php'); ?>
 
 <style type="text/css">
 
@@ -89,23 +71,22 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
       <div class="table-wrapper">
         <div class="table-title">
           <div class="row">
-            <div class="col-md-12">
+            <div class="col-sm-6">
            
           <h5><b>Post Jobs</b></h5>
-          <button type="button" class="btn btn-primary" id="jobs" style=" background-color:#28a745;  width:100px; float:right; border:none;">ADD</button>
+
+          </div><!-- End Search Bar -->
+
+          </div>
+
           <div class="search-bar" style="">
       <form class="search-form d-flex align-items-center" method="POST" action="#">
         <input type="text" name="query" placeholder="Search" title="Enter search keyword">
         <button type="submit" title="Search"><i class="bi bi-search"></i></button>
       </form>
+   
+      
       </div>
-        </div><!-- End Search Bar -->
-          
-         
-          </div>
-         
-
-         
     </div>
 
        <table class="table table-striped table-hover">
@@ -163,97 +144,6 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
 </div>
 </div>
 
-<!-- ADDMODAL -->
-
-         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                     </div>
-                <div class="modal-body">
-                <form method="POST">
-                    <input type="hidden" class="form-control" name="ae_id" id="ae_id">
-                    <input type="hidden" class="form-control" name="ae_user_id" id="ae_user_id">
-                       
-                    
-
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Comapany Name</label>
-                        <input type="text" class="form-control" name="job_company_name" id="job_company_name" placeholder="Comapany Name" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Position</label>
-                        <input type="text" class="form-control" name="jobs_name" id="jobs_name" placeholder="Position" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Comapany Address</label>
-                        <input type="text" class="form-control" name="jobs_address" id="jobs_address" placeholder="Comapany Address"required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Description</label>
-                        <input type="text" class="form-control" name="jobs_description" id="jobs_description" placeholder="Description"required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Skills</label>
-                        <input type="text" class="form-control" name="jobs_r_skills" id="jobs_r_skills" placeholder="Skills"required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Education</label>
-                        <select name="jobs_r_education_id" id="jobs_r_education_id">
-                          <?php 
-           
-                              $query = "SELECT * FROM `education_attainment`";
-                              $result = $crudapi->getData($query);
-                              $number = 1;
-                              foreach ($result as $key => $data) {
-                          ?>
-                          <option value="<?php echo $data['ea_id']; ?>"><?php echo $data['ea_name']; ?></option>
-                        <?php }?>
-                        </select>
-                        <!-- <input type="text" class="form-control" name="jobs_r_education_id" id="jobs_r_education_id" placeholder="Education"required> -->
-                    </div>
-
-
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Preferred Time</label>
-                        <select name="jobs_preferred_time" id="jobs_preferred_time">
-
-                            <option value="1">Full Time</option>
-                            <option value="0">Part Time</option>
-
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Experience</label>
-                        <input type="text" class="form-control" name="jobs_r_experience" id="jobs_r_experience" placeholder="Experience"required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Vacancy</label>
-                        <input type="number" class="form-control" name="jobs_vacancy_count" id="jobs_vacancy_count" placeholder="Vacancy"required>
-                    </div> 
-                    
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Salary</label>
-                        <input type="number" class="form-control" name="job_expected_salary" id="job_expected_salary" placeholder="Salary"required>
-                    </div>
-                
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary" name="addjobs">ADD</button>
-                    </div>
-                </form>
-                  </div>
-                </div>
-            </div>
-         </div>
 
 
          <!-- UpdateMODAL -->
@@ -386,13 +276,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
 <?php include('layouts/footer.php'); ?>
 
 <script>
-  $(document).ready(function(){
-    $("#jobs").click(function(){
-     $("#jobs_user_id").val($("user_id").val());
-        $("#exampleModal").modal("show");
-       
-    });
-  })
+
 
   $("body").on('click','#editbtn',function(e){
         // alert($(e.currentTarget).data('id'));

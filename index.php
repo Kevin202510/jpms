@@ -3,6 +3,83 @@
 include_once("classes/CRUDAPI.php");
 $crudapi = new CRUDAPI(); 
 
+
+if (isset($_POST['login'])) {
+
+    $username= $_POST['user_email'];
+    $passin= $_POST['user_password'];
+
+
+    $hashed_password = md5($passin);
+    // echo $hashed_password;
+  
+    $query = "SELECT * FROM `users` where user_email='$username' AND user_password = '$hashed_password'";
+    $result = $crudapi->getData($query);
+
+    foreach ($result as $key => $data) {
+
+        if(count($result)>0){
+        echo "<script>alert('LOGIN SUCCESS');</script>";
+
+        if($data["user_role_id"]==1){
+            header('location: admin panel/index.php');
+        }else if($data["user_role_id"]==2){
+            // echo "<script>alert('DALHIN MOKO SA APPLICANT VIEW');</script>";
+            header('location: admin panel/index.php');
+        }
+        else if($data["user_role_id"]==3){
+            
+            header('location: admin panel/employerindex.php');
+        }
+        else if($data["user_role_id"]==4){          
+            header('location: applicantinformation.php');
+        }
+        }else{
+            echo "<script>alert('LOGIN FAILED');</script>";
+        }
+
+    }
+    
+        
+    // $list = array();
+
+    // if ($res!=0){
+                 
+    //                         $row = mysqli_fetch_assoc($result);
+                             
+    //                         $list[] = $row;
+                  
+    //     }
+
+      
+    // $pos = $list[0]['Position'];
+    // $_SESSION['Id'] = $list[0]['Id'];
+       
+    
+
+    // var_dump($list);
+            
+    // if ($res==1) {
+
+    //     if($pos=="employee"){
+    //         header("location: admin panel\Employee settings.php");
+    //     } else if($pos=="employer"){
+    //         header("location: admin panel\Employer settings.php");
+    //     }else if($pos=="Admin"){
+    //         header("location: admin panel\admin.php");
+    //     }
+
+       
+    // } else {
+
+    //     echo '<script>alert("Invalid account");</script>';
+    // }
+
+}
+
+
+
+
 if(isset($_POST['register'])) {	
 
     $user_fname = $crudapi->escape_string($_POST['user_fname']);
@@ -235,7 +312,7 @@ if(isset($_POST['register'])) {
 
                              <div class="form-group">
                                  <label for="exampleInputPassword1">Contact</label>
-                                 <input type="text" class="form-control" name="user_contact" id="user_contact" placeholder="Contact" required>
+                                 <input type="number" class="form-control" name="user_contact" id="user_contact" placeholder="Contact" required>
                             </div>
 
                              <div class="form-group">

@@ -1,4 +1,4 @@
-<aside id="sidebar" class="sidebar">
+<aside id="sidebar" class="sidebar" style="background-color:#28756e;">
 
     <ul class="sidebar-nav" id="sidebar-nav">
    

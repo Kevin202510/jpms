@@ -58,7 +58,7 @@ if(isset($_POST['deleteinfo'])) {
         <label Style="font-size:30px;">Additional Info</label>
       <button type="button" class="btn btn-primary" id="addinfos" style="float:right;  background-color:#0A5F42;">ADD</button>
     </div>
-    <div class="card-body" style="background-color:#F1CBFF;">
+    <div class="card-body" style="background-color:#a2c6a3;">
         
             <div class="container-fluid">
                 <div class="row">
@@ -95,8 +95,8 @@ if(isset($_POST['deleteinfo'])) {
                                         </div>
                                     </div>
                                     <div class="items-link items-link2 f-right">
-                                        <button type="button" data-id="<?php echo $data['aai_id']; ?>" class="btns" style="background-color:#ad96b1;border:none;border-radius:50px;" id="editbtn"><i style="color:black" class="fa fa-pencil-alt"></i></button>
-                                        <button type="button" data-id="<?php echo $data['aai_id']; ?>" class="btns" id="deletebtn"  style="background-color:#ad96b1;border:none;border-radius:50px;"><i  style="color:red;" class="fa fa-trash-alt"></i></button>
+                                        <button type="button" data-id="<?php echo $data['aai_id']; ?>" class="btns" style="background-color:#669068;border:none;border-radius:50px;" id="editbtn"><i style="color:black" class="fa fa-pencil-alt"></i></button>
+                                        <button type="button" data-id="<?php echo $data['aai_id']; ?>" class="btns" id="deletebtn"  style="background-color:#669068;border:none;border-radius:50px;"><i  style="color:red;" class="fa fa-trash-alt"></i></button>
                                     </div>
                                 </div>
                                 <?php }?>

@@ -34,6 +34,14 @@
           <span>Employerlist</span>
         </a>
       </li> 
+
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="jobpostlist.php">
+          <i class="bi bi-card-list"></i>
+          <span>Job Post List</span>
+        </a>
+      </li>
       <!-- End Register Page Nav -->
 
       <!-- End Login Page Nav -->
