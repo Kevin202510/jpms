@@ -87,15 +87,15 @@ if(isset($_POST['deleteeduc'])) {
 
                                             </a>
                                             <ul>
-                                                <li><i class="fas fa-calendar"></i><?php echo strtoupper($data['aebg_year_graduate']); ?></li>
-                                                <li><i class="fas fa-graduation-cap"></i><?php echo strtoupper($data['aebg_education_attainment_id']); ?></li>
+                                                <li style="color:black;"><i style="color:black;" class="fas fa-calendar"></i><?php echo strtoupper($data['aebg_year_graduate']); ?></li>
+                                                <li style="color:black;"><i style="color:black;" class="fas fa-graduation-cap"></i><?php echo strtoupper($data['aebg_education_attainment_id']); ?></li>
                                     
                                             </ul>
                                         </div>
                                     </div>
                                     <div class="items-link items-link2 f-right">
-                                        <button type="button" data-id="<?php echo $data['aebg_id']; ?>" class="btns" style="background-color:#669068;border:none;border-radius:50px;" id="editbtn"><i style="color:black" class="fa fa-pencil-alt"></i></button>
-                                        <button type="button" data-id="<?php echo $data['aebg_id']; ?>" class="btns" id="deletebtn"  style="background-color:#669068;border:none;border-radius:50px;"><i  style="color:red;" class="fa fa-trash-alt"></i></button>
+                                        <button type="button" data-id="<?php echo $data['aebg_id']; ?>" class="btns" style="background-color:#669068;border:none;border-radius:20px; padding:20px;" id="editbtn"><i style="color:black" class="fa fa-pencil-alt"></i></button>
+                                        <button type="button" data-id="<?php echo $data['aebg_id']; ?>" class="btns" id="deletebtn"  style="background-color:#669068;border:none;border-radius:20px;  padding:20px;"><i  style="color:red;" class="fa fa-trash-alt"></i></button>
                                     </div>
                                 </div>
                                 <?php }?>

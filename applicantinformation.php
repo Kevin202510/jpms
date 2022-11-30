@@ -14,7 +14,7 @@
                    <div class="card-body">
 
               
-                <div class="card" style="background-color:#F1CBFF;">
+                <div class="card" style="background-color:#c4eeef;">
                                 <div class="card-header">
                                   MY PROFILE
                                 </div>
@@ -54,7 +54,7 @@
 
                 <hr>
 
-                 <div class="card" style="background-color:#F1CBFF;">
+                 <div class="card" style="background-color:#c4eeef;">
                            <div class="card-header">
                                EDUCATION
                            </div>
@@ -82,7 +82,7 @@
 
 
                             <hr>
-                            <div class="card" style="background-color:#F1CBFF;">
+                            <div class="card" style="background-color:#c4eeef;">
                                 <div class="card-header">
                                     EXPERIENCES
                                 </div>
@@ -111,7 +111,7 @@
 
                          
                             <hr>
-                            <div class="card" style="background-color:#F1CBFF;">
+                            <div class="card" style="background-color:#c4eeef;">
                                 <div class="card-header">
                                     Skills
                                 </div>
@@ -137,7 +137,7 @@
 
 
                             <hr>
-                            <div class="card" style="background-color:#F1CBFF;">
+                            <div class="card" style="background-color:#c4eeef;">
                                 <div class="card-header">
                                 Applicant Additional Info
                                 </div>
