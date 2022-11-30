@@ -120,7 +120,10 @@ if(isset($_POST['register'])) {
     
     <!-- Preloader Start -->
     <?php include('applicantsviews/header.php'); ?>
+    
     <main>
+
+
 
         <!-- slider Area Start-->
         <div class="slider-area ">
@@ -136,8 +139,9 @@ if(isset($_POST['register'])) {
                             </div>
                         </div>
                         <!-- Search Box -->
-                        <div class="row">
+                             <div class="row">
                             <div class="col-xl-6">
+                           
                                 <!-- form -->
                                 <form action="joblisting.php" class="search-box" method="post">
 
@@ -338,7 +342,7 @@ if(isset($_POST['register'])) {
                     
                         <label for="exampleInputPassword1">Role</label><br>
                         <select name="user_role_id" id="user_role_id" >
-                            <option value="2">employee</option>
+                           
                             <option value="3">employer</option>
                         </select>
                     

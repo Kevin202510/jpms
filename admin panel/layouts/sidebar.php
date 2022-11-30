@@ -1,4 +1,4 @@
-<aside id="sidebar" class="sidebar">
+<aside id="sidebar" class="sidebar" style="background-color:#28756e;">
 
     <ul class="sidebar-nav" id="sidebar-nav">
    
@@ -19,12 +19,7 @@
       </li><!-- End Profile Page Nav -->
 
  
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="userslist.php">
-          <i class="bi bi-card-list"></i>
-          <span>Users</span>
-        </a>
-      </li><!-- End Register Page Nav -->
+     <!-- End Register Page Nav -->
 
       <!-- End Login Page Nav -->
 
@@ -40,6 +35,13 @@
         <a class="nav-link collapsed" href="jobpostlist.php">
           <i class="bi bi-card-list"></i>
           <span>Job Post List</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="userslist.php">
+          <i class="bi bi-card-list"></i>
+          <span>Users</span>
         </a>
       </li>
       <!-- End Register Page Nav -->

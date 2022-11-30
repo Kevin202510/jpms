@@ -83,15 +83,15 @@ if(isset($_POST['deleteexp'])) {
 
                                             </a>
                                             <ul>
-                                                <li style="font-weight:bold;"><i style="color:black;" class="fas fa-map-marker-alt"></i><?php echo strtoupper($data['ae_companyaddress']); ?></li>
-                                                <li style="font-weight:bold;"><i style="color:black;" class="fas fa-briefcase"></i><?php echo strtoupper($data['ae_position']); ?></li>
+                                                <li style="font-weight:bold;"><i  style="color:black;" class="fas fa-map-marker-alt"></i><?php echo strtoupper($data['ae_companyaddress']); ?></li>
+                                                <li style="font-weight:bold;"><i  style="color:black;" class="fas fa-briefcase"></i><?php echo strtoupper($data['ae_position']); ?></li>
                                               <li style="font-weight:bold;"><p><i style="color:black;" class="fas fa-calendar"></i>( <?php echo strtoupper($data["ae_from"]).") (".strtoupper($data["ae_to"]) ?> )</p></li>
                                             </ul>
                                         </div>
                                     </div>
                                     <div class="items-link items-link2 f-right">
-                                        <button type="button" data-id="<?php echo $data['ae_id']; ?>" class="btns" style="background-color:#669068;border:none;border-radius:20px; padding:20px;" id="editbtn"><i style="color:black" class="fa fa-pencil-alt"></i></button>
-                                        <button type="button" data-id="<?php echo $data['ae_id']; ?>" class="btns" id="deletebtn"  style="background-color:#669068;border:none;border-radius:20px; padding:20px;"><i  style="color:red;" class="fa fa-trash-alt"></i></button>
+                                        <button type="button" data-id="<?php echo $data['ae_id']; ?>" class="btns" style="background-color:#669068; padding:20px; border:none;border-radius:20px;" id="editbtn"><i style="color:black" class="fa fa-pencil-alt"></i></button>
+                                        <button type="button" data-id="<?php echo $data['ae_id']; ?>" class="btns" id="deletebtn"  style="background-color:#669068; padding:20px; border:none;border-radius:20px;"><i  style="color:red;" class="fa fa-trash-alt"></i></button>
                                     </div>
                                 </div>
                                 <?php }?>
