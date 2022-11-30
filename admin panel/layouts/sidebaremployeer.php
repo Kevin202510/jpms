@@ -12,12 +12,22 @@
 
       <li class="nav-heading">Pages</li>
 
-    <li class="nav-item">
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="employerindex.php">
+          <i class="bi bi-person-circle"></i>
+          <span>Job Post</span>
+        </a>
+      </li>
+
+
+    <!-- <li class="nav-item">
         <a class="nav-link collapsed" href="job_post.php">
           <i class="bi bi-person-circle"></i>
           <span>Job Post</span>
         </a>
-      </li><!-- End Profile Page Nav -->
+      </li> -->
+      
+      <!-- End Profile Page Nav -->
 
  
       <li class="nav-item">
