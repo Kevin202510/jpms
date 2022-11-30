@@ -58,62 +58,100 @@ if(isset($_POST['deleteexp'])) {
 <?php include('layouts/header.php'); ?>
 <?php include('layouts/sidebaremployeer.php'); ?>
 
-<section class="section profile">
+<style type="text/css">
 
-<div class="container-fluid">
-  <div class="card" style="margin-bottom:30px;">
-    <div class="card-header">
-      <button type="button" class="btn btn-primary" id="jobs" style="float:right;">ADD</button>
+body{
+  color: #566787;
+  background:#f5f5f5;
+  font-family: 'varela round', Sans-seif;
+  font-size: 13px;
+}
+
+
+    .table-wrapper{
+background: #fff;
+padding: 20px 25px;
+margin: 30px 0;
+border-radius: 3px;
+box-shadow: 0 1px 1px rgba(0,0,0,.05);
+}
+.table-title{
+
+  padding-bottom: 15px;
+  background: linear-gradient(to right, #14620b, #106ee3);
+  color: #fff;
+  padding: 16px 30px;
+  margin: -20px -25px 10px;
+  border-radius: 3px 3px 0 0;
+}
+  </style>
+
+<div class="container">
+      <div class="table-wrapper">
+        <div class="table-title">
+          <div class="row">
+            <div class="col-md-12">
+           
+          <h5><b>Post Jobs</b></h5>
+          <button type="button" class="btn btn-primary" id="jobs" style=" background-color:#28a745;  width:100px; float:right; border:none;">ADD</button>
+          <div class="search-bar" style="">
+      <form class="search-form d-flex align-items-center" method="POST" action="#">
+        <input type="text" name="query" placeholder="Search" title="Enter search keyword">
+        <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+      </form>
+      </div>
+        </div><!-- End Search Bar -->
+          
+         
+          </div>
+         
+
+         
     </div>
 
-
-<div class="card-body">
-      <table class="table">
-        <thead class="thead-dark">
-          <tr>
-            <th scope="col">#</th>
+       <table class="table table-striped table-hover">
+            <thead>
+              <tr>
+              <th scope="col">#</th>
             <th scope="col">Campany Name</th>
             <th scope="col">Position Name</th>
             <th scope="col">Address</th>
-          
             <th scope="col">Vacancy</th>
             <th scope="col">Salary</th>
-          </tr>
-        </thead>
-        <tbody>
-        <?php 
-            $query = "SELECT * FROM `jobs` left join users on users.user_id = jobs.jobs_user_id where jobs.jobs_user_id=3";
-            $result = $crudapi->getData($query);
-            $number = 1;
-            foreach ($result as $key => $data) {
-        ?>
-            <tr>
-              <th scope="row"><?php echo $number; ?></th>
+             <tr>
+            </thead>
+            <tbody>
+                <?php 
+                    $query = "SELECT * FROM `jobs` left join users on users.user_id = jobs.jobs_user_id where jobs.jobs_user_id=3";
+                    $result = $crudapi->getData($query);
+                    $number = 1;
+                    foreach ($result as $key => $data) {
+                ?>
+                 <tr>
+                 <th scope="row"><?php echo $number; ?></th>
               <td><?php echo $data["job_company_name"] ?></td>
               <td><?php echo $data["jobs_name"] ?></td>
               <td><?php echo $data["jobs_address"] ?></td>
-            
               <td><?php echo $data["jobs_vacancy_count"] ?></td>
               <td><?php echo $data["job_expected_salary"] ?></td>
-             
-              <td>
-
-                <div class="btn-group" role="group" aria-label="Basic example">
-                  <button type="button" data-id="<?php echo $data['jobs_id']; ?>" class="btn btn-primary" id="editbtn">EDIT</button>
-                  <button type="button" data-id="<?php echo $data['jobs_id']; ?>" class="btn btn-danger" id="deletebtn">DELETE</button>
-                  <button type="button" data-id="<?php echo $data['jobs_id']; ?>" class="btn btn-primary" id="view">View</button>
-                </div>
+         
+              
+                     <td>
+                   
+              
+                       <div class="items-link items-link2 f-right">
+                          <button type="button" data-id="<?php echo $data['jobs_id']; ?>" id="view" style="border: transparent; color: blue; background: transparent;"><i style="font-size:15px;" class="bi bi-eye-fill"></i></button>
+                          <button type="button" data-id="<?php echo $data['jobs_id']; ?>" id="editbtn" style="border: transparent; color: green; background: transparent;"><i class="bi bi-pencil-fill"></i></button>
+                          <button type="button" data-id="<?php echo $data['jobs_id']; ?>" id="deletebtn" style="border: transparent; color: red; background: transparent;"> <i class="bi bi-trash-fill"></i></button>
+                       </div>
+                     
               </td>
-            </tr>
+              </tr>
           <?php $number++; } ?>
         </tbody>
       </table>
-    </div>
-
-  </div>
 </div>
-</section>
-
+</div>
 
 <!-- ADDMODAL -->
 
@@ -395,7 +433,7 @@ if(isset($_POST['deleteexp'])) {
                     </div>
                     <!-- Right Content -->
                     <div class="col-xl-4 col-lg-4">
-                        <div class="post-details3  mb-50">
+                        <div class="post-details3  mb-50"  style="background-color:#bbddbb;">
                             <!-- Small Section Tittle -->
                            <div class="small-section-tittle">
                                <h4>Job Overview</h4>
