@@ -95,11 +95,11 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
        <table class="table table-striped table-hover">
             <thead>
               <tr>
-              
-              <th>Full Name</th>
-              <th>Contact Number</th>
-               <th>Email</th>
-               <th>Actions</th>
+                   <th scope="col">#</th>
+                   <th scope="col">Full Name</th>
+                   <th scope="col">Contact Number</th>
+                   <th scope="col">Email</th>
+                   <th scope="col">Action</th>
              <tr>
             </thead>
             <tbody>
@@ -110,8 +110,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
               foreach ($result as $key => $data) {
                 ?>
        <tr>
-       <!-- <th scope="row"><?php echo $number; ?></th> -->
-              
+              <th scope="row"><?php echo $number; ?></th>
               <td><?php echo strtoupper($data["user_fname"]." ".$data["user_lname"]); ?></td>
               <td><?php echo strtoupper($data["user_contact"]) ?></td>
               <td><?php echo strtoupper($data["user_email"]) ?></td>

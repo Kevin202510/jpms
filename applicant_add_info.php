@@ -87,16 +87,16 @@ if(isset($_POST['deleteinfo'])) {
                                             </a>
                                             <ul>
                                           
-                                                <li style="font-size:20px; color:black;"><i class="fa-solid fa-peso-sign">PHP</i><?php echo strtoupper($data['aai_expected_salary']); ?></li>
-                                                <li style="font-size:20px; color:black;"><i class="fa fa-map-marker-alt"></i><?php echo strtoupper($data['aai_location']); ?></li>
-                                                <li style="font-size:20px; color:black;"><i class="fas fa-briefcase"></i><?php echo strtoupper($data['aai_wfh_os']); ?></li>
+                                                <li style="font-size:20px; color:black;"><i style="color:black;" class="fa-solid fa-peso-sign"><b style="color:black;">PHP</b></i><?php echo strtoupper($data['aai_expected_salary']); ?></li>
+                                                <li style="font-size:20px; color:black;"><i style="color:black;" class="fa fa-map-marker-alt"></i><?php echo strtoupper($data['aai_location']); ?></li>
+                                                <li style="font-size:20px; color:black;"><i style="color:black;" class="fas fa-briefcase"></i><?php echo strtoupper($data['aai_wfh_os']); ?></li>
                                                 
                                             </ul>
                                         </div>
                                     </div>
                                     <div class="items-link items-link2 f-right">
-                                        <button type="button" data-id="<?php echo $data['aai_id']; ?>" class="btns" style="background-color:#669068;border:none;border-radius:50px;" id="editbtn"><i style="color:black" class="fa fa-pencil-alt"></i></button>
-                                        <button type="button" data-id="<?php echo $data['aai_id']; ?>" class="btns" id="deletebtn"  style="background-color:#669068;border:none;border-radius:50px;"><i  style="color:red;" class="fa fa-trash-alt"></i></button>
+                                        <button type="button" data-id="<?php echo $data['aai_id']; ?>" class="btns" style="background-color:#669068;border:none;border-radius:20px; padding:20px;" id="editbtn"><i style="color:black" class="fa fa-pencil-alt"></i></button>
+                                        <button type="button" data-id="<?php echo $data['aai_id']; ?>" class="btns" id="deletebtn"  style="background-color:#669068;border:none;border-radius:20px; padding:20px;"><i  style="color:red;" class="fa fa-trash-alt"></i></button>
                                     </div>
                                 </div>
                                 <?php }?>

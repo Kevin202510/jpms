@@ -84,6 +84,60 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
   margin: -20px -25px 10px;
   border-radius: 3px 3px 0 0;
 }
+
+.single-job-items{padding:36px 30px;display:flex;justify-content:space-between;flex-wrap:wrap;
+ 		-webkit-transition:.4s;-moz-transition:.4s;-o-transition:.4s;
+ 		transition:.4s}@media only screen and (min-width: 768px) and (max-width: 991px){
+    .single-job-items{padding:20px 7px}}@media only screen and (min-width: 576px) and (max-width: 767px){
+    .single-job-items{padding:20px 25px}}
+    .single-job-items 
+    .company-img img{overflow:hidden;float:left;margin-right:32px;z-index:999}@media (max-width: 767px){
+    .single-job-items 
+    .job-tittle{padding-top:25px}}
+    .single-job-items 
+    .job-tittle a h4{color:#28395a;font-size:24px;-webkit-transition:.4s;-moz-transition:.4s;-o-transition:.4s;transition:.4s}
+    .single-job-items 
+    .job-tittle a h4:hover{color:#28a745}
+    .single-job-items 
+    .job-tittle ul li{display:inline-block;margin-right:48px;font-size:15px;color:#808080;line-height:1.8}
+    @media only screen and (min-width: 768px) and (max-width: 991px){
+    .single-job-items 
+    .job-tittle ul li{margin-right:18px}}@media (max-width: 767px){
+    .single-job-items 
+    .job-tittle ul li{margin-right:0px;margin-bottom:7px}}
+    @media only screen and (min-width: 576px) and (max-width: 767px){
+    .single-job-items 
+    .job-tittle ul li{margin-right:8px}}
+    .single-job-items 
+    .job-tittle ul li:last-child{margin-right:0px}
+    .single-job-items 
+    .job-tittle ul li i{font-size:14px;color:#bbbbbb;margin-right:10px}
+    @media only screen and (min-width: 768px) and (max-width: 991px){
+    .single-job-items 
+    .job-tittle2{padding-top:25px}}
+    .single-job-items:hover{box-shadow:0px 22px 57px 0px rgba(34,41,72,0.05)}
+    .single-job-items 
+    .job-items{display:flex;flex-wrap:wrap}
+
+   .job-tittle{padding-top:25px}}
+    .single-job-items 
+    .job-tittle a h4{color:#28395a;font-size:24px;-webkit-transition:.4s;-moz-transition:.4s;-o-transition:.4s;transition:.4s}
+    .single-job-items 
+    .job-tittle a h4:hover{color:#28a745}
+    .single-job-items 
+    .job-tittle ul li{display:inline-block;margin-right:48px;font-size:15px;color:#808080;line-height:1.8}
+    @media only screen and (min-width: 768px) and (max-width: 991px){
+    .single-job-items 
+    .job-tittle ul li{margin-right:18px}}@media (max-width: 767px){
+    .single-job-items 
+    .job-tittle ul li{margin-right:0px;margin-bottom:7px}}
+    @media only screen and (min-width: 576px) and (max-width: 767px){
+    .single-job-items 
+    .job-tittle ul li{margin-right:8px}}
+    .single-job-items 
+    .job-tittle ul li:last-child{margin-right:0px}
+    .single-job-items 
+    .job-tittle ul li i{font-size:14px;color:#bbbbbb;margin-right:10px}
   </style>
 
 <div class="container">
@@ -262,7 +316,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
 
                     <div class="form-group">
                         <label for="exampleInputPassword1">Comapany Name</label>
-                        <input type="text" class="form-control" name="job_company_name" id="job_company_name" placeholder="Comapany Name" required>
+                        <input type="text" class="form-control" name="job_company_name" id="job_company_names" placeholder="Comapany Name" required>
                     </div>
 
                     <div class="form-group">
@@ -324,7 +378,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
 
                     <div class="form-group">
                         <label for="exampleInputPassword1">Salary</label>
-                        <input type="number" class="form-control" name="job_expected_salary" id="job_expected_salary" placeholder="Vacancy"required>
+                        <input type="number" class="form-control" name="job_expected_salary" id="job_expected_salarys" placeholder="Salary"required>
                     </div>
 
                 
@@ -399,11 +453,13 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                         <!-- job single -->
 
 
-                        <div class="single-job-items mb-50">
+                        <div class="single-job-items mb-50" style="border:solid black 1px;">
                  
-                            <div class="job-items">
-                                <div class="company-img company-img-details">
-                                    <a href="#"><img src="assets/img/icon/job-list1.png" alt=""></a>
+                            <div class="job-items " >
+                                <div class="row">
+                                <div class="company-img company-img-details" style="align-items:center;">
+                                    <a href="#"><img src="../assets/img/icon/job-list1.png" alt=""></a>
+                                </div>
                                 </div>
                                 <div class="job-tittle">
                                     <a href="#">
@@ -459,7 +515,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                     </div>
                     <!-- Right Content -->
                     <div class="col-xl-4 col-lg-4">
-                        <div class="post-details3  mb-50"  style=" border: 1px solid #d03d3d;">
+                        <div class="post-details3  mb-50"  style=" border: 1px solid black;">
                             <!-- Small Section Tittle -->
                            <div class="small-section-tittle">
                                <h4>Job Overview</h4>

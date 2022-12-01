@@ -61,9 +61,9 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
             <thead>
               <tr>
               <th scope="col">#</th>
-            <th scope="col">Full NAme</th>
-            <th scope="col">Address</th>
-            <th scope="col">Salary</th>
+              <th scope="col">Full Name</th>
+              <th scope="col">Address</th>
+              <th scope="col">Salary</th>
              <tr>
             </thead>
             <tbody>
@@ -86,8 +86,8 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
               
                        <div class="items-link items-link2 f-right">
                           <a href="#"><i style="font-size:15px;" class="bi bi-eye-fill"></i></a>
-                          <button type="button" data-id="<?php echo $data['jobs_id']; ?>" id="editbtn" style="border: transparent; color: green; background: transparent;"><i class="bi bi-pencil-fill"></i></button>
-                       <button type="button" data-id="<?php echo $data['jobs_id']; ?>" id="deletebtn" style="border: transparent; color: red; background: transparent;"> <i class="bi bi-trash-fill"></i></button>
+                          <button type="button" data-id="<?php echo $data['jobs_id']; ?>" id="editbtn" style="border: transparent; color: green; background: transparent;"><i class="bi bi-hand-thumbs-up-fill"></i></button>
+                       <button type="button" data-id="<?php echo $data['jobs_id']; ?>" id="deletebtn" style="border: transparent; color: red; background: transparent;"> <i class="bi bi-hand-thumbs-down-fill"></i></button>
                        </div>
                      
               </td>

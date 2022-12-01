@@ -44,7 +44,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
           <div class="row">
             <div class="col-md-12">
            
-          <h5><b>Post Jobs</b></h5>
+          <h5><b>Applicant</b></h5>
 
           <div class="search-bar" style="float:right;">
       <form class="search-form d-flex align-items-center" method="POST" action="#">
@@ -67,6 +67,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
             <th scope="col">Full NAme</th>
             <th scope="col">Contact</th>
             <th scope="col">Email</th>
+            <th scope="col">Action</th>
             
              <tr>
             </thead>
@@ -89,9 +90,8 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
               
               
                        <div class="items-link items-link2 f-right">
-                          <a href="#"><i style="font-size:15px;" class="bi bi-eye-fill"></i></a>
-                          <button type="button" data-id="<?php echo $data['jobs_id']; ?>" id="editbtn" style="border: transparent; color: green; background: transparent;"><i class="bi bi-pencil-fill"></i></button>
-                       <button type="button" data-id="<?php echo $data['jobs_id']; ?>" id="deletebtn" style="border: transparent; color: red; background: transparent;"> <i class="bi bi-trash-fill"></i></button>
+                       <button type="button" data-id="<?php echo $data['jobs_id']; ?>" id="editbtn" style="border: transparent; color: blue; font-size:15px; background: transparent;"><i class="bi bi-eye-fill"></i></button>
+                        
                        </div>
                      
               </td>
