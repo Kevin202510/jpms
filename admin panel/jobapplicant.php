@@ -61,7 +61,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
             <thead>
               <tr>
               <th scope="col">#</th>
-            <th scope="col">Full Name</th>
+            <th scope="col">Full NAme</th>
             <th scope="col">Address</th>
             <th scope="col">Salary</th>
              <tr>
@@ -152,10 +152,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
       <div class="container">
           <div class="row p-3">
               
-                  
-
-                 
-            
+ 
               <div class="col-md pb-2 pb-md-0" style="word-spacing: 260px;" >
               
                 

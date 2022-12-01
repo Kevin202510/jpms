@@ -9,96 +9,50 @@
 <?php include('layouts/header.php'); ?>
 <?php include('layouts/sidebaremployeer.php'); ?>
 
-<style type="text/css">
-
-body{
-  color: #566787;
-  background:#f5f5f5;
-  font-family: 'varela round', Sans-seif;
-  font-size: 13px;
-}
-
-
-    .table-wrapper{
-background: #fff;
-padding: 20px 25px;
-margin: 30px 0;
-border-radius: 3px;
-box-shadow: 0 1px 1px rgba(0,0,0,.05);
-}
-.table-title{
-
-  padding-bottom: 15px;
-  background: linear-gradient(to right, #14620b, #106ee3);
-  color: #fff;
-  padding: 16px 30px;
-  margin: -20px -25px 10px;
-  border-radius: 3px 3px 0 0;
-}
-  </style>
-
-<div class="container">
-      <div class="table-wrapper">
-        <div class="table-title">
-          <div class="row">
-            <div class="col-md-12">
-           
-          <h5><b>Post Jobs</b></h5>
-          
-          <div class="search-bar" style=" float:right;">
-      <form class="search-form d-flex align-items-center" method="POST" action="#">
-        <input type="text" name="query" placeholder="Search" title="Enter search keyword">
-        <button type="submit" title="Search"><i class="bi bi-search"></i></button>
-      </form>
-      </div>
-        </div><!-- End Search Bar -->
-          
-         
-          </div>
-         
-
-         
-    </div>
-
-       <table class="table table-striped table-hover">
-            <thead>
-              <tr>
-              <th scope="col">#</th>
-            <th scope="col">Full Name</th>
+<section class="section profile">
+<div class="container-fluid">
+  <div class="card">
+    
+    <div class="card-body">
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Full NAme</th>
             <th scope="col">Position</th>
             <th scope="col">Salary</th>
-            <th scope="col">Action</th>
-
-             <tr>
-            </thead>
-            <tbody>
-                <?php 
-                    $query = "SELECT * FROM `users` LEFT JOIN roles ON roles.id = users.user_role_id Left JOIN applicant_experience ON roles.id = users.user_role_id Left JOIN applicant_additional_info ON roles.id = users.user_role_id where users.user_role_id = 4";
-                    $result = $crudapi->getData($query);
-                    $number = 1;
-                    foreach ($result as $key => $data) {
-                ?>
-                 <tr>
-
-                   <th scope="row"><?php echo $number; ?></th>
-                   <td><?php echo strtoupper($data["user_fname"]." ".$data["user_lname"]); ?></td>
-                   <td><?php echo strtoupper($data["ae_position"]) ?></td>
-                   <td><?php echo strtoupper($data["aai_expected_salary"]) ?></td>
-         
+            
+          </tr>
+        </thead>
+        <tbody>
+        <?php 
+            $query = "SELECT * FROM `users` LEFT JOIN roles ON roles.id = users.user_role_id Left JOIN applicant_experience ON roles.id = users.user_role_id Left JOIN applicant_additional_info ON roles.id = users.user_role_id where users.user_role_id = 4";
+            $result = $crudapi->getData($query);
+            $number = 1;
+            foreach ($result as $key => $data) {
+        ?>
+            <tr>
+              <th scope="row"><?php echo $number; ?></th>
               
-                     <td>
+              <td><?php echo strtoupper($data["user_fname"]." ".$data["user_lname"]); ?></td>
+              <td><?php echo strtoupper($data["ae_position"]) ?></td>
+              <td><?php echo strtoupper($data["aai_expected_salary"]) ?></td>
               
-                   <div class="btn-group" role="group" aria-label="Basic example">
-                   <button type="button" data-id="<?php echo $data['jobs_id']; ?>" class="btn btn-primary" id="view">View</button>
-                   </div>
-                     
+              <td>
+                <div class="btn-group" role="group" aria-label="Basic example">
+                <button type="button" data-id="<?php echo $data['jobs_id']; ?>" class="btn btn-primary" id="view">View</button>
+
+
+                  
+                </div>
               </td>
-              </tr>
+            </tr>
           <?php $number++; } ?>
+
         </tbody>
       </table>
-</div>
-</div>
+
+
 
 
  <!-- ViewMODAL -->
@@ -170,7 +124,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
 
                  
 
-              <div class="col-md pb-2 pb-md-0">
+            <div class="col-md pb-2 pb-md-0">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-fill" viewBox="0 0 16 16">
                 <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z"/>
               </svg>
@@ -299,7 +253,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
     </div>
   </div>
 </div>
-
+</section>
 
 <?php include('layouts/footer.php'); ?>
 
@@ -329,7 +283,6 @@ $("#viewModal").modal("show");
 
 });
 
-<<<<<<< HEAD
 function printDivContent() {
  	var divElementContents = document.getElementById("printContent").innerHTML;
  	var a = window.open('', '', 'height=400, width=400');
@@ -341,6 +294,4 @@ function printDivContent() {
     a.document.close();
  	a.print();
 }
-=======
->>>>>>> 80c24407e593a9853184f6f38894881017eed69e
 </script>

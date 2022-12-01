@@ -22,7 +22,7 @@
     echo '<script>alert("ADDED SUCCESS");</script>';
     // echo '<script>window.reload();</script>';
 }
-     if(isset($_POST['editjob'])) {  
+     if(isset($_POST['editexp'])) {  
 
     $jobs_id = $crudapi->escape_string($_POST['jobs_id']);
     $job_company_name = $crudapi->escape_string($_POST['job_company_name']);    
@@ -44,7 +44,7 @@
     echo '<script>alert("UPDATED SUCCESS");</script>';
     header("location:employerindex.php");
 }
-if(isset($_POST['deletejob'])) {  
+if(isset($_POST['deleteexp'])) {  
 
     $jobs_id = $crudapi->escape_string($_POST['jobs_id']);
       
@@ -58,156 +58,61 @@ if(isset($_POST['deletejob'])) {
 <?php include('layouts/header.php'); ?>
 <?php include('layouts/sidebaremployeer.php'); ?>
 
-<style type="text/css">
+<section class="section profile">
 
-body{
-  color: #566787;
-  background:#f5f5f5;
-  font-family: 'varela round', Sans-seif;
-  font-size: 13px;
-}
-
-
-    .table-wrapper{
-background: #fff;
-padding: 20px 25px;
-margin: 30px 0;
-border-radius: 3px;
-box-shadow: 0 1px 1px rgba(0,0,0,.05);
-}
-.table-title{
-
-  padding-bottom: 15px;
-  background: linear-gradient(to right, #14620b, #106ee3);
-  color: #fff;
-  padding: 16px 30px;
-  margin: -20px -25px 10px;
-  border-radius: 3px 3px 0 0;
-}
-
-.single-job-items{padding:36px 30px;display:flex;justify-content:space-between;flex-wrap:wrap;
- 		-webkit-transition:.4s;-moz-transition:.4s;-o-transition:.4s;
- 		transition:.4s}@media only screen and (min-width: 768px) and (max-width: 991px){
-    .single-job-items{padding:20px 7px}}@media only screen and (min-width: 576px) and (max-width: 767px){
-    .single-job-items{padding:20px 25px}}
-    .single-job-items 
-    .company-img img{overflow:hidden;float:left;margin-right:32px;z-index:999}@media (max-width: 767px){
-    .single-job-items 
-    .job-tittle{padding-top:25px}}
-    .single-job-items 
-    .job-tittle a h4{color:#28395a;font-size:24px;-webkit-transition:.4s;-moz-transition:.4s;-o-transition:.4s;transition:.4s}
-    .single-job-items 
-    .job-tittle a h4:hover{color:#28a745}
-    .single-job-items 
-    .job-tittle ul li{display:inline-block;margin-right:48px;font-size:15px;color:#808080;line-height:1.8}
-    @media only screen and (min-width: 768px) and (max-width: 991px){
-    .single-job-items 
-    .job-tittle ul li{margin-right:18px}}@media (max-width: 767px){
-    .single-job-items 
-    .job-tittle ul li{margin-right:0px;margin-bottom:7px}}
-    @media only screen and (min-width: 576px) and (max-width: 767px){
-    .single-job-items 
-    .job-tittle ul li{margin-right:8px}}
-    .single-job-items 
-    .job-tittle ul li:last-child{margin-right:0px}
-    .single-job-items 
-    .job-tittle ul li i{font-size:14px;color:#bbbbbb;margin-right:10px}
-    @media only screen and (min-width: 768px) and (max-width: 991px){
-    .single-job-items 
-    .job-tittle2{padding-top:25px}}
-    .single-job-items:hover{box-shadow:0px 22px 57px 0px rgba(34,41,72,0.05)}
-    .single-job-items 
-    .job-items{display:flex;flex-wrap:wrap}
-
-   .job-tittle{padding-top:25px}}
-    .single-job-items 
-    .job-tittle a h4{color:#28395a;font-size:24px;-webkit-transition:.4s;-moz-transition:.4s;-o-transition:.4s;transition:.4s}
-    .single-job-items 
-    .job-tittle a h4:hover{color:#28a745}
-    .single-job-items 
-    .job-tittle ul li{display:inline-block;margin-right:48px;font-size:15px;color:#808080;line-height:1.8}
-    @media only screen and (min-width: 768px) and (max-width: 991px){
-    .single-job-items 
-    .job-tittle ul li{margin-right:18px}}@media (max-width: 767px){
-    .single-job-items 
-    .job-tittle ul li{margin-right:0px;margin-bottom:7px}}
-    @media only screen and (min-width: 576px) and (max-width: 767px){
-    .single-job-items 
-    .job-tittle ul li{margin-right:8px}}
-    .single-job-items 
-    .job-tittle ul li:last-child{margin-right:0px}
-    .single-job-items 
-    .job-tittle ul li i{font-size:14px;color:#bbbbbb;margin-right:10px}
-  </style>
-
-<div class="container">
-      <div class="table-wrapper">
-        <div class="table-title">
-          <div class="row">
-            <div class="col-md-12">
-            <?php if(isset($_SESSION['USERROLE'])){?>
-                    <h1><?php echo  $_SESSION['FULLNAME'];?></h1>
-                    <?php }?>
-          <h5><b>Post Jobs</b></h5>
-          <button type="button" class="btn btn-primary" id="jobs" style=" background-color:#28a745;  width:100px; float:right; border:none;">ADD</button>
-          <div class="search-bar" style="">
-      <form class="search-form d-flex align-items-center" method="POST" action="#">
-        <input type="text" name="query" placeholder="Search" title="Enter search keyword">
-        <button type="submit" title="Search"><i class="bi bi-search"></i></button>
-      </form>
-      </div>
-        </div><!-- End Search Bar -->
-          
-         
-          </div>
-         
-
-         
+<div class="container-fluid">
+  <div class="card" style="margin-bottom:30px;">
+    <div class="card-header">
+      <button type="button" class="btn btn-primary" id="jobs" style="float:right;">ADD</button>
     </div>
 
-       <table class="table table-striped table-hover">
-            <thead>
-              <tr>
-              <th scope="col">#</th>
+
+<div class="card-body">
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">#</th>
             <th scope="col">Campany Name</th>
             <th scope="col">Position Name</th>
             <th scope="col">Address</th>
             <th scope="col">Vacancy</th>
             <th scope="col">Salary</th>
-             <tr>
-            </thead>
-            <tbody>
-                <?php 
-                    $query = "SELECT * FROM `jobs` left join users on users.user_id = jobs.jobs_user_id where jobs.jobs_user_id=3";
-                    $result = $crudapi->getData($query);
-                    $number = 1;
-                    foreach ($result as $key => $data) {
-                ?>
-                 <tr>
-                 <th scope="row"><?php echo $number; ?></th>
+          </tr>
+        </thead>
+        <tbody>
+        <?php 
+            $query = "SELECT * FROM `jobs` left join users on users.user_id = jobs.jobs_user_id where jobs.jobs_user_id=3";
+            $result = $crudapi->getData($query);
+            $number = 1;
+            foreach ($result as $key => $data) {
+        ?>
+            <tr>
+              <th scope="row"><?php echo $number; ?></th>
               <td><?php echo $data["job_company_name"] ?></td>
               <td><?php echo $data["jobs_name"] ?></td>
               <td><?php echo $data["jobs_address"] ?></td>
+            
               <td><?php echo $data["jobs_vacancy_count"] ?></td>
               <td><?php echo $data["job_expected_salary"] ?></td>
-         
-              
-                     <td>
-                   
-              
-                       <div class="items-link items-link2 f-right">
-                          <button type="button" data-id="<?php echo $data['jobs_id']; ?>" id="views" style="border: transparent; color: blue; background: transparent;"><i style="font-size:15px;" class="bi bi-eye-fill"></i></button>
-                          <button type="button" data-id="<?php echo $data['jobs_id']; ?>" id="editbtn" style="border: transparent; color: green; background: transparent;"><i class="bi bi-pencil-fill"></i></button>
-                          <button type="button" data-id="<?php echo $data['jobs_id']; ?>" id="deletebtn" style="border: transparent; color: red; background: transparent;"> <i class="bi bi-trash-fill"></i></button>
-                       </div>
-                     
+             
+              <td>
+
+                <div class="btn-group" role="group" aria-label="Basic example">
+                  <button type="button" data-id="<?php echo $data['jobs_id']; ?>" class="btn btn-primary" id="editbtn">EDIT</button>
+                  <button type="button" data-id="<?php echo $data['jobs_id']; ?>" class="btn btn-danger" id="deletebtn">DELETE</button>
+                  <button type="button" data-id="<?php echo $data['jobs_id']; ?>" class="btn btn-primary" id="view">View</button>
+                </div>
               </td>
-              </tr>
+            </tr>
           <?php $number++; } ?>
         </tbody>
       </table>
+    </div>
+
+  </div>
 </div>
-</div>
+</section>
+
 
 <!-- ADDMODAL -->
 
@@ -298,7 +203,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                 </div>
             </div>
          </div>
-<!-- ADD  -->
+<!-- ADD          -->
 
 
 <!-- UpdateMODAL -->
@@ -318,7 +223,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
 
                     <div class="form-group">
                         <label for="exampleInputPassword1">Comapany Name</label>
-                        <input type="text" class="form-control" name="job_company_name" id="job_company_names" placeholder="Comapany Name" required>
+                        <input type="text" class="form-control" name="job_company_name" id="job_company_name" placeholder="Comapany Name" required>
                     </div>
 
                     <div class="form-group">
@@ -380,14 +285,14 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
 
                     <div class="form-group">
                         <label for="exampleInputPassword1">Salary</label>
-                        <input type="number" class="form-control" name="job_expected_salary" id="job_expected_salarys" placeholder="Salary"required>
+                        <input type="number" class="form-control" name="job_expected_salary" id="job_expected_salary" placeholder="Vacancy"required>
                     </div>
 
                 
                 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary" name="editjob">Update changes</button>
+                        <button type="submit" class="btn btn-primary" name="editexp">Update changes</button>
                     </div>
                 </form>
                 </div>
@@ -395,32 +300,6 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                 </div>
             </div>
          </div>
-         <!-- update -->
-
-         <!-- delete -->
-         <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="deleteModalLabel">Modal title</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                <form method="POST">
-                    <input type="hidden" class="form-control" name="jobs_id" id="jobs_idss">
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary" name="deletejob">DELETE</button>
-                    </div>
-                </form>
-                </div>
-               
-                </div>
-            </div>
-         </div>
- 
 
 <!-- delete -->
 
@@ -455,22 +334,20 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                         <!-- job single -->
 
 
-                        <div class="single-job-items mb-50" style="border:solid black 1px;">
+                        <div class="single-job-items mb-50">
                  
-                            <div class="job-items " >
-                                <div class="row">
-                                <div class="company-img company-img-details" style="align-items:center;">
-                                    <a href="#"><img src="../assets/img/icon/job-list1.png" alt=""></a>
-                                </div>
+                            <div class="job-items">
+                                <div class="company-img company-img-details">
+                                    <a href="#"><img src="assets/img/icon/job-list1.png" alt=""></a>
                                 </div>
                                 <div class="job-tittle">
                                     <a href="#">
                                         <h4><?php echo strtoupper($data['job_company_name']); ?></h4>
                                     </a>
                                     <ul>
-                                        <li><i class="bi bi-person-workspace"></i><?php echo strtoupper($data['jobs_name']); ?></li>
-                                        <li><i class="bi bi-geo-alt-fill"></i><?php echo strtoupper($data['jobs_address']); ?></li>
-                                        <li><i class="">php</i><?php echo strtoupper($data['job_expected_salary']); ?></li>
+                                        <li><?php echo strtoupper($data['jobs_name']); ?></li>
+                                        <li><i class="fas fa-map-marker-alt"></i><?php echo strtoupper($data['jobs_address']); ?></li>
+                                        <li><?php echo strtoupper($data['job_expected_salary']); ?></li>
                                     </ul>
                                 </div>
                             </div>
@@ -491,21 +368,33 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                                 <div class="small-section-tittle">
                                     <h4>Required Knowledge, Skills, and Abilities</h4>
                                 </div>
-                                <p><?php echo strtoupper($data['jobs_r_skills']); ?></p>
+                               <ul>
+                                   <li>System Software Development</li>
+                                   <li>Mobile Applicationin iOS/Android/Tizen or other platform</li>
+                                   <li>Research and code , libraries, APIs and frameworks</li>
+                                   <li>Strong knowledge on software development life cycle</li>
+                                   <li>Strong problem solving and debugging skills</li>
+                               </ul>
                             </div>
                             <div class="post-details2  mb-50">
                                  <!-- Small Section Tittle -->
                                 <div class="small-section-tittle">
                                     <h4>Education + Experience</h4>
                                 </div>
-                                <p><?php echo strtoupper($data['jobs_r_education_id']); ?></p>
+                               <ul>
+                                   <li>3 or more years of professional design experience</li>
+                                   <li>Direct response email experience</li>
+                                   <li>Ecommerce website design experience</li>
+                                   <li>Familiarity with mobile and web apps preferred</li>
+                                   <li>Experience using Invision a plus</li>
+                               </ul>
                             </div>
                         </div>
 
                     </div>
                     <!-- Right Content -->
                     <div class="col-xl-4 col-lg-4">
-                        <div class="post-details3  mb-50"  style=" border: 1px solid black;">
+                        <div class="post-details3  mb-50">
                             <!-- Small Section Tittle -->
                            <div class="small-section-tittle">
                                <h4>Job Overview</h4>
@@ -528,7 +417,8 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                            <div class="small-section-tittle">
                                <h4>Company Information</h4>
                            </div>
-                             
+                              <span>Colorlib</span>
+                              <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
                             <ul>
                                 <li>Name: <span><?php echo strtoupper($data["user_fname"]." ".$data["user_lname"]); ?></span></li>
                                 <li>Cotact: <span><?php echo $data["user_contact"] ?></span></span></li>
@@ -586,6 +476,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
 
         $("#editModal").modal("show");
 
+
     });
 
 
@@ -598,7 +489,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
     });
 
 
-    $("body").on('click','#views',function(e){
+    $("body").on('click','#view',function(e){
 
         var USER_IDs = $(e.currentTarget).data('id');
         $.post("update_jobs.php",{USER_ID: USER_IDs},function(data,status){
@@ -624,5 +515,5 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
 
 
 
-    
+     
 </script>
