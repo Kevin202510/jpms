@@ -57,7 +57,7 @@ if(isset($_POST['deleteeduc'])) {
         <label Style="font-size:30px;">EDUCATION</label>
       <button type="button" class="btn btn-primary" id="addeducs" style="float:right;  background-color:#0A5F42;">ADD</button>
     </div>
-    <div class="card-body" style="background-color:#a2c6a3;">
+    <div class="card-body" style="background-color:#c4eeef;">
         
             <div class="container-fluid">
                 <div class="row">
@@ -83,19 +83,19 @@ if(isset($_POST['deleteeduc'])) {
                                        
                                         <div class="job-tittle job-tittle2">
                                             <a href="#">
-                                                <h3><?php echo strtoupper($data['aebg_school_name']); ?></h3>
+                                                <h3 style="font-weight:bold;"><?php echo strtoupper($data['aebg_school_name']); ?></h3>
 
                                             </a>
                                             <ul>
-                                                <li><i class="fas fa-calendar"></i><?php echo strtoupper($data['aebg_year_graduate']); ?></li>
-                                                <li><i class="fas fa-graduation-cap"></i><?php echo strtoupper($data['aebg_education_attainment_id']); ?></li>
+                                                <li style="color:black;"><i style="color:black;" class="fas fa-calendar"></i><?php echo strtoupper($data['aebg_year_graduate']); ?></li>
+                                                <li style="color:black;"><i style="color:black;" class="fas fa-graduation-cap"></i><?php echo strtoupper($data['aebg_education_attainment_id']); ?></li>
                                     
                                             </ul>
                                         </div>
                                     </div>
                                     <div class="items-link items-link2 f-right">
-                                        <button type="button" data-id="<?php echo $data['aebg_id']; ?>" class="btns" style="background-color:#669068;border:none;border-radius:50px;" id="editbtn"><i style="color:black" class="fa fa-pencil-alt"></i></button>
-                                        <button type="button" data-id="<?php echo $data['aebg_id']; ?>" class="btns" id="deletebtn"  style="background-color:#669068;border:none;border-radius:50px;"><i  style="color:red;" class="fa fa-trash-alt"></i></button>
+                                        <button type="button" data-id="<?php echo $data['aebg_id']; ?>" class="btns" style="background-color:#669068;border:none; padding:20px; border-radius:20px;" id="editbtn"><i style="color:black" class="fa fa-pencil-alt"></i></button>
+                                        <button type="button" data-id="<?php echo $data['aebg_id']; ?>" class="btns" id="deletebtn"  style="background-color:#669068; padding:20px; border:none;border-radius:20px;"><i  style="color:red;" class="fa fa-trash-alt"></i></button>
                                     </div>
                                 </div>
                                 <?php }?>
