@@ -22,7 +22,7 @@
     echo '<script>alert("ADDED SUCCESS");</script>';
     // echo '<script>window.reload();</script>';
 }
-     if(isset($_POST['editexp'])) {  
+     if(isset($_POST['editjob'])) {  
 
     $jobs_id = $crudapi->escape_string($_POST['jobs_id']);
     $job_company_name = $crudapi->escape_string($_POST['job_company_name']);    
@@ -44,7 +44,7 @@
     echo '<script>alert("UPDATED SUCCESS");</script>';
     header("location:employerindex.php");
 }
-if(isset($_POST['deleteexp'])) {  
+if(isset($_POST['deletejob'])) {  
 
     $jobs_id = $crudapi->escape_string($_POST['jobs_id']);
       
@@ -140,7 +140,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                    
               
                        <div class="items-link items-link2 f-right">
-                          <button type="button" data-id="<?php echo $data['jobs_id']; ?>" id="view" style="border: transparent; color: blue; background: transparent;"><i style="font-size:15px;" class="bi bi-eye-fill"></i></button>
+                          <button type="button" data-id="<?php echo $data['jobs_id']; ?>" id="views" style="border: transparent; color: blue; background: transparent;"><i style="font-size:15px;" class="bi bi-eye-fill"></i></button>
                           <button type="button" data-id="<?php echo $data['jobs_id']; ?>" id="editbtn" style="border: transparent; color: green; background: transparent;"><i class="bi bi-pencil-fill"></i></button>
                           <button type="button" data-id="<?php echo $data['jobs_id']; ?>" id="deletebtn" style="border: transparent; color: red; background: transparent;"> <i class="bi bi-trash-fill"></i></button>
                        </div>
@@ -242,7 +242,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                 </div>
             </div>
          </div>
-<!-- ADD          -->
+<!-- ADD  -->
 
 
 <!-- UpdateMODAL -->
@@ -331,7 +331,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary" name="editexp">Update changes</button>
+                        <button type="submit" class="btn btn-primary" name="editjob">Update changes</button>
                     </div>
                 </form>
                 </div>
@@ -339,6 +339,32 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                 </div>
             </div>
          </div>
+         <!-- update -->
+
+         <!-- delete -->
+         <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                <form method="POST">
+                    <input type="hidden" class="form-control" name="jobs_id" id="jobs_idss">
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary" name="deletejob">DELETE</button>
+                    </div>
+                </form>
+                </div>
+               
+                </div>
+            </div>
+         </div>
+ 
 
 <!-- delete -->
 
@@ -355,7 +381,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
      ?>
 
 <div class="modal fade" id="viewModal" tabindex="-1" role="dialog" aria-labelledby="viewModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="viewModalLabel">View</h5>
@@ -433,7 +459,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                     </div>
                     <!-- Right Content -->
                     <div class="col-xl-4 col-lg-4">
-                        <div class="post-details3  mb-50"  style="background-color:#bbddbb;">
+                        <div class="post-details3  mb-50"  style=" border: 1px solid #d03d3d;">
                             <!-- Small Section Tittle -->
                            <div class="small-section-tittle">
                                <h4>Job Overview</h4>
@@ -527,7 +553,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
     });
 
 
-    $("body").on('click','#view',function(e){
+    $("body").on('click','#views',function(e){
 
         var USER_IDs = $(e.currentTarget).data('id');
         $.post("update_jobs.php",{USER_ID: USER_IDs},function(data,status){

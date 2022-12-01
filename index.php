@@ -89,14 +89,15 @@ if(isset($_POST['register'])) {
     $address = $crudapi->escape_string($_POST['address']);
     $user_password  = $crudapi->escape_string($_POST['user_password']);
     $conuser_password  = $crudapi->escape_string($_POST['conuser_password']);
+    $user_role_id  = $crudapi->escape_string($_POST['user_role_id']);
 
-    if($user_password != $conuser_password){
+    if($user_password != $conuser_password){   
         echo '<script>alert("password did not match");</script>';
-        echo "<script type='text/javascript'>
-              $(document).ready(function(){
-              $('#exampleModalLong').modal('show');
-                 });
-               </script>";
+        // echo "<script type='text/javascript'>
+        //       $(document).ready(function(){
+        //       $('#exampleModalLong').modal('show');
+        //          });
+        //        </script>";
 
     }
     else{
@@ -105,8 +106,7 @@ if(isset($_POST['register'])) {
                 $hashed_password = md5($user_password);
 
     }
-      
-    $result = $crudapi->execute("INSERT INTO users(user_fname,user_lname,user_contact,user_email,address,user_password) VALUES('$user_fname','$user_lname','$user_contact','$user_email','$address','$hashed_password')");
+    $result = $crudapi->execute("INSERT INTO users(user_fname,user_lname,user_contact,user_email,address,user_password,user_role_id) VALUES('$user_fname','$user_lname','$user_contact','$user_email','$address','$hashed_password',$user_role_id)");
       echo '<script>alert("REGISTERED SUCCESS");</script>';
       header("location:index.php");  
     }   
@@ -327,21 +327,21 @@ if(isset($_POST['register'])) {
 
                              <div class="form-group">
                                  <label for="exampleInputPassword1">Password</label>
-                                 <input type="text" class="form-control" name="user_password" id="user_password" placeholder="Password" required>
+                                 <input type="password" class="form-control" name="user_password" id="user_password" placeholder="Password" required>
                              </div>
 
                              <div class="form-group">
                                  <label for="exampleInputPassword1">Confirm Password</label>
-                                 <input type="text" class="form-control" name="conuser_password" id="conuser_password" placeholder="Confirm Password" required>
+                                 <input type="password" class="form-control" name="conuser_password" id="conuser_password" placeholder="Confirm Password" required>
                              </div>
 
-                     <!-- <div class="form-group">
+                    
                         <label for="exampleInputPassword1">Role</label><br>
-                        <select name="" id="" >
-                            <option value="1">employee</option>
-                            <option value="2">employer</option>
+                        <select name="user_role_id" id="user_role_id" >
+                            <option value="2">employee</option>
+                            <option value="3">employer</option>
                         </select>
-                     </div>  -->
+                    
                      
 
                                 <div class="modal-footer">
@@ -377,7 +377,7 @@ if(isset($_POST['register'])) {
 
                              <div class="form-group">
                                  <label for="exampleInputPassword1">Password</label>
-                                 <input type="text" class="form-control" name="user_password" id="user_password" placeholder="Password" required>
+                                 <input type="password" class="form-control" name="user_password" id="user_password" placeholder="Password" required>
                              </div>
 
 

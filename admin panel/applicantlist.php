@@ -78,9 +78,15 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
       <div class="table-wrapper">
         <div class="table-title">
           <div class="row">
-            <div class="col-sm-6">
+            <div class="col-md-12">
 
           <h5><b>Applicants List</b></h5>
+          <div class="search-bar" style="float:right;">
+      <form class="search-form d-flex align-items-center" method="POST" action="#">
+        <input type="text" name="query" placeholder="Search" title="Enter search keyword">
+        <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+      </form>
+      </div>
            
         </div>
       </div>

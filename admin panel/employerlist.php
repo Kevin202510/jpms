@@ -77,10 +77,16 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
       <div class="table-wrapper">
         <div class="table-title">
           <div class="row">
-            <div class="col-sm-6">
+            <div class="col-md-12">
 
           <h5><b>Employers List</b></h5>
-           
+          <div class="search-bar" style="float:right;">
+      <form class="search-form d-flex align-items-center" method="POST" action="#">
+        <input type="text" name="query" placeholder="Search" title="Enter search keyword">
+        <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+      </form>
+      </div>
+      
         </div>
       </div>
     </div>
@@ -88,40 +94,24 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
        <table class="table table-striped table-hover">
             <thead>
               <tr>
-                   <th scope="col">#</th>
-                   <th scope="col">Campany Name</th>
-                   <th scope="col">Position Name</th>
-                   <th scope="col">Address</th>
-                   <th scope="col">Description</th>
-                   <th scope="col">Skill</th>
-                   <th scope="col">Education</th>
-                   <th scope="col">Preferred Time</th>
-                   <th scope="col">Experience</th>
-                   <th scope="col">Vacancy</th>
-                   <th scope="col">Salary</th>
-                   <th scope="col">Action</th>
+              <th scope="col">#</th>
+            <th scope="col">Full NAme</th>
+            <th scope="col">Contact</th>
+            <th scope="col">Email</th>
                    
              <tr>
             </thead>
             <tbody>
                 <?php 
-                      $query = "SELECT * FROM `jobs` left join users on users.user_id = jobs.jobs_user_id where jobs.jobs_user_id=3";
+                      $query = "SELECT * FROM `users` LEFT JOIN roles ON roles.id = users.user_role_id where users.user_role_id = 3";
                       $result = $crudapi->getData($query);
                       $number = 1;
                       foreach ($result as $key => $data) {
                 ?>
            <tr>
-              <th scope="row"><?php echo $number; ?></th>
-              <td><?php echo $data["job_company_name"] ?></td>
-              <td><?php echo $data["jobs_name"] ?></td>
-              <td><?php echo $data["jobs_address"] ?></td>
-              <td><?php echo $data["jobs_description"] ?></td>
-              <td><?php echo $data["jobs_r_skills"] ?></td>
-              <td><?php echo $data["jobs_r_education_id"] ?></td>
-              <td><?php echo $data["jobs_preferred_time"] ?></td>
-              <td><?php echo $data["jobs_r_experience"] ?></td>
-              <td><?php echo $data["jobs_vacancy_count"] ?></td>
-              <td><?php echo $data["job_expected_salary"] ?></td>
+           <td><?php echo strtoupper($data["user_fname"]." ".$data["user_lname"]); ?></td>
+              <td><?php echo strtoupper($data["user_contact"]) ?></td>
+              <td><?php echo strtoupper($data["user_email"]) ?></td>
  
               <td>
                    <div class="btn-group" role="group" aria-label="Basic example">
