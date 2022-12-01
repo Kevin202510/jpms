@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <?php include('applicantsviews/head.php'); ?>
     <!-- Preloader Start -->
     
@@ -12,11 +14,12 @@
             <div class="container">
                 <div class="card" style="background-color:#20c997;">
                    <div class="card-body">
-
+                 
               
                 <div class="card" style="background-color:#c4eeef;">
+                
                                 <div class="card-header">
-                                  MY PROFILE
+                                 MY PROFILE
                                 </div>
                      <div class="card-body">
                                     

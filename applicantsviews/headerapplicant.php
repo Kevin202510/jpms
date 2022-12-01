@@ -1,3 +1,4 @@
+    
 <header>
         <!-- Header Start -->
        <div class="header-area header-transparrent">
@@ -18,12 +19,16 @@
                                 <div class="main-menu">
                                     <nav class="d-none d-lg-block">
                                         <ul id="navigation">
-                                            <li><a href="index.php">Home</a></li>
                                             <li><a href="applicantinformation.php">My Profile</a></li>
                                             <li><a href="applicant_exp.php">Experiences</a></li>
                                             <li><a href="applicant_educ.php">Educations</a></li>
                                             <li><a href="applicant_skills.php">Skills</a></li>
                                             <li><a href="applicant_add_info.php">Additional Info</a></li>
+                                            <?php if(isset($_SESSION['USERROLE'])){?>
+                                                 <li><a href="applicant_add_info.php"> <?php echo  $_SESSION['FULLNAME'];?></a></li>
+                                           
+                                            <?php }?>
+                                                       
                                             
                                           
                                            

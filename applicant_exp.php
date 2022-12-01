@@ -1,17 +1,20 @@
+<?php session_start(); ?>
 <?php 
 
 include_once("classes/CRUDAPI.php");
 $crudapi = new CRUDAPI(); 
 if(isset($_POST['addexp'])) {	
-
-    $ae_user_id = $crudapi->escape_string($_POST['ae_user_id']);
+     if(isset($_SESSION['USERROLE'])){
+     
+    $ae_user_id =  $_SESSION['USERID'];
+     }
     $ae_companyname = $crudapi->escape_string($_POST['ae_companyname']);
     $ae_companyaddress = $crudapi->escape_string($_POST['ae_companyaddress']);
     $ae_position = $crudapi->escape_string($_POST['ae_position']);
     $ae_from = $crudapi->escape_string($_POST['ae_from']);
     $ae_to = $crudapi->escape_string($_POST['ae_to']);
       
-    $result = $crudapi->execute("INSERT INTO applicant_experience(ae_user_id,ae_companyname,ae_companyaddress,ae_position,ae_from,ae_to) VALUES('1','$ae_companyname','$ae_companyaddress','$ae_position','$ae_from','$ae_to')");
+    $result = $crudapi->execute("INSERT INTO applicant_experience(ae_user_id,ae_companyname,ae_companyaddress,ae_position,ae_from,ae_to) VALUES('$ae_user_id ','$ae_companyname','$ae_companyaddress','$ae_position','$ae_from','$ae_to')");
     
     echo '<script>alert("ADDED SUCCESS");</script>';
     header("location:applicant_exp.php");
@@ -68,11 +71,15 @@ if(isset($_POST['deleteexp'])) {
                             <div class="container">
                                   
                                 <?php 
-         
-                                   $query = "SELECT * FROM `applicant_experience` left join users on users.user_id = applicant_experience.ae_user_id where applicant_experience.ae_user_id=1";
-                                      $result = $crudapi->getData($query);
+                                    if(isset($_SESSION['USERROLE'])){
+                                       $exp= $_SESSION['USERID'];
+                                       
+                                   $query = "SELECT * FROM `applicant_experience` left join users on users.user_id = applicant_experience.ae_user_id where applicant_experience.ae_user_id=$exp";
+                                    $result = $crudapi->getData($query);
                                        $number = 1;
+                                   
                                     foreach ($result as $key => $data) {
+                                    
                                   ?>
                                 <div class="single-job-items mb-30">
                                     <div class="job-items">
@@ -94,7 +101,7 @@ if(isset($_POST['deleteexp'])) {
                                         <button type="button" data-id="<?php echo $data['ae_id']; ?>" class="btns" id="deletebtn"  style="background-color:#669068; padding:20px; border:none;border-radius:20px;"><i  style="color:red;" class="fa fa-trash-alt"></i></button>
                                     </div>
                                 </div>
-                                <?php }?>
+                                <?php } }?>
                             </div>
                         </section>
                         <!-- Featured_job_end -->
@@ -120,7 +127,9 @@ if(isset($_POST['deleteexp'])) {
                 <div class="modal-body">
                 <form method="POST">
                     <input type="hidden" class="form-control" name="ae_id" id="ae_id">
+  
                     <input type="hidden" class="form-control" name="ae_user_id" id="ae_user_id">
+                  
 
                     <div class="form-group">
                         <label for="exampleInputPassword1">Comapany Name</label>

@@ -1,16 +1,20 @@
+<?php session_start(); ?>
 <?php 
 
 include_once("classes/CRUDAPI.php");
 $crudapi = new CRUDAPI(); 
 if(isset($_POST['addeduc'])) {	
 
-    $aebg_user_id = $crudapi->escape_string($_POST['aebg_user_id']);
+    if(isset($_SESSION['USERROLE'])){
+     
+        $aebg_user_id =  $_SESSION['USERID'];
+         }
     $aebg_school_name = $crudapi->escape_string($_POST['aebg_school_name']);
     $aebg_year_graduate = $crudapi->escape_string($_POST['aebg_year_graduate']);
     $aebg_education_attainment_id = $crudapi->escape_string($_POST['aebg_education_attainment_id']);
  
       
-    $result = $crudapi->execute("INSERT INTO applicant_educationbg (aebg_user_id,aebg_school_name,aebg_year_graduate,aebg_education_attainment_id) VALUES('1','$aebg_school_name','$aebg_year_graduate','$aebg_education_attainment_id')");
+    $result = $crudapi->execute("INSERT INTO applicant_educationbg (aebg_user_id,aebg_school_name,aebg_year_graduate,aebg_education_attainment_id) VALUES('$aebg_user_id','$aebg_school_name','$aebg_year_graduate','$aebg_education_attainment_id')");
     
     echo '<script>alert("ADDED SUCCESS");</script>';
     // echo '<script>window.reload();</script>';
@@ -70,8 +74,10 @@ if(isset($_POST['deleteeduc'])) {
                             <div class="container">
                                   
                                 <?php 
-         
-                                    $query = "SELECT * FROM `applicant_educationbg` left join users on users.user_id = applicant_educationbg.aebg_user_id  where applicant_educationbg.aebg_user_id =1";
+                                     
+                                     if(isset($_SESSION['USERROLE'])){
+                                        $educ= $_SESSION['USERID'];
+                                    $query = "SELECT * FROM `applicant_educationbg` left join users on users.user_id = applicant_educationbg.aebg_user_id  where applicant_educationbg.aebg_user_id =$educ";
                                           $result = $crudapi->getData($query);
                                           $number = 1;
                                          foreach ($result as $key => $data) {
@@ -98,7 +104,7 @@ if(isset($_POST['deleteeduc'])) {
                                         <button type="button" data-id="<?php echo $data['aebg_id']; ?>" class="btns" id="deletebtn"  style="background-color:#669068; padding:20px; border:none;border-radius:20px;"><i  style="color:red;" class="fa fa-trash-alt"></i></button>
                                     </div>
                                 </div>
-                                <?php }?>
+                                <?php } }?>
                             </div>
                         </section>
                         <!-- Featured_job_end -->

@@ -1,14 +1,19 @@
+<?php session_start(); ?>
 <?php 
 
 include_once("classes/CRUDAPI.php");
 $crudapi = new CRUDAPI(); 
 if(isset($_POST['addskills'])) {	
 
-    $as_user_id = $crudapi->escape_string($_POST['as_user_id']);
+    if(isset($_SESSION['USERROLE'])){
+     
+        $as_user_id =  $_SESSION['USERID'];
+         }
+
     $as_skillname = $crudapi->escape_string($_POST['as_skillname']);
    
       
-    $result = $crudapi->execute("INSERT INTO applicant_skills(as_user_id,as_skillname) VALUES('1','$as_skillname')");
+    $result = $crudapi->execute("INSERT INTO applicant_skills(as_user_id,as_skillname) VALUES('$as_user_id','$as_skillname')");
     
     echo '<script>alert("ADDED SUCCESS");</script>';
     header("location:applicant_skills.php");
@@ -64,8 +69,10 @@ if(isset($_POST['deleteskills'])) {
                             <div class="container">
                                   
                                 <?php 
-         
-                                     $query = "SELECT * FROM `applicant_skills` left join users on users.user_id = applicant_skills.as_user_id where applicant_skills.as_user_id=1";
+                                       if(isset($_SESSION['USERROLE'])){
+                                        $skl= $_SESSION['USERID'];
+
+                                     $query = "SELECT * FROM `applicant_skills` left join users on users.user_id = applicant_skills.as_user_id where applicant_skills.as_user_id=$skl";
                                       $result = $crudapi->getData($query);
                                       $number = 1;
                                       foreach ($result as $key => $data) {
@@ -86,7 +93,7 @@ if(isset($_POST['deleteskills'])) {
                                         <button type="button" data-id="<?php echo $data['as_id']; ?>" class="btns" id="deletebtn"  style="background-color:#669068;border:none;border-radius:20px; padding:20px;"><i  style="color:red;" class="fa fa-trash-alt"></i></button>
                                     </div>
                                 </div>
-                                <?php }?>
+                                <?php } }?>
                             </div>
                         </section>
                         <!-- Featured_job_end -->
