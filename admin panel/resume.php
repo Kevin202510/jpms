@@ -1,95 +1,21 @@
 <?php 
-  
-    include_once("classes/CRUDAPI.php");
-    $crudapi = new CRUDAPI();
 
-  ?>
+include_once("classes/CRUDAPI.php");
+$crudapi = new CRUDAPI();
 
-<?php include('layouts/head.php'); ?>
-<?php include('layouts/header.php'); ?>
-<?php include('layouts/sidebaremployeer.php'); ?>
-
-<section class="section profile">
-<div class="container-fluid">
-  <div class="card">
-    
-    <div class="card-body">
-      <table class="table">
-        <thead class="thead-dark">
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Full NAme</th>
-            <th scope="col">Position</th>
-            <th scope="col">Salary</th>
-            
-          </tr>
-        </thead>
-        <tbody>
-        <?php 
-            $query = "SELECT * FROM `users` LEFT JOIN roles ON roles.id = users.user_role_id Left JOIN applicant_experience ON roles.id = users.user_role_id Left JOIN applicant_additional_info ON roles.id = users.user_role_id where users.user_role_id = 4";
-            $result = $crudapi->getData($query);
-            $number = 1;
-            foreach ($result as $key => $data) {
-        ?>
-            <tr>
-              <th scope="row"><?php echo $number; ?></th>
-              
-              <td><?php echo strtoupper($data["user_fname"]." ".$data["user_lname"]); ?></td>
-              <td><?php echo strtoupper($data["ae_position"]) ?></td>
-              <td><?php echo strtoupper($data["aai_expected_salary"]) ?></td>
-              
-              <td>
-                <div class="btn-group" role="group" aria-label="Basic example">
-                <button type="button" data-id="<?php echo $data['jobs_id']; ?>" class="btn btn-primary" id="view">View</button>
-
-
-                  
-                </div>
-              </td>
-            </tr>
-          <?php $number++; } ?>
-
-        </tbody>
-      </table>
+?>
 
 
 
-
- <!-- ViewMODAL -->
-
-<?php
-         
-         include_once("classes/CRUDAPI.php");
-         $crudapi = new CRUDAPI(); 
-         $query = "SELECT * FROM `jobs` left join users on users.user_id = jobs.jobs_id where jobs.jobs_id=1";
-         $result = $crudapi->getData($query);
-         $number = 1;
-         foreach ($result as $key => $data) {
-     ?>
-
-<div class="modal fade" id="viewModal" tabindex="-1" role="dialog" aria-labelledby="viewModalLabel" aria-hidden="true">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">        
-<div class="modal-dialog modal-xl" role="document">
-                <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="viewModalLabel">View</h5>
-
-                    <input type="button" value="Click Here" onclick="printDivContent()">
-
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-
-
-                <div id="printContent">
-
-                <body style="align-items:center;">
-
-
-
-
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+     
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+  </head>
+  <body style="align-items:center;">
   <div class="container justify-content-center">
     <div class="card justify-content-center">
       <div class="card-body" style="width:1105px; ">
@@ -130,16 +56,16 @@
               </svg>
                 
                   <a href="#" class="text-white ml-2"><?php echo strtoupper($data["user_email"]) ?></a>
-              
-             
+              </div>
+              <div class="col-md text-md-center pb-2 pb-md-0">
               
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
                 <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
               </svg>
                 
                   <a href="#" class="text-white ml-2"><?php echo strtoupper($data["address"]) ?></a>
-                    
-            
+              </div>       
+              <div class="col-md text-md-right">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telephone-fill" viewBox="0 0 16 16">
                 <path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"/>
               </svg>
@@ -239,59 +165,4 @@
     </div>
     </div>
   </body>
-           
-        </div>
-                </div>
-                </div>
-            </div>
-         </div>
-         <?php }?>
-<!-- View    -->
-</div>
-
-
-    </div>
-  </div>
-</div>
-</section>
-
-<?php include('layouts/footer.php'); ?>
-
-<script>
-
-$("body").on('click','#view',function(e){
-
-var USER_IDs = $(e.currentTarget).data('id');
-$.post("update_jobs.php",{USER_ID: USER_IDs},function(data,status){
-    var emp = JSON.parse(data);
-    $("#jobs_idss").val(emp[0].jobs_id);
-    $("#jobs_user_idss").val(emp[0].jobs_user_id);
-    $("#job_company_namess").val(emp[0].job_company_name);
-    $("#jobs_namess").val(emp[0].jobs_name);
-    $("#jobs_addressss").val(emp[0].jobs_address);
-    $("#jobs_descriptionss").val(emp[0].jobs_description);
-    $("#jobs_r_skillsss").val(emp[0].jobs_r_skills);
-    $("#jobs_r_education_idss").val(emp[0].jobs_r_education_id);
-    $("#jobs_preferred_timess").val(emp[0].jobs_preferred_time);
-    $("#jobs_r_experiencess").val(emp[0].jobs_r_experience);
-    $("#jobs_vacancy_countss").val(emp[0].jobs_vacancy_count);
-    $("#job_expected_salaryss").val(emp[0].job_expected_salary);
-    
-});
-
-$("#viewModal").modal("show");
-
-});
-
-function printDivContent() {
- 	var divElementContents = document.getElementById("printContent").innerHTML;
- 	var a = window.open('', '', 'height=400, width=400');
- 	a.document.write('<html>');
- 	a.document.write('<body>');
- 	a.document.write(divElementContents);
- 	a.document.write('<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">');
- 	a.document.write('</body></html>');
-    a.document.close();
- 	a.print();
-}
-</script>
+</html>

@@ -109,118 +109,166 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
      ?>
 
 <div class="modal fade" id="viewModal" tabindex="-1" role="dialog" aria-labelledby="viewModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-xl" role="document">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">          
+<div class="modal-dialog modal-xl" role="document">
                 <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="viewModalLabel">View</h5>
+                    <input type="button" value="Click Here" onclick="printDivContent()">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                <!-- job post company Start -->
-        <div class="job-post-company pt-120 pb-120">
-            <div class="container">
-                <div class="row justify-content-between">
-                    <!-- Left Content -->
-                    <div class="col-xl-7 col-lg-8">
-                        <!-- job single -->
 
+                <div id="printContent">
+                <body style="align-items:center;">
+  <div class="container justify-content-center">
+    <div class="card justify-content-center">
+      <div class="card-body" style="width:1105px; ">
 
-                        <div class="single-job-items mb-50">
+      
+    <header class="bg-primary bg-gradient text-white py-5">
+      <div class="container">
+
+      <?php 
+              $query = "SELECT * FROM `users` LEFT JOIN roles ON roles.id = users.user_role_id where users.user_role_id = 4";
+              $result = $crudapi->getData($query);
+              $number = 1;
+              foreach ($result as $key => $data) {
+                ?>
+        <div class="row">
+          <div class="col-md-3 text-left text-md-center mb-3">
+            <img class="rounded-circle img-fluid" src="https://i.pravatar.cc/175?img=32" alt="Profile Photo" />
+          </div>
+          <div class="col-md-9">
+            <h1><?php echo strtoupper($data["user_fname"]." ".$data["user_lname"]); ?></h1>
+            <p class="border-top pt-3"></p>
+          </div>       
+        </div>        
+      </div>
+    </header>
+    <nav class="bg-dark text-white-50 mb-5">
+      <div class="container">
+          <div class="row p-3">
+              
+                  
+
                  
-                            <div class="job-items">
-                                <div class="company-img company-img-details">
-                                    <a href="#"><img src="assets/img/icon/job-list1.png" alt=""></a>
-                                </div>
-                                <div class="job-tittle">
-                                    <a href="#">
-                                        <h4><?php echo strtoupper($data['job_company_name']); ?></h4>
-                                    </a>
-                                    <ul>
-                                        <li><?php echo strtoupper($data['jobs_name']); ?></li>
-                                        <li><i class="fas fa-map-marker-alt"></i><?php echo strtoupper($data['jobs_address']); ?></li>
-                                        <li><?php echo strtoupper($data['job_expected_salary']); ?></li>
-                                    </ul>
-                                </div>
-                            </div>
-                           
-                        </div>
-                          <!-- job single End -->
-                       
-                        <div class="job-post-details">
-                            <div class="post-details1 mb-50">
-                                <!-- Small Section Tittle -->
-                                <div class="small-section-tittle">
-                                    <h4>Job Description</h4>
-                                </div>
-                                <p><?php echo strtoupper($data['jobs_description']); ?></p>
-                            </div>
-                            <div class="post-details2  mb-50">
-                                 <!-- Small Section Tittle -->
-                                <div class="small-section-tittle">
-                                    <h4>Required Knowledge, Skills, and Abilities</h4>
-                                </div>
-                               <ul>
-                                   <li>System Software Development</li>
-                                   <li>Mobile Applicationin iOS/Android/Tizen or other platform</li>
-                                   <li>Research and code , libraries, APIs and frameworks</li>
-                                   <li>Strong knowledge on software development life cycle</li>
-                                   <li>Strong problem solving and debugging skills</li>
-                               </ul>
-                            </div>
-                            <div class="post-details2  mb-50">
-                                 <!-- Small Section Tittle -->
-                                <div class="small-section-tittle">
-                                    <h4>Education + Experience</h4>
-                                </div>
-                               <ul>
-                                   <li>3 or more years of professional design experience</li>
-                                   <li>Direct response email experience</li>
-                                   <li>Ecommerce website design experience</li>
-                                   <li>Familiarity with mobile and web apps preferred</li>
-                                   <li>Experience using Invision a plus</li>
-                               </ul>
-                            </div>
-                        </div>
+            
+              <div class="col-md pb-2 pb-md-0" style="word-spacing: 260px;" >
+              
+                
+                  <a href="#" class="text-white ml-2" style="text-decoration:none;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-fill" viewBox="0 0 16 16" >
+                <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z"/>
+              </svg><?php echo strtoupper($data["user_email"]) ?></a>
+              
+              
+             
+                
+                  <a href="#" class="text-white ml-2" style="text-decoration:none;"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
+                <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
+              </svg><?php echo strtoupper($data["address"]) ?></a>
+              
+              
+                  
+                  <a href="#" class="text-white ml-2" style="text-decoration:none;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telephone-fill" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"/>
+              </svg><?php echo strtoupper($data["user_contact"]) ?></a>
+              </div> 
+              
+              <?php $number++; } ?>
+          </div>
+      </div>
+    </nav>
+    <main class="container">
+      <div class="row">
+        <div class="col-md mb-5">
+          <h2 class="mb-5">Work Experience</h2>
+          
 
-                    </div>
-                    <!-- Right Content -->
-                    <div class="col-xl-4 col-lg-4">
-                        <div class="post-details3  mb-50">
-                            <!-- Small Section Tittle -->
-                           <div class="small-section-tittle">
-                               <h4>Job Overview</h4>
-                           </div>
-                          <ul>
-                              <li>Posted date : <span>12 Aug 2019</span></li>
-                              <li>Location : <span><?php echo strtoupper($data['jobs_address']); ?></span></li>
-                              <li>Vacancy : <span><?php echo strtoupper($data['jobs_vacancy_count']); ?></span></li>
-                              <li>Job nature : <span>Full time</span></li>
-                              <li>Salary :  <span><?php echo strtoupper($data['job_expected_salary']); ?></span></li>
-                              <li>Application date : <span>12 Sep 2020</span></li>
-                          </ul>
-                         <div class="apply-btn2">
-                            <a href="#" class="btn">Apply Now</a>
-                         </div>
-                        
-                       </div>
-                        <div class="post-details4  mb-50">
-                            <!-- Small Section Tittle -->
-                           <div class="small-section-tittle">
-                               <h4>Company Information</h4>
-                           </div>
-                              <span>Colorlib</span>
-                              <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
-                            <ul>
-                                <li>Name: <span><?php echo strtoupper($data["user_fname"]." ".$data["user_lname"]); ?></span></li>
-                                <li>Cotact: <span><?php echo $data["user_contact"] ?></span></span></li>
-                                <li>Email: <span><?php echo $data["user_email"] ?></span></li>
-                            </ul>
-                       </div>
-                    </div>
-                </div>
-            </div>
+          <?php 
+         
+         $query = "SELECT * FROM `applicant_experience` left join users on users.user_id = applicant_experience.ae_user_id where applicant_experience.ae_user_id=1";
+            $result = $crudapi->getData($query);
+             $number = 1;
+          foreach ($result as $key => $data) {
+        ?>
+
+<h2 style="font-weight:bold;"><?php echo strtoupper($data['ae_companyname']); ?></h2>
+
+                                            <ul>
+                                                <li style="font-weight:bold;"><i  style="color:black;" class="fas fa-map-marker-alt"></i><?php echo strtoupper($data['ae_companyaddress']); ?></li>
+                                                <li style="font-weight:bold;"><i  style="color:black;" class="fas fa-briefcase"></i><?php echo strtoupper($data['ae_position']); ?></li>
+                                              <li style="font-weight:bold;"><p><i style="color:black;" class="fas fa-calendar"></i>( <?php echo strtoupper($data["ae_from"]).") (".strtoupper($data["ae_to"]) ?> )</p></li>
+                                            </ul>
+
+<?php }?>
+
+
+
+
+
+
+
+
+
+        </div>
+        <div class="col-md mb-5">
+          <h2 class="mb-5">Education</h2>
+
+          <?php 
+         
+         $query = "SELECT * FROM `applicant_educationbg` left join users on users.user_id = applicant_educationbg.aebg_user_id  where applicant_educationbg.aebg_user_id =1";
+               $result = $crudapi->getData($query);
+               $number = 1;
+              foreach ($result as $key => $data) {
+        ?>
+
+<h3 style="font-weight:bold;"><?php echo strtoupper($data['aebg_school_name']); ?></h3>
+
+</a>
+<ul>
+    <li style="color:black;"><i style="color:black;" class="fas fa-calendar"></i><?php echo strtoupper($data['aebg_year_graduate']); ?></li>
+    <li style="color:black;"><i style="color:black;" class="fas fa-graduation-cap"></i><?php echo strtoupper($data['aebg_education_attainment_id']); ?></li>
+
+</ul>
+
+<?php }?>
+
+          
+          
+
+
+
+        </div>     
+      </div>    
+      <div class="row">
+        <div class="col-md mb-5">
+          <h2 class="mb-5">Skills</h2>      
+          
+          <?php 
+         
+                                     $query = "SELECT * FROM `applicant_skills` left join users on users.user_id = applicant_skills.as_user_id where applicant_skills.as_user_id=1";
+                                      $result = $crudapi->getData($query);
+                                      $number = 1;
+                                      foreach ($result as $key => $data) {
+                                  ?>
+
+<h2 style="color:black;"><?php echo strtoupper($data['as_skillname']); ?></h2>
+
+
+
+<?php }?>
+
+
+            
+      </div>
+    </main>
+    </div>
+    </div>
+    </div>
+  </body>
            
         </div>
                 </div>
@@ -230,7 +278,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
          <?php }?>
 <!-- View    -->
 
-
+</div> 
 </div>
 </div>
 
@@ -263,4 +311,16 @@ $.post("update_jobs.php",{USER_ID: USER_IDs},function(data,status){
 $("#viewModal").modal("show");
 
 });
+
+function printDivContent() {
+ 	var divElementContents = document.getElementById("printContent").innerHTML;
+ 	var a = window.open('', '', 'height=400, width=400');
+ 	a.document.write('<html>');
+ 	a.document.write('<body>');
+ 	a.document.write(divElementContents);
+ 	a.document.write('<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">');
+ 	a.document.write('</body></html>');
+    a.document.close();
+ 	a.print();
+}
 </script>
