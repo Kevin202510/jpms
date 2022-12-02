@@ -24,8 +24,9 @@
                      <div class="card-body">
                                     
                                 <?php 
-                                       
-                                       $query = "SELECT * FROM `users` where user_id = 1";
+                                       if(isset($_SESSION['USERROLE'])){
+                                        $applicantinformation= $_SESSION['USERID'];
+                                       $query = "SELECT * FROM `users` where user_id = $applicantinformation";
                                        $result = $crudapi->getData($query);
                                        foreach ($result as $key => $data) {
                                  ?>
@@ -50,7 +51,7 @@
                                    
                                 </div>
                              
-                       <?php } ?>
+                       <?php }} ?>
                      </div>
                 </div>
      
@@ -64,6 +65,7 @@
                      <div class="card-body">
         
                         <?php 
+                        
                            $query = "SELECT * FROM `applicant_educationbg` where aebg_user_id = 1";
                            $result = $crudapi->getData($query);
                            foreach ($result as $key => $data) {
