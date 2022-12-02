@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <?php 
   
     include_once("classes/CRUDAPI.php");
@@ -5,6 +6,11 @@
 
     if(isset($_POST['addjobs'])) { 
 
+        if(isset($_SESSION['USERROLE'])){
+     
+            $jobs_user_id =  $_SESSION['USERID'];
+             }
+    
     $job_company_name = $crudapi->escape_string($_POST['job_company_name']);    
     $jobs_name = $crudapi->escape_string($_POST['jobs_name']);
     $jobs_address = $crudapi->escape_string($_POST['jobs_address']);
@@ -15,14 +21,14 @@
     $jobs_r_experience = $crudapi->escape_string($_POST['jobs_r_experience']);
     $jobs_vacancy_count = $crudapi->escape_string($_POST['jobs_vacancy_count']);
     $job_expected_salary = $crudapi->escape_string($_POST['job_expected_salary']);
-    $jobs_user_id = $crudapi->escape_string($_POST['jobs_user_id']);
-      
-    $result = $crudapi->execute("INSERT INTO jobs(job_company_name,jobs_name,jobs_address,jobs_description,jobs_preferred_time,jobs_r_skills,jobs_r_education_id,jobs_r_experience,jobs_vacancy_count,job_expected_salary,jobs_user_id)VALUES('$job_company_name','$jobs_name','$jobs_address','$jobs_description','$jobs_r_skills','$jobs_r_education_id','$jobs_preferred_time','$jobs_r_experience','$jobs_vacancy_count','$job_expected_salary','3')");
+    
+      echo ('$jobs_user_id');
+    $result = $crudapi->execute("INSERT INTO jobs(job_company_name,jobs_name,jobs_address,jobs_description,jobs_preferred_time,jobs_r_skills,jobs_r_education_id,jobs_r_experience,jobs_vacancy_count,job_expected_salary,jobs_user_id)VALUES('$job_company_name','$jobs_name','$jobs_address','$jobs_description','$jobs_r_skills','$jobs_r_education_id','$jobs_preferred_time','$jobs_r_experience','$jobs_vacancy_count','$job_expected_salary','$jobs_user_id')");
     
     echo '<script>alert("ADDED SUCCESS");</script>';
     // echo '<script>window.reload();</script>';
 }
-     if(isset($_POST['editexp'])) {  
+     if(isset($_POST['editjob'])) {  
 
     $jobs_id = $crudapi->escape_string($_POST['jobs_id']);
     $job_company_name = $crudapi->escape_string($_POST['job_company_name']);    
@@ -44,7 +50,7 @@
     echo '<script>alert("UPDATED SUCCESS");</script>';
     header("location:employerindex.php");
 }
-if(isset($_POST['deleteexp'])) {  
+if(isset($_POST['deletejob'])) {  
 
     $jobs_id = $crudapi->escape_string($_POST['jobs_id']);
       
@@ -58,69 +64,109 @@ if(isset($_POST['deleteexp'])) {
 <?php include('layouts/header.php'); ?>
 <?php include('layouts/sidebaremployeer.php'); ?>
 
-<section class="section profile">
+<style type="text/css">
 
-<div class="container-fluid">
-  <div class="card" style="margin-bottom:30px;">
-    <div class="card-header">
-      <button type="button" class="btn btn-primary" id="jobs" style="float:right;">ADD</button>
+body{
+  color: #566787;
+  background:#f5f5f5;
+  font-family: 'varela round', Sans-seif;
+  font-size: 13px;
+}
+
+
+    .table-wrapper{
+background: #fff;
+padding: 20px 25px;
+margin: 30px 0;
+border-radius: 3px;
+box-shadow: 0 1px 1px rgba(0,0,0,.05);
+}
+.table-title{
+
+  padding-bottom: 15px;
+  background: linear-gradient(to right, #14620b, #106ee3);
+  color: #fff;
+  padding: 16px 30px;
+  margin: -20px -25px 10px;
+  border-radius: 3px 3px 0 0;
+}
+  </style>
+
+<div class="container">
+      <div class="table-wrapper">
+        <div class="table-title">
+          <div class="row">
+            <div class="col-md-12">
+           
+          <h5><b>Job Post</b></h5>
+          <button type="button" class="btn btn-primary" id="jobs" style=" background-color:#28a745;  width:100px; float:right; border:none;">ADD</button>
+          <div class="search-bar" style="">
+      <form class="search-form d-flex align-items-center" method="POST" action="#">
+        <input type="text" name="query" placeholder="Search" title="Enter search keyword">
+        <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+      </form>
+      </div>
+        </div><!-- End Search Bar -->
+                 
+          </div>
+  
     </div>
 
-
-<div class="card-body">
-      <table class="table">
-        <thead class="thead-dark">
-          <tr>
-            <th scope="col">#</th>
+       <table class="table table-striped table-hover">
+            <thead>
+              <tr>
+              <th scope="col">#</th>
             <th scope="col">Campany Name</th>
             <th scope="col">Position Name</th>
             <th scope="col">Address</th>
             <th scope="col">Vacancy</th>
             <th scope="col">Salary</th>
-          </tr>
-        </thead>
-        <tbody>
-        <?php 
-            $query = "SELECT * FROM `jobs` left join users on users.user_id = jobs.jobs_user_id where jobs.jobs_user_id=3";
-            $result = $crudapi->getData($query);
-            $number = 1;
-            foreach ($result as $key => $data) {
-        ?>
-            <tr>
-              <th scope="row"><?php echo $number; ?></th>
+             <tr>
+            </thead>
+            <tbody>
+                <?php 
+                   if(isset($_SESSION['USERROLE'])){
+                    $jobuser= $_SESSION['USERID'];
+                $query = "SELECT * FROM `jobs` left join users on users.user_id = jobs.jobs_user_id where jobs.jobs_user_id=$jobuser";
+                $result = $crudapi->getData($query);
+                $number = 1;
+                foreach ($result as $key => $data) {
+                ?>
+                 <tr>
+                 <th scope="row"><?php echo $number; ?></th>
               <td><?php echo $data["job_company_name"] ?></td>
               <td><?php echo $data["jobs_name"] ?></td>
               <td><?php echo $data["jobs_address"] ?></td>
             
               <td><?php echo $data["jobs_vacancy_count"] ?></td>
               <td><?php echo $data["job_expected_salary"] ?></td>
-             
-              <td>
-
-                <div class="btn-group" role="group" aria-label="Basic example">
+         
+              
+                     <td>
+              
+              
+                     <div class="btn-group" role="group" aria-label="Basic example">
                   <button type="button" data-id="<?php echo $data['jobs_id']; ?>" class="btn btn-primary" id="editbtn">EDIT</button>
                   <button type="button" data-id="<?php echo $data['jobs_id']; ?>" class="btn btn-danger" id="deletebtn">DELETE</button>
                   <button type="button" data-id="<?php echo $data['jobs_id']; ?>" class="btn btn-primary" id="view">View</button>
                 </div>
+                     
               </td>
-            </tr>
-          <?php $number++; } ?>
+              </tr>
+          <?php $number++; } }?>
         </tbody>
       </table>
-    </div>
-
-  </div>
 </div>
-</section>
+</div>
 
 
 <!-- ADDMODAL -->
 
-            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="exampleModals" tabindex="-1" role="dialog" aria-labelledby="exampleModalsLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel"> ADD JOB POST</h5>
+                    <h5 class="modal-title" id="exampleModalsLabel"> ADD JOB POST</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
@@ -203,7 +249,7 @@ if(isset($_POST['deleteexp'])) {
                 </div>
             </div>
          </div>
-<!-- ADD          -->
+<!-- ADD  -->
 
 
 <!-- UpdateMODAL -->
@@ -223,7 +269,7 @@ if(isset($_POST['deleteexp'])) {
 
                     <div class="form-group">
                         <label for="exampleInputPassword1">Comapany Name</label>
-                        <input type="text" class="form-control" name="job_company_name" id="job_company_name" placeholder="Comapany Name" required>
+                        <input type="text" class="form-control" name="job_company_name" id="job_company_names" placeholder="Comapany Name" required>
                     </div>
 
                     <div class="form-group">
@@ -285,14 +331,39 @@ if(isset($_POST['deleteexp'])) {
 
                     <div class="form-group">
                         <label for="exampleInputPassword1">Salary</label>
-                        <input type="number" class="form-control" name="job_expected_salary" id="job_expected_salary" placeholder="Salary"required>
+                        <input type="number" class="form-control" name="job_expected_salary" id="job_expected_salarys" placeholder="Salary"required>
                     </div>
 
                 
                 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary" name="editexp">Update changes</button>
+                        <button type="submit" class="btn btn-primary" name="editjob">Update changes</button>
+                    </div>
+                </form>
+                </div>
+               
+                </div>
+            </div>
+         </div> 
+         <!-- edit -->
+
+         <!-- delete -->
+         <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                <form method="POST">
+                    <input type="hidden" class="form-control" name="jobs_id" id="jobs_idss">
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary" name="deletejob">Delete</button>
                     </div>
                 </form>
                 </div>
@@ -309,10 +380,16 @@ if(isset($_POST['deleteexp'])) {
          
          include_once("classes/CRUDAPI.php");
          $crudapi = new CRUDAPI(); 
-         $query = "SELECT * FROM `jobs` left join users on users.user_id = jobs.jobs_id where jobs.jobs_id=1";
-         $result = $crudapi->getData($query);
-         $number = 1;
-         foreach ($result as $key => $data) {
+
+         if(isset($_SESSION['USERROLE'])){
+            $profile= $_SESSION['USERID'];
+           $role=$_SESSION['USERROLE'];
+          $query = "SELECT * FROM `users` LEFT JOIN roles ON roles.id = users.user_role_id where users.user_role_id =$role";
+          $result = $crudapi->getData($query);  
+          $number = 1;
+         
+          foreach ($result as $key => $data) {
+            if(strtoupper($data["user_id"]) == $profile ){
      ?>
 
 <div class="modal fade" id="viewModal" tabindex="-1" role="dialog" aria-labelledby="viewModalLabel" aria-hidden="true">
@@ -324,7 +401,9 @@ if(isset($_POST['deleteexp'])) {
                     <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
+             
                 <div class="modal-body">
+
                 <!-- job post company Start -->
         <div class="job-post-company pt-120 pb-120">
             <div class="container">
@@ -428,13 +507,15 @@ if(isset($_POST['deleteexp'])) {
                     </div>
                 </div>
             </div>
-           
+       
         </div>
-                </div>
+        
+                  </div>
+              
                 </div>
             </div>
          </div>
-         <?php }?>
+         <?php } } } ?>
 <!-- View    -->
 
 
@@ -447,8 +528,7 @@ if(isset($_POST['deleteexp'])) {
 <script>
   $(document).ready(function(){
     $("#jobs").click(function(){
-        // $("#ae_user_id").val($("user_id").val());
-        $("#exampleModal").modal("show");
+        $("#exampleModals").modal("show");
     });
   })
 

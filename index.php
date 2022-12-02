@@ -34,6 +34,7 @@ if (isset($_POST['login'])) {
         }
         else if($data['user_role_id']==3){
             $_SESSION['USERROLE'] = $data['user_role_id'];
+            $_SESSION['USERID'] = $data['user_id'];
             $_SESSION['FULLNAME'] = $data['user_fname']." ".$data['user_lname'];
         
             header("location: admin panel/employerindex.php");
@@ -46,6 +47,8 @@ if (isset($_POST['login'])) {
         
             header("location:  applicantinformation.php");
         }
+
+        
 
     }
     
@@ -376,6 +379,41 @@ if(isset($_POST['register'])) {
             </div>
          </div>
 <!-- login MODAL -->
+
+<!-- logout MODAL -->
+<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                             <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                             </button>
+                           </div>
+                    <div class="modal-body">
+                        <form method="POST">
+
+                        <div class="form-group">
+                                 <label for="exampleInputPassword1">Email</label>
+                                 <input type="text" class="form-control" name="user_email" id="user_email" placeholder="Email" required>
+                             </div>
+
+                             <div class="form-group">
+                                 <label for="exampleInputPassword1">Password</label>
+                                 <input type="password" class="form-control" name="user_password" id="user_password" placeholder="Password" required>
+                             </div>
+
+                                <div class="modal-footer">
+                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                     <button type="submit" class="btn btn-primary" name="login">LOGIN</button>
+                               </div>
+                         </form>
+                    </div>
+                </div>
+            </div>
+         </div>
+<!-- logout MODAL -->
+
 
 
 <?php include('applicantsviews/footer.php'); ?>

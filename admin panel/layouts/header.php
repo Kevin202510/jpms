@@ -1,4 +1,4 @@
-<?php session_start();?>
+
 <header id="header" class="header fixed-top d-flex align-items-center" style="background-color:#1AA478;">
   
     <div class="d-flex align-items-center justify-content-between">
@@ -209,10 +209,10 @@
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="logout.php">
+            <button type="button" class="dropdown-item d-flex align-items-center" id="outnako" style="float:right;">
                 <i class="bi bi-box-arrow-right"></i>
                 <span>LogOut</span>
-              </a>
+              </button>
             </li>
 
           </ul><!-- End Profile Dropdown Items -->
@@ -222,3 +222,24 @@
     </nav><!-- End Icons Navigation -->
 
   </header>
+
+  <div class="modal fade" id="logout" tabindex="-1" role="dialog" aria-labelledby="logoutLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="logoutLabel">Logout</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+        <form method="POST">
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary" name="logout">Logout</button>
+            </div>
+        </form>
+        </div>
+        </div>
+    </div>
+  </div>
