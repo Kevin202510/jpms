@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <?php include('applicantsviews/head.php'); ?>
     <!-- Preloader Start -->
     
@@ -12,11 +14,14 @@
             <div class="container">
                 <div class="card" style="background-color:#20c997;">
                    <div class="card-body">
-
+                 
               
                 <div class="card" style="background-color:#c4eeef;">
+                
                                 <div class="card-header">
-                                  MY PROFILE
+                                <?php if(isset($_SESSION['USERROLE'])){?>
+                    <h1><?php echo  $_SESSION['FULLNAME'];?></h1>
+                    <?php }?>
                                 </div>
                      <div class="card-body">
                                     

@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <header>
         <!-- Header Start -->
        <div class="header-area header-transparrent">

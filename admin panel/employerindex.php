@@ -145,7 +145,9 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
         <div class="table-title">
           <div class="row">
             <div class="col-md-12">
-           
+            <?php if(isset($_SESSION['USERROLE'])){?>
+                    <h1><?php echo  $_SESSION['FULLNAME'];?></h1>
+                    <?php }?>
           <h5><b>Post Jobs</b></h5>
           <button type="button" class="btn btn-primary" id="jobs" style=" background-color:#28a745;  width:100px; float:right; border:none;">ADD</button>
           <div class="search-bar" style="">
@@ -435,7 +437,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
      ?>
 
 <div class="modal fade" id="viewModal" tabindex="-1" role="dialog" aria-labelledby="viewModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-dialog modal-xl" role="document">
                 <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="viewModalLabel">View</h5>
@@ -466,9 +468,9 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                                         <h4><?php echo strtoupper($data['job_company_name']); ?></h4>
                                     </a>
                                     <ul>
-                                        <li><?php echo strtoupper($data['jobs_name']); ?></li>
-                                        <li><i class="fas fa-map-marker-alt"></i><?php echo strtoupper($data['jobs_address']); ?></li>
-                                        <li><?php echo strtoupper($data['job_expected_salary']); ?></li>
+                                        <li><i class="bi bi-person-workspace"></i><?php echo strtoupper($data['jobs_name']); ?></li>
+                                        <li><i class="bi bi-geo-alt-fill"></i><?php echo strtoupper($data['jobs_address']); ?></li>
+                                        <li><i class="">php</i><?php echo strtoupper($data['job_expected_salary']); ?></li>
                                     </ul>
                                 </div>
                             </div>
@@ -489,26 +491,14 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                                 <div class="small-section-tittle">
                                     <h4>Required Knowledge, Skills, and Abilities</h4>
                                 </div>
-                               <ul>
-                                   <li>System Software Development</li>
-                                   <li>Mobile Applicationin iOS/Android/Tizen or other platform</li>
-                                   <li>Research and code , libraries, APIs and frameworks</li>
-                                   <li>Strong knowledge on software development life cycle</li>
-                                   <li>Strong problem solving and debugging skills</li>
-                               </ul>
+                                <p><?php echo strtoupper($data['jobs_r_skills']); ?></p>
                             </div>
                             <div class="post-details2  mb-50">
                                  <!-- Small Section Tittle -->
                                 <div class="small-section-tittle">
                                     <h4>Education + Experience</h4>
                                 </div>
-                               <ul>
-                                   <li>3 or more years of professional design experience</li>
-                                   <li>Direct response email experience</li>
-                                   <li>Ecommerce website design experience</li>
-                                   <li>Familiarity with mobile and web apps preferred</li>
-                                   <li>Experience using Invision a plus</li>
-                               </ul>
+                                <p><?php echo strtoupper($data['jobs_r_education_id']); ?></p>
                             </div>
                         </div>
 
@@ -538,8 +528,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                            <div class="small-section-tittle">
                                <h4>Company Information</h4>
                            </div>
-                              <span>Colorlib</span>
-                              <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+                             
                             <ul>
                                 <li>Name: <span><?php echo strtoupper($data["user_fname"]." ".$data["user_lname"]); ?></span></li>
                                 <li>Cotact: <span><?php echo $data["user_contact"] ?></span></span></li>

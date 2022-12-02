@@ -1,7 +1,13 @@
 <?php 
-
+ session_start();
 include_once("classes/CRUDAPI.php");
 $crudapi = new CRUDAPI(); 
+
+
+
+
+
+
 
 
 if (isset($_POST['login'])) {
@@ -18,64 +24,37 @@ if (isset($_POST['login'])) {
 
     foreach ($result as $key => $data) {
 
-        if(count($result)>0){
-        echo "<script>alert('LOGIN SUCCESS');</script>";
+    
 
-        if($data["user_role_id"]==1){
-            header('location: admin panel/index.php');
-        }else if($data["user_role_id"]==2){
-            // echo "<script>alert('DALHIN MOKO SA APPLICANT VIEW');</script>";
-            header('location: admin panel/index.php');
+        if($data['user_role_id']==1 || $data['user_role_id']==2){
+            $_SESSION['USERROLE'] = $data['user_role_id'];
+            $_SESSION['FULLNAME'] = $data['user_fname']." ".$data['user_lname'];
+        
+            header("location: admin panel/applicantlist.php");
         }
-        else if($data["user_role_id"]==3){
-            
-            header('location: admin panel/employerindex.php');
+        else if($data['user_role_id']==3){
+            $_SESSION['USERROLE'] = $data['user_role_id'];
+            $_SESSION['FULLNAME'] = $data['user_fname']." ".$data['user_lname'];
+        
+            header("location: admin panel/employerindex.php");
         }
-        else if($data["user_role_id"]==4){          
-            header('location: applicantinformation.php');
-        }
-        }else{
-            echo "<script>alert('LOGIN FAILED');</script>";
+
+        else{
+            $_SESSION['USERROLE'] = $data['user_role_id'];
+            $_SESSION['FULLNAME'] = $data['user_fname']." ".$data['user_lname'];
+        
+            header("location:  applicantinformation.php");
         }
 
     }
     
-        
-    // $list = array();
+   
+   
 
-    // if ($res!=0){
-                 
-    //                         $row = mysqli_fetch_assoc($result);
-                             
-    //                         $list[] = $row;
-                  
-    //     }
+}   
 
-      
-    // $pos = $list[0]['Position'];
-    // $_SESSION['Id'] = $list[0]['Id'];
-       
+
     
-
-    // var_dump($list);
-            
-    // if ($res==1) {
-
-    //     if($pos=="employee"){
-    //         header("location: admin panel\Employee settings.php");
-    //     } else if($pos=="employer"){
-    //         header("location: admin panel\Employer settings.php");
-    //     }else if($pos=="Admin"){
-    //         header("location: admin panel\admin.php");
-    //     }
-
-       
-    // } else {
-
-    //     echo '<script>alert("Invalid account");</script>';
-    // }
-
-}
 
 
 
@@ -104,11 +83,12 @@ if(isset($_POST['register'])) {
         echo '<script>alert("password match");</script>';
 
                 $hashed_password = md5($user_password);
-
-    }
-    $result = $crudapi->execute("INSERT INTO users(user_fname,user_lname,user_contact,user_email,address,user_password,user_role_id) VALUES('$user_fname','$user_lname','$user_contact','$user_email','$address','$hashed_password',$user_role_id)");
+                $result = $crudapi->execute("INSERT INTO users(user_fname,user_lname,user_contact,user_email,address,user_password,user_role_id) VALUES('$user_fname','$user_lname','$user_contact','$user_email','$address','$hashed_password',$user_role_id)");
       echo '<script>alert("REGISTERED SUCCESS");</script>';
       header("location:index.php");  
+
+    }
+    
     }   
 
 ?>
@@ -331,26 +311,26 @@ if(isset($_POST['register'])) {
 
                              <div class="form-group">
                                  <label for="exampleInputPassword1">Password</label>
-                                 <input type="password" class="form-control" name="user_password" id="user_password" placeholder="Password" required>
+                                 <input type="password" class="form-control" name="user_password" id="user_passwords" placeholder="Password" required>
                              </div>
 
                              <div class="form-group">
                                  <label for="exampleInputPassword1">Confirm Password</label>
-                                 <input type="password" class="form-control" name="conuser_password" id="conuser_password" placeholder="Confirm Password" required>
+                                 <input type="password" class="form-control" name="conuser_password" id="conuser_passwords" placeholder="Confirm Password" required>
                              </div>
 
                     
                         <label for="exampleInputPassword1">Role</label><br>
                         <select name="user_role_id" id="user_role_id" >
-                           
-                            <option value="3">employer</option>
+                        <option value="4">Applicant</option>
+                            <option value="3">Employer</option>
                         </select>
                     
                      
 
                                 <div class="modal-footer">
                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                     <button type="submit" class="btn btn-primary" name="register">REGISTERED</button>
+                                     <button type="submit" class="btn btn-primary" id="subreg" name="register">REGISTERED</button>
                                </div>
                          </form>
                     </div>
@@ -406,14 +386,20 @@ if(isset($_POST['register'])) {
         // $("#as_user_id").val($("user_id").val());
         $("#exampleModal").modal("show");
     });
-  })
-
-
-  $(document).ready(function(){
     $("#logins").click(function(){
         // $("#as_user_id").val($("user_id").val());
         $("#exampleModal2").modal("show");
     });
+    $("#subreg").prop("disabled",true);
+    $("#conuser_passwords").change(function(){
+        if ($("#user_passwords").val()==$("#conuser_passwords").val()){
+            $("#subreg").prop("disabled",false);
+        }else{
+            alert("PASSWORD DIDN'T MATCH");
+        }
+    });
   })
+  
+
  
 </script>

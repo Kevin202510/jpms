@@ -1,3 +1,4 @@
+<?php session_start();?>
 <header id="header" class="header fixed-top d-flex align-items-center" style="background-color:#1AA478;">
   
     <div class="d-flex align-items-center justify-content-between">
