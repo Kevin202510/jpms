@@ -42,6 +42,7 @@ if (isset($_POST['login'])) {
         else{
             $_SESSION['USERROLE'] = $data['user_role_id'];
             $_SESSION['FULLNAME'] = $data['user_fname']." ".$data['user_lname'];
+            $_SESSION['USERID'] = $data['user_id'];
         
             header("location:  applicantinformation.php");
         }

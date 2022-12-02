@@ -19,9 +19,7 @@
                 <div class="card" style="background-color:#c4eeef;">
                 
                                 <div class="card-header">
-                                <?php if(isset($_SESSION['USERROLE'])){?>
-                    <h1><?php echo  $_SESSION['FULLNAME'];?></h1>
-                    <?php }?>
+                                 MY PROFILE
                                 </div>
                      <div class="card-body">
                                     

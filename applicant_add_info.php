@@ -5,13 +5,18 @@ include_once("classes/CRUDAPI.php");
 $crudapi = new CRUDAPI(); 
 if(isset($_POST['addinfo'])) {	
 
+    if(isset($_SESSION['USERROLE'])){
+     
+        $aai_user_id =  $_SESSION['USERID'];
+         }
+
     $aai_expected_salary = $crudapi->escape_string($_POST['aai_expected_salary']);
     $aai_location = $crudapi->escape_string($_POST['aai_location']);
     $aai_wfh_os = $crudapi->escape_string($_POST['aai_wfh_os']);
    
  
       
-    $result = $crudapi->execute("INSERT INTO applicant_additional_info(aai_expected_salary,aai_location,aai_wfh_os,aai_user_id) VALUES('$aai_expected_salary','$aai_location','$aai_wfh_os','1')");
+    $result = $crudapi->execute("INSERT INTO applicant_additional_info(aai_expected_salary,aai_location,aai_wfh_os,aai_user_id) VALUES('$aai_expected_salary','$aai_location','$aai_wfh_os',' $aai_user_id')");
     
     echo '<script>alert("ADDED SUCCESS");</script>';
     header("location:applicant_add_info.php");
@@ -72,8 +77,11 @@ if(isset($_POST['deleteinfo'])) {
                             <div class="container">
                                   
                                 <?php 
-         
-                                     $query = "SELECT * FROM `applicant_additional_info` left join users on users.user_id = applicant_additional_info.aai_user_id where applicant_additional_info.aai_user_id=1";
+                                      
+                                      if(isset($_SESSION['USERROLE'])){
+                                        $info= $_SESSION['USERID'];
+
+                                     $query = "SELECT * FROM `applicant_additional_info` left join users on users.user_id = applicant_additional_info.aai_user_id where applicant_additional_info.aai_user_id=$info";
                                      $result = $crudapi->getData($query);
                                      $number = 1;
                                      foreach ($result as $key => $data) {
@@ -100,7 +108,7 @@ if(isset($_POST['deleteinfo'])) {
                                         <button type="button" data-id="<?php echo $data['aai_id']; ?>" class="btns" id="deletebtn"  style="background-color:#669068;border:none;border-radius:20px; padding:20px;"><i  style="color:red;" class="fa fa-trash-alt"></i></button>
                                     </div>
                                 </div>
-                                <?php }?>
+                                <?php } }?>
                             </div>
                         </section>
                         <!-- Featured_job_end -->
