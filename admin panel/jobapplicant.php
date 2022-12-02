@@ -295,7 +295,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
           
 
             <div class="card">
-              <div class="container" style="width:100px; height:300px;">
+              <div class="container" style="width:100px; height:250px;">
                   <a href="sample.php?pdfname=KEVIN FELIX CALUAG.pdf">CV</a> 
               </div>
             </div>
