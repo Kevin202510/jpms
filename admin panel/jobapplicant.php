@@ -45,6 +45,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
             <div class="col-md-12">
            
           <h5><b>Post Jobs</b></h5>
+          
 
           <div class="search-bar" style="float:right;">
       <form class="search-form d-flex align-items-center" method="POST" action="#">
@@ -85,10 +86,9 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
               
               
                        <div class="items-link items-link2 f-right">
-                       <button type="button" data-id="<?php echo $data['jobs_id']; ?>" class="btn btn-primary" id="view">View</button>
-                          <button type="button" data-id="<?php echo $data['jobs_id']; ?>" id="editbtn" style="border: transparent; color: green; background: transparent;"><i class="bi bi-pencil-fill"></i></button>
-                       <button type="button" data-id="<?php echo $data['jobs_id']; ?>" id="deletebtn" style="border: transparent; color: red; background: transparent;"> <i class="bi bi-trash-fill"></i></button>
-                       </div>
+                        <button type="button" data-id="<?php echo $data['jobs_id']; ?>" class="btn btn-primary" id="view">View</button>
+                        <button type="button" data-id="<?php echo $data['jobs_id']; ?>" class="btn btn-primary" id="viewreq">View Requarments</button>
+                      </div>
                      
               </td>
               </tr>
@@ -279,13 +279,42 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
 </div>
 </div>
 
+<!-- viewreq -->
+
+<div class="modal fade" id="viewrequarments" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">VIEW REQUARMENTS</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span> 
+          </button>
+        </div>
+                    
+        <div class="modal-body">
+          
+
+            <div class="card">
+              <div class="container" style="width:100px; height:300px;">
+                  <a href="sample.php?pdfname=KEVIN FELIX CALUAG.pdf">CV</a> 
+              </div>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
+
+<!-- viewreq -->                      
+
 
 <?php include('layouts/footer.php'); ?>
 
 
 <script>
 
-$("body").on('click','#view',function(e){
+$(document).ready(function(){
+  
+  $("body").on('click','#view',function(e){
 
 var USER_IDs = $(e.currentTarget).data('id');
 $.post("update_jobs.php",{USER_ID: USER_IDs},function(data,status){
@@ -306,7 +335,10 @@ $.post("update_jobs.php",{USER_ID: USER_IDs},function(data,status){
 });
 
 $("#viewModal").modal("show");
+});
 
+$("#viewreq").click(function(){
+$("#viewrequarments").modal("show");
 });
 
 function printDivContent() {
@@ -320,4 +352,5 @@ function printDivContent() {
     a.document.close();
  	a.print();
 }
+})
 </script>
