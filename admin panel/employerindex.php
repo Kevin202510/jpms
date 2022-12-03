@@ -64,62 +64,100 @@ if(isset($_POST['deletejob'])) {
 <?php include('layouts/header.php'); ?>
 <?php include('layouts/sidebaremployeer.php'); ?>
 
-<section class="section profile">
+<style type="text/css">
 
-<div class="container-fluid">
-  <div class="card" style="margin-bottom:30px;">
-    <div class="card-header">
-      <button type="button" class="btn btn-primary" id="jobs" style="float:right;">ADD</button>
+body{
+  color: #566787;
+  background:#f5f5f5;
+  font-family: 'varela round', Sans-seif;
+  font-size: 13px;
+}
+
+
+    .table-wrapper{
+background: #fff;
+padding: 20px 25px;
+margin: 30px 0;
+border-radius: 3px;
+box-shadow: 0 1px 1px rgba(0,0,0,.05);
+}
+.table-title{
+
+  padding-bottom: 15px;
+  background: linear-gradient(to right, #14620b, #106ee3);
+  color: #fff;
+  padding: 16px 30px;
+  margin: -20px -25px 10px;
+  border-radius: 3px 3px 0 0;
+}
+  </style>
+
+<div class="container">
+      <div class="table-wrapper">
+        <div class="table-title">
+          <div class="row">
+            <div class="col-md-12">
+           
+          <h5><b>Job Post</b></h5>
+          <button type="button" class="btn btn-primary" id="jobs" style=" background-color:#28a745;  width:100px; float:right; border:none;">ADD</button>
+          <div class="search-bar" style="">
+      <form class="search-form d-flex align-items-center" method="POST" action="#">
+        <input type="text" name="query" placeholder="Search" title="Enter search keyword">
+        <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+      </form>
+      </div>
+        </div><!-- End Search Bar -->
+                 
+          </div>
+  
     </div>
 
-
-<div class="card-body">
-      <table class="table">
-        <thead class="thead-dark">
-          <tr>
-            <th scope="col">#</th>
+       <table class="table table-striped table-hover">
+            <thead>
+              <tr>
+              <th scope="col">#</th>
             <th scope="col">Campany Name</th>
             <th scope="col">Position Name</th>
             <th scope="col">Address</th>
             <th scope="col">Vacancy</th>
             <th scope="col">Salary</th>
-          </tr>
-        </thead>
-        <tbody>
-        <?php 
-               if(isset($_SESSION['USERROLE'])){
-                $jobuser= $_SESSION['USERID'];
-            $query = "SELECT * FROM `jobs` left join users on users.user_id = jobs.jobs_user_id where jobs.jobs_user_id=$jobuser";
-            $result = $crudapi->getData($query);
-            $number = 1;
-            foreach ($result as $key => $data) {
-        ?>
-            <tr>
-              <th scope="row"><?php echo $number; ?></th>
+             <tr>
+            </thead>
+            <tbody>
+                <?php 
+                   if(isset($_SESSION['USERROLE'])){
+                    $jobuser= $_SESSION['USERID'];
+                $query = "SELECT * FROM `jobs` left join users on users.user_id = jobs.jobs_user_id where jobs.jobs_user_id=$jobuser";
+                $result = $crudapi->getData($query);
+                $number = 1;
+                foreach ($result as $key => $data) {
+                ?>
+                 <tr>
+                 <th scope="row"><?php echo $number; ?></th>
               <td><?php echo $data["job_company_name"] ?></td>
               <td><?php echo $data["jobs_name"] ?></td>
               <td><?php echo $data["jobs_address"] ?></td>
             
               <td><?php echo $data["jobs_vacancy_count"] ?></td>
               <td><?php echo $data["job_expected_salary"] ?></td>
-             
-              <td>
-
-                <div class="btn-group" role="group" aria-label="Basic example">
+         
+              
+                     <td>
+              
+              
+                     <div class="btn-group" role="group" aria-label="Basic example">
                   <button type="button" data-id="<?php echo $data['jobs_id']; ?>" class="btn btn-primary" id="editbtn">EDIT</button>
                   <button type="button" data-id="<?php echo $data['jobs_id']; ?>" class="btn btn-danger" id="deletebtn">DELETE</button>
                   <button type="button" data-id="<?php echo $data['jobs_id']; ?>" class="btn btn-primary" id="view">View</button>
                 </div>
+                     
               </td>
-            </tr>
-          <?php $number++; } } ?>
+              </tr>
+          <?php $number++; } }?>
         </tbody>
       </table>
-    </div>
-
-  </div>
 </div>
-</section>
+</div>
 
 
 <!-- ADDMODAL -->
@@ -344,13 +382,14 @@ if(isset($_POST['deletejob'])) {
          $crudapi = new CRUDAPI(); 
 
          if(isset($_SESSION['USERROLE'])){
-            $jobs= $_SESSION['USERID'];
+            $profile= $_SESSION['USERID'];
            $role=$_SESSION['USERROLE'];
-         $query = "SELECT * FROM `jobs` left join users on users.user_id = jobs.jobs_id where jobs.jobs_id=$role";
-         $result = $crudapi->getData($query);
-         $number = 1;
-         foreach ($result as $key => $data) {
-            if(strtoupper($data["jobs_id"]) == $jobs ){
+          $query = "SELECT * FROM `users` LEFT JOIN roles ON roles.id = users.user_role_id where users.user_role_id =$role";
+          $result = $crudapi->getData($query);  
+          $number = 1;
+         
+          foreach ($result as $key => $data) {
+            if(strtoupper($data["user_id"]) == $profile ){
      ?>
 
 <div class="modal fade" id="viewModal" tabindex="-1" role="dialog" aria-labelledby="viewModalLabel" aria-hidden="true">
@@ -362,6 +401,7 @@ if(isset($_POST['deletejob'])) {
                     <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
+             
                 <div class="modal-body">
 
                 <!-- job post company Start -->
@@ -470,7 +510,8 @@ if(isset($_POST['deletejob'])) {
        
         </div>
         
-                </div>
+                  </div>
+              
                 </div>
             </div>
          </div>
@@ -488,11 +529,6 @@ if(isset($_POST['deletejob'])) {
   $(document).ready(function(){
     $("#jobs").click(function(){
         $("#exampleModals").modal("show");
-    });
-  })
-
-  $("#jobss").click(function(){
-        $("#exampleModalss").modal("show");
     });
   })
 

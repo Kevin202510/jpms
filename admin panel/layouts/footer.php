@@ -33,3 +33,11 @@
 </body>
 
 </html>
+
+<script>
+  $(document).ready(function(){
+    $("#outnako").click(function(){
+      $("#logout").modal("show");
+    });
+  });
+</script>

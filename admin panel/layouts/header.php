@@ -209,7 +209,7 @@
             </li>
 
             <li>
-            <button type="button" class="dropdown-item d-flex align-items-center" id="jobss" style="float:right;">
+            <button type="button" class="dropdown-item d-flex align-items-center" id="outnako" style="float:right;">
                 <i class="bi bi-box-arrow-right"></i>
                 <span>LogOut</span>
               </button>
@@ -223,11 +223,11 @@
 
   </header>
 
-  <div class="modal fade" id="exampleModalss" tabindex="-1" role="dialog" aria-labelledby="exampleModalssLabel" aria-hidden="true">
+  <div class="modal fade" id="logout" tabindex="-1" role="dialog" aria-labelledby="logoutLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalssLabel">Logout</h5>
+            <h5 class="modal-title" id="logoutLabel">Logout</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button>

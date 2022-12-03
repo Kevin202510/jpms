@@ -4,74 +4,112 @@
     $crudapi = new CRUDAPI();
 
   ?>
-
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
 <?php include('layouts/head.php'); ?>
 <?php include('layouts/header.php'); ?>
 <?php include('layouts/sidebaremployeer.php'); ?>
 
-<section class="section profile">
-<div class="container-fluid">
-  <div class="card">
-    
-    <div class="card-body">
-      <table class="table">
-        <thead class="thead-dark">
-          <tr>
-            <th scope="col">#</th>
+<style type="text/css">
+
+body{
+  color: #566787;
+  background:#f5f5f5;
+  font-family: 'varela round', Sans-seif;
+  font-size: 13px;
+}
+
+
+    .table-wrapper{
+background: #fff;
+padding: 20px 25px;
+margin: 30px 0;
+border-radius: 3px;
+box-shadow: 0 1px 1px rgba(0,0,0,.05);
+}
+.table-title{
+
+  padding-bottom: 15px;
+  background: linear-gradient(to right, #14620b, #106ee3);
+  color: #fff;
+  padding: 16px 30px;
+  margin: -20px -25px 10px;
+  border-radius: 3px 3px 0 0;
+}
+  </style>
+
+<div class="container">
+      <div class="table-wrapper">
+        <div class="table-title">
+          <div class="row">
+            <div class="col-md-12">
+           
+          <h5><b>Applicant</b></h5>
+          
+          <div class="search-bar" style="float:right;">
+      <form class="search-form d-flex align-items-center" method="POST" action="#" >
+        <input type="text" name="query" placeholder="Search" title="Enter search keyword">
+        <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+      </form>
+      </div>
+        </div><!-- End Search Bar -->
+          
+         
+          </div>
+         
+
+         
+    </div>
+
+       <table class="table table-striped table-hover">
+            <thead>
+              <tr>
+              <th scope="col">#</th>
             <th scope="col">Full NAme</th>
-            <th scope="col">Position</th>
-            <th scope="col">Salary</th>
-            
-          </tr>
-        </thead>
-        <tbody>
-        <?php 
-           if(isset($_SESSION['USERROLE'])){
-            $applicant= $_SESSION['USERID'];
-            $query = "SELECT * FROM `users` LEFT JOIN roles ON roles.id = users.user_role_id Left JOIN applicant_experience ON roles.id = users.user_role_id Left JOIN applicant_additional_info ON roles.id = users.user_role_id where users.user_role_id = $applicant";
-            $result = $crudapi->getData($query);
-            $number = 1;
-            foreach ($result as $key => $data) {
-        ?>
-            <tr>
-              <th scope="row"><?php echo $number; ?></th>
+            <th scope="col">Contact</th>
+            <th scope="col">Email</th>
+            <th scope="col">Address</th>
+             <tr>
+            </thead>
+            <tbody>
+                <?php 
+                     $query = "SELECT * FROM `users` where user_role_id = 4";
+                     $result = $crudapi->getData($query);
+                     $number = 1;
+                     foreach ($result as $key => $data) {
+                ?>
+                 <tr>
+                 <th scope="row"><?php echo $number; ?></th>
               
               <td><?php echo strtoupper($data["user_fname"]." ".$data["user_lname"]); ?></td>
-              <td><?php echo strtoupper($data["ae_position"]) ?></td>
-              <td><?php echo strtoupper($data["aai_expected_salary"]) ?></td>
+              <td><?php echo strtoupper($data["user_contact"]) ?></td>
+              <td><?php echo strtoupper($data["user_email"]) ?></td>
+              <td><?php echo strtoupper($data["address"]) ?></td>
+         
               
-              <td>
-                <div class="btn-group" role="group" aria-label="Basic example">
-                <button type="button" data-id="<?php echo $data['jobs_id']; ?>" class="btn btn-primary" id="view">View</button>
-
-
-                  
-                </div>
+                     <td>
+              
+              
+                       <div class="items-link items-link2 f-right">
+                       <button type="button" data-id="<?php echo $data['jobs_id']; ?>" class="btn btn-primary" id="view">View</button>
+                       </div>
+                     
               </td>
-            </tr>
-          <?php $number++; } } ?>
-
+              </tr>
+          <?php $number++; } ?>
         </tbody>
       </table>
+</div>
+</div>
 
 
 
 
  <!-- ViewMODAL -->
 
-<?php
-         
-         include_once("classes/CRUDAPI.php");
-         $crudapi = new CRUDAPI(); 
-         
-         $query = "SELECT * FROM `jobs` left join users on users.user_id = jobs.jobs_id where jobs.jobs_id=1";
-         $result = $crudapi->getData($query);
-         $number = 1;
-         foreach ($result as $key => $data) {
-     ?>
+
 
 <div class="modal fade" id="viewModal" tabindex="-1" role="dialog" aria-labelledby="viewModalLabel" aria-hidden="true">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">        
+        
 <div class="modal-dialog modal-xl" role="document">
                 <div class="modal-content">
                 <div class="modal-header">
@@ -148,73 +186,63 @@
           </div>
       </div>
     </nav>
-    <main class="container">
+   
       <div class="row">
         <div class="col-md mb-5">
           <h2 class="mb-5">Work Experience</h2>
           
 
-          <?php 
+                   <?php 
          
-         $query = "SELECT * FROM `applicant_experience` left join users on users.user_id = applicant_experience.ae_user_id where applicant_experience.ae_user_id=1";
-            $result = $crudapi->getData($query);
-             $number = 1;
-          foreach ($result as $key => $data) {
-        ?>
+                         $query = "SELECT * FROM `applicant_experience` left join users on users.user_id = applicant_experience.ae_user_id where applicant_experience.ae_user_id=1";
+                         $result = $crudapi->getData($query);
+                         $number = 1;
+                         foreach ($result as $key => $data) {
+                      ?>
 
-<h2 style="font-weight:bold;"><?php echo strtoupper($data['ae_companyname']); ?></h2>
+                   <h2 style="font-weight:bold;"><?php echo strtoupper($data['ae_companyname']); ?></h2>
 
-                                            <ul>
-                                                <li style="font-weight:bold;"><i  style="color:black;" class="fas fa-map-marker-alt"></i><?php echo strtoupper($data['ae_companyaddress']); ?></li>
-                                                <li style="font-weight:bold;"><i  style="color:black;" class="fas fa-briefcase"></i><?php echo strtoupper($data['ae_position']); ?></li>
-                                              <li style="font-weight:bold;"><p><i style="color:black;" class="fas fa-calendar"></i>( <?php echo strtoupper($data["ae_from"]).") (".strtoupper($data["ae_to"]) ?> )</p></li>
-                                            </ul>
+                              <ul>
+                                  <li style="font-weight:bold;"><i  style="color:black;" class="fas fa-map-marker-alt"></i><?php echo strtoupper($data['ae_companyaddress']); ?></li>
+                                  <li style="font-weight:bold;"><i  style="color:black;" class="fas fa-briefcase"></i><?php echo strtoupper($data['ae_position']); ?></li>
+                                <li style="font-weight:bold;"><p><i style="color:black;" class="fas fa-calendar"></i>( <?php echo strtoupper($data["ae_from"]).") (".strtoupper($data["ae_to"]) ?> )</p></li>
+                              </ul>
 
-<?php }?>
-
-
-
-
-
-
-
-
-
+                    <?php }?>
+             </div>
         </div>
-        <div class="col-md mb-5">
-          <h2 class="mb-5">Education</h2>
 
-          <?php 
+                <div class="col-md mb-5">
+                 <h2 class="mb-5">Education</h2>
+
+                   <?php 
          
-         $query = "SELECT * FROM `applicant_educationbg` left join users on users.user_id = applicant_educationbg.aebg_user_id  where applicant_educationbg.aebg_user_id =1";
-               $result = $crudapi->getData($query);
-               $number = 1;
-              foreach ($result as $key => $data) {
-        ?>
+                     $query = "SELECT * FROM `applicant_educationbg` left join users on users.user_id = applicant_educationbg.aebg_user_id  where applicant_educationbg.aebg_user_id =1";
+                     $result = $crudapi->getData($query);
+                     $number = 1;
+                     foreach ($result as $key => $data) {
+                   ?>
 
-<h3 style="font-weight:bold;"><?php echo strtoupper($data['aebg_school_name']); ?></h3>
+                   <h3 style="font-weight:bold;"><?php echo strtoupper($data['aebg_school_name']); ?></h3>
 
-</a>
-<ul>
-    <li style="color:black;"><i style="color:black;" class="fas fa-calendar"></i><?php echo strtoupper($data['aebg_year_graduate']); ?></li>
-    <li style="color:black;"><i style="color:black;" class="fas fa-graduation-cap"></i><?php echo strtoupper($data['aebg_education_attainment_id']); ?></li>
+                 <ul>
+                    <li style="color:black;"><i style="color:black;" class="fas fa-calendar"></i><?php echo strtoupper($data['aebg_year_graduate']); ?></li>
+                    <li style="color:black;"><i style="color:black;" class="fas fa-graduation-cap"></i><?php echo strtoupper($data['aebg_education_attainment_id']); ?></li>
 
-</ul>
+                 </ul>
 
-<?php }?>
+              <?php }?>
 
+
+                </div>     
+      
+
+
+                           <div class="row">
+                           <div class="col-md mb-5">
+                            <h2 class="mb-5">Skills</h2>      
           
-          
-
-
-
-        </div>     
-      </div>    
-      <div class="row">
-        <div class="col-md mb-5">
-          <h2 class="mb-5">Skills</h2>      
-          
-          <?php 
+                               <?php 
          
                                      $query = "SELECT * FROM `applicant_skills` left join users on users.user_id = applicant_skills.as_user_id where applicant_skills.as_user_id=1";
                                       $result = $crudapi->getData($query);
@@ -222,35 +250,26 @@
                                       foreach ($result as $key => $data) {
                                   ?>
 
-<h2 style="color:black;"><?php echo strtoupper($data['as_skillname']); ?></h2>
+                          <h2 style="color:black;"><?php echo strtoupper($data['as_skillname']); ?></h2>
 
+                              <?php }?>
 
-
-<?php }?>
-
-
-            
-      </div>
-    </main>
-    </div>
-    </div>
-    </div>
-  </body>
+                        </div>
+                           </div>
+   
            
         </div>
-                </div>
-                </div>
-            </div>
-         </div>
-         <?php }?>
-<!-- View    -->
-</div>
 
+     </div>
 
     </div>
   </div>
 </div>
-</section>
+
+</div>
+</div>
+</div>
+
 
 <?php include('layouts/footer.php'); ?>
 
