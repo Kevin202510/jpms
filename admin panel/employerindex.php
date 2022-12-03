@@ -183,7 +183,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
 
                     <div class="form-group">
                         <label for="exampleInputPassword1">Position</label>
-                        <input type="text" class="form-control" name="jobs_name" id="jobs_name" placeholder="Comapany Name" required>
+                        <input type="text" class="form-control" name="jobs_name" id="jobs_name" placeholder="Comapany Position" required>
                     </div>
 
                     <div class="form-group">
@@ -224,9 +224,9 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
 
                             <option value="1">Full Time</option>
                             <option value="2">Part Time</option>
-
+                              </select></div><br>
                     <div class="form-group">
-                        <label for="exampleInputPassword1">Experience</label>
+                        <label for="exampleInputPassword1">Required Experience</label>
                         <input type="text" class="form-control" name="jobs_r_experience" id="jobs_r_experience" placeholder="Experience"required>
                     </div>
 
