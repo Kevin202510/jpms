@@ -25,8 +25,11 @@
           </tr>
         </thead>
         <tbody>
-        <?php 
-            $query = "SELECT * FROM `users` LEFT JOIN roles ON roles.id = users.user_role_id Left JOIN applicant_experience ON roles.id = users.user_role_id Left JOIN applicant_additional_info ON roles.id = users.user_role_id where users.user_role_id = 4";
+        <?php
+        if(isset($_SESSION['USERROLE'])){
+          $applicant= $_SESSION['USERID'];
+
+            $query = "SELECT * FROM `users` LEFT JOIN roles ON roles.id = users.user_role_id Left JOIN applicant_experience ON roles.id = users.user_role_id Left JOIN applicant_additional_info ON roles.id = users.user_role_id where users.user_role_id = $applicant";
             $result = $crudapi->getData($query);
             $number = 1;
             foreach ($result as $key => $data) {
@@ -45,9 +48,10 @@
 
                   
                 </div>
+                
               </td>
             </tr>
-          <?php $number++; } ?>
+          <?php $number++; }} ?>
 
         </tbody>
       </table>
@@ -72,7 +76,7 @@
 <div class="modal-dialog modal-xl" role="document">
                 <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="viewModalLabel">View</h5>
+                    <h5 class="modal-title" id="viewModalLabel">VIEW APPLICANT RESUME</h5>
 
                     <input type="button" value="Click Here" onclick="printDivContent()">
 

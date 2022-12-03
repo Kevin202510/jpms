@@ -113,7 +113,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
 <div class="modal-dialog modal-xl" role="document">
                 <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="viewModalLabel">View</h5>
+                    <h5 class="modal-title" id="viewModalLabel">VIEW JOB APPLICANT RESUME</h5>
                     <input type="button" value="Click Here" onclick="printDivContent()">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>

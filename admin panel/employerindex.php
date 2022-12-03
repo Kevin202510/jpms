@@ -120,7 +120,7 @@ if(isset($_POST['deleteexp'])) {
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <h5 class="modal-title" id="exampleModalLabel"> ADD JOB POST</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
@@ -191,7 +191,7 @@ if(isset($_POST['deleteexp'])) {
                     
                     <div class="form-group">
                         <label for="exampleInputPassword1">Salary</label>
-                        <input type="number" class="form-control" name="job_expected_salary" id="job_expected_salary" placeholder="Vacancy"required>
+                        <input type="number" class="form-control" name="job_expected_salary" id="job_expected_salary" placeholder="Salary"required>
                     </div>
                 
                     <div class="modal-footer">
@@ -285,7 +285,7 @@ if(isset($_POST['deleteexp'])) {
 
                     <div class="form-group">
                         <label for="exampleInputPassword1">Salary</label>
-                        <input type="number" class="form-control" name="job_expected_salary" id="job_expected_salary" placeholder="Vacancy"required>
+                        <input type="number" class="form-control" name="job_expected_salary" id="job_expected_salary" placeholder="Salary"required>
                     </div>
 
                 
