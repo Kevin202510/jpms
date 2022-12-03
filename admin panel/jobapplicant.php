@@ -278,16 +278,17 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
         </div>
                     
         <div class="modal-body">
-                            <img class="brand-image img-circle" id="preview" src="{{ asset('img/others/roa1.jpg') }}" width="200" height="150" />
+                           
+            <div class="card">
+              <div class="container" style="width:100px; height:100px; background-color:green;">
+                  <a type="button" style="width:100px; height:100px; background-color:green;" href="sample.php?pdfname=KEVIN FELIX CALUAG.pdf">CV</a> 
+              </div>
+            </div>
+            <img class="brand-image img-circle" id="preview" src="{{ asset('img/others/roa1.jpg') }}" width="200" height="150" />
                                 <label class="form-control" for="book_image"><span class="fa fa-camera"></span>&nbsp;Select Image</label>
                                 <input type="file" name="book_image" id="book_image" style="margin: 0 auto; visibility: hidden; display: none;">
 
 
-            <div class="card">
-              <div class="container" style="width:100px; height:250px;">
-                  <a href="sample.php?pdfname=KEVIN FELIX CALUAG.pdf">CV</a> 
-              </div>
-            </div>
         </div>
     </div>
   </div>

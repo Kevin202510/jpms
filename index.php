@@ -113,7 +113,7 @@ if(isset($_POST['register'])) {
         <div class="slider-area ">
             <!-- Mobile Menu -->
             <div class="slider-active">
-                <div class="single-slider slider-height d-flex align-items-center" data-background="assets/img/hero/h1_hero.jpg">
+                <div class="single-slider slider-height d-flex align-items-center" data-background="assets/img/hero/image.jpg">
                     <div class="container">
                         <div class="row">
                             <div class="col-xl-6 col-lg-9 col-md-10">
@@ -123,21 +123,20 @@ if(isset($_POST['register'])) {
                             </div>
                         </div>
                         <!-- Search Box -->
-                             <div class="row">
+                        <div class="row">
                             <div class="col-xl-6">
                            
                                 <!-- form -->
                                 <form action="joblisting.php" class="search-box" method="post">
 
                                     <div class="input-form"> 
-                                        <input type="text" name="job_name" id="job_name" placeholder="Job Tittle ">
+                                        <input style="border-radius:30px;" type="text" name="job_name" id="job_name" placeholder="Job Tittle ">
                                     </div>
                                     <div class="input-form">
-                                        <input type="text" name="job_address" id="job_address" placeholder="Location">
+                                        <input style="border-radius:30px;" type="text" name="job_address" id="job_address" placeholder="Location">
                                     </div>
-
                                     <div class="search-form">
-                                        <input type="Submit" name="findjobs" value="Find Jobs" class="btn head-btn21">
+                                        <input style="border-radius:30px;" type="Submit" name="findjobs" value="Find Jobs" class="btn head-btn21">
                                     </div>  
                                 </form> 
                             </div>
@@ -147,13 +146,69 @@ if(isset($_POST['register'])) {
         </div>
         <!-- slider Area End-->
         <!-- Our Services Start -->
-        <div class="our-services section-pad-t30">
+        
+
+<!-- How  Apply Process Start-->
+<div class="apply-process-area apply-bg pt-150 pb-150" data-background="assets/img/gallery/how-applybg.png">
+    <div class="container">
+        <!-- Section Tittle -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-tittle white-text text-center">
+                    <span>Apply process</span>
+                    <h2> How it works</h2>
+                </div>
+            </div>
+        </div>
+        <!-- Apply Process Caption -->
+        <div class="row">
+            <div class="col-lg-4 col-md-6">
+                <div class="single-process text-center mb-30">
+                    <div class="process-ion">
+                        <span class="flaticon-search"></span>
+                    </div>
+                    <div class="process-cap">
+                        <h5>1. Search a job</h5>
+                    <p>Sorem spsum dolor sit amsectetur adipisclit, seddo eiusmod tempor incididunt ut laborea.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="single-process text-center mb-30">
+                    <div class="process-ion">
+                        <span class="flaticon-curriculum-vitae"></span>
+                    </div>
+                    <div class="process-cap">
+                        <h5>2. Apply for job</h5>
+                    <p>Sorem spsum dolor sit amsectetur adipisclit, seddo eiusmod tempor incididunt ut laborea.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="single-process text-center mb-30">
+                    <div class="process-ion">
+                        <span class="flaticon-tour"></span>
+                    </div>
+                    <div class="process-cap">
+                        <h5>3. Get your job</h5>
+                    <p>Sorem spsum dolor sit amsectetur adipisclit, seddo eiusmod tempor incididunt ut laborea.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- How  Apply Process End-->
+<div class="our-services section-pad-t30">
             <div class="container">
+
+
+
                 <!-- Section Tittle -->
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="section-tittle text-center">
-                            <span>FEATURED TOURS Packages</span>
+                            
                             <h2>Browse Top Categories </h2>
                         </div>
                     </div>
@@ -165,8 +220,8 @@ if(isset($_POST['register'])) {
                                 <span class="flaticon-tour"></span>
                             </div>
                             <div class="services-cap">
-                               <h5><a href="job_listing.html">Design & Creative</a></h5>
-                                <span>(653)</span>
+                               <h5>Design & Creative</h5>
+                                
                             </div>
                         </div>
                     </div>
@@ -176,8 +231,8 @@ if(isset($_POST['register'])) {
                                 <span class="flaticon-cms"></span>
                             </div>
                             <div class="services-cap">
-                               <h5><a href="job_listing.html">Design & Development</a></h5>
-                                <span>(658)</span>
+                               <h5>Design & Development</h5>
+
                             </div>
                         </div>
                     </div>
@@ -187,8 +242,8 @@ if(isset($_POST['register'])) {
                                 <span class="flaticon-report"></span>
                             </div>
                             <div class="services-cap">
-                               <h5><a href="job_listing.html">Sales & Marketing</a></h5>
-                                <span>(658)</span>
+                               <h5>Sales & Marketing</h5>
+                                
                             </div>
                         </div>
                     </div>
@@ -198,8 +253,8 @@ if(isset($_POST['register'])) {
                                 <span class="flaticon-app"></span>
                             </div>
                             <div class="services-cap">
-                               <h5><a href="job_listing.html">Mobile Application</a></h5>
-                                <span>(658)</span>
+                               <h5>Mobile Application</h5>
+                                
                             </div>
                         </div>
                     </div>
@@ -209,8 +264,8 @@ if(isset($_POST['register'])) {
                                 <span class="flaticon-helmet"></span>
                             </div>
                             <div class="services-cap">
-                               <h5><a href="job_listing.html">Construction</a></h5>
-                                <span>(658)</span>
+                               <h5>Construction</h5>
+                                
                             </div>
                         </div>
                     </div>
@@ -220,8 +275,8 @@ if(isset($_POST['register'])) {
                                 <span class="flaticon-high-tech"></span>
                             </div>
                             <div class="services-cap">
-                               <h5><a href="job_listing.html">Information Technology</a></h5>
-                                <span>(658)</span>
+                               <h5>Information Technology</h5>
+                                
                             </div>
                         </div>
                     </div>
@@ -231,8 +286,8 @@ if(isset($_POST['register'])) {
                                 <span class="flaticon-real-estate"></span>
                             </div>
                             <div class="services-cap">
-                               <h5><a href="job_listing.html">Real Estate</a></h5>
-                                <span>(658)</span>
+                               <h5>Real Estate</h5>
+                                
                             </div>
                         </div>
                     </div>
@@ -242,31 +297,25 @@ if(isset($_POST['register'])) {
                                 <span class="flaticon-content"></span>
                             </div>
                             <div class="services-cap">
-                               <h5><a href="job_listing.html">Content Writer</a></h5>
-                                <span>(658)</span>
+                               <h5>Content Writer</h5>
+                                
                             </div>
                         </div>
                     </div>
                 </div>
                 <!-- More Btn -->
                 <!-- Section Button -->
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="browse-btn2 text-center mt-50">
-                            <a href="job_listing.html" class="border-btn2">Browse All Sectors</a>
-                        </div>
-                    </div>
-                </div>
+               
             </div>
         </div>
         <!-- Our Services End -->
         <!-- Online CV Area Start -->
-         <div class="online-cv cv-bg section-overly pt-90 pb-120"  data-background="assets/img/gallery/cv_bg.jpg">
+         <div class="online-cv cv-bg section-overly pt-90 pb-120"  data-background="assets/img/gallery/personal.jpg">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-xl-10">
                         <div class="cv-caption text-center">
-                            <p class="pera1">FEATURED TOURS Packages</p>
+                            
                             <p class="pera2"> Make a Difference with Your Online Resume!</p>
                             
                              <a href="#" class="border-btn22">Upload your cv</a> 
