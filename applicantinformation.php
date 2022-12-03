@@ -40,6 +40,9 @@
             <img class="rounded-circle img-fluid" src="https://i.pravatar.cc/175?img=32" alt="Profile Photo" />
           </div>
           <div class="col-md-9">
+            <br>
+            <br>
+            <br>
             <h1><?php echo strtoupper($data["user_fname"]." ".$data["user_lname"]); ?></h1>
             
             <p class="border-top pt-3"></p>
@@ -103,23 +106,19 @@
           foreach ($result as $key => $data) {
         ?>
 
-            <h2 style="font-weight:bold; font-size:20px;"><?php echo strtoupper($data['ae_companyname']); ?></h2>
-            <div style="word-spacing: 30px;">
-                <i style="color:black; font-weight:bold;" class="fas fa-map-marker-alt"></i><?php echo strtoupper($data['ae_companyaddress']); ?>
-                <i style="color:black; font-weight:bold;" class="fas fa-briefcase"></i><?php echo strtoupper($data['ae_position']); ?>
-                <i style="color:black; font-weight:bold;" class="fas fa-calendar"></i> (<?php echo strtoupper($data["ae_from"]).") (".strtoupper($data["ae_to"]) ?> )
-          </div>       
-                            
-                    
+            
+             <p style="color:black; font-size:20px;"><?php echo strtoupper($data['ae_companyname']); ?></p>
+         <br><p style="color:black; font-size:20px;" class="fas fa-map-marker-alt"></p><?php echo strtoupper($data['ae_companyaddress']); ?>
+         <br><p style="color:black; font-size:20px;" class="fas fa-briefcase"></p><?php echo strtoupper($data['ae_position']); ?>
+         <br><p style="color:black; font-size:20px;" class="fas fa-calendar"></p>(<?php echo strtoupper($data["ae_from"]).") (".strtoupper($data["ae_to"]) ?> )
+                          
+              <hr>      
 
 <?php } }?>
-
-
-
-</div>
+        </div>
         </div>
 
-
+        <div class="row">
         <div class="col-md mb-5">
           <h2 class="mb-5">Education</h2>
 
@@ -132,17 +131,19 @@
               foreach ($result as $key => $data) {
         ?>
 
-<h3 style="font-weight:bold;"><?php echo strtoupper($data['aebg_school_name']); ?></h3>
 
-</a>
-<ul>
-    <li style="color:black;"><i style="color:black;" class="fas fa-calendar"></i><?php echo strtoupper($data['aebg_year_graduate']); ?></li>
-    <li style="color:black;"><i style="color:black;" class="fas fa-graduation-cap"></i><?php echo strtoupper($data['aebg_education_attainment_id']); ?></li>
 
-</ul>
+
+
+        <p style="color:black; font-size:20px;"><?php echo strtoupper($data['aebg_school_name']); ?></p>
+    <br><p style="color:black; font-size:20px;" class="fas fa-calendar"></p><?php echo strtoupper($data['aebg_year_graduate']); ?>
+    <br><p style="color:black; font-size:20px;" class="fas fa-graduation-cap"></p><?php echo strtoupper($data['aebg_education_attainment_id']); ?>
+
+        <hr>
 
 <?php } }?>
 
+        </div>
         </div>     
         
 
@@ -160,16 +161,16 @@
                                       foreach ($result as $key => $data) {
                                   ?>
 
-<h2 style="color:black;"><?php echo strtoupper($data['as_skillname']); ?></h2>
+        <p style="color:black; font-size:20px;"><?php echo strtoupper($data['as_skillname']); ?></p>
 
-
+            <hr>
 
 <?php } }?>
      
       </div>
     </div>
 
-    
+    <div class="row">
         <div class="col-md mb-5">
           <h2 class="mb-5">Additional Information</h2>
 
@@ -182,18 +183,18 @@
             foreach ($result as $key => $data) {
         ?>
 
-            <ul>
             
-                <li style="font-size:20px; font-weight:bold;"><i style="font-weight:lighter;" class="fa-solid fa-peso-sign">PHP</i><?php echo strtoupper($data['aai_expected_salary']); ?></li>
-                <li style="font-size:20px; font-weight:bold;"><i class="fa fa-map-marker-alt"></i><?php echo strtoupper($data['aai_location']); ?></li>
-                <li style="font-size:20px; font-weight:bold;"><i class="fas fa-briefcase"></i><?php echo strtoupper($data['aai_wfh_os']); ?></li>
+            
+                    <p style="color:black; font-size:20px;" class="fa-solid fa-peso-sign"></p><span style="font-size:25px;">₱ </span><?php echo strtoupper($data['aai_expected_salary']); ?>
+                <br><p style="color:black; font-size:20px;" class="fa fa-map-marker-alt"></p><?php echo strtoupper($data['aai_location']); ?>
+                <br><p style="color:black; font-size:20px;" class="fas fa-briefcase"></p><?php echo strtoupper($data['aai_wfh_os']); ?>
                 
-            </ul>
+            
 
 <?php } }?>
 
         </div>     
-        
+        </div>
 
 
 
