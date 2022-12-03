@@ -188,9 +188,10 @@
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
-                <i class="bi bi-gear"></i>
-                <span>Account Settings</span>
+            <button type="button" class="dropdown-item d-flex align-items-center" id="settingbtn" style="float:right;">
+                <i class="bi bi-box-arrow-right"></i>
+                <span>Settings</span>
+              </button>
               </a>
 
             </li>
@@ -222,7 +223,7 @@
     </nav><!-- End Icons Navigation -->
 
   </header>
-
+<!-- logout -->
   <div class="modal fade" id="logout" tabindex="-1" role="dialog" aria-labelledby="logoutLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -237,6 +238,31 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 <button type="submit" class="btn btn-primary" name="logout">Logout</button>
+            </div>
+        </form>
+        </div>
+        </div>
+    </div>
+  </div>
+
+
+  <!-- settings -->
+
+  <div class="modal fade" id="settings" tabindex="-1" role="dialog" aria-labelledby="settingsLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="settingsLabel">Settings</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+        <form method="POST">
+       
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary" name="settings">Update</button>
             </div>
         </form>
         </div>

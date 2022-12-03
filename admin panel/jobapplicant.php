@@ -97,11 +97,9 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
         </tbody>
       </table>
 
-      <!-- ViewMODAL -->
+      
 
 <!-- ViewMODAL -->
-
-
 
 <div class="modal fade" id="viewModal" tabindex="-1" role="dialog" aria-labelledby="viewModalLabel" aria-hidden="true">
         
@@ -131,18 +129,13 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
     <header class="bg-primary bg-gradient text-white py-5">
       <div class="container">
 
-      <?php 
-              $query = "SELECT * FROM `users` LEFT JOIN roles ON roles.id = users.user_role_id where users.user_role_id = 4";
-              $result = $crudapi->getData($query);
-              $number = 1;
-              foreach ($result as $key => $data) {
-                ?>
+   
         <div class="row">
           <div class="col-md-3 text-left text-md-center mb-3">
             <img class="rounded-circle img-fluid" src="https://i.pravatar.cc/175?img=32" alt="Profile Photo" />
           </div>
           <div class="col-md-9">
-            <h1><?php echo strtoupper($data["user_fname"]." ".$data["user_lname"]); ?></h1>
+            <h1 id="fullname"></h1>
             
             <p class="border-top pt-3"></p>
           </div>       
@@ -159,7 +152,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                 <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z"/>
               </svg>
                 
-                  <a href="#" class="text-white ml-2"><?php echo strtoupper($data["user_email"]) ?></a>
+                  <a class="text-white ml-2" id="user_email"></a>
               
              
               
@@ -167,17 +160,17 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                 <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
               </svg>
                 
-                  <a href="#" class="text-white ml-2"><?php echo strtoupper($data["address"]) ?></a>
+                  <a class="text-white ml-2" id="address"></a>
                     
             
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telephone-fill" viewBox="0 0 16 16">
                 <path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"/>
               </svg>
                   
-                  <a href="#" class="text-white ml-2"> <?php echo strtoupper($data["user_contact"]) ?></a>
+                  <a class="text-white ml-2" id="user_contact"></a>
               </div> 
               
-              <?php $number++; } ?>
+            
           </div>
       </div>
     </nav>
@@ -187,46 +180,33 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
           <h2 class="mb-5">Work Experience</h2>
           
 
-                   <?php 
-         
-                         $query = "SELECT * FROM `applicant_experience` left join users on users.user_id = applicant_experience.ae_user_id where applicant_experience.ae_user_id=1";
-                         $result = $crudapi->getData($query);
-                         $number = 1;
-                         foreach ($result as $key => $data) {
-                      ?>
+                  
 
-                   <h2 style="font-weight:bold;"><?php echo strtoupper($data['ae_companyname']); ?></h2>
+                   <h2 style="font-weight:bold;" id="ae_companyname"></h2>
 
                               <ul>
-                                  <li style="font-weight:bold;"><i  style="color:black;" class="fas fa-map-marker-alt"></i><?php echo strtoupper($data['ae_companyaddress']); ?></li>
-                                  <li style="font-weight:bold;"><i  style="color:black;" class="fas fa-briefcase"></i><?php echo strtoupper($data['ae_position']); ?></li>
-                                <li style="font-weight:bold;"><p><i style="color:black;" class="fas fa-calendar"></i>( <?php echo strtoupper($data["ae_from"]).") (".strtoupper($data["ae_to"]) ?> )</p></li>
+                                  <li style="font-weight:bold;" id="ae_companyaddress"><i  style="color:black;" class="fas fa-map-marker-alt"></i></li>
+                                  <li style="font-weight:bold;" id="ae_position"><i  style="color:black;" class="fas fa-briefcase"></i></li>
+                                  <li style="font-weight:bold;" id="ae_from"><i style="color:black;" class="fas fa-calendar"></i></li>
+                                  <li style="font-weight:bold;" id="ae_to"><i style="color:black;" class="fas fa-calendar"></i></li>
                               </ul>
 
-                    <?php }?>
+                
              </div>
         </div>
 
                 <div class="col-md mb-5">
                  <h2 class="mb-5">Education</h2>
 
-                   <?php 
-         
-                     $query = "SELECT * FROM `applicant_educationbg` left join users on users.user_id = applicant_educationbg.aebg_user_id  where applicant_educationbg.aebg_user_id =1";
-                     $result = $crudapi->getData($query);
-                     $number = 1;
-                     foreach ($result as $key => $data) {
-                   ?>
-
-                   <h3 style="font-weight:bold;"><?php echo strtoupper($data['aebg_school_name']); ?></h3>
+                   
+                   <h3 style="font-weight:bold;" id="aebg_school_name"></h3>
 
                  <ul>
-                    <li style="color:black;"><i style="color:black;" class="fas fa-calendar"></i><?php echo strtoupper($data['aebg_year_graduate']); ?></li>
-                    <li style="color:black;"><i style="color:black;" class="fas fa-graduation-cap"></i><?php echo strtoupper($data['aebg_education_attainment_id']); ?></li>
+                    <li style="color:black;" id="aebg_year_graduate"><i style="color:black;" class="fas fa-calendar"></i></li>
+                    <li style="color:black;" id="aebg_education_attainment_id"><i style="color:black;" class="fas fa-graduation-cap"></i></li>
 
                  </ul>
 
-              <?php }?>
 
 
                 </div>     
@@ -237,22 +217,31 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                            <div class="col-md mb-5">
                             <h2 class="mb-5">Skills</h2>      
           
-                               <?php 
-         
-                                     $query = "SELECT * FROM `applicant_skills` left join users on users.user_id = applicant_skills.as_user_id where applicant_skills.as_user_id=1";
-                                      $result = $crudapi->getData($query);
-                                      $number = 1;
-                                      foreach ($result as $key => $data) {
-                                  ?>
+                            
 
-                          <h2 style="color:black;"><?php echo strtoupper($data['as_skillname']); ?></h2>
+                          <h2 style="color:black;" id="as_skillname"></h2>
 
-                              <?php }?>
+                              
 
                         </div>
                            </div>
-   
-           
+
+
+                           <div class="row">
+                           <div class="col-md mb-5">
+                            <h2 class="mb-5">Additional Information</h2>      
+          
+                        <ul>
+                         <li style="color:black;" id="aai_expected_salary"><i style="color:black;" class="fas fa-calendar"></i></li>
+                        <li style="color:black;" id="aai_location"><i style="color:black;" class="fas fa-graduation-cap"></i></li>
+                        <li style="color:black;" id="aai_wfh_os"><i style="color:black;" class="fas fa-graduation-cap"></i></li>
+
+                    </ul>
+                              
+
+                        </div>
+                           </div>
+
         </div>
 
      </div>
@@ -281,7 +270,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                            
             <div class="card">
               <div class="container" style="width:100px; height:100px; background-color:green;">
-                  <a type="button" style="width:100px; height:100px; background-color:green;" href="sample.php?pdfname=KEVIN FELIX CALUAG.pdf">CV</a> 
+                  <a type="button" style="width:50px; height:50px; background-color:red;" href="sample.php?pdfname=KEVIN FELIX CALUAG.pdf">CV</a> 
               </div>
             </div>
             <img class="brand-image img-circle" id="preview" src="{{ asset('img/others/roa1.jpg') }}" width="200" height="150" />
@@ -309,18 +298,25 @@ $(document).ready(function(){
 var USER_IDs = $(e.currentTarget).data('id');
 $.post("update_jobs.php",{USER_ID: USER_IDs},function(data,status){
     var emp = JSON.parse(data);
-    $("#jobs_idss").val(emp[0].jobs_id);
-    $("#jobs_user_idss").val(emp[0].jobs_user_id);
-    $("#job_company_namess").val(emp[0].job_company_name);
-    $("#jobs_namess").val(emp[0].jobs_name);
-    $("#jobs_addressss").val(emp[0].jobs_address);
-    $("#jobs_descriptionss").val(emp[0].jobs_description);
-    $("#jobs_r_skillsss").val(emp[0].jobs_r_skills);
-    $("#jobs_r_education_idss").val(emp[0].jobs_r_education_id);
-    $("#jobs_preferred_timess").val(emp[0].jobs_preferred_time);
-    $("#jobs_r_experiencess").val(emp[0].jobs_r_experience);
-    $("#jobs_vacancy_countss").val(emp[0].jobs_vacancy_count);
-    $("#job_expected_salaryss").val(emp[0].job_expected_salary);
+    // $("#jobs_idss").val(emp[0].jobs_id);
+    // $("#jobs_user_idss").val(emp[0].jobs_user_id);
+    $("#fullname").text(emp[0].user_fname)+(emp[0].user_lname);
+    $("#user_email").text(emp[0].user_email);
+    $("#address").text(emp[0].address);
+    $("#user_contact").text(emp[0].user_contact);
+    $("#ae_companyname").text(emp[0].ae_companyname);
+    $("#ae_companyaddress").text(emp[0].ae_companyaddress);
+    $("#ae_position").text(emp[0].ae_position);
+    $("#ae_from").text(emp[0].ae_from);
+    $("#ae_to").text(emp[0].ae_to);
+    $("#aebg_school_name").text(emp[0].aebg_school_name);
+    $("#aebg_year_graduate").text(emp[0].aebg_year_graduate);
+    $("#aebg_education_attainment_id").text(emp[0].aebg_education_attainment_id);
+    $("#as_skillname").text(emp[0].as_skillname);
+    $("#aai_expected_salary").text(emp[0].aai_expected_salary);
+    $("#aai_location").text(emp[0].aai_location);
+    $("#aai_wfh_os").text(emp[0].aai_wfh_os);
+    
     
 });
 

@@ -26,8 +26,9 @@
                                             <li><a href="applicant_add_info.php">Additional Info</a></li>
                                             <?php if(isset($_SESSION['USERROLE'])){?>
                                                  <li><a href="applicant_add_info.php"> <?php echo  $_SESSION['FULLNAME'];?></a></li>
-                                           
-                                            <?php }?>
+                                                 <li class="nav-item dropdown pe-3">
+
+                               <?php }?>
                                                        
                                             
                                           

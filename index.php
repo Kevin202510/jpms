@@ -113,7 +113,7 @@ if(isset($_POST['register'])) {
         <div class="slider-area ">
             <!-- Mobile Menu -->
             <div class="slider-active">
-                <div class="single-slider slider-height d-flex align-items-center" data-background="assets/img/hero/image.jpg">
+                <div class="single-slider slider-height d-flex align-items-center" data-background="assets/img/hero/h1_hero3.jpg">
                     <div class="container">
                         <div class="row">
                             <div class="col-xl-6 col-lg-9 col-md-10">
@@ -383,7 +383,7 @@ if(isset($_POST['register'])) {
 
                                 <div class="modal-footer">
                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                     <button type="submit" class="btn btn-primary" id="subreg" name="register">REGISTERED</button>
+                                     <button type="submit" class="btn " id="subreg" name="register">REGISTERED</button>
                                </div>
                          </form>
                     </div>
