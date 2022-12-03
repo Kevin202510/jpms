@@ -25,10 +25,9 @@
           </tr>
         </thead>
         <tbody>
-        <?php
-        if(isset($_SESSION['USERROLE'])){
-          $applicant= $_SESSION['USERID'];
-
+        <?php 
+           if(isset($_SESSION['USERROLE'])){
+            $applicant= $_SESSION['USERID'];
             $query = "SELECT * FROM `users` LEFT JOIN roles ON roles.id = users.user_role_id Left JOIN applicant_experience ON roles.id = users.user_role_id Left JOIN applicant_additional_info ON roles.id = users.user_role_id where users.user_role_id = $applicant";
             $result = $crudapi->getData($query);
             $number = 1;
@@ -48,10 +47,9 @@
 
                   
                 </div>
-                
               </td>
             </tr>
-          <?php $number++; }} ?>
+          <?php $number++; } } ?>
 
         </tbody>
       </table>
@@ -65,6 +63,7 @@
          
          include_once("classes/CRUDAPI.php");
          $crudapi = new CRUDAPI(); 
+         
          $query = "SELECT * FROM `jobs` left join users on users.user_id = jobs.jobs_id where jobs.jobs_id=1";
          $result = $crudapi->getData($query);
          $number = 1;
@@ -76,8 +75,8 @@
 <div class="modal-dialog modal-xl" role="document">
                 <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="viewModalLabel">VIEW APPLICANT RESUME</h5>
-
+                    <h5 class="modal-title" id="viewModalLabel">View</h5>
+ 
                     <input type="button" value="Click Here" onclick="printDivContent()">
 
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -90,9 +89,6 @@
                 <div id="printContent">
 
                 <body style="align-items:center;">
-
-
-
 
   <div class="container justify-content-center">
     <div class="card justify-content-center">
@@ -124,9 +120,6 @@
       <div class="container">
           <div class="row p-3">
               
-                  
-
-                 
 
             <div class="col-md pb-2 pb-md-0">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-fill" viewBox="0 0 16 16">

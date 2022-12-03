@@ -1,4 +1,11 @@
-<?php session_start();?>
+<?php
+
+  if(isset($_POST["logout"])){
+    session_destroy();
+    header("location: ../index.php");
+  }
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 

@@ -68,7 +68,9 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
             </thead>
             <tbody>
                 <?php 
-                     $query = "SELECT * FROM `users` LEFT JOIN roles ON roles.id = users.user_role_id Left JOIN applicant_additional_info ON roles.id = users.user_role_id where users.user_role_id = 4";
+                     if(isset($_SESSION['USERROLE'])){
+                      $jobapplicant= $_SESSION['USERID'];
+                     $query = "SELECT * FROM `users` LEFT JOIN roles ON roles.id = users.user_role_id Left JOIN applicant_additional_info ON roles.id = users.user_role_id where users.user_role_id =$jobapplicant";
                      $result = $crudapi->getData($query);
                      $number = 1;
                      foreach ($result as $key => $data) {
@@ -92,7 +94,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                      
               </td>
               </tr>
-          <?php $number++; } ?>
+          <?php $number++; } } ?>
         </tbody>
       </table>
 
@@ -102,6 +104,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
          
          include_once("classes/CRUDAPI.php");
          $crudapi = new CRUDAPI(); 
+         
          $query = "SELECT * FROM `jobs` left join users on users.user_id = jobs.jobs_id where jobs.jobs_id=1";
          $result = $crudapi->getData($query);
          $number = 1;
