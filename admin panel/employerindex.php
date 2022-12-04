@@ -571,7 +571,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
             $("#job_expected_salaryss").text(emp[0].job_expected_salary);
             $("#jobs_descriptionss").text(emp[0].jobs_description);
             $("#jobs_r_skillsss").text(emp[0].jobs_r_skills);
-            $("#jobs_r_education_idss").text(emp[0].jobs_r_education_id);
+            $("#jobs_r_education_idss").text(emp[0].ea_name);
             $("#jobs_addresssss").text(emp[0].jobs_address);
             $("#jobs_vacancy_countss").text(emp[0].jobs_vacancy_count);
             $("#jobs_preferred_timess").text(emp[0].jobs_preferred_time);
