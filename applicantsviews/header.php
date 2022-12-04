@@ -23,18 +23,8 @@
                                             <li><a href="index.php" >Home</a></li>
                                             <li><a href="joblisting.php">Find a Jobs </a></li>
                                             <li><a href="about.php">About</a></li>
-                                            <li><a href="#">Page</a>
-                                                <ul class="submenu">
-                                                    <li><a href="blog.php">Blog</a></li>
-                                                    <li><a href="single-blog.php">Blog Details</a></li>
-                                                    <li><a href="elements.php">Elements</a></li>
-                                                    <li><a href="job_details.php">job Details</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="contact.php">Contact</a></li>
                                             
-                                            
-                                            <li><a href="contact.php" style="margin-right: 186px;" >Contact</a></li>
+                                            <li><a href="contact.php" style="margin-right:186px;" >Contact</a></li>
                                             
                                             <li><button style="border-radius:30px;" type="button" class="btn head-btn1" id="registers">Register</button></li>
                                             <li><button style="border-radius:30px;" type="button"  class="btn head-btn21" id="logins">Login</button></li>
@@ -48,9 +38,7 @@
 
 
 <!-- Button trigger modal -->
-<button type="button" class="btn head-btn1" id="registers">
-  Register
-</button>
+
 
 <!-- Modal -->
 <!-- <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
@@ -128,9 +116,7 @@
 
 
 <!--  Button trigger modal -->
-<button type="button"  class="btn head-btn21" id="logins">
-  Login
-</button>
+
 
 <!-- Modal -->
 <!-- <div class="modal fade" id="modalform2" tabindex="-1" role="dialog" aria-labelledby="modalloginform" aria-hidden="true">
