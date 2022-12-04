@@ -23,7 +23,7 @@
     $job_expected_salary = $crudapi->escape_string($_POST['job_expected_salary']);
     
      
-    $result = $crudapi->execute("INSERT INTO jobs(job_company_name,jobs_name,jobs_address,jobs_description,jobs_preferred_time,jobs_r_skills,jobs_r_education_id,jobs_r_experience,jobs_vacancy_count,job_expected_salary,jobs_user_id)VALUES('$job_company_name','$jobs_name','$jobs_address','$jobs_description','$jobs_r_skills','$jobs_r_education_id','$jobs_preferred_time','$jobs_r_experience','$jobs_vacancy_count','$job_expected_salary','$jobs_user_id')");
+    $result = $crudapi->execute("INSERT INTO jobs(job_company_name,jobs_name,jobs_address,jobs_description,jobs_r_skills,jobs_r_education_id,jobs_preferred_time,jobs_r_experience,jobs_vacancy_count,job_expected_salary,jobs_user_id)VALUES('$job_company_name','$jobs_name','$jobs_address','$jobs_description','$jobs_r_skills','$jobs_r_education_id','$jobs_preferred_time','$jobs_r_experience','$jobs_vacancy_count','$job_expected_salary','$jobs_user_id')");
     
     echo '<script>alert("ADDED SUCCESS");</script>';
     // echo '<script>window.reload();</script>';
@@ -92,22 +92,6 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
 }
 
 
-
-
-
-
-.post {
-    animation: post .1s infinite;
-    
-}
-
-@keyframes post{
-    0%{color: #03e9f4;}
-    25%{color: red;}
-    50%{color: green;}
-    100%{color: #DEB887;}
-}
-
   </style>
 
 <div class="container">
@@ -116,7 +100,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
           <div class="row">
             <div class="col-md-12">
            
-          <h5 class="post"><b>Job Post</b></h5>
+          <h5><b>Job Post</b></h5>
           <button type="button" class="btn btn-primary" id="jobs" style=" background-color:#28a745;  width:100px; float:right; border:none;">ADD</button>
           <div class="search-bar" style="">
       <form class="search-form d-flex align-items-center" method="POST" action="#">
@@ -240,11 +224,11 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                     <div class="form-group">
                         <label for="exampleInputPassword1">Preferred Time</label>
                         <select name="jobs_preferred_time" id="jobs_preferred_time">
-
-                            <option value="1">Full Time</option>
-                            <option value="2">Part Time</option>
+                            <option value="Full Time">Full Time</option>
+                            <option value="Part Time">Part Time</option>
                               </select>
                             </div>
+
                     <div class="form-group">
                         <label for="exampleInputPassword1">Required Experience</label>
                         <input type="text" class="form-control" name="jobs_r_experience" id="jobs_r_experience" placeholder="Experience"required>
@@ -331,8 +315,8 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                         <label for="exampleInputPassword1">Preferred Time</label>
                         <select name="jobs_preferred_time" id="jobs_preferred_times">
 
-                            <option value="1">Full Time</option>
-                            <option value="2">Part Time</option>
+                            <option value="Full Time">Full Time</option>
+                            <option value="Part Time">Part Time</option>
 
                          </select>
                         <!-- <input type="text" class="form-control" name="jobs_r_education_id" id="jobs_r_education_id" placeholder="Education"required> -->
@@ -480,7 +464,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                            </div>
                           <ul>
                               <li>Posted date : <span id="created_at"></span></li>
-                              <li>Location : <span id="jobs_addressss"></span></li>
+                              <li>Location : <span id="jobs_addresssss"></span></li>
                               <li>Vacancy : <span id="jobs_vacancy_countss"></span></li>
                               <li>Job nature : <span id="jobs_preferred_timess"></span></li>
                               <li>Salary :  <span id="job_expected_salarysss"></span></li>
@@ -587,8 +571,8 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
             $("#job_expected_salaryss").text(emp[0].job_expected_salary);
             $("#jobs_descriptionss").text(emp[0].jobs_description);
             $("#jobs_r_skillsss").text(emp[0].jobs_r_skills);
-            $("#jobs_r_education_idss").text(emp[0].jobs_r_education_id);
-            $("#jobs_addressss").text(emp[0].jobs_address);
+            $("#jobs_r_education_idss").text(emp[0].ea_name);
+            $("#jobs_addresssss").text(emp[0].jobs_address);
             $("#jobs_vacancy_countss").text(emp[0].jobs_vacancy_count);
             $("#jobs_preferred_timess").text(emp[0].jobs_preferred_time);
             $("#job_expected_salarysss").text(emp[0].job_expected_salary);

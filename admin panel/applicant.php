@@ -46,7 +46,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
           <h5><b>Applicant</b></h5>
           
           <div class="search-bar" style="float:right;">
-      <form class="search-form d-flex align-items-center" method="POST" action="#" >
+      <form class="search-form d-flex align-items-center" method="POST" action="#">
         <input type="text" name="query" placeholder="Search" title="Enter search keyword">
         <button type="submit" title="Search"><i class="bi bi-search"></i></button>
       </form>
@@ -90,7 +90,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
               
               
                        <div class="items-link items-link2 f-right">
-                       <button type="button" data-id="<?php echo $data['jobs_id']; ?>" class="btn btn-primary" id="view">View</button>
+                       <button type="button" data-id="<?php echo $data['user_id']; ?>" class="btn btn-primary" id="view">View</button>
                        </div>
                      
               </td>
@@ -269,18 +269,19 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
 $("body").on('click','#view',function(e){
 
 var USER_IDs = $(e.currentTarget).data('id');
-$.post("update_jobs.php",{USER_ID: USER_IDs},function(data,status){
+$.post("updateapplicant.php",{USER_IDsss: USER_IDs},function(data,status){
     var emp = JSON.parse(data);
+    console.log(emp);
     // $("#jobs_idss").val(emp[0].jobs_id);
     // $("#jobs_user_idss").val(emp[0].jobs_user_id);
-    $("#fullnames").text(emp[0].user_fname) + (emp[0].user_lname);
+    $("#fullnames").text((emp[0].user_fname) + " "+ (emp[0].user_lname));
     $("#user_emails").text(emp[0].user_email);
     $("#addresss").text(emp[0].address);
     $("#user_contacts").text(emp[0].user_contact);
     $("#ae_companynames").text(emp[0].ae_companyname);
     $("#ae_companyaddresss").text(emp[0].ae_companyaddress);
     $("#ae_positions").text(emp[0].ae_position);
-    $("#fromto").text(emp[0].ae_from) + (emp[0].ae_to);
+    $("#fromto").text((emp[0].ae_from) + " "+ (emp[0].ae_to));
     $("#aebg_school_names").text(emp[0].aebg_school_name);
     $("#aebg_year_graduates").text(emp[0].aebg_year_graduate);
     $("#aebg_education_attainment_ids").text(emp[0].aebg_education_attainment_id);
