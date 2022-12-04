@@ -22,7 +22,7 @@
     $jobs_vacancy_count = $crudapi->escape_string($_POST['jobs_vacancy_count']);
     $job_expected_salary = $crudapi->escape_string($_POST['job_expected_salary']);
     
-      echo ('$jobs_user_id');
+     
     $result = $crudapi->execute("INSERT INTO jobs(job_company_name,jobs_name,jobs_address,jobs_description,jobs_preferred_time,jobs_r_skills,jobs_r_education_id,jobs_r_experience,jobs_vacancy_count,job_expected_salary,jobs_user_id)VALUES('$job_company_name','$jobs_name','$jobs_address','$jobs_description','$jobs_r_skills','$jobs_r_education_id','$jobs_preferred_time','$jobs_r_experience','$jobs_vacancy_count','$job_expected_salary','$jobs_user_id')");
     
     echo '<script>alert("ADDED SUCCESS");</script>';
@@ -90,6 +90,24 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
   margin: -20px -25px 10px;
   border-radius: 3px 3px 0 0;
 }
+
+
+
+
+
+
+.post {
+    animation: post .1s infinite;
+    
+}
+
+@keyframes post{
+    0%{color: #03e9f4;}
+    25%{color: red;}
+    50%{color: green;}
+    100%{color: #DEB887;}
+}
+
   </style>
 
 <div class="container">
@@ -98,7 +116,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
           <div class="row">
             <div class="col-md-12">
            
-          <h5><b>Job Post</b></h5>
+          <h5 class="post"><b>Job Post</b></h5>
           <button type="button" class="btn btn-primary" id="jobs" style=" background-color:#28a745;  width:100px; float:right; border:none;">ADD</button>
           <div class="search-bar" style="">
       <form class="search-form d-flex align-items-center" method="POST" action="#">
@@ -121,6 +139,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
             <th scope="col">Address</th>
             <th scope="col">Vacancy</th>
             <th scope="col">Salary</th>
+            <th scope="col">Action</th>
              <tr>
             </thead>
             <tbody>
@@ -146,9 +165,9 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
               
               
                      <div class="btn-group" role="group" aria-label="Basic example">
-                  <button type="button" data-id="<?php echo $data['jobs_id']; ?>" class="btn btn-primary" id="editbtn">EDIT</button>
-                  <button type="button" data-id="<?php echo $data['jobs_id']; ?>" class="btn btn-danger" id="deletebtn">DELETE</button>
-                  <button type="button" data-id="<?php echo $data['jobs_id']; ?>" class="btn btn-primary" id="view">View</button>
+                  <button type="button" data-id="<?php echo $data['jobs_id']; ?>" class="btn btn-primary" style="background-color:transparent; color:green; border:none;" id="editbtn"><i class="bi bi-pencil-fill"></i></button>
+                  <button type="button" data-id="<?php echo $data['jobs_id']; ?>" class="btn btn-danger" style="background-color:transparent; color:red; border:none;" id="deletebtn"><i class="bi bi-trash-fill"></i></button>
+                  <button type="button" data-id="<?php echo $data['jobs_id']; ?>" class="btn btn-primary" style="background-color:transparent; color:blue; border:none;" id="view"><i class="bi bi-eye-fill"></i></button>
                 </div>
                      
               </td>
@@ -310,7 +329,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
 
                         <div class="form-group">
                         <label for="exampleInputPassword1">Preferred Time</label>
-                        <select name="jobs_preferred_time" id="jobs_preferred_time">
+                        <select name="jobs_preferred_time" id="jobs_preferred_times">
 
                             <option value="1">Full Time</option>
                             <option value="2">Part Time</option>
@@ -377,21 +396,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
 
 <!-- ViewMODAL -->
 
-<?php
-         
-         include_once("classes/CRUDAPI.php");
-         $crudapi = new CRUDAPI(); 
 
-         if(isset($_SESSION['USERROLE'])){
-            $profile= $_SESSION['USERID'];
-           $role=$_SESSION['USERROLE'];
-          $query = "SELECT * FROM `users` LEFT JOIN roles ON roles.id = users.user_role_id where users.user_role_id =$role";
-          $result = $crudapi->getData($query);  
-          $number = 1;
-         
-          foreach ($result as $key => $data) {
-            if(strtoupper($data["user_id"]) == $profile ){
-     ?>
 
 <div class="modal fade" id="viewModal" tabindex="-1" role="dialog" aria-labelledby="viewModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-xl" role="document">
@@ -422,12 +427,12 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                                 </div>
                                 <div class="job-tittle">
                                     <a href="#">
-                                        <h4><?php echo strtoupper($data['job_company_name']); ?></h4>
+                                        <h4 id="job_company_namess"></h4>
                                     </a>
                                     <ul>
-                                        <li><?php echo strtoupper($data['jobs_name']); ?></li>
-                                        <li><i class="fas fa-map-marker-alt"></i><?php echo strtoupper($data['jobs_address']); ?></li>
-                                        <li><?php echo strtoupper($data['job_expected_salary']); ?></li>
+                                        <li id="jobs_namess"></li>
+                                        <li id="jobs_addressss"></li>
+                                        <li id="job_expected_salaryss"></li>
                                     </ul>
                                 </div>
                             </div>
@@ -441,7 +446,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                                 <div class="small-section-tittle">
                                     <h4>Job Description</h4>
                                 </div>
-                                <p><?php echo strtoupper($data['jobs_description']); ?></p>
+                                <p id="jobs_descriptionss"></p>
                             </div>
                             <div class="post-details2  mb-50">
                                  <!-- Small Section Tittle -->
@@ -449,11 +454,8 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                                     <h4>Required Knowledge, Skills, and Abilities</h4>
                                 </div>
                                <ul>
-                                   <li>System Software Development</li>
-                                   <li>Mobile Applicationin iOS/Android/Tizen or other platform</li>
-                                   <li>Research and code , libraries, APIs and frameworks</li>
-                                   <li>Strong knowledge on software development life cycle</li>
-                                   <li>Strong problem solving and debugging skills</li>
+                                   <li id="jobs_r_skillsss"></li>
+                                  
                                </ul>
                             </div>
                             <div class="post-details2  mb-50">
@@ -462,11 +464,8 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                                     <h4>Education + Experience</h4>
                                 </div>
                                <ul>
-                                   <li>3 or more years of professional design experience</li>
-                                   <li>Direct response email experience</li>
-                                   <li>Ecommerce website design experience</li>
-                                   <li>Familiarity with mobile and web apps preferred</li>
-                                   <li>Experience using Invision a plus</li>
+                                   <li id="jobs_r_education_idss"></li>
+                                   
                                </ul>
                             </div>
                         </div>
@@ -480,16 +479,16 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                                <h4>Job Overview</h4>
                            </div>
                           <ul>
-                              <li>Posted date : <span>12 Aug 2019</span></li>
-                              <li>Location : <span><?php echo strtoupper($data['jobs_address']); ?></span></li>
-                              <li>Vacancy : <span><?php echo strtoupper($data['jobs_vacancy_count']); ?></span></li>
-                              <li>Job nature : <span>Full time</span></li>
-                              <li>Salary :  <span><?php echo strtoupper($data['job_expected_salary']); ?></span></li>
+                              <li>Posted date : <span id="created_at"></span></li>
+                              <li>Location : <span id="jobs_addressss"></span></li>
+                              <li>Vacancy : <span id="jobs_vacancy_countss"></span></li>
+                              <li>Job nature : <span id="jobs_preferred_timess"></span></li>
+                              <li>Salary :  <span id="job_expected_salarysss"></span></li>
                               <li>Application date : <span>12 Sep 2020</span></li>
                           </ul>
-                         <div class="apply-btn2">
+                         <!-- <div class="apply-btn2">
                             <a href="#" class="btn">Apply Now</a>
-                         </div>
+                         </div> -->
                         
                        </div>
                         <div class="post-details4  mb-50">
@@ -497,12 +496,11 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                            <div class="small-section-tittle">
                                <h4>Company Information</h4>
                            </div>
-                              <span>Colorlib</span>
-                              <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+                             
                             <ul>
-                                <li>Name: <span><?php echo strtoupper($data["user_fname"]." ".$data["user_lname"]); ?></span></li>
-                                <li>Cotact: <span><?php echo $data["user_contact"] ?></span></span></li>
-                                <li>Email: <span><?php echo $data["user_email"] ?></span></li>
+                                <li>Name: <span id="full_namess"></span></li>
+                                <li>Cotact: <span id="user_contactss"></span></li>
+                                <li>Email: <span id="user_emailss"></li>
                             </ul>
                        </div>
                     </div>
@@ -516,7 +514,6 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                 </div>
             </div>
          </div>
-         <?php } } } ?>
 <!-- View    -->
 
 
@@ -531,9 +528,8 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
     $("#jobs").click(function(){
         $("#exampleModals").modal("show");
     });
-  })
 
-  $("body").on('click','#editbtn',function(e){
+    $("body").on('click','#editbtn',function(e){
         // alert($(e.currentTarget).data('id'));
         var USER_IDs = $(e.currentTarget).data('id');
         $.post("update_jobs.php",{USER_ID: USER_IDs},function(data,status){
@@ -572,27 +568,40 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
 
     $("body").on('click','#view',function(e){
 
-        var USER_IDs = $(e.currentTarget).data('id');
-        $.post("update_jobs.php",{USER_ID: USER_IDs},function(data,status){
+        var USER_IDss = $(e.currentTarget).data('id');
+        // alert(USER_IDss);
+        $.post("update_jobs.php",{USER_IDsss: USER_IDss},function(data,status){
             var emp = JSON.parse(data);
-            $("#jobs_idss").val(emp[0].jobs_id);
-            $("#jobs_user_idss").val(emp[0].jobs_user_id);
-            $("#job_company_namess").val(emp[0].job_company_name);
-            $("#jobs_namess").val(emp[0].jobs_name);
-            $("#jobs_addressss").val(emp[0].jobs_address);
-            $("#jobs_descriptionss").val(emp[0].jobs_description);
-            $("#jobs_r_skillsss").val(emp[0].jobs_r_skills);
-            $("#jobs_r_education_idss").val(emp[0].jobs_r_education_id);
-            $("#jobs_preferred_timess").val(emp[0].jobs_preferred_time);
-            $("#jobs_r_experiencess").val(emp[0].jobs_r_experience);
-            $("#jobs_vacancy_countss").val(emp[0].jobs_vacancy_count);
-            $("#job_expected_salaryss").val(emp[0].job_expected_salary);
+            console.log(emp[0]);
+            $("#jobs_idss").text(emp[0].jobs_id);
+            let newdate = new Date(emp[0].created_at);
+            var day = newdate.getDate();
+            var month = newdate.getMonth() + 1;
+            var year = newdate.getFullYear();
+
+            $("#created_at").text(month+" / "+day+" / "+year);
+            $("#jobs_user_idss").text(emp[0].jobs_user_id);
+            $("#job_company_namess").text(emp[0].job_company_name);
+            $("#jobs_namess").text(emp[0].jobs_name);
+            $("#jobs_addressss").text(emp[0].jobs_address);
+            $("#job_expected_salaryss").text(emp[0].job_expected_salary);
+            $("#jobs_descriptionss").text(emp[0].jobs_description);
+            $("#jobs_r_skillsss").text(emp[0].jobs_r_skills);
+            $("#jobs_r_education_idss").text(emp[0].jobs_r_education_id);
+            $("#jobs_addressss").text(emp[0].jobs_address);
+            $("#jobs_vacancy_countss").text(emp[0].jobs_vacancy_count);
+            $("#jobs_preferred_timess").text(emp[0].jobs_preferred_time);
+            $("#job_expected_salarysss").text(emp[0].job_expected_salary);
+            $("#full_namess").text(emp[0].user_fname + " " + emp[0].user_lname);
+            $("#user_contactss").text(emp[0].user_contact);
+            $("#user_emailss").text(emp[0].user_email);
             
         });
         
         $("#viewModal").modal("show");
 
     });
+  })
 
 
 
