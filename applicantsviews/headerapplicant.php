@@ -19,13 +19,13 @@
                                 <div class="main-menu">
                                     <nav class="d-none d-lg-block">
                                         <ul id="navigation">
-                                            <li><a href="applicantinformation.php">My Profile</a></li>
-                                            <li><a href="applicant_exp.php">Experiences</a></li>
-                                            <li><a href="applicant_educ.php">Educations</a></li>
-                                            <li><a href="applicant_skills.php">Skills</a></li>
-                                            <li><a href="applicant_add_info.php">Additional Info</a></li>
+                                            <li><a href="applicantinformation.php" style="text-decoration: none;">My Profile</a></li>
+                                            <li><a href="applicant_exp.php"style="text-decoration: none;">Experiences</a></li>
+                                            <li><a href="applicant_educ.php"style="text-decoration: none;">Educations</a></li>
+                                            <li><a href="applicant_skills.php"style="text-decoration: none;">Skills</a></li>
+                                            <li><a href="applicant_add_info.php"style="text-decoration: none;">Additional Info</a></li>
                                             <?php if(isset($_SESSION['USERROLE'])){?>
-                                                 <li><a href="applicant_add_info.php"> <?php echo  $_SESSION['FULLNAME'];?></a></li>
+                                                 <li><a href="applicant_add_info.php" style="text-decoration: none;"> <span class="text-truncate"><?php echo  $_SESSION['FULLNAME'];?></span> </a></li>
                                                  <li class="nav-item dropdown pe-3">
 
                                <?php }?>

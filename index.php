@@ -28,21 +28,21 @@ if (isset($_POST['login'])) {
 
         if($data['user_role_id']==1 || $data['user_role_id']==2){
             $_SESSION['USERROLE'] = $data['user_role_id'];
-            $_SESSION['FULLNAME'] = $data['user_fname']." ".$data['user_lname'];
+            $_SESSION['FULLNAME'] = $data['user_fname'];
         
             header("location: admin panel/applicantlist.php");
         }
         else if($data['user_role_id']==3){
             $_SESSION['USERROLE'] = $data['user_role_id'];
             $_SESSION['USERID'] = $data['user_id'];
-            $_SESSION['FULLNAME'] = $data['user_fname']." ".$data['user_lname'];
+            $_SESSION['FULLNAME'] = $data['user_fname'];
         
             header("location: admin panel/employerindex.php");
         }
 
         else{
             $_SESSION['USERROLE'] = $data['user_role_id'];
-            $_SESSION['FULLNAME'] = $data['user_fname']." ".$data['user_lname'];
+            $_SESSION['FULLNAME'] = $data['user_fname'];
             $_SESSION['USERID'] = $data['user_id'];
         
             header("location:  applicantinformation.php");
