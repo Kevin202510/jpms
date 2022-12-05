@@ -1,45 +1,11 @@
+<?php session_start(); ?>
 <?php 
   
-    include_once("classes/CRUDAPI.php");
-    $crudapi = new CRUDAPI();
+  include_once("classes/CRUDAPI.php");
+  $crudapi = new CRUDAPI();
 
-    if(isset($_POST['addNewEmployee'])) {	
-
-      $FNAME = $crudapi->escape_string($_POST['FNAME']);
-      $LNAME = $crudapi->escape_string($_POST['LNAME']);
-      $ADDRESS = $crudapi->escape_string($_POST['ADDRESS']);
-      $CONTACT = $crudapi->escape_string($_POST['CONTACT']);
-      $USERNAME = $crudapi->escape_string($_POST['USERNAME']);
-      $PASSWORD = $crudapi->escape_string($_POST['PASSWORD']);
-      $ROLE_ID = $crudapi->escape_string($_POST['ROLE_ID']);
-        
-      $result = $crudapi->execute("INSERT INTO users(ROLE_ID,FNAME,LNAME,ADDRESS,CONTACT,USERNAME,PASSWORD) VALUES('$ROLE_ID','$FNAME','$LNAME','$ADDRESS','$CONTACT','$USERNAME','$PASSWORD')");
-
-      echo '<script>alert("ADDED SUCCESS");</script>';
-      header("location: usermanagement.php");
-    }else if(isset($_POST['editEmployee'])) {	
-
-      $FNAME = $crudapi->escape_string($_POST['FNAME']);
-      $LNAME = $crudapi->escape_string($_POST['LNAME']);
-      $ADDRESS = $crudapi->escape_string($_POST['ADDRESS']);
-      $CONTACT = $crudapi->escape_string($_POST['CONTACT']);
-      $USERNAME = $crudapi->escape_string($_POST['USERNAME']);
-      $PASSWORD = $crudapi->escape_string($_POST['PASSWORD']);
-      $ROLE_ID = $crudapi->escape_string($_POST['ROLE_ID']);
-      $USER_ID = $crudapi->escape_string($_POST['USER_ID']);
-        
-      $result = $crudapi->execute("UPDATE users SET ROLE_ID='$ROLE_ID',FNAME='$FNAME',LNAME='$LNAME',ADDRESS='$ADDRESS',CONTACT='$CONTACT',USERNAME='$USERNAME',PASSWORD='$PASSWORD' WHERE USER_ID = '$USER_ID' ");
-
-      echo '<script>alert("UPDATED SUCCESS");</script>';
-      header("location: usermanagement.php");
-    }else if(isset($_POST['deleteEmployee'])){
-      $result = $crudapi->delete('USER_ID',$_POST['USER_ID'], 'users');
-      echo '<script>alert("DELETED SUCCESS");</script>';
-      header("location: usermanagement.php");
-    }
-
-
-  ?>
+    
+?>
 
 <?php include('layouts/head.php'); ?>
 <?php include('layouts/header.php'); ?>
@@ -77,15 +43,15 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
       <div class="table-wrapper">
         <div class="table-title">
           <div class="row">
-            <div class="col-md-12">
+                 <div class="col-md-12">
 
-          <h5><b>Employers List</b></h5>
-          <div class="search-bar" style="float:right;">
-      <form class="search-form d-flex align-items-center" method="POST" action="#">
-        <input type="text" name="query" placeholder="Search" title="Enter search keyword">
-        <button type="submit" title="Search"><i class="bi bi-search"></i></button>
-      </form>
-      </div>
+                 <h5><b>Employers List</b></h5>
+                    <div class="search-bar" style="float:right;">
+                    <form class="search-form d-flex align-items-center" method="POST" action="#">
+                      <input type="text" name="query" placeholder="Search" title="Enter search keyword">
+                      <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+                    </form>
+                 </div>
       
         </div>
       </div>
@@ -96,8 +62,10 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
               <tr>
               <th scope="col">#</th>
             <th scope="col">Full NAme</th>
+            <th scope="col">Address</th>
             <th scope="col">Contact</th>
             <th scope="col">Email</th>
+
                    
              <tr>
             </thead>
@@ -109,15 +77,17 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                       foreach ($result as $key => $data) {
                 ?>
            <tr>
+           <th scope="row"><?php echo $number; ?></th>
            <td><?php echo strtoupper($data["user_fname"]." ".$data["user_lname"]); ?></td>
+           <td><?php echo strtoupper($data["address"]) ?></td>
               <td><?php echo strtoupper($data["user_contact"]) ?></td>
               <td><?php echo strtoupper($data["user_email"]) ?></td>
  
               <td>
-                   <div class="btn-group" role="group" aria-label="Basic example">
-                       <button type="button" data-id="<?php echo $data['jobs_id']; ?>" id="editbtn" style="border: transparent; color: green; background: transparent;"><i class="bi bi-pencil-fill"></i></button>
-                       <button type="button" data-id="<?php echo $data['jobs_id']; ?>" id="deletebtn" style="border: transparent; color: red; background: transparent;"> <i class="bi bi-trash-fill"></i></button>
-                    </div>
+              <div class="btn-group" role="group" aria-label="Basic example">
+                 
+                  <button type="button" id="views" data-id="<?php echo $data['user_id']; ?>" class="btn btn-primary" style="background-color:transparent; color:blue; border:none;" ><i class="bi bi-eye-fill"></i></button>
+                </div>
 
               </td>
               </tr>
@@ -125,7 +95,77 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
         </tbody>
       </table>
 </div>
-</div>
+
+
+
+
+<!-- ViewMODAL -->
+
+<div class="modal fade" id="viewsModal" tabindex="-1" role="dialog" aria-labelledby="viewsModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="viewsModalLabel">View</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+             
+                <div class="modal-body">
+
+             
+        
+                  </div>
+              
+                </div>
+            </div>
+         </div>
+<!-- View    -->
 
 
 <?php include('layouts/footer.php'); ?>
+
+
+
+<script>
+
+    $(document).ready(function(){
+      $("body").on('click','#views',function(e){
+
+var USER_IDss = $(e.currentTarget).data('id');
+// alert(USER_IDss);
+$.post("update_jobs.php",{USER_IDsss: USER_IDss},function(data,status){
+    var emp = JSON.parse(data);
+    // console.log(emp);
+    // $("#jobs_idss").text(emp[0].jobs_id);
+    let newdate = new Date(emp[0].created_at);
+    var day = newdate.getDate();
+    var month = newdate.getMonth() + 1;
+    var year = newdate.getFullYear();
+
+    $("#created_ats").text(month+" / "+day+" / "+year);
+    $("#jobs_user_idsss").text(emp[0].jobs_user_id);
+    $("#job_company_namesss").text(emp[0].job_company_name);
+    $("#jobs_namesss").text(emp[0].jobs_name);
+    $("#jobs_addresssss").text(emp[0].jobs_address);
+    $("#job_expected_salarysss").text(emp[0].job_expected_salary);
+    $("#jobs_descriptionsss").text(emp[0].jobs_description);
+    $("#jobs_r_skillssss").text(emp[0].jobs_r_skills);
+    $("#jobs_r_education_idsss").text(emp[0].ea_name);
+    $("#jobs_addressssss").text(emp[0].jobs_address);
+    $("#jobs_vacancy_countsss").text(emp[0].jobs_vacancy_count);
+    $("#jobs_preferred_timesss").text(emp[0].jobs_preferred_time);
+    $("#job_expected_salaryssss").text(emp[0].job_expected_salary);
+    $("#full_namesss").text(emp[0].user_fname + " " + emp[0].user_lname);
+    $("#user_contactsss").text(emp[0].user_contact);
+    $("#user_emailsss").text(emp[0].user_email);
+    
+});
+
+$("#viewsModal").modal("show");
+
+});
+})
+
+  
+</script>

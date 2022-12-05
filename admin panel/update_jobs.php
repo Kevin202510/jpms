@@ -8,7 +8,7 @@
     }
     if(isset($_POST['USER_IDsss'])){
         $empval = $_POST['USER_IDsss'];
-        $query = "SELECT * FROM `jobs` left join users on users.user_id = jobs.jobs_user_id left join education_attainment on education_attainment.ea_id = jobs.jobs_r_education_id where jobs.jobs_user_id=user_id AND jobs.jobs_id = $empval";
+        $query = "SELECT * FROM `jobs` left join users on users.user_id = jobs.jobs_user_id where jobs.jobs_user_id=user_id AND jobs.jobs_id = $empval";
         $result = $crudapi->getData($query);
         echo json_encode($result);
     }
