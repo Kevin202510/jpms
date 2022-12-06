@@ -380,8 +380,6 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
 
 <!-- ViewMODAL -->
 
-
-
 <div class="modal fade" id="viewModal" tabindex="-1" role="dialog" aria-labelledby="viewModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-xl" role="document">
                 <div class="modal-content">

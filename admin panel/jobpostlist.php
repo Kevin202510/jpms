@@ -89,18 +89,13 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
        <table class="table table-striped table-hover">
             <thead>
               <tr>
-                   <th scope="col">#</th>
-                   <th scope="col">Company Name</th>
-                   <th scope="col">Position</th>
-                   <th scope="col">Address</th>
-                   <th scope="col">Description</th>
-                   <th scope="col">Skill</th>
-                   <th scope="col">Education</th>
-                   <th scope="col">Preferred Time</th>
-                   <th scope="col">Experience</th>
-                   <th scope="col">Vacancy</th>
-                   <th scope="col">Salary</th>
-                   <th scope="col">Action</th>
+                    <th scope="col">#</th>
+                    <th scope="col">Campany Name</th>
+                    <th scope="col">Position Name</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">Vacancy</th>
+                    <th scope="col">Salary</th>
+                    <th scope="col">Action</th>
              <tr>
             </thead>
             <tbody>
@@ -111,17 +106,13 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                     foreach ($result as $key => $data) {
                 ?>
                  <tr>
-                       <th scope="row"><?php echo $number; ?></th>
-                       <td><?php echo $data["job_company_name"] ?></td>
-                       <td><?php echo $data["jobs_name"] ?></td>
-                       <td><?php echo $data["jobs_address"] ?></td>
-                       <td><?php echo $data["jobs_description"] ?></td>
-                       <td><?php echo $data["jobs_r_skills"] ?></td>
-                       <td><?php echo $data["jobs_r_education_id"] ?></td>
-                       <td><?php echo $data["jobs_preferred_time"] ?></td>
-                       <td><?php echo $data["jobs_r_experience"] ?></td>
-                       <td><?php echo $data["jobs_vacancy_count"] ?></td>
-                       <td><?php echo $data["job_expected_salary"] ?></td>
+                      <th scope="row"><?php echo $number; ?></th>
+                      <td><?php echo $data["job_company_name"] ?></td>
+                      <td><?php echo $data["jobs_name"] ?></td>
+                      <td><?php echo $data["jobs_address"] ?></td>
+                      <td><?php echo $data["jobs_vacancy_count"] ?></td>
+                      <td><?php echo $data["job_expected_salary"] ?></td>
+         
          
               
                      <td>
