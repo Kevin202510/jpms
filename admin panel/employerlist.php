@@ -102,7 +102,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
 <!-- ViewMODAL -->
 
 <div class="modal fade" id="viewsModal" tabindex="-1" role="dialog" aria-labelledby="viewsModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-dialog modal-md" role="document">
                 <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="viewsModalLabel">View</h5>
@@ -112,8 +112,28 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                 </div>
              
                 <div class="modal-body">
+                 
 
-             
+                <div class="card" style="">
+                      
+                    <div class="card-body">
+                            
+                    <div class="form-group">
+                        <img style="width:200px; " src="profiles/limboprofile.webp">
+                        </div>
+
+                        <div class=form-group >
+                    Full Name <?php echo strtoupper($data["user_fname"]." ".$data["user_lname"]); ?> <br>
+                    Address <?php echo strtoupper($data["address"]) ?><br>
+                    Contact<?php echo strtoupper($data["user_contact"]) ?> <br>
+                    Email<?php echo strtoupper($data["user_email"]) ?><br> 
+
+                                         </div> 
+
+                    </div>
+                    </div>
+                
+
         
                   </div>
               
@@ -132,33 +152,16 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
     $(document).ready(function(){
       $("body").on('click','#views',function(e){
 
-var USER_IDss = $(e.currentTarget).data('id');
-// alert(USER_IDss);
-$.post("update_jobs.php",{USER_IDsss: USER_IDss},function(data,status){
+var USER_ID = $(e.currentTarget).data('id');
+//  alert(USER_ID);
+$.post("updateusers.php",{USER_ID: USER_ID},function(data,status){
     var emp = JSON.parse(data);
-    // console.log(emp);
-    // $("#jobs_idss").text(emp[0].jobs_id);
-    let newdate = new Date(emp[0].created_at);
-    var day = newdate.getDate();
-    var month = newdate.getMonth() + 1;
-    var year = newdate.getFullYear();
-
-    $("#created_ats").text(month+" / "+day+" / "+year);
-    $("#jobs_user_idsss").text(emp[0].jobs_user_id);
-    $("#job_company_namesss").text(emp[0].job_company_name);
-    $("#jobs_namesss").text(emp[0].jobs_name);
-    $("#jobs_addresssss").text(emp[0].jobs_address);
-    $("#job_expected_salarysss").text(emp[0].job_expected_salary);
-    $("#jobs_descriptionsss").text(emp[0].jobs_description);
-    $("#jobs_r_skillssss").text(emp[0].jobs_r_skills);
-    $("#jobs_r_education_idsss").text(emp[0].ea_name);
-    $("#jobs_addressssss").text(emp[0].jobs_address);
-    $("#jobs_vacancy_countsss").text(emp[0].jobs_vacancy_count);
-    $("#jobs_preferred_timesss").text(emp[0].jobs_preferred_time);
-    $("#job_expected_salaryssss").text(emp[0].job_expected_salary);
-    $("#full_namesss").text(emp[0].user_fname + " " + emp[0].user_lname);
-    $("#user_contactsss").text(emp[0].user_contact);
-    $("#user_emailsss").text(emp[0].user_email);
+     console.log(emp);
+   
+    $("#full_name").text(emp[0].user_fname + " " + emp[0].user_lname);
+    $("#address").text(emp[0].address);
+    $("#user_contact").text(emp[0].user_contact);
+    $("#user_email").text(emp[0].user_email);
     
 });
 

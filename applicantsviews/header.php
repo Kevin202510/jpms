@@ -8,7 +8,7 @@
                           <div class="col-lg-3 col-md-2">
                              <!-- Logo -->
                              <div class="logo">
-                                <a href="index.php"><img src="assets/img/logo/logo.png" alt=""></a>
+                                <a href="index.php"><img src="assets/img/logo/job.png" alt=""></a>
                             </div>  
                            </div>
 
