@@ -1,4 +1,26 @@
 
+<?php
+session_start();
+if(isset($_POST['edituser'])) {	
+
+  $user_id  = $crudapi->escape_string($_POST['user_idss']);
+  $user_fname = $crudapi->escape_string($_POST['user_fnamess']);
+  $user_lname = $crudapi->escape_string($_POST['user_lnamess']);
+  $user_contact = $crudapi->escape_string($_POST['user_contactss']);
+  $user_email = $crudapi->escape_string($_POST['user_emailss']);
+  $address = $crudapi->escape_string($_POST['addressss']);  
+      
+    $result = $crudapi->execute("UPDATE users SET user_fname='$user_fname',user_lname='$user_lname',user_contact='$user_contact',user_email='$user_email',address='$address' WHERE user_id = '$user_id' ");
+    
+    echo '<script>alert("UPDATED SUCCESS");</script>';
+    header("location:applicantlist.php");
+  }
+  else if(isset($_POST["logout"])){
+    session_destroy();
+    header("location: ../index.php");
+  }
+
+?>
 <header id="header" class="header fixed-top d-flex align-items-center" style="background-color:#1AA478;">
   
     <div class="d-flex align-items-center justify-content-between">
@@ -165,20 +187,20 @@
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
             <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-            <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
+            <span class="d-none d-md-block dropdown-toggle ps-2"><?php echo  $_SESSION['FULLNAME'];?></span>
           </a><!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
-              <h6>Kevin Anderson</h6>
-              <span>Web Designer</span>
+              <h6><?php echo  $_SESSION['FULLNAME'];?></h6>
+              
             </li>
             <li>
               <hr class="dropdown-divider">
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+            <button type="button" class="dropdown-item d-flex align-items-center" id="profilebtn" data-id="<?php echo $_SESSION['USERID'];?>" style="float:right;">
                 <i class="bi bi-person"></i>
                 <span>My Profile</span>
               </a>
@@ -188,7 +210,7 @@
             </li>
 
             <li>
-            <button type="button" class="dropdown-item d-flex align-items-center" id="settingbtn" style="float:right;">
+            <button type="button" class="dropdown-item d-flex align-items-center" id="settings" data-id="<?php echo $_SESSION['USERID'];?>" style="float:right;">
                 <i class="bi bi-box-arrow-right"></i>
                 <span>Settings</span>
               </button>
@@ -246,9 +268,56 @@
   </div>
 
 
+  <!-- profile -->
+
+  <div class="modal fade" id="profile" tabindex="-1" role="dialog" aria-labelledby="settingsLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="settingsLabel">Profile koto</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+        <form method="POST">
+
+      
+
+          <input type="hidden" class="form-control" name="user_id" id="user_idsss">
+
+                    <div class="form-group">
+                                 <label for="exampleInputPassword1">First Name</label>
+                                 <input type="text" class="form-control" name="user_fname" id="user_fnamesss" placeholder="First Name" required>
+                            </div>
+                             <div class="form-group">
+                                 <label for="exampleInputPassword1">Contact</label>
+                                 <input type="number" class="form-control" name="user_contact" id="user_contactsss" placeholder="Contact" required>
+                            </div>
+
+                             <div class="form-group">
+                                 <label for="exampleInputPassword1">Email</label>
+                                 <input type="text" class="form-control" name="user_email" id="user_emailsss" placeholder="Email" required>
+                             </div>
+
+                             <div class="form-group">
+                                 <label for="exampleInputPassword1">Address</label>
+                                 <input type="text" class="form-control" name="address" id="addresssss" placeholder="Address" required>
+                             </div>
+                      
+                
+
+           
+        </form>
+        </div>
+        </div>
+    </div>
+  </div>
+
+
   <!-- settings -->
 
-  <div class="modal fade" id="settings" tabindex="-1" role="dialog" aria-labelledby="settingsLabel" aria-hidden="true">
+  <div class="modal fade" id="editusers" tabindex="-1" role="dialog" aria-labelledby="settingsLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
         <div class="modal-header">
@@ -259,10 +328,41 @@
         </div>
         <div class="modal-body">
         <form method="POST">
-       
+
+      
+
+          <input type="hidden" class="form-control" name="user_id" id="user_idss">
+                    <input type="hidden" class="form-control" name="user_role_id" id="user_role_idss">
+
+                    <div class="form-group">
+                                 <label for="exampleInputPassword1">First Name</label>
+                                 <input type="text" class="form-control" name="user_fname" id="user_fnamess" placeholder="First Name" required>
+                            </div>
+
+                             <div class="form-group">
+                                 <label for="exampleInputPassword1">Last Name</label>
+                                 <input type="text" class="form-control" name="user_lname" id="user_lnamess" placeholder="Last Name" required>
+                            </div>
+
+                             <div class="form-group">
+                                 <label for="exampleInputPassword1">Contact</label>
+                                 <input type="number" class="form-control" name="user_contact" id="user_contactss" placeholder="Contact" required>
+                            </div>
+
+                             <div class="form-group">
+                                 <label for="exampleInputPassword1">Email</label>
+                                 <input type="text" class="form-control" name="user_email" id="user_emailss" placeholder="Email" required>
+                             </div>
+
+                             <div class="form-group">
+                                 <label for="exampleInputPassword1">Address</label>
+                                 <input type="text" class="form-control" name="address" id="addressss" placeholder="Address" required>
+                             </div>
+           
+
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary" name="settings">Update</button>
+                <button type="submit" class="btn btn-primary" name="edituser">Update</button>
             </div>
         </form>
         </div>

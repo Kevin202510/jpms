@@ -79,9 +79,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
         <div class="table-title">
           <div class="row">
             <div class="col-md-12">
-            <?php if(isset($_SESSION['USERROLE'])){?>
-                    <h1><?php echo  $_SESSION['FULLNAME'];?></h1>
-                    <?php }?>
+            
           <h5><b>Applicants List</b></h5>
           <div class="search-bar" style="float:right;">
       <form class="search-form d-flex align-items-center" method="POST" action="#">
