@@ -81,7 +81,7 @@
                                         </div>
                                     </div>
                                     <div class="items-link items-link2 f-right">
-                                        <a href="job_details.php">Full Time</a>
+                                        <button style="border-radius:30px;" type="button"  class="btn head-btn21" id="logins">apply</button>
                                         <span>7 hours ago</span>
                                     </div>
                                 </div>
@@ -118,3 +118,31 @@
     </main>
 <?php include('applicantsviews/footer.php'); ?>
 <?php include('applicantsviews/script.php'); ?>
+
+
+
+<script>
+  $(document).ready(function(){
+    $("#registers").click(function(){
+        // $("#as_user_id").val($("user_id").val());
+       
+        $("#exampleModal").modal("show");
+    });
+    $("#logins").click(function(){
+        //    alert("logins");
+        // $("#as_user_id").val($("user_id").val());
+       $("#exampleModal2").modal("show");
+    });
+    $("#subreg").prop("disabled",true);
+    $("#conuser_passwords").change(function(){
+        if ($("#user_passwords").val()==$("#conuser_passwords").val()){
+            $("#subreg").prop("disabled",false);
+        }else{
+            alert("PASSWORD DIDN'T MATCH");
+        }
+    });
+  })
+  
+
+ 
+</script>

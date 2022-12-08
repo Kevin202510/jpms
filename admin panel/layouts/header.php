@@ -1,26 +1,33 @@
 
 <?php
 session_start();
-if(isset($_POST['edituser'])) {	
 
-  $user_id  = $crudapi->escape_string($_POST['user_idss']);
-  $user_fname = $crudapi->escape_string($_POST['user_fnamess']);
-  $user_lname = $crudapi->escape_string($_POST['user_lnamess']);
-  $user_contact = $crudapi->escape_string($_POST['user_contactss']);
-  $user_email = $crudapi->escape_string($_POST['user_emailss']);
-  $address = $crudapi->escape_string($_POST['addressss']);  
-      
-    $result = $crudapi->execute("UPDATE users SET user_fname='$user_fname',user_lname='$user_lname',user_contact='$user_contact',user_email='$user_email',address='$address' WHERE user_id = '$user_id' ");
-    
-    echo '<script>alert("UPDATED SUCCESS");</script>';
-    header("location:applicantlist.php");
-  }
-  else if(isset($_POST["logout"])){
-    session_destroy();
-    header("location: ../index.php");
-  }
+
+include_once("./classes/CRUDAPI.php");
+$crudapi = new CRUDAPI();
+
 
 ?>
+
+
+<?php if(isset($_POST['edituser'])) {	
+
+$user_id  = $crudapi->escape_string($_POST['user_id']);
+$user_fname = $crudapi->escape_string($_POST['user_fname']);
+$user_lname = $crudapi->escape_string($_POST['user_lname']);
+$user_contact = $crudapi->escape_string($_POST['user_contact']);
+$user_email = $crudapi->escape_string($_POST['user_email']);
+$address = $crudapi->escape_string($_POST['address']);  
+    
+  $result = $crudapi->execute("UPDATE users SET user_fname='$user_fname',user_lname='$user_lname',user_contact='$user_contact',user_email='$user_email',address='$address' WHERE user_id = '$user_id' ");
+  
+  echo '<script>alert("UPDATED SUCCESS");</script>';
+  header("location:applicantlist.php");
+}
+else if(isset($_POST["logout"])){
+  session_destroy();
+  header("location: ../index.php");
+}?>
 <header id="header" class="header fixed-top d-flex align-items-center" style="background-color:#1AA478;">
   
     <div class="d-flex align-items-center justify-content-between">
@@ -203,6 +210,7 @@ if(isset($_POST['edituser'])) {
             <button type="button" class="dropdown-item d-flex align-items-center" id="profilebtn" data-id="<?php echo $_SESSION['USERID'];?>" style="float:right;">
                 <i class="bi bi-person"></i>
                 <span>My Profile</span>
+                </button>
               </a>
             </li>
             <li>
@@ -284,28 +292,17 @@ if(isset($_POST['edituser'])) {
 
       
 
-          <input type="hidden" class="form-control" name="user_id" id="user_idsss">
+          <input type="hidden" class="form-control" name="user_id" id="user_idz">
 
-                    <div class="form-group">
-                                 <label for="exampleInputPassword1">First Name</label>
-                                 <input type="text" class="form-control" name="user_fname" id="user_fnamesss" placeholder="First Name" required>
-                            </div>
-                             <div class="form-group">
-                                 <label for="exampleInputPassword1">Contact</label>
-                                 <input type="number" class="form-control" name="user_contact" id="user_contactsss" placeholder="Contact" required>
-                            </div>
-
-                             <div class="form-group">
-                                 <label for="exampleInputPassword1">Email</label>
-                                 <input type="text" class="form-control" name="user_email" id="user_emailsss" placeholder="Email" required>
-                             </div>
-
-                             <div class="form-group">
-                                 <label for="exampleInputPassword1">Address</label>
-                                 <input type="text" class="form-control" name="address" id="addresssss" placeholder="Address" required>
-                             </div>
-                      
-                
+                 
+                            
+                            <h4 id="user_fnamez"></h4>
+                                    </a>
+                                    <ul>
+                                        <li id="addressz"></li>
+                                        <li id="user_contactz"></li>
+                                        <li id="user_emailz"></li>
+                                    </ul>
 
            
         </form>

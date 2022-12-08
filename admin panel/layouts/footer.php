@@ -46,12 +46,13 @@
         // alert($(e.currentTarget).data('id'));
       var USER_IDs = $(e.currentTarget).data('id');
       $.post("updateusers.php",{USER_ID: USER_IDs},function(data,status){
+        alert(USER_IDs);
       var emp = JSON.parse(data);
       // console.log(emp);
-    $("#user_fnamesss").text(emp[0].user_fname + " " + emp[0].user_lname);
-    $("#addresssss").text(emp[0].address);
-    $("#user_contactsss").text(emp[0].user_contact);
-    $("#user_emailsss").text(emp[0].user_email);
+    $("#user_fnamez").text(emp[0].user_fname + " " + emp[0].user_lname);
+    $("#addressz").text(emp[0].address);
+    $("#user_contactz").text(emp[0].user_contact);
+    $("#user_emailz").text(emp[0].user_email);
     
 });
 
@@ -81,4 +82,30 @@ $("body").on('click','#settings',function(e){
     });
 
   
+  
+  $(document).ready(function(){
+    $("#registers").click(function(){
+        // $("#as_user_id").val($("user_id").val());
+        $("#exampleModal2").modal("hide");
+        $("#exampleModal").modal("show");
+    });
+    $("#logins").click(function(){
+        // $("#as_user_id").val($("user_id").val());
+        $("#exampleModal2").modal("show");
+    });
+    $("#subreg").prop("disabled",true);
+    $("#conuser_passwords").change(function(){
+        if ($("#user_passwords").val()==$("#conuser_passwords").val()){
+            $("#subreg").prop("disabled",false);
+        }else{
+            alert("PASSWORD DIDN'T MATCH");
+        }
+    });
+  })
+  
+
+ 
+
+
+
 </script>

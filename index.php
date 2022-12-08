@@ -420,7 +420,7 @@ if(isset($_POST['register'])) {
 
 
                                 <div class="modal-footer">
-                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                   <button style="border-radius:30px;" type="button" class="btn head-btn1" name="register" id="registers">Register</button>
                                      <button type="submit" class="btn btn-primary" name="login">LOGIN</button>
                                </div>
                          </form>
