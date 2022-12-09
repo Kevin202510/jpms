@@ -87,7 +87,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
             <tbody>
                 <?php 
                      
-                     $query = "SELECT * FROM `job_applicants` LEFT JOIN users ON users.user_id = job_applicants.job_app_user_id LEFT JOIN jobs on jobs.jobs_id = job_applicants.job_app_job_id WHERE jobs.jobs_user_id = ".$_SESSION['USERID']."";
+                     $query = "SELECT * FROM `job_applicants` LEFT JOIN users ON users.user_id = job_applicants.job_app_user_id LEFT JOIN jobs on jobs.jobs_id = job_applicants.job_app_job_id LEFT JOIN requirements ON requirements.requirements_id = job_applicants.requirements_id_applicant WHERE jobs.jobs_user_id = ".$_SESSION['USERID']."";
                      $result = $crudapi->getData($query);
                      $number = 1;
                      foreach ($result as $key => $data) {
@@ -105,7 +105,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
               
                        <div class="items-link items-link2 f-right">
                         <button type="button" data-id="<?php echo $data['user_id']; ?>" class="btn btn-primary" id="view">View</button>
-                        <button type="button" data-id="<?php echo $data['user_id']; ?>" class="btn btn-primary" id="viewreq">Requarments </button>
+                        <button type="button" data-id="<?php echo $data['requirements_filename']; ?>" class="btn btn-primary" id="viewreq">Requarments </button>
                         <button type="button" data-id="<?php echo $data['job_app_id']; ?>" class="btn btn-primary" id="delete">unlike </button>
                         
                       </div>
@@ -289,7 +289,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                            
             <div class="card">
               <div class="container" style="width:100px; height:100px; background-color:green;">
-                  <a type="button" style="width:50px; height:50px; background-color:red;" href="sample.php?pdfname=KEVIN FELIX CALUAG.pdf">CV</a> 
+                  <a type="button" id="cv" style="width:50px; height:50px; background-color:red;">CV</a> 
               </div>
             </div>
             <img class="brand-image img-circle" id="preview" src="{{ asset('img/others/roa1.jpg') }}" width="200" height="150" />
@@ -371,12 +371,14 @@ $.post("updateapplicant.php",{USER_IDsss: USER_IDs},function(data,status){
 $("#viewModal").modal("show");
 });
 
-$("#viewreq").click(function(){
+$("body").on('click','#viewreq',function(e){
+  // alert($(e.currentTarget).data('id'));
+  var filename = $(e.currentTarget).data('id');
+  $("#cv").prop("href", "sample.php?pdfname="+filename);
 $("#viewrequarments").modal("show");
 });
 
 $("body").on('click','#delete',function(e){
-        
         var USER_ID_DELETE = $(e.currentTarget).data('id');
         $("#job_app_id").val(USER_ID_DELETE);
         $("#deleteModal").modal("show");

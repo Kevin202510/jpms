@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 05, 2022 at 08:03 AM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 7.3.33
+-- Generation Time: Dec 09, 2022 at 06:14 PM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 7.4.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -33,7 +33,7 @@ CREATE TABLE `applicant_additional_info` (
   `aai_location` varchar(100) NOT NULL,
   `aai_wfh_os` varchar(100) NOT NULL,
   `aai_user_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `applicant_additional_info`
@@ -54,7 +54,7 @@ CREATE TABLE `applicant_educationbg` (
   `aebg_school_name` varchar(100) NOT NULL,
   `aebg_year_graduate` varchar(100) NOT NULL,
   `aebg_education_attainment_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `applicant_educationbg`
@@ -77,7 +77,7 @@ CREATE TABLE `applicant_experience` (
   `ae_position` varchar(100) NOT NULL,
   `ae_from` varchar(100) NOT NULL,
   `ae_to` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `applicant_experience`
@@ -97,7 +97,7 @@ CREATE TABLE `applicant_skills` (
   `as_id` int(11) NOT NULL,
   `as_user_id` int(11) NOT NULL,
   `as_skillname` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `applicant_skills`
@@ -115,7 +115,7 @@ INSERT INTO `applicant_skills` (`as_id`, `as_user_id`, `as_skillname`) VALUES
 CREATE TABLE `education_attainment` (
   `ea_id` int(11) NOT NULL,
   `ea_name` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `education_attainment`
@@ -149,7 +149,7 @@ CREATE TABLE `jobs` (
   `job_expected_salary` varchar(100) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `jobs_user_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `jobs`
@@ -168,6 +168,28 @@ INSERT INTO `jobs` (`jobs_id`, `job_company_name`, `jobs_name`, `jobs_address`, 
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `job_applicants`
+--
+
+CREATE TABLE `job_applicants` (
+  `job_app_id` int(11) NOT NULL,
+  `job_app_job_id` int(11) NOT NULL,
+  `job_app_user_id` int(11) NOT NULL,
+  `date_apply` timestamp NOT NULL DEFAULT current_timestamp(),
+  `requirements_id_applicant` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `job_applicants`
+--
+
+INSERT INTO `job_applicants` (`job_app_id`, `job_app_job_id`, `job_app_user_id`, `date_apply`, `requirements_id_applicant`) VALUES
+(4, 31, 38, '2022-12-09 16:54:50', 1),
+(5, 36, 30, '2022-12-09 17:04:46', NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `requirements`
 --
 
@@ -175,7 +197,14 @@ CREATE TABLE `requirements` (
   `requirements_id` int(11) NOT NULL,
   `requirements_filename` varchar(255) NOT NULL,
   `requirements_user_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `requirements`
+--
+
+INSERT INTO `requirements` (`requirements_id`, `requirements_filename`, `requirements_user_id`) VALUES
+(1, 'Doc1.pdf', 38);
 
 -- --------------------------------------------------------
 
@@ -186,7 +215,7 @@ CREATE TABLE `requirements` (
 CREATE TABLE `roles` (
   `id` int(11) NOT NULL,
   `display_name` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `roles`
@@ -213,7 +242,7 @@ CREATE TABLE `users` (
   `address` varchar(100) NOT NULL,
   `user_password` varchar(255) NOT NULL,
   `user_role_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
@@ -270,6 +299,15 @@ ALTER TABLE `education_attainment`
 --
 ALTER TABLE `jobs`
   ADD PRIMARY KEY (`jobs_id`);
+
+--
+-- Indexes for table `job_applicants`
+--
+ALTER TABLE `job_applicants`
+  ADD PRIMARY KEY (`job_app_id`),
+  ADD KEY `ja_user_id` (`job_app_user_id`),
+  ADD KEY `ja_job_id` (`job_app_job_id`),
+  ADD KEY `ja_req_id` (`requirements_id_applicant`);
 
 --
 -- Indexes for table `requirements`
@@ -331,10 +369,16 @@ ALTER TABLE `jobs`
   MODIFY `jobs_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
+-- AUTO_INCREMENT for table `job_applicants`
+--
+ALTER TABLE `job_applicants`
+  MODIFY `job_app_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT for table `requirements`
 --
 ALTER TABLE `requirements`
-  MODIFY `requirements_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `requirements_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `roles`
@@ -370,6 +414,14 @@ ALTER TABLE `applicant_experience`
 --
 ALTER TABLE `applicant_skills`
   ADD CONSTRAINT `as` FOREIGN KEY (`as_user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `job_applicants`
+--
+ALTER TABLE `job_applicants`
+  ADD CONSTRAINT `ja_job_id` FOREIGN KEY (`job_app_job_id`) REFERENCES `jobs` (`jobs_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `ja_req_id` FOREIGN KEY (`requirements_id_applicant`) REFERENCES `requirements` (`requirements_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `ja_user_id` FOREIGN KEY (`job_app_user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `users`
