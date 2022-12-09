@@ -3,7 +3,7 @@
     $crudapi = new CRUDAPI();
     if(isset($_POST['USER_ID'])){
         $USER_ID = $crudapi->escape_string($_POST['USER_ID']);
-        $result = $crudapi->getData("SELECT * FROM `jobs` WHERE jobs_id=$USER_ID");
+        $result = $crudapi->getData("SELECT * FROM `jobs` left join users on users.user_id = jobs.jobs_user_id left join education_attainment on education_attainment.ea_id = jobs.jobs_r_education_id where jobs.jobs_user_id=user_id AND jobs.jobs_id =$USER_ID");
         echo json_encode($result);
     }
     if(isset($_POST['USER_IDsss'])){

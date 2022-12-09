@@ -40,4 +40,72 @@
       $("#logout").modal("show");
     });
   });
+
+
+      $("body").on('click','#profilebtn',function(e){
+        // alert($(e.currentTarget).data('id'));
+      var USER_IDs = $(e.currentTarget).data('id');
+      $.post("updateusers.php",{USER_ID: USER_IDs},function(data,status){
+        // alert(USER_IDs);
+      var emp = JSON.parse(data);
+      // console.log(emp);
+    $("#user_fnamez").text(emp[0].user_fname + " " + emp[0].user_lname);
+    $("#addressz").text(emp[0].address);
+    $("#user_contactz").text(emp[0].user_contact);
+    $("#user_emailz").text(emp[0].user_email);
+    
+});
+
+$("#profile").modal("show");
+
+});
+
+
+$("body").on('click','#settings',function(e){
+        // alert($(e.currentTarget).data('id'));
+        var USER_IDs = $(e.currentTarget).data('id');
+        $.post("updateusers.php",{USER_ID: USER_IDs},function(data,status){
+            var emp = JSON.parse(data);
+            $("#user_idss").val(emp[0].user_id);
+            $("#user_role_idss").val(emp[0].user_role_id);
+            $("#user_fnamess").val(emp[0].user_fname);
+            $("#user_lnamess").val(emp[0].user_lname);
+            $("#user_contactss").val(emp[0].user_contact);
+            $("#user_emailss").val(emp[0].user_email);
+            $("#addressss").val(emp[0].address);
+
+          
+        });
+
+        $("#editusers").modal("show");
+
+    });
+
+  
+  
+  $(document).ready(function(){
+    $("#registers").click(function(){
+        // $("#as_user_id").val($("user_id").val());
+        $("#exampleModal2").modal("hide");
+        $("#exampleModal").modal("show");
+    });
+    $("#logins").click(function(){
+        // $("#as_user_id").val($("user_id").val());
+        $("#exampleModal2").modal("show");
+    });
+    $("#subreg").prop("disabled",true);
+    $("#conuser_passwords").change(function(){
+        if ($("#user_passwords").val()==$("#conuser_passwords").val()){
+            $("#subreg").prop("disabled",false);
+        }else{
+            alert("PASSWORD DIDN'T MATCH");
+        }
+    });
+  })
+  
+
+ 
+
+
+
 </script>

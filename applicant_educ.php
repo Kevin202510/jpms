@@ -77,7 +77,7 @@ if(isset($_POST['deleteeduc'])) {
                                      
                                      if(isset($_SESSION['USERROLE'])){
                                         $educ= $_SESSION['USERID'];
-                                    $query = "SELECT * FROM `applicant_educationbg` left join users on users.user_id = applicant_educationbg.aebg_user_id  where applicant_educationbg.aebg_user_id =$educ";
+                                    $query = "SELECT * FROM `applicant_educationbg` left join education_attainment on education_attainment.ea_id = applicant_educationbg.aebg_education_attainment_id   where applicant_educationbg.aebg_user_id =$educ";
                                           $result = $crudapi->getData($query);
                                           $number = 1;
                                          foreach ($result as $key => $data) {
@@ -94,7 +94,7 @@ if(isset($_POST['deleteeduc'])) {
                                             </a>
                                             <ul>
                                                 <li style="color:black;"><i style="color:black;" class="fas fa-calendar"></i><?php echo strtoupper($data['aebg_year_graduate']); ?></li>
-                                                <li style="color:black;"><i style="color:black;" class="fas fa-graduation-cap"></i><?php echo strtoupper($data['aebg_education_attainment_id']); ?></li>
+                                                <li style="color:black;"><i style="color:black;" class="fas fa-graduation-cap"></i><?php echo strtoupper($data['ea_name']); ?></li>
                                     
                                             </ul>
                                         </div>

@@ -1,3 +1,4 @@
+
 <footer>
         <!-- Footer Start-->
         <div class="footer-area footer-bg footer-padding">
@@ -59,26 +60,8 @@
                     </div>
                 </div>
                <!--  -->
-               <div class="row footer-wejed justify-content-between">
-                   
-                   
-               </div>
+               
             </div>
         </div>
-        <!-- footer-bottom area -->
-        <div class="footer-bottom-area footer-bg">
-            <div class="container">
-                <div class="footer-border">
-                     <div class="row d-flex justify-content-between align-items-center">
-                         <div class="col-xl-10 col-lg-10 ">
-                             <div class="footer-copy-right">
-                                 
-                             </div>
-                         </div>
-                         
-                     </div>
-                </div>
-            </div>
-        </div>
-        <!-- Footer End-->
+        
     </footer>

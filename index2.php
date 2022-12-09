@@ -1,5 +1,14 @@
-<?php 
- session_start();
+
+
+
+
+<?php include('applicantsviews/head.php'); ?>
+    <!-- Preloader Start -->
+    
+    <!-- Preloader Start -->
+    <?php include('applicantsviews/headerapplicant.php'); ?>
+
+    <?php 
 include_once("classes/CRUDAPI.php");
 $crudapi = new CRUDAPI(); 
 
@@ -97,14 +106,6 @@ if(isset($_POST['register'])) {
     }   
 
 ?>
-
-
-
-<?php include('applicantsviews/head.php'); ?>
-    <!-- Preloader Start -->
-    
-    <!-- Preloader Start -->
-    <?php include('applicantsviews/header.php'); ?>
     
     <main>
 
@@ -147,60 +148,7 @@ if(isset($_POST['register'])) {
         </div>
         <!-- slider Area End-->
         <!-- Our Services Start -->
-
-        <div class="our-services section-pad-t30">
-    <div class="container">
-
-
-
-        <!-- Section Tittle -->
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="section-tittle text-center">
-                    
-                    <h2>Browse Top Categories </h2>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-        <?php 
-         
-         include_once("classes/CRUDAPI.php");
-         $crudapi = new CRUDAPI(); 
-             $query = " SELECT * FROM `jobs`";
-             $result = $crudapi->getData($query);
-             $number = 1;
-             foreach ($result as $key => $data) { 
-         
-        ?>
-        <div class="single-job-items mb-30">
-            <div class="job-items">
-                <div class="company-img">
-                    <a href="#"><img src="assets/img/icon/job-list1.png" alt=""></a>
-                </div>
-                <div class="job-tittle job-tittle2">
-                    <a href="#">
-                        <h4><?php echo strtoupper($data['job_company_name']); ?></h4>
-                    </a>
-                    <ul>
-                        <li><?php echo strtoupper($data['jobs_name']); ?></li>
-                        <li><i class="fas fa-map-marker-alt"></i><?php echo strtoupper($data['jobs_address']); ?></li>
-                        <li><?php echo strtoupper($data['job_expected_salary']); ?></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="items-link items-link2 f-right">
-                <a href="job_details.php">Full Time</a>
-                <span>7 hours ago</span>
-            </div>
-        </div>
-        <?php }?>
-        </div>
-        <!-- More Btn -->
-        <!-- Section Button -->
         
-    </div>
-</div>
 
 <!-- How  Apply Process Start-->
 <div class="apply-process-area apply-bg pt-150 pb-150" data-background="assets/img/gallery/how-applybg.png">
@@ -254,114 +202,114 @@ if(isset($_POST['register'])) {
 </div>
 <!-- How  Apply Process End-->
 <div class="our-services section-pad-t30">
-    <div class="container">
+            <div class="container">
 
 
 
-        <!-- Section Tittle -->
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="section-tittle text-center">
-                    
-                    <h2>Browse Top Categories </h2>
+                <!-- Section Tittle -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="section-tittle text-center">
+                            
+                            <h2>Browse Top Categories </h2>
+                        </div>
+                    </div>
                 </div>
+                <div class="row d-flex justify-contnet-center">
+                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
+                        <div class="single-services text-center mb-30">
+                            <div class="services-ion">
+                                <span class="flaticon-tour"></span>
+                            </div>
+                            <div class="services-cap">
+                               <h5>Design & Creative</h5>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
+                        <div class="single-services text-center mb-30">
+                            <div class="services-ion">
+                                <span class="flaticon-cms"></span>
+                            </div>
+                            <div class="services-cap">
+                               <h5>Design & Development</h5>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
+                        <div class="single-services text-center mb-30">
+                            <div class="services-ion">
+                                <span class="flaticon-report"></span>
+                            </div>
+                            <div class="services-cap">
+                               <h5>Sales & Marketing</h5>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
+                        <div class="single-services text-center mb-30">
+                            <div class="services-ion">
+                                <span class="flaticon-app"></span>
+                            </div>
+                            <div class="services-cap">
+                               <h5>Mobile Application</h5>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
+                        <div class="single-services text-center mb-30">
+                            <div class="services-ion">
+                                <span class="flaticon-helmet"></span>
+                            </div>
+                            <div class="services-cap">
+                               <h5>Construction</h5>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
+                        <div class="single-services text-center mb-30">
+                            <div class="services-ion">
+                                <span class="flaticon-high-tech"></span>
+                            </div>
+                            <div class="services-cap">
+                               <h5>Information Technology</h5>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
+                        <div class="single-services text-center mb-30">
+                            <div class="services-ion">
+                                <span class="flaticon-real-estate"></span>
+                            </div>
+                            <div class="services-cap">
+                               <h5>Real Estate</h5>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
+                        <div class="single-services text-center mb-30">
+                            <div class="services-ion">
+                                <span class="flaticon-content"></span>
+                            </div>
+                            <div class="services-cap">
+                               <h5>Content Writer</h5>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- More Btn -->
+                <!-- Section Button -->
+               
             </div>
         </div>
-        <div class="row d-flex justify-contnet-center">
-            <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
-                <div class="single-services text-center mb-30">
-                    <div class="services-ion">
-                        <span class="flaticon-tour"></span>
-                    </div>
-                    <div class="services-cap">
-                        <h5>Design & Creative</h5>
-                        
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
-                <div class="single-services text-center mb-30">
-                    <div class="services-ion">
-                        <span class="flaticon-cms"></span>
-                    </div>
-                    <div class="services-cap">
-                        <h5>Design & Development</h5>
-
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
-                <div class="single-services text-center mb-30">
-                    <div class="services-ion">
-                        <span class="flaticon-report"></span>
-                    </div>
-                    <div class="services-cap">
-                        <h5>Sales & Marketing</h5>
-                        
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
-                <div class="single-services text-center mb-30">
-                    <div class="services-ion">
-                        <span class="flaticon-app"></span>
-                    </div>
-                    <div class="services-cap">
-                        <h5>Mobile Application</h5>
-                        
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
-                <div class="single-services text-center mb-30">
-                    <div class="services-ion">
-                        <span class="flaticon-helmet"></span>
-                    </div>
-                    <div class="services-cap">
-                        <h5>Construction</h5>
-                        
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
-                <div class="single-services text-center mb-30">
-                    <div class="services-ion">
-                        <span class="flaticon-high-tech"></span>
-                    </div>
-                    <div class="services-cap">
-                        <h5>Information Technology</h5>
-                        
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
-                <div class="single-services text-center mb-30">
-                    <div class="services-ion">
-                        <span class="flaticon-real-estate"></span>
-                    </div>
-                    <div class="services-cap">
-                        <h5>Real Estate</h5>
-                        
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
-                <div class="single-services text-center mb-30">
-                    <div class="services-ion">
-                        <span class="flaticon-content"></span>
-                    </div>
-                    <div class="services-cap">
-                        <h5>Content Writer</h5>
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- More Btn -->
-        <!-- Section Button -->
-        
-    </div>
-</div>
         <!-- Our Services End -->
         <!-- Online CV Area Start -->
          <div class="online-cv cv-bg section-overly pt-90 pb-120"  data-background="assets/img/gallery/personal.jpg">
@@ -380,10 +328,10 @@ if(isset($_POST['register'])) {
 
 <!-- register MODAL -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-md" role="document">
+            <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                             <div class="modal-header" style="background-color:#1AA478;">
-                              <h5 class="modal-title" id="exampleModalLabel">Register</h5>
+                             <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                              </button>
@@ -431,13 +379,13 @@ if(isset($_POST['register'])) {
                         <select name="user_role_id" id="user_role_id" >
                         <option value="4">Applicant</option>
                             <option value="3">Employer</option>
-                        </select><br><br>
+                        </select>
                     
                      
 
-                                <div class="modal-footer" style="background-color:#1AA478;">
-                                    
-                                     <button style="border-radius:20px;" type="submit" class="btn " id="subreg" name="register">REGISTERED</button>
+                                <div class="modal-footer">
+                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                     <button type="submit" class="btn " id="subreg" name="register">REGISTERED</button>
                                </div>
                          </form>
                     </div>
@@ -452,8 +400,8 @@ if(isset($_POST['register'])) {
 <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                             <div class="modal-header" style="background-color:;">
-                              <h5 class="modal-title" id="exampleModalLabel">LogIn</h5>
+                             <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                              </button>
@@ -472,9 +420,9 @@ if(isset($_POST['register'])) {
                              </div>
 
 
-                                <div class="modal-footer" >
-                                <button style="border-radius:20px;" type="button" class="btn head-btn1" id="registerss">Register</button>
-                                     <button style="border-radius:20px;" type="submit" class="btn btn-primary" name="login">LOGIN</button>
+                                <div class="modal-footer">
+                                   <button style="border-radius:30px;" type="button" class="btn head-btn1" name="register" id="registers">Register</button>
+                                     <button type="submit" class="btn btn-primary" name="login">LOGIN</button>
                                </div>
                          </form>
                     </div>
@@ -488,7 +436,7 @@ if(isset($_POST['register'])) {
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                              <div class="modal-header">
-                              <h5 class="modal-title" id="exampleModalLabel">LogOut</h5>
+                              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                              </button>
@@ -524,22 +472,10 @@ if(isset($_POST['register'])) {
 
 <script>
   $(document).ready(function(){
-    $("#registerss").click(function(){
-        $("#exampleModal2").modal("hide");
-        const startmona = setTimeout(function() { 
-                                openmona()
-                            }, 1000);
-        
-    });
-    function openmona(){
-        $("#exampleModal").modal("show");
-    }
-
     $("#registers").click(function(){
         // $("#as_user_id").val($("user_id").val());
         $("#exampleModal").modal("show");
     });
-
     $("#logins").click(function(){
         // $("#as_user_id").val($("user_id").val());
         $("#exampleModal2").modal("show");

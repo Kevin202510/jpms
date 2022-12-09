@@ -15,7 +15,7 @@ body{
   color: #566787;
   background:#f5f5f5;
   font-family: 'varela round', Sans-seif;
-  font-size: 13px;
+  font-size: 15px;
 }
 
 
@@ -91,7 +91,8 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
               
                        <div class="items-link items-link2 f-right">
                        <button type="button" data-id="<?php echo $data['user_id']; ?>" class="btn btn-primary" id="view">View</button>
-                       </div>
+                       <button type="button" data-id="<?php echo $data['user_id']; ?>" class="btn btn-primary" id="viewreqs">Requarments</button>
+                      </div>
                      
               </td>
               </tr>
@@ -261,6 +262,37 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
 </div>
 </div>
 
+<!-- viewreq -->
+
+<div class="modal fade" id="viewrequarments" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">REQUARMENTS</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span> 
+          </button>
+        </div>
+                    
+        <div class="modal-body">
+                           
+            <div class="card">
+              <div class="container" style="width:100px; height:100px; background-color:green;">
+                  <a type="button" style="width:50px; height:50px; background-color:red;" href="sample.php?pdfname=KEVIN FELIX CALUAG.pdf">CV</a> 
+              </div>
+            </div>
+            <img class="brand-image img-circle" id="preview" src="{{ asset('img/others/roa1.jpg') }}" width="200" height="150" />
+                                <label class="form-control" for="book_image"><span class="fa fa-camera"></span>&nbsp;Select Image</label>
+                                <input type="file" name="book_image" id="book_image" style="margin: 0 auto; visibility: hidden; display: none;">
+
+
+        </div>
+    </div>
+  </div>
+</div>
+
+<!-- viewreq -->   
+
 
 <?php include('layouts/footer.php'); ?>
 
@@ -294,6 +326,10 @@ $.post("updateapplicant.php",{USER_IDsss: USER_IDs},function(data,status){
 
 $("#viewModal").modal("show");
 
+});
+
+$("#viewreqs").click(function(){
+$("#viewrequarments").modal("show");
 });
 
 function printDivContent() {

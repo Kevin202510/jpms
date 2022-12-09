@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <?php 
 
 include_once("classes/CRUDAPI.php");
@@ -40,7 +41,6 @@ if(isset($_POST['deletejob'])) {
 <?php include('layouts/sidebar.php'); ?>
 
 <style type="text/css">
-
 body{
   color: #566787;
   background:#f5f5f5;
@@ -65,6 +65,8 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
   margin: -20px -25px 10px;
   border-radius: 3px 3px 0 0;
 }
+
+
   </style>
 
 <div class="container">
@@ -73,69 +75,66 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
           <div class="row">
             <div class="col-md-12">
            
-          <h5><b>Post Jobs</b></h5>
-          <div class="search-bar" style="float:right;">
+          <h5><b>Job Post</b></h5>
+          
+          <div class="search-bar" style="">
       <form class="search-form d-flex align-items-center" method="POST" action="#">
         <input type="text" name="query" placeholder="Search" title="Enter search keyword">
         <button type="submit" title="Search"><i class="bi bi-search"></i></button>
       </form>
       </div>
-        
-
-           </div><!-- End Search Bar -->
-         </div>
-      </div>
+        </div><!-- End Search Bar -->
+                 
+          </div>
+  
+    </div>
 
        <table class="table table-striped table-hover">
             <thead>
               <tr>
-                   <th scope="col">#</th>
-                   <th scope="col">Company Name</th>
-                   <th scope="col">Position</th>
-                   <th scope="col">Address</th>
-                   <th scope="col">Description</th>
-                   <th scope="col">Skill</th>
-                   <th scope="col">Education</th>
-                   <th scope="col">Preferred Time</th>
-                   <th scope="col">Experience</th>
-                   <th scope="col">Vacancy</th>
-                   <th scope="col">Salary</th>
-                   <th scope="col">Action</th>
+              <th scope="col">#</th>
+            <th scope="col">Campany Name</th>
+            <th scope="col">Position Name</th>
+            <th scope="col">Address</th>
+            <th scope="col">Vacancy</th>
+            <th scope="col">Salary</th>
+            <th scope="col">Action</th>
              <tr>
             </thead>
+            
             <tbody>
                 <?php 
-                    $query = "SELECT * FROM `jobs` left join users on users.user_id = jobs.jobs_user_id where jobs.jobs_user_id=3";
-                    $result = $crudapi->getData($query);
-                    $number = 1;
-                    foreach ($result as $key => $data) {
+                   if(isset($_SESSION['USERROLE'])){
+                    $jobuser= $_SESSION['USERID'];
+                $query = "SELECT * FROM jobs";
+                $result = $crudapi->getData($query);
+
+                // var_dump($result);
+                $number = 1;
+                foreach ($result as $key => $data) {
                 ?>
                  <tr>
-                       <th scope="row"><?php echo $number; ?></th>
-                       <td><?php echo $data["job_company_name"] ?></td>
-                       <td><?php echo $data["jobs_name"] ?></td>
-                       <td><?php echo $data["jobs_address"] ?></td>
-                       <td><?php echo $data["jobs_description"] ?></td>
-                       <td><?php echo $data["jobs_r_skills"] ?></td>
-                       <td><?php echo $data["jobs_r_education_id"] ?></td>
-                       <td><?php echo $data["jobs_preferred_time"] ?></td>
-                       <td><?php echo $data["jobs_r_experience"] ?></td>
-                       <td><?php echo $data["jobs_vacancy_count"] ?></td>
-                       <td><?php echo $data["job_expected_salary"] ?></td>
+                 <th scope="row"><?php echo $number; ?></th>
+              <td><?php echo $data["job_company_name"] ?></td>
+              <td><?php echo $data["jobs_name"] ?></td>
+              <td><?php echo $data["jobs_address"] ?></td>
+            
+              <td><?php echo $data["jobs_vacancy_count"] ?></td>
+              <td><?php echo $data["job_expected_salary"] ?></td>
          
               
                      <td>
               
               
-                       <div class="items-link items-link2 f-right">
-                          <a href="#"><i style="font-size:15px;" class="bi bi-eye-fill"></i></a>
-                          <button type="button" data-id="<?php echo $data['jobs_id']; ?>" id="editbtn" style="border: transparent; color: green; background: transparent;"><i class="bi bi-pencil-fill"></i></button>
-                       <button type="button" data-id="<?php echo $data['jobs_id']; ?>" id="deletebtn" style="border: transparent; color: red; background: transparent;"> <i class="bi bi-trash-fill"></i></button>
-                       </div>
+                     <div class="btn-group" role="group" aria-label="Basic example">
+                  <button type="button" data-id="<?php echo $data['jobs_id']; ?>" class="btn btn-primary" style="background-color:transparent; color:green; border:none;" id="editbtn"><i class="bi bi-pencil-fill"></i></button>
+                  <button type="button" data-id="<?php echo $data['jobs_id']; ?>" class="btn btn-danger" style="background-color:transparent; color:red; border:none;" id="deletebtn"><i class="bi bi-trash-fill"></i></button>
+                  <button type="button" data-id="<?php echo $data['jobs_id']; ?>" class="btn btn-primary" style="background-color:transparent; color:blue; border:none;" id="view"><i class="bi bi-eye-fill"></i></button>
+                </div>
                      
               </td>
               </tr>
-          <?php $number++; } ?>
+          <?php $number++; } }?>
         </tbody>
       </table>
 </div>
@@ -143,129 +142,126 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
 
 
 
-         <!-- UpdateMODAL -->
-<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
+
+<!-- ViewMODAL -->
+
+<div class="modal fade" id="viewModal" tabindex="-1" role="dialog" aria-labelledby="viewModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl" role="document">
                 <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <h5 class="modal-title" id="viewModalLabel">View</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
-                <form method="POST">
-                    <input type="hidden" class="form-control" name="jobs_id" id="jobs_ids">
-                    <input type="hidden" class="form-control" name="jobs_user_id" id="jobs_user_ids">
+             
+                <div class="modal-body" style="background-color:;">
 
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Comapany Name</label>
-                        <input type="text" class="form-control" name="job_company_name" id="job_company_names" placeholder="Comapany Name" required>
+                <!-- job post company Start -->
+        <div class="job-post-company pt-120 pb-120">
+            <div class="container">
+                <div class="row justify-content-between">
+                    <!-- Left Content -->
+                    <div class="col-xl-7 col-lg-8">
+                        <!-- job single -->
+
+
+                        <div class="single-job-items mb-50">
+                 
+                            <div class="job-items">
+                                <div class="company-img company-img-details">
+                                    <a href="#"><img src="assets/img/icon/job-list1.png" alt=""></a>
+                                </div>
+                                <div class="job-tittle">
+                                    
+                                        <h4 id="job_company_namess"></h4>
+                                   
+                                    <ul>
+                                        <li id="jobs_namess"></li>
+                                        <li id="jobs_addressss"></li>
+                                        <li id="job_expected_salaryss"></li>
+                                    </ul>
+                                </div>
+                            </div>
+                           
+                        </div>
+                          <!-- job single End -->
+                       
+                        <div class="job-post-details">
+                            <div class="post-details1 mb-50">
+                                <!-- Small Section Tittle -->
+                                <div class="small-section-tittle">
+                                    <h4>Job Description</h4>
+                                </div>
+                                <p id="jobs_descriptionss"></p>
+                            </div>
+                            <div class="post-details2  mb-50">
+                                 <!-- Small Section Tittle -->
+                                <div class="small-section-tittle">
+                                    <h4>Required Knowledge, Skills, and Abilities</h4>
+                                </div>
+                               <ul>
+                                   <li id="jobs_r_skillsss"></li>
+                                  
+                               </ul>
+                            </div>
+                            <div class="post-details2  mb-50">
+                                 <!-- Small Section Tittle -->
+                                <div class="small-section-tittle">
+                                    <h4>Education + Experience</h4>
+                                </div>
+                               <ul>
+                                   <li id="jobs_r_education_idss"></li>
+                                   
+                               </ul>
+                            </div>
+                        </div>
+
                     </div>
-
-
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Position</label>
-                        <input type="text" class="form-control" name="jobs_name" id="jobs_names" placeholder="Position" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Comapany Address</label>
-                        <input type="text" class="form-control" name="jobs_address" id="jobs_addresss" placeholder="Comapany Address"required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Description</label>
-                        <input type="text" class="form-control" name="jobs_description" id="jobs_descriptions" placeholder="Description"required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Skills</label>
-                        <input type="text" class="form-control" name="jobs_r_skills" id="jobs_r_skillss" placeholder="Skills"required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Education</label>
-                        <select name="jobs_r_education_id" id="jobs_r_education_ids">
-                          <?php 
-           
-                              $query = "SELECT * FROM `education_attainment`";
-                              $result = $crudapi->getData($query);
-                              $number = 1;
-                              foreach ($result as $key => $data) {
-                          ?>
-                          <option value="<?php echo $data['ea_id']; ?>"><?php echo $data['ea_name']; ?></option>
-                        <?php }?>
-                        </select>
-
-
-                        <div class="form-group">
-                        <label for="exampleInputPassword1">Preferred Time</label>
-                        <select name="jobs_preferred_time" id="jobs_preferred_time">
-
-                            <option value="1">Full Time</option>
-                            <option value="0">Part Time</option>
-
-                         </select>
-                        <!-- <input type="text" class="form-control" name="jobs_r_education_id" id="jobs_r_education_id" placeholder="Education"required> -->
+                    <!-- Right Content -->
+                    <div class="col-xl-4 col-lg-4">
+                        <div class="post-details3  mb-50">
+                            <!-- Small Section Tittle -->
+                           <div class="small-section-tittle">
+                               <h4>Job Overview</h4>
+                           </div>
+                          <ul>
+                              <li>Posted date : <span id="created_at"></span></li>
+                              <li>Location : <span id="jobs_addresssss"></span></li>
+                              <li>Vacancy : <span id="jobs_vacancy_countss"></span></li>
+                              <li>Job nature : <span id="jobs_preferred_timess"></span></li>
+                              <li>Salary :  <span id="job_expected_salarysss"></span></li>
+                              <li>Application date : <span>12 Sep 2020</span></li>
+                          </ul>
+                         <!-- <div class="apply-btn2">
+                            <a href="#" class="btn">Apply Now</a>
+                         </div> -->
+                        
+                       </div>
+                        <div class="post-details4  mb-50">
+                            <!-- Small Section Tittle -->
+                           <div class="small-section-tittle">
+                               <h4>Company Information</h4>
+                           </div>
+                             
+                            <ul>
+                                <li>Name: <span id="full_namess"></span></li>
+                                <li>Cotact: <span id="user_contactss"></span></li>
+                                <li>Email: <span id="user_emailss"></li>
+                            </ul>
+                       </div>
                     </div>
                 </div>
-
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Experience</label>
-                        <input type="text" class="form-control" name="jobs_r_experience" id="jobs_r_experiences" placeholder="Experience"required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Vacancy</label>
-                        <input type="number" class="form-control" name="jobs_vacancy_count" id="jobs_vacancy_counts" placeholder="Vacancy"required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Salary</label>
-                        <input type="number" class="form-control" name="job_expected_salary" id="job_expected_salarys" placeholder="Salary"required>
-                    </div>
-
-                
-                
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary" name="editjob">Update changes</button>
-                    </div>
-                </form>
-                </div>
-               
+            </div>
+       
+        </div>
+        
+                  </div>
+              
                 </div>
             </div>
          </div>
-
-<!-- delete -->
-         <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="deleteModalLabel">Modal title</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                <form method="POST">
-                    <input type="hidden" class="form-control" name="jobs_id" id="jobs_idss">
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary" name="deletejob">Delete</button>
-                    </div>
-                </form>
-                </div>
-                </div>
-            </div>
-         </div>
-
-
-    
- 
- 
+<!-- View    -->
 
 
 
@@ -273,38 +269,46 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
 <?php include('layouts/footer.php'); ?>
 
 <script>
+   
 
+    $("body").on('click','#view',function(e){
 
-  $("body").on('click','#editbtn',function(e){
-        // alert($(e.currentTarget).data('id'));
-        var USER_IDs = $(e.currentTarget).data('id');
-        $.post("update_jobs.php",{USER_ID: USER_IDs},function(data,status){
+        var USER_IDss = $(e.currentTarget).data('id');
+        // alert(USER_IDss);
+        $.post("update_jobs.php",{USER_IDsss: USER_IDss},function(data,status){
             var emp = JSON.parse(data);
-            $("#jobs_ids").val(emp[0].jobs_id);
-            $("#jobs_user_ids").val(emp[0].jobs_user_id);
-            $("#job_company_names").val(emp[0].job_company_name);
-            $("#jobs_names").val(emp[0].jobs_name);
-            $("#jobs_addresss").val(emp[0].jobs_address);
-            $("#jobs_descriptions").val(emp[0].jobs_description);
-            $("#jobs_r_skillss").val(emp[0].jobs_r_skills);
-            $("#jobs_r_education_ids").val(emp[0].jobs_r_education_id);
-            $("#jobs_preferred_times").val(emp[0].jobs_preferred_time);
-            $("#jobs_r_experiences").val(emp[0].jobs_r_experience);
-            $("#jobs_vacancy_counts").val(emp[0].jobs_vacancy_count);
-            $("#job_expected_salarys").val(emp[0].job_expected_salary);
+            console.log(emp[0]);
+            $("#jobs_idss").text(emp[0].jobs_id);
+            let newdate = new Date(emp[0].created_at);
+            var day = newdate.getDate();
+            var month = newdate.getMonth() + 1;
+            var year = newdate.getFullYear();
+
+            $("#created_at").text(month+" / "+day+" / "+year);
+            $("#jobs_user_idss").text(emp[0].jobs_user_id);
+            $("#job_company_namess").text(emp[0].job_company_name);
+            $("#jobs_namess").text(emp[0].jobs_name);
+            $("#jobs_addressss").text(emp[0].jobs_address);
+            $("#job_expected_salaryss").text(emp[0].job_expected_salary);
+            $("#jobs_descriptionss").text(emp[0].jobs_description);
+            $("#jobs_r_skillsss").text(emp[0].jobs_r_skills);
+            $("#jobs_r_education_idss").text(emp[0].ea_name);
+            $("#jobs_addresssss").text(emp[0].jobs_address);
+            $("#jobs_vacancy_countss").text(emp[0].jobs_vacancy_count);
+            $("#jobs_preferred_timess").text(emp[0].jobs_preferred_time);
+            $("#job_expected_salarysss").text(emp[0].job_expected_salary);
+            $("#full_namess").text(emp[0].user_fname + " " + emp[0].user_lname);
+            $("#user_contactss").text(emp[0].user_contact);
+            $("#user_emailss").text(emp[0].user_email);
             
         });
-
-        $("#editModal").modal("show");
-
-    });
-
-
-    $("body").on('click','#deletebtn',function(e){
         
-        var USER_ID_DELETE = $(e.currentTarget).data('id');
-        $("#jobs_idss").val(USER_ID_DELETE);
-        $("#deleteModal").modal("show");
+        $("#viewModal").modal("show");
 
     });
+ 
+
+
+
+     
 </script>
