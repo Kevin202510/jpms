@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 09, 2022 at 06:14 PM
+-- Generation Time: Dec 09, 2022 at 07:20 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 7.4.33
 
@@ -137,6 +137,7 @@ INSERT INTO `education_attainment` (`ea_id`, `ea_name`) VALUES
 
 CREATE TABLE `jobs` (
   `jobs_id` int(11) NOT NULL,
+  `job_company_logo` varchar(255) DEFAULT NULL,
   `job_company_name` varchar(100) NOT NULL,
   `jobs_name` varchar(100) NOT NULL,
   `jobs_address` varchar(100) NOT NULL,
@@ -155,15 +156,15 @@ CREATE TABLE `jobs` (
 -- Dumping data for table `jobs`
 --
 
-INSERT INTO `jobs` (`jobs_id`, `job_company_name`, `jobs_name`, `jobs_address`, `jobs_description`, `jobs_r_skills`, `jobs_r_education_id`, `jobs_preferred_time`, `jobs_r_experience`, `jobs_vacancy_count`, `job_expected_salary`, `created_at`, `jobs_user_id`) VALUES
-(31, 'Comapany Name', 'Position', 'manila', 'Description', 'Skills', 5, 'Part Time', 'Experience', '9', '8', '2022-12-04 10:27:03', 30),
-(33, 'Name', 'Web Dev', 'general tinio nueva ecija', 'fhsfsgfhjgfshsgfhjgsdhjfsfg', 'sjfhsdfdsgfhsgfhsjgfshjfgsjhfg', 3, 'Part Time', 'sfdfhsghfjsgdfhsgfhsjgfshgfsjhgfskgshfgsdhjfgdshgfshgf', '2', '455', '2022-12-04 10:27:03', 30),
-(35, 'asdasd', 'asdasd', 'asdasd', 'asdasdas', '1', 1, 'Part Time', 'asdasdas', '2', '2', '2022-12-04 10:27:17', 30),
-(36, 'asdasd', 'asdasd', 'asdasd', 'asdasdas', '1', 1, 'Full Time', 'asdasdas', '2', '2', '2022-12-04 10:28:11', 30),
-(37, 'sdfsdf', 'sdfsd', 'dsfsd', 'sdfsd', '1', 1, 'sfsdf', 'sfsd', '2', '2', '2022-12-05 05:08:14', 30),
-(38, 'SAS', 'sadas', 'asdas', 'asdas', '1', 3, 'Full Time', 'asda', '1', '1', '2022-12-05 05:09:58', 30),
-(39, 'vcbvn', 'vbnvb', 'vnvb', 'vbnvb', '1', 0, 'vbnvb', 'vbn', '8', '8', '2022-12-05 05:14:09', 30),
-(40, 'dfgdf', 'dfgd', 'dfgd', 'dfgd', 'dfgdf', 1, 'Full Time', 'fdgd', '6', '6', '2022-12-05 05:17:45', 30);
+INSERT INTO `jobs` (`jobs_id`, `job_company_logo`, `job_company_name`, `jobs_name`, `jobs_address`, `jobs_description`, `jobs_r_skills`, `jobs_r_education_id`, `jobs_preferred_time`, `jobs_r_experience`, `jobs_vacancy_count`, `job_expected_salary`, `created_at`, `jobs_user_id`) VALUES
+(31, 'Kevin F. Caluag.jpg', 'Comapany Name', 'Position', 'manila', 'Description', 'Skills', 5, 'Part Time', 'Experience', '9', '8', '2022-12-04 10:27:03', 30),
+(33, 'qrcode_mushroommonitoringsystemv2-production.up.railway.app (2).png', 'Name', 'Web Dev', 'general tinio nueva ecija', 'fhsfsgfhjgfshsgfhjgsdhjfsfg', 'sjfhsdfdsgfhsgfhsjgfshjfgsjhfg', 3, 'Part Time', 'sfdfhsghfjsgdfhsgfhsjgfshgfsjhgfskgshfgsdhjfgdshgfshgf', '2', '455', '2022-12-04 10:27:03', 30),
+(35, '313788361_2497306877076540_1469489385254321468_n.jpg', 'asdasd', 'asdasd', 'asdasd', 'asdasdas', '1', 1, 'Part Time', 'asdasdas', '2', '2', '2022-12-04 10:27:17', 30),
+(36, NULL, 'asdasd', 'asdasd', 'asdasd', 'asdasdas', '1', 1, 'Full Time', 'asdasdas', '2', '2', '2022-12-04 10:28:11', 30),
+(37, NULL, 'sdfsdf', 'sdfsd', 'dsfsd', 'sdfsd', '1', 1, 'sfsdf', 'sfsd', '2', '2', '2022-12-05 05:08:14', 30),
+(38, NULL, 'SAS', 'sadas', 'asdas', 'asdas', '1', 3, 'Full Time', 'asda', '1', '1', '2022-12-05 05:09:58', 30),
+(39, NULL, 'vcbvn', 'vbnvb', 'vnvb', 'vbnvb', '1', 0, 'vbnvb', 'vbn', '8', '8', '2022-12-05 05:14:09', 30),
+(40, NULL, 'dfgdf', 'dfgd', 'dfgd', 'dfgd', 'dfgdf', 1, 'Full Time', 'fdgd', '6', '6', '2022-12-05 05:17:45', 30);
 
 -- --------------------------------------------------------
 
@@ -235,6 +236,7 @@ INSERT INTO `roles` (`id`, `display_name`) VALUES
 
 CREATE TABLE `users` (
   `user_id` int(100) NOT NULL,
+  `user_profile_img` varchar(255) DEFAULT NULL,
   `user_fname` varchar(100) NOT NULL,
   `user_lname` varchar(100) NOT NULL,
   `user_contact` varchar(11) NOT NULL,
@@ -248,13 +250,13 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`user_id`, `user_fname`, `user_lname`, `user_contact`, `user_email`, `address`, `user_password`, `user_role_id`) VALUES
-(29, 'kevin', 'felix', '90809890', 'kfc202510@gmail.com', 'bago general tinio ne', '5f4dcc3b5aa765d61d8327deb882cf99', 4),
-(30, 'asdasd', 'asdasdasda', '3424234', 'employer@gmail.com', 'wewerwe', '5f4dcc3b5aa765d61d8327deb882cf99', 3),
-(31, 'admin', 'admin', '0987622132', 'admin@gmail.com', 'adsadasd', '5f4dcc3b5aa765d61d8327deb882cf99', 1),
-(32, 'employee', 'lname', '0987654321', 'employee@gmail.com', 'address', '5f4dcc3b5aa765d61d8327deb882cf99', 2),
-(37, 'sfd', 'sdfs', '0987654321', 'adsd', 'sada', 'd8578edf8458ce06fbc5bb76a58c5ca4', 4),
-(38, 'REY', 'JOHN', '098765431', 'reyjohnpaul@gmail.com', 'asdsadasd', '5f4dcc3b5aa765d61d8327deb882cf99', 4);
+INSERT INTO `users` (`user_id`, `user_profile_img`, `user_fname`, `user_lname`, `user_contact`, `user_email`, `address`, `user_password`, `user_role_id`) VALUES
+(29, NULL, 'kevin', 'felix', '90809890', 'kfc202510@gmail.com', 'bago general tinio ne', '5f4dcc3b5aa765d61d8327deb882cf99', 4),
+(30, NULL, 'asdasd', 'asdasdasda', '3424234', 'employer@gmail.com', 'wewerwe', '5f4dcc3b5aa765d61d8327deb882cf99', 3),
+(31, NULL, 'admin', 'admin', '0987622132', 'admin@gmail.com', 'adsadasd', '5f4dcc3b5aa765d61d8327deb882cf99', 1),
+(32, NULL, 'employee', 'lname', '0987654321', 'employee@gmail.com', 'address', '5f4dcc3b5aa765d61d8327deb882cf99', 2),
+(37, NULL, 'sfd', 'sdfs', '0987654321', 'adsd', 'sada', 'd8578edf8458ce06fbc5bb76a58c5ca4', 4),
+(38, 'qrcode_mushroommonitoringsystemv2-production.up.railway.app (2).png', 'REY', 'JOHN', '098765431', 'reyjohnpaul@gmail.com', 'asdsadasd', '5f4dcc3b5aa765d61d8327deb882cf99', 4);
 
 --
 -- Indexes for dumped tables
