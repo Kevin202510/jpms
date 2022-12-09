@@ -59,12 +59,6 @@
                     </div>
                 </div>
                <!--  -->
-<<<<<<< HEAD
-               
-            </div>
-        </div>
-        
-=======
                <div class="row footer-wejed justify-content-between">
                    
                    
@@ -87,5 +81,4 @@
             </div>
         </div>
         <!-- Footer End-->
->>>>>>> c1470c589ad7f5df656262be048bcf30648f2a28
     </footer>
