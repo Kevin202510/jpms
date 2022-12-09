@@ -155,7 +155,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                     </button>
                 </div>
              
-                <div class="modal-body">
+                <div class="modal-body" style="background-color:;">
 
                 <!-- job post company Start -->
         <div class="job-post-company pt-120 pb-120">
@@ -173,9 +173,9 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                                     <a href="#"><img src="assets/img/icon/job-list1.png" alt=""></a>
                                 </div>
                                 <div class="job-tittle">
-                                    <a href="#">
+                                    
                                         <h4 id="job_company_namess"></h4>
-                                    </a>
+                                   
                                     <ul>
                                         <li id="jobs_namess"></li>
                                         <li id="jobs_addressss"></li>

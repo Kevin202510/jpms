@@ -24,7 +24,7 @@
                                             <li><a href="joblisting.php">Find a Jobs </a></li>
                                             <li><a href="about.php">About</a></li>
                                             
-                                            <li><a href="contact.php" style="margin-right:186px;" >Contact</a></li>
+                                            <li><a href="contact.php" style="margin-right:180px;" >Contact</a></li>
                                             
                                             <li><button style="border-radius:30px;" type="button" class="btn head-btn1" id="registers">Register</button></li>
                                             <li><button style="border-radius:30px;" type="button"  class="btn head-btn21" id="logins">Login</button></li>

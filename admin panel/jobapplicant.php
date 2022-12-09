@@ -2,8 +2,25 @@
   
     include_once("classes/CRUDAPI.php");
     $crudapi = new CRUDAPI();
+    $jobs_user_id;
+    if(isset($_SESSION['USERROLE'])){
+      $jobs_user_id =  $_SESSION['USERID'];
+    }
 
+
+    if(isset($_POST['deletejob'])) {  
+      $job_app_id  = $crudapi->escape_string($_POST['job_app_id']);
+        
+      $result = $crudapi->execute("DELETE from job_applicants WHERE job_app_id = '$job_app_id' ");
+      
+      echo '<script>alert("DELETED SUCCESS");</script>';
+      header("location:jobapplicant.php");
+  }   
   ?>
+
+
+
+
 
 <?php include('layouts/head.php'); ?>
 <?php include('layouts/header.php'); ?>
@@ -16,7 +33,7 @@ body{
   color: #566787;
   background:#f5f5f5;
   font-family: 'varela round', Sans-seif;
-  font-size: 13px;
+  font-size: 15px;
 }
 
 
@@ -70,7 +87,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
             <tbody>
                 <?php 
                      
-                     $query = "SELECT * FROM `users` LEFT JOIN roles ON roles.id = users.user_role_id Left JOIN applicant_additional_info ON roles.id = users.user_role_id where users.user_role_id =4";
+                     $query = "SELECT * FROM `job_applicants` LEFT JOIN users ON users.user_id = job_applicants.job_app_user_id LEFT JOIN jobs on jobs.jobs_id = job_applicants.job_app_job_id WHERE jobs.jobs_user_id = ".$_SESSION['USERID']."";
                      $result = $crudapi->getData($query);
                      $number = 1;
                      foreach ($result as $key => $data) {
@@ -81,14 +98,16 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
               <td><?php echo strtoupper($data["user_fname"]." ".$data["user_lname"]); ?></td>
               <td><?php echo strtoupper($data["address"]) ?></td>
               <td><?php echo strtoupper($data["user_email"]) ?></td>
-         
+             
               
                      <td>
               
               
                        <div class="items-link items-link2 f-right">
                         <button type="button" data-id="<?php echo $data['user_id']; ?>" class="btn btn-primary" id="view">View</button>
-                        <button type="button" data-id="<?php echo $data['user_id']; ?>" class="btn btn-primary" id="viewreq">View Requarments</button>
+                        <button type="button" data-id="<?php echo $data['user_id']; ?>" class="btn btn-primary" id="viewreq">Requarments </button>
+                        <button type="button" data-id="<?php echo $data['job_app_id']; ?>" class="btn btn-primary" id="delete">unlike </button>
+                        
                       </div>
                      
               </td>
@@ -283,7 +302,34 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
   </div>
 </div>
 
-<!-- viewreq -->                      
+<!-- viewreq -->   
+
+
+   <!-- delete -->
+   <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                <form method="POST">
+                    <input type="hidden" class="form-control" name="job_app_id" id="job_app_id">
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary" name="deletejob">Delete</button>
+                    </div>
+                </form>
+                </div>
+               
+                </div>
+            </div>
+         </div>
+
+<!-- delete -->
 
 
 <?php include('layouts/footer.php'); ?>
@@ -328,6 +374,16 @@ $("#viewModal").modal("show");
 $("#viewreq").click(function(){
 $("#viewrequarments").modal("show");
 });
+
+$("body").on('click','#delete',function(e){
+        
+        var USER_ID_DELETE = $(e.currentTarget).data('id');
+        $("#job_app_id").val(USER_ID_DELETE);
+        $("#deleteModal").modal("show");
+
+    });
+
+
 
 function printDivContent() {
  	var divElementContents = document.getElementById("printContent").innerHTML;

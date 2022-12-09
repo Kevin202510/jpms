@@ -70,7 +70,7 @@ body{
   color: #566787;
   background:#f5f5f5;
   font-family: 'varela round', Sans-seif;
-  font-size: 13px;
+  font-size: 15px;
 }
 
 
@@ -405,12 +405,12 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                  
                             <div class="job-items">
                                 <div class="company-img company-img-details">
-                                    <a href="#"><img src="assets/img/icon/job-list1.png" alt=""></a>
+                                    <img src="assets/img/icon/job-list1.png" alt="">
                                 </div>
                                 <div class="job-tittle">
-                                    <a href="#">
+                                    
                                         <h4 id="job_company_namess"></h4>
-                                    </a>
+                                   
                                     <ul>
                                         <li id="jobs_namess"></li>
                                         <li id="jobs_addressss"></li>
@@ -446,7 +446,9 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                                     <h4>Education + Experience</h4>
                                 </div>
                                <ul>
-                                   <li id="jobs_r_education_idss"></li>
+                                   <li id="ea_name"></li>
+
+                                   <li id="jobs_r_experiencess"></li>
                                    
                                </ul>
                             </div>
@@ -481,7 +483,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                              
                             <ul>
                                 <li>Name: <span id="full_namess"></span></li>
-                                <li>Cotact: <span id="user_contactss"></span></li>
+                                <li>Contact: <span id="user_contactss"></span></li>
                                 <li>Email: <span id="user_emailss"></li>
                             </ul>
                        </div>
@@ -530,8 +532,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
             $("#job_expected_salarys").val(emp[0].job_expected_salary);
             
         });
-
-
+      
 
         $("#editModal").modal("show");
 
@@ -569,7 +570,8 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
             $("#job_expected_salaryss").text(emp[0].job_expected_salary);
             $("#jobs_descriptionss").text(emp[0].jobs_description);
             $("#jobs_r_skillsss").text(emp[0].jobs_r_skills);
-            $("#jobs_r_education_idss").text(emp[0].ea_name);
+            $("#ea_name").text(emp[0].ea_name);
+            $("#jobs_r_experiencess").text(emp[0].jobs_r_experience);
             $("#jobs_addresssss").text(emp[0].jobs_address);
             $("#jobs_vacancy_countss").text(emp[0].jobs_vacancy_count);
             $("#jobs_preferred_timess").text(emp[0].jobs_preferred_time);
@@ -578,7 +580,8 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
             $("#user_contactss").text(emp[0].user_contact);
             $("#user_emailss").text(emp[0].user_email);
             
-        });
+        });  
+
         
         $("#viewModal").modal("show");
 

@@ -46,7 +46,7 @@
         // alert($(e.currentTarget).data('id'));
       var USER_IDs = $(e.currentTarget).data('id');
       $.post("updateusers.php",{USER_ID: USER_IDs},function(data,status){
-        alert(USER_IDs);
+        // alert(USER_IDs);
       var emp = JSON.parse(data);
       // console.log(emp);
     $("#user_fnamez").text(emp[0].user_fname + " " + emp[0].user_lname);

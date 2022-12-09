@@ -15,7 +15,7 @@ body{
   color: #566787;
   background:#f5f5f5;
   font-family: 'varela round', Sans-seif;
-  font-size: 13px;
+  font-size: 15px;
 }
 
 
@@ -91,7 +91,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
               
                        <div class="items-link items-link2 f-right">
                        <button type="button" data-id="<?php echo $data['user_id']; ?>" class="btn btn-primary" id="view">View</button>
-                       <button type="button" data-id="<?php echo $data['user_id']; ?>" class="btn btn-primary" id="viewreqs">View Requarments</button>
+                       <button type="button" data-id="<?php echo $data['user_id']; ?>" class="btn btn-primary" id="viewreqs">Requarments</button>
                       </div>
                      
               </td>
@@ -268,7 +268,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">VIEW REQUARMENTS</h5>
+        <h5 class="modal-title" id="exampleModalLabel">REQUARMENTS</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span> 
           </button>

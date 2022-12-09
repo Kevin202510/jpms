@@ -294,16 +294,21 @@ else if(isset($_POST["logout"])){
 
           <input type="hidden" class="form-control" name="user_id" id="user_idz">
 
-                 
-                            
-                            <h4 id="user_fnamez"></h4>
-                                    </a>
-                                    <ul>
-                                        <li id="addressz"></li>
-                                        <li id="user_contactz"></li>
-                                        <li id="user_emailz"></li>
+        <center>  <div class="col-md-12 text-left text-md-center ">
+            <img class="rounded-circle img-fluid" src="https://i.pravatar.cc/175?img=32" alt="Profile Photo" />
+          </div></center>
+                     <div style="text-align:center;">       
+                            <h2 id="user_fnamez"></h2>
+                           
+                                    <hr>
+                              
+                                    <ul style="text-align:left;">                               
+                                      <i class="bi bi-telephone" style="font-size:30px;  background:#ffc0c0; width:100px; heigth:100px; border-radius:50%; text-align:center; line-heigth:100px; vertical-align:middle; padding:10px;"> </i><label style="font-size:20px;" id="user_contactz"></label><br><br>
+                                      <i class="bi bi-envelope circle-icon" style="font-size:30px; background:#ffc0c0; width:100px; heigth:100px; border-radius:50%; text-align:center; line-heigth:100px; vertical-align:middle; padding:10px;"></i><label style="font-size:20px;" id="user_emailz"></label><br><br>
+                                      <i class="bi bi-geo-alt" style="font-size:30px; background:#ffc0c0; width:100px; heigth:100px; border-radius:50%; text-align:center; line-heigth:100px; vertical-align:middle; padding:10px;"> </i><label style="font-size:20px;" id="addressz"></label>
                                     </ul>
-
+                       </div>       
+                     </div>
            
         </form>
         </div>
@@ -330,6 +335,10 @@ else if(isset($_POST["logout"])){
 
           <input type="hidden" class="form-control" name="user_id" id="user_idss">
                     <input type="hidden" class="form-control" name="user_role_id" id="user_role_idss">
+
+                    <center>  <div class="col-md-3 text-left text-md-center mb-3">
+            <img class="rounded-circle img-fluid" src="assets/img/profile-img.jpg" alt="Profile Photo" />
+          </div></center>
 
                     <div class="form-group">
                                  <label for="exampleInputPassword1">First Name</label>

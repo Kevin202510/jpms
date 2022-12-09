@@ -118,17 +118,19 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                       
                     <div class="card-body">
                             
-                    <div class="form-group">
-                        <img style="width:200px; " src="profiles/limboprofile.webp">
-                        </div>
-
-                        <div class=form-group >
-                    Full Name <?php echo strtoupper($data["user_fname"]." ".$data["user_lname"]); ?> <br>
-                    Address <?php echo strtoupper($data["address"]) ?><br>
-                    Contact<?php echo strtoupper($data["user_contact"]) ?> <br>
-                    Email<?php echo strtoupper($data["user_email"]) ?><br> 
-
-                                         </div> 
+                    <center>  <div class="col-md-12 text-left text-md-center ">
+            <img class="rounded-circle img-fluid" src="https://i.pravatar.cc/175?img=32" alt="Profile Photo" />
+          </div></center>
+                     <div style="text-align:center;">       
+                            <h2 id="full_name"></h2>
+                           
+                                    <hr>
+                              
+                                    <ul style="text-align:left;">                               
+                                      <i class="bi bi-telephone" style="font-size:30px;  background:#ffc0c0; width:100px; heigth:100px; border-radius:50%; text-align:center; line-heigth:100px; vertical-align:middle; padding:10px;"> </i><label style="font-size:20px;" id="user_contact"></label><br><br>
+                                      <i class="bi bi-envelope circle-icon" style="font-size:30px; background:#ffc0c0; width:100px; heigth:100px; border-radius:50%; text-align:center; line-heigth:100px; vertical-align:middle; padding:10px;"></i><label style="font-size:20px;" id="user_email"></label><br><br>
+                                      <i class="bi bi-geo-alt" style="font-size:30px; background:#ffc0c0; width:100px; heigth:100px; border-radius:50%; text-align:center; line-heigth:100px; vertical-align:middle; padding:10px;"> </i><label style="font-size:20px;" id="address"></label>
+                                    </ul>
 
                     </div>
                     </div>

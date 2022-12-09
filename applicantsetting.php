@@ -13,10 +13,6 @@ $address = $crudapi->escape_string($_POST['address']);
   echo '<script>alert("UPDATED SUCCESS");</script>';
   header("location:applicantsetting.php");
 }
-else if(isset($_POST["logout"])){
-  session_destroy();
-  header("location: ../index.php");
-}
 
 
 

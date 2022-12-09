@@ -54,7 +54,7 @@ $(document).ready(function(){
         // alert($(e.currentTarget).data('id'));
       var USER_IDs = $(e.currentTarget).data('id');
       $.post("admin panel/updateusers.php",{USER_ID: USER_IDs},function(data,status){
-        alert("USER_IDs");
+        // alert("USER_IDs");
       var emp = JSON.parse(data);
       console.log(emp);
     $("#user_fnamezz").text(emp[0].user_fname + " " + emp[0].user_lname);
@@ -74,18 +74,18 @@ $("body").on('click','#settings',function(e){
         var USER_IDs = $(e.currentTarget).data('id');
         $.post("admin panel/updateusers.php",{USER_ID: USER_IDs},function(data,status){
             var emp = JSON.parse(data);
-            $("#user_idssz").val(emp[0].user_id);
-            $("#user_role_idssz").val(emp[0].user_role_id);
-            $("#user_fnamessz").val(emp[0].user_fname);
-            $("#user_lnamessz").val(emp[0].user_lname);
-            $("#user_contactssz").val(emp[0].user_contact);
-            $("#user_emailssz").val(emp[0].user_email);
-            $("#addressssz").val(emp[0].address);
+            $("#user_idss").val(emp[0].user_id);
+            $("#user_role_idss").val(emp[0].user_role_id);
+            $("#user_fnamess").val(emp[0].user_fname);
+            $("#user_lnamess").val(emp[0].user_lname);
+            $("#user_contactss").val(emp[0].user_contact);
+            $("#user_emailss").val(emp[0].user_email);
+            $("#addressss").val(emp[0].address);
 
           
         });
 
-        $("#applicantSetting").modal("show");
+        $("#editusers").modal("show");
 
     });
  
