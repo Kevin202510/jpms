@@ -176,7 +176,11 @@ if(isset($_POST['register'])) {
         <div class="single-job-items mb-30">
             <div class="job-items">
                 <div class="company-img">
+                    <?php if($data['job_company_logo']===NULL){ ?>
                     <a href="#"><img src="assets/img/icon/job-list1.png" alt=""></a>
+                    <?php }else{?>
+                    <a href="#"><img src="company_logo/<?php echo $data['job_company_logo'] ?>" alt="" width="100"></a>
+                    <?php } ?>
                 </div>
                 <div class="job-tittle job-tittle2">
                     <a href="#">
