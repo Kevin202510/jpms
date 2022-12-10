@@ -329,8 +329,8 @@ if(isset($_POST['register'])) {
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-md" role="document">
                 <div class="modal-content">
-                             <div class="modal-header" style="background-color:#1AA478;">
-                              <h5 class="modal-title" id="exampleModalLabel">Register</h5>
+                             <div class="modal-header" style="background-color:#1AA478; ">
+                            <h5 class="modal-title" id="exampleModalLabel">Register</h5>
                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                              </button>
@@ -382,10 +382,11 @@ if(isset($_POST['register'])) {
                     
                      
 
-                                <div class="modal-footer" style="background-color:#1AA478;">
+                                <div class="modal-footer" style="background-color:#13e9a5;">
                                     
-                                     <button style="border-radius:20px;" type="submit" class="btn " id="subreg" name="register">REGISTERED</button>
-                               </div>
+                            <button style="border-radius:20px; text-align:center;" type="submit" class="btn " id="subreg" name="register">REGISTERED</button>
+                                     
+                                    </div>
                          </form>
                     </div>
                 </div>
@@ -400,7 +401,7 @@ if(isset($_POST['register'])) {
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                              <div class="modal-header" style="background-color:;">
-                              <h5 class="modal-title" id="exampleModalLabel">LogIn</h5>
+                             <center> <h5 class="modal-title" id="exampleModalLabel">LogIn</h5></center>
                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                              </button>
