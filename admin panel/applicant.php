@@ -45,11 +45,12 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
            
           <h5><b>Applicant</b></h5>
           
-          <div class="search-bar" style="float:right;">
-      <form class="search-form d-flex align-items-center" method="POST" action="#">
-        <input type="text" name="query" placeholder="Search" title="Enter search keyword">
-        <button type="submit" title="Search"><i class="bi bi-search"></i></button>
-      </form>
+                <div class="search-bar" style="float:right;">
+                    <div class="search-form d-flex align-items-center" method="POST" action="#">
+                      <input type="text" id="searchData" placeholder="Search By Company Name" title="Enter search keyword">
+                      <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+                  </div>
+               </div>
       </div>
         </div><!-- End Search Bar -->
           
@@ -70,7 +71,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
             <th scope="col">Address</th>
              <tr>
             </thead>
-            <tbody>
+            <tbody id="table-main">
                 <?php 
                      $query = "SELECT * FROM `users` where user_role_id = 4";
                      $result = $crudapi->getData($query);
@@ -343,4 +344,27 @@ function printDivContent() {
     a.document.close();
  	a.print();
 }
+
+
+$("#searchData").keyup(function(){
+        // alert("asd");
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("searchData");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("table-main");
+    tr = table.getElementsByTagName("tr");
+
+    // Loop through all table rows, and hide those who don't match the search query
+    for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[0];
+        if (td) {
+        txtValue = td.textContent || td.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+        } else {
+            tr[i].style.display = "none";
+        }
+        }
+    }
+    });
 </script>

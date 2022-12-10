@@ -77,12 +77,12 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
            
           <h5><b>Job Post</b></h5>
           
-          <div class="search-bar" style="">
-      <form class="search-form d-flex align-items-center" method="POST" action="#">
-        <input type="text" name="query" placeholder="Search" title="Enter search keyword">
-        <button type="submit" title="Search"><i class="bi bi-search"></i></button>
-      </form>
-      </div>
+          <div class="search-bar" style="float:right;">
+                        <div class="search-form d-flex align-items-center" method="POST" action="#">
+                          <input type="text" id="searchData" placeholder="Search By Company Name" title="Enter search keyword">
+                          <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+                      </div>
+                 </div>
         </div><!-- End Search Bar -->
                  
           </div>
@@ -102,7 +102,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
              <tr>
             </thead>
             
-            <tbody>
+            <tbody id="table-main">
                 <?php 
                    if(isset($_SESSION['USERROLE'])){
                     $jobuser= $_SESSION['USERID'];
@@ -308,7 +308,27 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
     });
  
 
+    $("#searchData").keyup(function(){
+        // alert("asd");
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("searchData");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("table-main");
+    tr = table.getElementsByTagName("tr");
 
+    // Loop through all table rows, and hide those who don't match the search query
+    for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[0];
+        if (td) {
+        txtValue = td.textContent || td.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+        } else {
+            tr[i].style.display = "none";
+        }
+        }
+    }
+    });
 
      
 </script>

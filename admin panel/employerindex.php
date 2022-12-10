@@ -136,11 +136,11 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
            
           <h5><b>Job Post</b></h5>
           <button type="button" class="btn btn-primary" id="jobs" style=" background-color:#28a745;  width:100px; float:right; border:none;">ADD</button>
-          <div class="search-bar" style="">
-      <div class="search-form d-flex align-items-center" method="POST" action="#">
-        <input type="text" id="searchData" placeholder="Search By Company Name" title="Enter search keyword">
-        <button type="submit" title="Search"><i class="bi bi-search"></i></button>
-    </div>
+          <div class="search-bar">
+            <div class="search-form d-flex align-items-center" method="POST" action="#">
+             <input type="text" id="searchData" placeholder="Search By Company Name" title="Enter search keyword">
+            <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+           </div>
       </div>
         </div><!-- End Search Bar -->
                  

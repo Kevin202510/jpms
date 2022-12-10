@@ -102,12 +102,12 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
 
           <h5><b>Users Account</b></h5>
           <button type="button" class="btn btn-primary" id="userregisters" style=" background-color:#28a745;  width:100px; float:right; border:none;">ADD</button>
-          <div class="search-bar">
-      <form class="search-form d-flex align-items-center" method="POST" action="#">
-        <input type="text" name="query" placeholder="Search" title="Enter search keyword">
-        <button type="submit" title="Search"><i class="bi bi-search"></i></button>
-      </form>
-      </div>
+             <div class="search-bar">
+                        <div class="search-form d-flex align-items-center" method="POST" action="#">
+                          <input type="text" id="searchData" placeholder="Search By Company Name" title="Enter search keyword">
+                          <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+                      </div>
+                 </div>
            
         </div>
       </div>
@@ -124,7 +124,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                    
              <tr>
             </thead>
-            <tbody>
+            <tbody id="table-main">
                 <?php 
                       $query = "SELECT * FROM `users` LEFT JOIN roles ON roles.id = users.user_role_id where users.user_role_id = 2";
                       $result = $crudapi->getData($query);
@@ -335,5 +335,29 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
         $("#deleteModal").modal("show");
 
     });
+
+    $("#searchData").keyup(function(){
+        // alert("asd");
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("searchData");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("table-main");
+    tr = table.getElementsByTagName("tr");
+
+    // Loop through all table rows, and hide those who don't match the search query
+    for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[0];
+        if (td) {
+        txtValue = td.textContent || td.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+        } else {
+            tr[i].style.display = "none";
+        }
+        }
+    }
+    });
+
+
 
   </script>
