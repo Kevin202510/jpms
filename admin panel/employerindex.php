@@ -484,7 +484,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                             <ul>
                                 <li>Name: <span id="full_namess"></span></li>
                                 <li>Contact: <span id="user_contactss"></span></li>
-                                <li>Email: <span id="user_emailss"></li>
+                                <li>Email: <span id="user_emailss"></span></li>
                             </ul>
                        </div>
                     </div>
@@ -579,7 +579,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
             $("#full_namess").text(emp[0].user_fname + " " + emp[0].user_lname);
             $("#user_contactss").text(emp[0].user_contact);
             $("#user_emailss").text(emp[0].user_email);
-            
+            // alert("user_contactss");
         });  
 
         

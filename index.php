@@ -327,10 +327,10 @@ if(isset($_POST['register'])) {
 
 <!-- register MODAL -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
+            <div class="modal-dialog modal-md" role="document">
                 <div class="modal-content">
-                             <div class="modal-header">
-                              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                             <div class="modal-header" style="background-color:#1AA478;">
+                              <h5 class="modal-title" id="exampleModalLabel">Register</h5>
                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                              </button>
@@ -378,13 +378,13 @@ if(isset($_POST['register'])) {
                         <select name="user_role_id" id="user_role_id" >
                         <option value="4">Applicant</option>
                             <option value="3">Employer</option>
-                        </select>
+                        </select><br><br>
                     
                      
 
-                                <div class="modal-footer">
-                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                     <button type="submit" class="btn " id="subreg" name="register">REGISTERED</button>
+                                <div class="modal-footer" style="background-color:#1AA478;">
+                                    
+                                     <button style="border-radius:20px;" type="submit" class="btn " id="subreg" name="register">REGISTERED</button>
                                </div>
                          </form>
                     </div>
@@ -399,8 +399,8 @@ if(isset($_POST['register'])) {
 <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                             <div class="modal-header">
-                              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                             <div class="modal-header" style="background-color:;">
+                              <h5 class="modal-title" id="exampleModalLabel">LogIn</h5>
                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                              </button>
@@ -419,9 +419,9 @@ if(isset($_POST['register'])) {
                              </div>
 
 
-                                <div class="modal-footer">
-                                   <button style="border-radius:30px;" type="button" class="btn head-btn1" name="register" id="registers">Register</button>
-                                     <button type="submit" class="btn btn-primary" name="login">LOGIN</button>
+                                <div class="modal-footer" >
+                                <button style="border-radius:20px;" type="button" class="btn head-btn1" id="registerss">Register</button>
+                                     <button style="border-radius:20px;" type="submit" class="btn btn-primary" name="login">LOGIN</button>
                                </div>
                          </form>
                     </div>
@@ -435,7 +435,7 @@ if(isset($_POST['register'])) {
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                              <div class="modal-header">
-                              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                              <h5 class="modal-title" id="exampleModalLabel">LogOut</h5>
                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                              </button>
@@ -471,10 +471,22 @@ if(isset($_POST['register'])) {
 
 <script>
   $(document).ready(function(){
+    $("#registerss").click(function(){
+        $("#exampleModal2").modal("hide");
+        const startmona = setTimeout(function() { 
+                                openmona()
+                            }, 1000);
+        
+    });
+    function openmona(){
+        $("#exampleModal").modal("show");
+    }
+
     $("#registers").click(function(){
         // $("#as_user_id").val($("user_id").val());
         $("#exampleModal").modal("show");
     });
+
     $("#logins").click(function(){
         // $("#as_user_id").val($("user_id").val());
         $("#exampleModal2").modal("show");

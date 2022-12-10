@@ -237,7 +237,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
 
                  <ul>
                     <li style="color:black;" id="aebg_year_graduatezz"><i style="color:black;" class="fas fa-calendar"></i></li>
-                    <li style="color:black;" id="aebg_education_attainment_idzz"><i style="color:black;" class="fas fa-graduation-cap"></i></li>
+                    <li style="color:black;"><span id="aebg_education_attainment_idzz"></span><i style="color:black;" class="fas fa-graduation-cap"></i></li>
 
                  </ul>
 
@@ -348,7 +348,7 @@ $.post("updateapplicant.php",{USER_IDsss: USER_IDs},function(data,status){
     $("#ae_tozz").text(emp[0].ae_to);
     $("#aebg_school_namezz").text(emp[0].aebg_school_name);
     $("#aebg_year_graduatezz").text(emp[0].aebg_year_graduate);
-    $("#aebg_education_attainment_idzz").text(emp[0].aebg_education_attainment_id);
+    $("#aebg_education_attainment_idzz").text(emp[0].ae_companyaddress);
     $("#as_skillnamezz").text(emp[0].as_skillname);
     $("#aai_expected_salaryzz").text(emp[0].aai_expected_salary);
     $("#aai_locationzz").text(emp[0].aai_location);
