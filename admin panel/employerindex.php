@@ -6,11 +6,17 @@
 
     if(isset($_POST['addjobs'])) { 
 
+        $target_dir = "../company_logo/";
+        $target_file = $target_dir . basename($_FILES["filesToUpload"]["name"]);
+        $uploadOk = 1;
+        $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+
         if(isset($_SESSION['USERROLE'])){
      
             $jobs_user_id =  $_SESSION['USERID'];
              }
     
+    $job_company_logo = $_FILES["filesToUpload"]["name"];    
     $job_company_name = $crudapi->escape_string($_POST['job_company_name']);    
     $jobs_name = $crudapi->escape_string($_POST['jobs_name']);
     $jobs_address = $crudapi->escape_string($_POST['jobs_address']);
@@ -23,13 +29,29 @@
     $job_expected_salary = $crudapi->escape_string($_POST['job_expected_salary']);
     
      
-    $result = $crudapi->execute("INSERT INTO jobs(job_company_name,jobs_name,jobs_address,jobs_description,jobs_r_skills,jobs_r_education_id,jobs_preferred_time,jobs_r_experience,jobs_vacancy_count,job_expected_salary,jobs_user_id)VALUES('$job_company_name','$jobs_name','$jobs_address','$jobs_description','$jobs_r_skills','$jobs_r_education_id','$jobs_preferred_time','$jobs_r_experience','$jobs_vacancy_count','$job_expected_salary','$jobs_user_id')");
+    $result = $crudapi->execute("INSERT INTO jobs(job_company_logo,job_company_name,jobs_name,jobs_address,jobs_description,jobs_r_skills,jobs_r_education_id,jobs_preferred_time,jobs_r_experience,jobs_vacancy_count,job_expected_salary,jobs_user_id)VALUES('$job_company_logo','$job_company_name','$jobs_name','$jobs_address','$jobs_description','$jobs_r_skills','$jobs_r_education_id','$jobs_preferred_time','$jobs_r_experience','$jobs_vacancy_count','$job_expected_salary','$jobs_user_id')");
     
+    if (file_exists($target_file)) {
+        echo "Sorry, file already exists.";
+        $uploadOk = 0;
+    }else{
+        if (move_uploaded_file($_FILES["filesToUpload"]["tmp_name"], $target_file)) {
+            // echo "The file ". htmlspecialchars( basename( $_FILES["filesToUpload"]["name"])). " has been uploaded.";
+            // header("location:applicantinformation.php");
+        } else {
+        echo "Sorry, there was an error uploading your file.";
+        }
+    }
     echo '<script>alert("ADDED SUCCESS");</script>';
     // echo '<script>window.reload();</script>';
 }
      if(isset($_POST['editjob'])) {  
 
+        $target_dir = "../company_logo/";
+        $target_file = $target_dir . basename($_FILES["filesToUpload"]["name"]);
+        $uploadOk = 1;
+        $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+        $job_company_logo = $_FILES["filesToUpload"]["name"];    
     $jobs_id = $crudapi->escape_string($_POST['jobs_id']);
     $job_company_name = $crudapi->escape_string($_POST['job_company_name']);    
     $jobs_name = $crudapi->escape_string($_POST['jobs_name']);
@@ -43,9 +65,21 @@
     $job_expected_salary = $crudapi->escape_string($_POST['job_expected_salary']);
     
       
-    $result = $crudapi->execute("UPDATE jobs SET job_company_name='$job_company_name',jobs_name='$jobs_name',jobs_address='$jobs_address',jobs_description='$jobs_description',jobs_r_skills='$jobs_r_skills',jobs_r_education_id=
+    $result = $crudapi->execute("UPDATE jobs SET job_company_logo='$job_company_logo',job_company_name='$job_company_name',jobs_name='$jobs_name',jobs_address='$jobs_address',jobs_description='$jobs_description',jobs_r_skills='$jobs_r_skills',jobs_r_education_id=
         '$jobs_r_education_id',jobs_preferred_time='$jobs_preferred_time',jobs_r_experience='$jobs_r_experience',jobs_vacancy_count='$jobs_vacancy_count',job_expected_salary='$job_expected_salary'
      WHERE jobs_id = '$jobs_id' ");
+
+    if (file_exists($target_file)) {
+        echo "Sorry, file already exists.";
+        $uploadOk = 0;
+    }else{
+        if (move_uploaded_file($_FILES["filesToUpload"]["tmp_name"], $target_file)) {
+            // echo "The file ". htmlspecialchars( basename( $_FILES["filesToUpload"]["name"])). " has been uploaded.";
+            // header("location:applicantinformation.php");
+        } else {
+        echo "Sorry, there was an error uploading your file.";
+        }
+    }
     
     echo '<script>alert("UPDATED SUCCESS");</script>';
     header("location:employerindex.php");
@@ -103,10 +137,10 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
           <h5><b>Job Post</b></h5>
           <button type="button" class="btn btn-primary" id="jobs" style=" background-color:#28a745;  width:100px; float:right; border:none;">ADD</button>
           <div class="search-bar" style="">
-      <form class="search-form d-flex align-items-center" method="POST" action="#">
-        <input type="text" name="query" placeholder="Search" title="Enter search keyword">
+      <div class="search-form d-flex align-items-center" method="POST" action="#">
+        <input type="text" id="searchData" placeholder="Search By Company Name" title="Enter search keyword">
         <button type="submit" title="Search"><i class="bi bi-search"></i></button>
-      </form>
+    </div>
       </div>
         </div><!-- End Search Bar -->
                  
@@ -126,7 +160,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
             <th scope="col">Action</th>
              <tr>
             </thead>
-            <tbody>
+            <tbody id="table-main">
                 <?php 
                    if(isset($_SESSION['USERROLE'])){
                     $jobuser= $_SESSION['USERID'];
@@ -175,9 +209,14 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                     </button>
                 </div>
                 <div class="modal-body">
-                <form method="POST">
+                <form method="POST" enctype="multipart/form-data">
                     <input type="hidden" class="form-control" name="jobs_id" id="jobs_id">
                     <input type="hidden" class="form-control" name="jobs_user_id" id="jobs_user_id">
+
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" name="filesToUpload" aria-describedby="inputGroupFileAddon01">
+                        <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                    </div>
 
                     <div class="form-group">
                         <label for="exampleInputPassword1">Comapany Name</label>
@@ -267,7 +306,11 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                     </button>
                 </div>
                 <div class="modal-body">
-                <form method="POST">
+                <form method="POST" enctype="multipart/form-data">
+                <div class="custom-file">
+                        <input type="file" class="custom-file-input" name="filesToUpload" aria-describedby="inputGroupFileAddon01">
+                        <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                    </div>
                     <input type="hidden" class="form-control" name="jobs_id" id="jobs_ids">
                     <input type="hidden" class="form-control" name="jobs_user_id" id="jobs_user_ids">
 
@@ -585,6 +628,27 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
         
         $("#viewModal").modal("show");
 
+    });
+    $("#searchData").keyup(function(){
+        // alert("asd");
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("searchData");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("table-main");
+    tr = table.getElementsByTagName("tr");
+
+    // Loop through all table rows, and hide those who don't match the search query
+    for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[0];
+        if (td) {
+        txtValue = td.textContent || td.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+        } else {
+            tr[i].style.display = "none";
+        }
+        }
+    }
     });
   })
 

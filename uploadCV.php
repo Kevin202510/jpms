@@ -35,6 +35,35 @@ $crudapi = new CRUDAPI();
         // }else{
         //     echo '<script>alert("May Error!");</script>';
         // }
+    }else if(isset($_POST['uploadProfile'])){
+
+        $target_dir = "profile/";
+        $target_file = $target_dir . basename($_FILES["filesToUpload"]["name"]);
+        $uploadOk = 1;
+        $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+
+        $id = $_POST['user_id'];
+        $profile = $_FILES["filesToUpload"]["name"];
+
+        $result = $crudapi->execute("UPDATE `users` SET user_profile_img='$profile' WHERE user_id='$id' ");
+
+        if (file_exists($target_file)) {
+            echo "Sorry, file already exists.";
+            $uploadOk = 0;
+        }else{
+            if (move_uploaded_file($_FILES["filesToUpload"]["tmp_name"], $target_file)) {
+                // echo "The file ". htmlspecialchars( basename( $_FILES["filesToUpload"]["name"])). " has been uploaded.";
+                header("location:applicantinformation.php");
+            } else {
+            echo "Sorry, there was an error uploading your file.";
+            }
+        }
+
+        // if($newAPIFunctions){
+        //     header("location:applicantinformation.php");
+        // }else{
+        //     echo '<script>alert("May Error!");</script>';
+        // }
     }
 
 

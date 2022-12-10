@@ -25,6 +25,7 @@
     <header class="bg-primary bg-gradient text-white py-5">
       <div class="container">
       <button style="float:right;" type="button" class="btn btn-success" data-id="<?php echo $_SESSION['USERID']; ?>" id="uploadCV">Upload CV</button>
+      <button style="float:right; margin-right:10px;" type="button" class="btn btn-success" data-id="<?php echo $_SESSION['USERID']; ?>" id="uploadProfile">Change Profile Picture</button>
       <?php 
                if(isset($_SESSION['USERROLE'])){
                 $profile= $_SESSION['USERID'];
@@ -38,7 +39,7 @@
                 ?>
         <div class="row">
           <div class="col-md-3 text-left text-md-center mb-3">
-            <img class="rounded-circle img-fluid" src="https://i.pravatar.cc/175?img=32" alt="Profile Photo" />
+            <img class="rounded-circle img-fluid" src="profile/<?php echo $data["user_profile_img"];?>" alt="Profile Photo" />
           </div>
           <div class="col-md-9">
             <br>
@@ -217,8 +218,15 @@
         $("#user_id").val(users_id);
         $("#exampleModal").modal("show");
       });
+
+      $("#uploadProfile").click(function(e){
+        var users_id = $(e.currentTarget).data('id');
+        $("#user_ids").val(users_id);
+        $("#exampleModals").modal("show");
+      });
   });
 
+  
 function printDivContent() {
  	var divElementContents = document.getElementById("printContent").innerHTML;
  	var a = window.open('', '', 'height=400, width=400');
