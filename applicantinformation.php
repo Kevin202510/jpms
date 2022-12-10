@@ -24,6 +24,7 @@
       
     <header class="bg-primary bg-gradient text-white py-5">
       <div class="container">
+      <button style="float:right;" type="button" class="btn btn-success" data-id="<?php echo $_SESSION['USERID']; ?>" id="uploadCV">Upload CV</button>
       <?php 
                if(isset($_SESSION['USERROLE'])){
                 $profile= $_SESSION['USERID'];
@@ -205,10 +206,18 @@
     </div>
 
     </main>
+<?php include('app_cv.php'); ?>
 <?php include('applicantsviews/footer.php'); ?>
 <?php include('applicantsviews/script.php'); ?>
 
 <script>
+  $(document).ready(function(){
+      $("#uploadCV").click(function(e){
+        var users_id = $(e.currentTarget).data('id');
+        $("#user_id").val(users_id);
+        $("#exampleModal").modal("show");
+      });
+  });
 
 function printDivContent() {
  	var divElementContents = document.getElementById("printContent").innerHTML;
