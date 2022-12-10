@@ -114,11 +114,11 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                 <div class="modal-body">
                  
 
-                <div class="card" style="">
+                <div class="card" style="background-color:brown;">
                       
-                    <div class="card-body">
-                            
-                    <center>  <div class="col-md-12 text-left text-md-center ">
+                    <div class="card-body" >
+                    <div class="col-md-12 text-left text-md-center" >        
+                    <center>  
             <img class="rounded-circle img-fluid" src="https://i.pravatar.cc/175?img=32" alt="Profile Photo" />
           </div></center>
                      <div style="text-align:center;">       
