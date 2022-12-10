@@ -5,7 +5,7 @@
 
 <!-- Hero Area Start-->
 <div class="slider-area ">
-<div class="single-slider slider-height2 d-flex align-items-center" data-background="assets/img/hero/a.jpg">
+<div class="single-slider slider-height2 d-flex align-items-center" data-background="assets/img/hero/a2.png">
     <div class="container">
         <div class="row">
             <div class="col-xl-12">
