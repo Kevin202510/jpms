@@ -190,7 +190,8 @@ if(isset($_POST['register'])) {
                 </div>
             </div>
             <div class="items-link items-link2 f-right">
-                <a href="job_details.php">Full Time</a>
+                <!-- <a href="job_details.php">Full Time</a> -->
+                <button type="button" data-id="<?php echo $data['jobs_id']; ?>" class="btn btn-primary" style="background-color:transparent; color:blue; border:none;" id="view"><i class="bi bi-eye-fill"></i></button>
                 <span>7 hours ago</span>
             </div>
         </div>
@@ -382,8 +383,8 @@ if(isset($_POST['register'])) {
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-md" role="document">
                 <div class="modal-content">
-                             <div class="modal-header" style="background-color:#1AA478; ">
-                            <h5 class="modal-title" id="exampleModalLabel">Register</h5>
+                             <div class="modal-header " style="background-color:#1AA478; ">
+                            <h5 style="margin-left:190px;" id="exampleModalLabel">Register</h5>
                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                              </button>
@@ -437,7 +438,7 @@ if(isset($_POST['register'])) {
 
                                 <div class="modal-footer" style="background-color:#13e9a5;">
                                     
-                            <button style="border-radius:20px;" type="submit" class="btn " id="subreg" name="register">REGISTERED</button>
+                            <button style="border-radius:20px;  margin-right:125px;" type="submit" class="btn " id="subreg" name="register">REGISTERED</button>
                                      
                                     </div>
                          </form>
@@ -453,8 +454,8 @@ if(isset($_POST['register'])) {
 <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                             <div class="modal-header" style="background-color:;">
-                             <center> <h5 class="modal-title" id="exampleModalLabel">LogIn</h5></center>
+                             <div class="modal-header" style="background-color:#1AA478;">
+                              <h5 style="margin-left:210px;" class="modal-title" id="exampleModalLabel">LogIn</h5>
                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                              </button>
@@ -474,8 +475,8 @@ if(isset($_POST['register'])) {
 
 
                                 <div class="modal-footer" >
-                                <button style="border-radius:20px;" type="button" class="btn head-btn1" id="registerss">Register</button>
-                                     <button style="border-radius:20px;" type="submit" class="btn btn-primary" name="login">LOGIN</button>
+                                <button style="border-radius:20px; margin-right:10px;" type="button" class="btn head-btn1" id="registerss">Register</button>
+                                     <button style="border-radius:20px; margin-right:70px;" type="submit" class="btn btn-primary" name="login">LOGIN</button>
                                </div>
                          </form>
                     </div>
@@ -522,7 +523,7 @@ if(isset($_POST['register'])) {
 
 
 <div class="modal fade" id="viewModal" tabindex="-1" role="dialog" aria-labelledby="viewModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="viewModalLabel">View</h5>
