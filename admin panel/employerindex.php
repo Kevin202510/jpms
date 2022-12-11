@@ -202,8 +202,8 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
             <div class="modal fade" id="exampleModals" tabindex="-1" role="dialog" aria-labelledby="exampleModalsLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalsLabel"> ADD JOB POST</h5>
+                <div class="modal-header" style="background-color: #28a745;">
+                    <h5 Style="margin-left:160px; " class="modal-title" id="exampleModalsLabel"> ADD JOB POST</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
@@ -284,8 +284,8 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                     </div>
                 
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary" name="addjobs">ADD</button>
+                        <button style="border-radius:20px; margin-right:10px; 10px; background-color:#28a745;" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button style="border-radius:20px; margin-right:150px; 10px; background-color:#28a745;" type="submit" class="btn btn-primary" name="addjobs">ADD</button>
                     </div>
                 </form>
                 </div>
@@ -299,8 +299,8 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
     <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <div class="modal-header" style="background-color:#28a745;">
+                    <h5 style="margin-left:175px;"class="modal-title" id="exampleModalLabel">Edit Job Post</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
@@ -384,8 +384,8 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                 
                 
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary" name="editjob">Update changes</button>
+                        <button style="border-radius:20px; margin-right:10px; 10px; background-color:#28a745;"" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button style="border-radius:20px; margin-right:120px; 10px; background-color:#28a745;"" type="submit" class="btn btn-primary" name="editjob">Update changes</button>
                     </div>
                 </form>
                 </div>
@@ -399,8 +399,8 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
          <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="deleteModalLabel">Modal title</h5>
+                <div class="modal-header" Style="background-color:#28a745;">
+                    <h5 Style="margin-left:160px;" class="modal-title" id="deleteModalLabel">Delete Job Post</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
@@ -409,8 +409,8 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                 <form method="POST">
                     <input type="hidden" class="form-control" name="jobs_id" id="jobs_idss">
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary" name="deletejob">Delete</button>
+                        <button style="border-radius:20px; margin-right:10px; 10px; background-color:#28a745;" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button style="border-radius:20px; margin-right:150px; 10px; background-color:#28a745;" type="submit" class="btn btn-primary" name="deletejob">Delete</button>
                     </div>
                 </form>
                 </div>
@@ -426,8 +426,8 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
 <div class="modal fade" id="viewModal" tabindex="-1" role="dialog" aria-labelledby="viewModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-xl" role="document">
                 <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="viewModalLabel">View</h5>
+                <div class="modal-header" Style="background-color:#28a745;">
+                    <h5 style="margin-left:490px;" class="modal-title" id="viewModalLabel">View Job Post</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
@@ -500,10 +500,10 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                     </div>
                     <!-- Right Content -->
                     <div class="col-xl-4 col-lg-4">
-                        <div class="post-details3  mb-50">
+                        <div class="post-details3  mb-50" style="border:solid black 2px;">
                             <!-- Small Section Tittle -->
                            <div class="small-section-tittle">
-                               <h4>Job Overview</h4>
+                             <center>  <h4>Job Overview</h4></center>
                            </div>
                           <ul>
                               <li>Posted date : <span id="created_at"></span></li>
@@ -526,8 +526,8 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                              
                             <ul>
                                 <li>Name: <span id="full_namess"></span></li>
-                                <li>Contact: <span id="user_contactss"></span></li>
-                                <li>Email: <span id="user_emailss"></span></li>
+                                <li>Contact: <span id="user_contact_num"></span></li>
+                                <li>Email: <span id="user_email_mail"></span></li>
                             </ul>
                        </div>
                     </div>
@@ -620,8 +620,8 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
             $("#jobs_preferred_timess").text(emp[0].jobs_preferred_time);
             $("#job_expected_salarysss").text(emp[0].job_expected_salary);
             $("#full_namess").text(emp[0].user_fname + " " + emp[0].user_lname);
-            $("#user_contactss").text(emp[0].user_contact);
-            $("#user_emailss").text(emp[0].user_email);
+            $("#user_contact_num").text(emp[0].user_contact);
+            $("#user_email_mail").text(emp[0].user_email);
             // alert("user_contactss");
         });  
 

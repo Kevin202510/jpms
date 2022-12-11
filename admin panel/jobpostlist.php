@@ -157,8 +157,9 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
              
                 <div class="modal-body" style="background-color:;">
 
+        
                 <!-- job post company Start -->
-        <div class="job-post-company pt-120 pb-120">
+                <div class="job-post-company pt-120 pb-120">
             <div class="container">
                 <div class="row justify-content-between">
                     <!-- Left Content -->
@@ -170,16 +171,16 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                  
                             <div class="job-items">
                                 <div class="company-img company-img-details">
-                                    <a href="#"><img src="assets/img/icon/job-list1.png" alt=""></a>
+                                    <img src="assets/img/icon/job-list1.png" alt="">
                                 </div>
                                 <div class="job-tittle">
                                     
                                         <h4 id="job_company_namess"></h4>
                                    
                                     <ul>
-                                        <li id="jobs_namess"></li>
-                                        <li id="jobs_addressss"></li>
-                                        <li id="job_expected_salaryss"></li>
+                                    <i style="color:#78828d;" class="fa fa-user"></i> <li id="jobs_namess"></li>
+                                        <i  style="color:#78828d;" class="fas fa-map-marker-alt"></i> <li id="jobs_addressss"></li>
+                                        <i style="color:#78828d;" class="fas fa">PHP</i> <li id="job_expected_salaryss"></li>
                                     </ul>
                                 </div>
                             </div>
@@ -211,7 +212,9 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                                     <h4>Education + Experience</h4>
                                 </div>
                                <ul>
-                                   <li id="jobs_r_education_idss"></li>
+                                   <li id="ea_name"></li>
+
+                                   <li id="jobs_r_experiencess"></li>
                                    
                                </ul>
                             </div>
@@ -233,9 +236,9 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                               <li>Salary :  <span id="job_expected_salarysss"></span></li>
                               <li>Application date : <span>12 Sep 2020</span></li>
                           </ul>
-                         <!-- <div class="apply-btn2">
+                         <div class="apply-btn2">
                             <a href="#" class="btn">Apply Now</a>
-                         </div> -->
+                         </div>
                         
                        </div>
                         <div class="post-details4  mb-50">
@@ -246,8 +249,8 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                              
                             <ul>
                                 <li>Name: <span id="full_namess"></span></li>
-                                <li>Cotact: <span id="user_contactss"></span></li>
-                                <li>Email: <span id="user_emailss"></li>
+                                <li>Contact: <span id="user_contactss"></span></li>
+                                <li>Email: <span id="user_emailss"></span></li>
                             </ul>
                        </div>
                     </div>
@@ -292,7 +295,8 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
             $("#job_expected_salaryss").text(emp[0].job_expected_salary);
             $("#jobs_descriptionss").text(emp[0].jobs_description);
             $("#jobs_r_skillsss").text(emp[0].jobs_r_skills);
-            $("#jobs_r_education_idss").text(emp[0].ea_name);
+            $("#ea_name").text(emp[0].ea_name);
+            $("#jobs_r_experiencess").text(emp[0].jobs_r_experience);
             $("#jobs_addresssss").text(emp[0].jobs_address);
             $("#jobs_vacancy_countss").text(emp[0].jobs_vacancy_count);
             $("#jobs_preferred_timess").text(emp[0].jobs_preferred_time);

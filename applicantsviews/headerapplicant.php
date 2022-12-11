@@ -5,27 +5,20 @@
  ?>
 
 
+<?php if(isset($_POST['edituser'])) {	
 
-
-<?php
-  //  include_once("admin panel/classes/CRUDAPI.php");
-  //  $crudapi = new CRUDAPI();
-  if(isset($_POST['edituser'])) {	
-
-    $user_id  = $crudapi->escape_string($_POST['user_id']);
-    $user_fname = $crudapi->escape_string($_POST['user_fname']);
-    $user_lname = $crudapi->escape_string($_POST['user_lname']);
-    $user_contact = $crudapi->escape_string($_POST['user_contact']);
-    $user_email = $crudapi->escape_string($_POST['user_email']);
-    $address = $crudapi->escape_string($_POST['address']);  
-        
-      $result = $crudapi->execute("UPDATE users SET user_fname='$user_fname',user_lname='$user_lname',user_contact='$user_contact',user_email='$user_email',address='$address' WHERE user_id = '$user_id' ");
-      
-      echo '<script>alert("UPDATED SUCCESS");</script>';
-      echo '<script>location.href="applicantinformation.php";</script>';
-    }
-
-
+$user_id  = $crudapi->escape_string($_POST['user_id']);
+$user_fname = $crudapi->escape_string($_POST['user_fname']);
+$user_lname = $crudapi->escape_string($_POST['user_lname']);
+$user_contact = $crudapi->escape_string($_POST['user_contact']);
+$user_email = $crudapi->escape_string($_POST['user_email']);
+$address = $crudapi->escape_string($_POST['address']);  
+    
+  $result = $crudapi->execute("UPDATE users SET user_fname='$user_fname',user_lname='$user_lname',user_contact='$user_contact',user_email='$user_email',address='$address' WHERE user_id = '$user_id' ");
+  
+  echo '<script>alert("UPDATED SUCCESS");</script>';
+  header("location:applicantlist.php");
+}
 
 ?>
 
@@ -107,8 +100,8 @@
   <div class="modal fade" id="logout" tabindex="-1" role="dialog" aria-labelledby="logoutLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="logoutLabel">Logout</h5>
+        <div class="modal-header" style="background-color:#28a745;">
+            <h5 style="margin-left:200px;" class="modal-title" id="logoutLabel">Logout</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button>
@@ -116,8 +109,8 @@
         <div class="modal-body">
         <form method="POST">
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary" name="logout">Logout</button>
+                <button style="border-radius:20px; margin-right:10px; background-color:#28a745;"  type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button style="border-radius:20px; margin-right:140px; background-color:#28a745;"  type="submit" class="btn btn-primary" name="logout">Logout</button>
             </div>
         </form>
         </div>
@@ -131,8 +124,8 @@
   <div class="modal fade" id="profile" tabindex="-1" role="dialog" aria-labelledby="settingsLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="settingsLabel">Profile koto</h5>
+        <div class="modal-header" style="background-color:#28a745;">
+            <h5 style="margin-left:180px;" class="modal-title" id="settingsLabel">Profile koto</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button>
@@ -153,10 +146,12 @@
                                     <hr>
                               
                                     <ul style="text-align:left;">                               
-                                      <i class="bi bi-telephone" style="font-size:30px;  background:#ffc0c0; width:100px; heigth:100px; border-radius:50%; text-align:center; line-heigth:100px; vertical-align:middle; padding:10px;"> </i><label style="font-size:20px;" id="user_contactzz"></label><br><br>
+                                      <i class="bi bi-telephone-fill" style="font-size:30px;  background:; width:100px; heigth:100px; border-radius:50%; text-align:center; line-heigth:100px; vertical-align:middle; padding:10px;"> </i><label style="font-size:20px;" id="user_contactzz"></label><br><br>
                                       <i class="bi bi-envelope circle-icon" style="font-size:30px; background:#ffc0c0; width:100px; heigth:100px; border-radius:50%; text-align:center; line-heigth:100px; vertical-align:middle; padding:10px;"></i><label style="font-size:20px;" id="user_emailzz"></label><br><br>
                                       <i class="bi bi-geo-alt" style="font-size:30px; background:#ffc0c0; width:100px; heigth:100px; border-radius:50%; text-align:center; line-heigth:100px; vertical-align:middle; padding:10px;"> </i><label style="font-size:20px;" id="addresszz"></label>
+                                      
                                     </ul>
+
                        </div>       
                      </div>
                             
@@ -173,16 +168,15 @@
    <div class="modal fade" id="editusers" tabindex="-1" role="dialog" aria-labelledby="settingsLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="settingsLabel">Settings</h5>
+        <div class="modal-header" style="background-color:#28a745;">
+            <h5  style="margin-left:200px;" class="modal-title" id="settingsLabel">Settings</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button>
         </div>
         <div class="modal-body">
-        <form method="POST">
 
-      
+        <form method="POST">
 
           <input type="hidden" class="form-control" name="user_id" id="user_idss">
                     <input type="hidden" class="form-control" name="user_role_id" id="user_role_idss">
@@ -218,8 +212,8 @@
            
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary" name="edituser">Update</button>
+                <button style="border-radius:20px; margin-right:10px; background-color:#28a745;"  type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button style="border-radius:20px; margin-right:140px; background-color:#28a745;"  type="submit" class="btn btn-primary" name="edituser">Update</button>
             </div>
         </form>
         </div>

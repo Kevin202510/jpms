@@ -21,7 +21,7 @@
  
     <div class="card justify-content-center">
     
-      <div class="card-body" style="width:1280px; ">
+      <div class="card-body" style="width:1100px; ">
       <div id="printContent">
     
       
@@ -166,12 +166,14 @@
 
         <p style="color:black; font-size:20px;"><?php echo strtoupper($data['as_skillname']); ?></p>
 
-            <hr>
+           
 
 <?php } }?>
-     
+ 
       </div>
     </div>
+
+    <hr>
 
     <div class="row">
         <div class="col-md mb-5">

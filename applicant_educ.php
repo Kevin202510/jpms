@@ -120,8 +120,8 @@ if(isset($_POST['deleteeduc'])) {
             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">ADD EDUCATION</h5>
+                <div class="modal-header" style="background-color:#28a745;">
+                    <h5  style="margin-left:150px;" class="modal-title" id="exampleModalLabel">ADD EDUCATION</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
@@ -152,15 +152,17 @@ if(isset($_POST['deleteeduc'])) {
                         </select>
                     </div>
 
-                
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary" name="addeduc">Save</button>
+                        <button style="border-radius:20px; margin-right:10px;" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button style="border-radius:20px; margin-right:90px;" type="submit" class="btn btn-primary" name="addeduc">Save</button>
                     </div>
+               
+                    
                 </form>
                 </div>
                
                 </div>
+                
             </div>
          </div>
 <!-- ADDMODAL -->
@@ -169,8 +171,8 @@ if(isset($_POST['deleteeduc'])) {
 <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="editModalLabel">UPDATE EDUCATION</h5>
+                <div class="modal-header"  style="background-color:#28a745;">
+                    <h5 style="margin-left:135px;"class="modal-title" id="editModalLabel">UPDATE EDUCATION</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
@@ -201,15 +203,16 @@ if(isset($_POST['deleteeduc'])) {
                         </select>
                     </div>
 
-                
-                
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary" name="editeduc">Update</button>
+                        <button style="border-radius:20px; margin-right:10px;" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button style="border-radius:20px; margin-right:90px;" type="submit" class="btn btn-primary" name="editeduc">Update</button>
                     </div>
+                
+                    
                 </form>
+                
                 </div>
-               
+
                 </div>
             </div>
          </div>
@@ -219,8 +222,8 @@ if(isset($_POST['deleteeduc'])) {
          <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="deleteModalLabel">DELETE EDUCATION</h5>
+                <div class="modal-header"  style="background-color:#28a745;">
+                    <h5 style="margin-left:140px;" class="modal-title" id="deleteModalLabel">DELETE EDUCATION</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
@@ -229,8 +232,8 @@ if(isset($_POST['deleteeduc'])) {
                 <form method="POST">
                     <input type="hidden" class="form-control" name="aebg_id" id="aebg_idss">
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary" name="deleteeduc">Delete</button>
+                        <button style="border-radius:20px; margin-right:10px;"  type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button style="border-radius:20px; margin-right:70px;"  type="submit" class="btn btn-primary" name="deleteeduc">Delete</button>
                     </div>
                 </form>
                 </div>
@@ -259,7 +262,7 @@ if(isset($_POST['deleteeduc'])) {
         $.post("updateapplicant_educ.php",{USER_ID: USER_IDs},function(data,status){
             var emp = JSON.parse(data);
             $("#aebg_ids").val(emp[0].aebg_id);
-            $("#aebg_user_ids").val(emp[0].aebg_user_idebg_id);
+            $("#aebg_user_ids").val(emp[0].aebg_user_id);
             $("#aebg_school_names").val(emp[0].aebg_school_name);
             $("#aebg_year_graduates").val(emp[0].aebg_year_graduate);
             $("#aebg_education_attainment_ids").val(emp[0].aebg_education_attainment_id);

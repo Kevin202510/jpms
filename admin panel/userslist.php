@@ -53,7 +53,7 @@
 
         $user_id = $crudapi->escape_string($_POST['user_id']);
           
-        $result = $crudapi->execute("DELETE from users WHERE user_id = '$user_id' ");
+        $result = $crudapi->execute("DELETE from users WHERE user_id = '$user_id'");
         
         echo '<script>alert("DELETED SUCCESS");</script>';
         header("location:userslist.php");
@@ -285,7 +285,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                 </div>
                 <div class="modal-body">
                 <form method="POST">
-                    <input type="hidden" class="form-control" name="user_id" id="user_idss">
+                    <input type="hidden" class="form-control" name="user_id" id="user_idsss">
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-primary" name="deleteuser">Delete</button>
@@ -320,8 +320,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
             $("#user_contacts").val(emp[0].user_contact);
             $("#user_emails").val(emp[0].user_email);
             $("#addresss").val(emp[0].address);
-
-          
+   
         });
 
         $("#editModal").modal("show");
@@ -331,7 +330,8 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
     $("body").on('click','#deletebtn',function(e){
         
         var USER_ID_DELETE = $(e.currentTarget).data('id');
-        $("#user_idss").val(USER_ID_DELETE);
+        // alert(USER_ID_DELETE);
+        $("#user_idsss").val(USER_ID_DELETE);
         $("#deleteModal").modal("show");
 
     });

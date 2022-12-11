@@ -72,6 +72,7 @@ $("#profile").modal("show");
 $("body").on('click','#settings',function(e){
         // alert($(e.currentTarget).data('id'));
         var USER_IDs = $(e.currentTarget).data('id');
+        alert(USER_IDs);
         $.post("admin panel/updateusers.php",{USER_ID: USER_IDs},function(data,status){
             var emp = JSON.parse(data);
             $("#user_idss").val(emp[0].user_id);

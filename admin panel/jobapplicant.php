@@ -124,15 +124,15 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
         
 <div class="modal-dialog modal-xl" role="document">
                 <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="viewModalLabel">View</h5>
+                <div class="modal-header" style="background-color:#28a745;">
+                    <h5 style="margin-left:490px;" class="modal-title" id="viewModalLabel">View Resume</h5>
  
-                    <input type="button" value="Click Here" onclick="printDivContent()">
-
+                  
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
+                <input type="button" value="Click Here" onclick="printDivContent()">
                 <div class="modal-body">
 
 
@@ -278,24 +278,26 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
 <div class="modal fade" id="viewrequarments" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">VIEW REQUARMENTS</h5>
+      <div class="modal-header" style="background-color:#28a745;">
+        <h5 style="margin-left:140px;" class="modal-title" id="exampleModalLabel">VIEW REQUARMENTS</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span> 
           </button>
         </div>
                     
-        <div class="modal-body">
-                           
-            <div class="card">
-              <div class="container" style="width:100px; height:100px; background-color:green;">
-                  <a type="button" id="cv" style="width:50px; height:50px; background-color:red;">CV</a> 
+        <div class="modal-body">      
+            <div class="card" >
+            <img style="width:100%; height:400px;  border-radius:20px;" src="../assets/img/hero/cv.png">
+              <div class="container " style="margin-left:170px;">
+                  <a type="button" id="cv" style="border-radius:20px; background-color:#28a745; width:100px; height:50px; text-align:center; ">CV</a> 
               </div>
             </div>
-            <img class="brand-image img-circle" id="preview" src="{{ asset('img/others/roa1.jpg') }}" width="200" height="150" />
+            <!-- <img class="brand-image img-circle" id="preview" src="{{ asset('img/others/roa1.jpg') }}" width="200" height="150" />
                                 <label class="form-control" for="book_image"><span class="fa fa-camera"></span>&nbsp;Select Image</label>
                                 <input type="file" name="book_image" id="book_image" style="margin: 0 auto; visibility: hidden; display: none;">
+ -->
 
+ <!-- ;  -->
 
         </div>
     </div>
@@ -309,8 +311,8 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="deleteModalLabel">Modal title</h5>
+                <div class="modal-header" style="background-color:#28a745;">
+                    <h5 style="margin-left:200px;" class="modal-title" id="deleteModalLabel">Unlike</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>

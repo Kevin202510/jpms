@@ -64,6 +64,7 @@ $("#profile").modal("show");
 $("body").on('click','#settings',function(e){
         // alert($(e.currentTarget).data('id'));
         var USER_IDs = $(e.currentTarget).data('id');
+        alert(USER_IDs);
         $.post("updateusers.php",{USER_ID: USER_IDs},function(data,status){
             var emp = JSON.parse(data);
             $("#user_idss").val(emp[0].user_id);
@@ -81,7 +82,7 @@ $("body").on('click','#settings',function(e){
 
     });
 
-  
+   
   
   $(document).ready(function(){
     $("#registers").click(function(){
@@ -104,8 +105,19 @@ $("body").on('click','#settings',function(e){
   })
   
 
- 
+  $(document).ready(function(){
+      $("#uploadCV").click(function(e){
+        var users_id = $(e.currentTarget).data('id');
+        $("#user_id").val(users_id);
+        $("#exampleModal").modal("show");
+      });
 
+      $("#uploadProfile").click(function(e){
+        var users_id = $(e.currentTarget).data('id');
+        $("#user_ids").val(users_id);
+        $("#exampleModals").modal("show");
+      });
+  });
 
 
 </script>

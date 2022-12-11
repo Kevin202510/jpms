@@ -73,7 +73,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
             </thead>
             <tbody id="table-main">
                 <?php 
-                     $query = "SELECT * FROM `users` where user_role_id = 4";
+                     $query = "SELECT * FROM `users` LEFT JOIN requirements ON requirements.requirements_user_id = users.user_id where user_role_id = 4";
                      $result = $crudapi->getData($query);
                      $number = 1;
                      foreach ($result as $key => $data) {
@@ -92,7 +92,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
               
                        <div class="items-link items-link2 f-right">
                        <button type="button" data-id="<?php echo $data['user_id']; ?>" class="btn btn-primary" id="view">View</button>
-                       <button type="button" data-id="<?php echo $data['user_id']; ?>" class="btn btn-primary" id="viewreqs">Requarments</button>
+                       <button type="button" data-id="<?php echo $data['requirements_filename']; ?>" class="btn btn-primary" id="viewreqs">Requarments</button>
                       </div>
                      
               </td>
@@ -114,15 +114,18 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
         
 <div class="modal-dialog modal-xl" role="document">
                 <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="viewModalLabel">View</h5>
+                <div class="modal-header" Style="background-color:#28a745;">
+                    <h5 style="margin-left:490px;"class="modal-title" id="viewModalLabel">View Resume</h5>
  
-                    <input type="button" value="Click Here" onclick="printDivContent()">
+                    
 
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
+                    
                     </button>
+                    
                 </div>
+                <input type="button" value="Click Here" onclick="printDivContent()">
                 <div class="modal-body">
 
 
@@ -212,7 +215,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
 
                  <ul>
                     <li style="color:black;" id="aebg_year_graduates"><i style="color:black;" class="fas fa-calendar"></i></li>
-                    <li style="color:black;" id="aebg_education_attainment_ids"><i style="color:black;" class="fas fa-graduation-cap"></i></li>
+                    <li style="color:black;" id="ea_namezz"><i style="color:black;" class="fas fa-graduation-cap"></i></li>
 
                  </ul>
 
@@ -268,8 +271,8 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
 <div class="modal fade" id="viewrequarments" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">REQUARMENTS</h5>
+      <div class="modal-header" style="background-color:#28a745;">
+        <h5 style="margin-left:140px;" class="modal-title" id="exampleModalLabel">VIEW REQUARMENTS</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span> 
           </button>
@@ -278,15 +281,11 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
         <div class="modal-body">
                            
             <div class="card">
-              <div class="container" style="width:100px; height:100px; background-color:green;">
-                  <a type="button" style="width:50px; height:50px; background-color:red;" href="sample.php?pdfname=KEVIN FELIX CALUAG.pdf">CV</a> 
+              <div class="container" style="width:300px; height:300px; ">
+                  <a type="button" id="cv" style="width:100px; height:50px; margin-top:250px; margin-left:90px; text-align:center; background-color:#28a745;">CV</a> 
               </div>
             </div>
-            <img class="brand-image img-circle" id="preview" src="{{ asset('img/others/roa1.jpg') }}" width="200" height="150" />
-                                <label class="form-control" for="book_image"><span class="fa fa-camera"></span>&nbsp;Select Image</label>
-                                <input type="file" name="book_image" id="book_image" style="margin: 0 auto; visibility: hidden; display: none;">
-
-
+           
         </div>
     </div>
   </div>
@@ -317,7 +316,7 @@ $.post("updateapplicant.php",{USER_IDsss: USER_IDs},function(data,status){
     $("#fromto").text((emp[0].ae_from) + " "+ (emp[0].ae_to));
     $("#aebg_school_names").text(emp[0].aebg_school_name);
     $("#aebg_year_graduates").text(emp[0].aebg_year_graduate);
-    $("#aebg_education_attainment_ids").text(emp[0].aebg_education_attainment_id);
+    $("#ea_namezz").text(emp[0].ea_name);
     $("#as_skillnames").text(emp[0].as_skillname);
     $("#aai_expected_salarys").text(emp[0].aai_expected_salary);
     $("#aai_locations").text(emp[0].aai_location);
@@ -329,9 +328,15 @@ $("#viewModal").modal("show");
 
 });
 
-$("#viewreqs").click(function(){
+
+
+$("body").on('click','#viewreqs',function(e){
+  // alert($(e.currentTarget).data('id'));
+  var filename = $(e.currentTarget).data('id');
+  $("#cv").prop("href", "sample.php?pdfname="+filename);
 $("#viewrequarments").modal("show");
 });
+
 
 function printDivContent() {
  	var divElementContents = document.getElementById("printContent").innerHTML;

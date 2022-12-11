@@ -187,15 +187,16 @@ if(isset($_POST['register'])) {
                         <h4><?php echo strtoupper($data['job_company_name']); ?></h4>
                     </a>
                     <ul>
-                        <li><?php echo strtoupper($data['jobs_name']); ?></li>
-                        <li><i class="fas fa-map-marker-alt"></i><?php echo strtoupper($data['jobs_address']); ?></li>
-                        <li><?php echo strtoupper($data['job_expected_salary']); ?></li>
+
+                        <li> <i style="color:#78828d;" class="fa fa-user"></i> <?php echo strtoupper($data['jobs_name']); ?></li>
+                        <li><i  style="color:#78828d;" class="fas fa-map-marker-alt"></i></i><?php echo strtoupper($data['jobs_address']); ?></li>
+                        <li><i  style="color:#78828d;" class="fas fa">PHP</i><?php echo strtoupper($data['job_expected_salary']); ?></li>
                     </ul>
                 </div>
             </div>
             <div class="items-link items-link2 f-right">
                 <!-- <a href="job_details.php">Full Time</a> -->
-                <button type="button" data-id="<?php echo $data['jobs_id']; ?>" class="btn btn-primary" style="background-color:transparent; color:blue; border:none;" id="view"><i class="bi bi-eye-fill"></i></button>
+                <button type="button" data-id="<?php echo $data['jobs_id']; ?>" class="btn btn-primary" style="border-radius:30px; color:blue; border:none;" id="view"><i class="bi bi-eye-fill"></i>View</button>
                 <span>7 hours ago</span>
             </div>
         </div>
@@ -524,12 +525,12 @@ if(isset($_POST['register'])) {
 <!-- logout MODAL -->
 
 
-
+<!-- view -->
 
 <div class="modal fade" id="viewModal" tabindex="-1" role="dialog" aria-labelledby="viewModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header" style="background-color:#28a745;">
                     <h5 class="modal-title" id="viewModalLabel">View</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -555,12 +556,12 @@ if(isset($_POST['register'])) {
                                 </div>
                                 <div class="job-tittle">
                                     
-                                        <h4 id="job_company_namess"></h4>
+                                        <h4 id="job_company_namesszz"></h4>
                                    
                                     <ul>
-                                        <li id="jobs_namess"></li>
-                                        <li id="jobs_addressss"></li>
-                                        <li id="job_expected_salaryss"></li>
+                                    <i style="color:#78828d;" class="fa fa-user"></i> <li id="jobs_namesszz"></li>
+                                        <i  style="color:#78828d;" class="fas fa-map-marker-alt"></i> <li id="jobs_addresssszz"></li>
+                                        <i style="color:#78828d;" class="fas fa">PHP</i> <li id="job_expected_salarysszz"></li>
                                     </ul>
                                 </div>
                             </div>
@@ -574,7 +575,7 @@ if(isset($_POST['register'])) {
                                 <div class="small-section-tittle">
                                     <h4>Job Description</h4>
                                 </div>
-                                <p id="jobs_descriptionss"></p>
+                                <p id="jobs_descriptionsszz"></p>
                             </div>
                             <div class="post-details2  mb-50">
                                  <!-- Small Section Tittle -->
@@ -582,7 +583,7 @@ if(isset($_POST['register'])) {
                                     <h4>Required Knowledge, Skills, and Abilities</h4>
                                 </div>
                                <ul>
-                                   <li id="jobs_r_skillsss"></li>
+                                   <li id="jobs_r_skillssszz"></li>
                                   
                                </ul>
                             </div>
@@ -592,9 +593,9 @@ if(isset($_POST['register'])) {
                                     <h4>Education + Experience</h4>
                                 </div>
                                <ul>
-                                   <li id="ea_name"></li>
+                                   <li id="ea_namezz"></li>
 
-                                   <li id="jobs_r_experiencess"></li>
+                                   <li id="jobs_r_experiencesszz"></li>
                                    
                                </ul>
                             </div>
@@ -609,16 +610,16 @@ if(isset($_POST['register'])) {
                                <h4>Job Overview</h4>
                            </div>
                           <ul>
-                              <li>Posted date : <span id="created_at"></span></li>
-                              <li>Location : <span id="jobs_addresssss"></span></li>
-                              <li>Vacancy : <span id="jobs_vacancy_countss"></span></li>
-                              <li>Job nature : <span id="jobs_preferred_timess"></span></li>
-                              <li>Salary :  <span id="job_expected_salarysss"></span></li>
+                              <li>Posted date : <span id="created_atzz"></span></li>
+                              <li>Location : <span id="jobs_addressssszz"></span></li>
+                              <li>Vacancy : <span id="jobs_vacancy_countsszz"></span></li>
+                              <li>Job nature : <span id="jobs_preferred_timesszz"></span></li>
+                              <li>Salary :  <span id="job_expected_salaryssszz"></span></li>
                               <li>Application date : <span>12 Sep 2020</span></li>
                           </ul>
-                         <!-- <div class="apply-btn2">
+                         <div class="apply-btn2">
                             <a href="#" class="btn">Apply Now</a>
-                         </div> -->
+                         </div>
                         
                        </div>
                         <div class="post-details4  mb-50">
@@ -628,9 +629,9 @@ if(isset($_POST['register'])) {
                            </div>
                              
                             <ul>
-                                <li>Name: <span id="full_namess"></span></li>
-                                <li>Contact: <span id="user_contactss"></span></li>
-                                <li>Email: <span id="user_emailss"></span></li>
+                                <li>Name: <span id="full_namesszz"></span></li>
+                                <li>Contact: <span id="user_contactsszz"></span></li>
+                                <li>Email: <span id="user_emailsszz"></span></li>
                             </ul>
                        </div>
                     </div>
@@ -644,27 +645,6 @@ if(isset($_POST['register'])) {
                 </div>
             </div>
          </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -706,8 +686,8 @@ if(isset($_POST['register'])) {
     $("body").on('click','#view',function(e){
 
 var USER_IDss = $(e.currentTarget).data('id');
-// alert(USER_IDss);
-$.post("update_jobs.php",{USER_IDsss: USER_IDss},function(data,status){
+//  alert(USER_IDss);
+$.post("admin panel/update_jobs.php",{USER_IDsss: USER_IDss},function(data,status){
     var emp = JSON.parse(data);
     console.log(emp[0]);
     $("#jobs_idss").text(emp[0].jobs_id);
@@ -716,23 +696,23 @@ $.post("update_jobs.php",{USER_IDsss: USER_IDss},function(data,status){
     var month = newdate.getMonth() + 1;
     var year = newdate.getFullYear();
 
-    $("#created_at").text(month+" / "+day+" / "+year);
-    $("#jobs_user_idss").text(emp[0].jobs_user_id);
-    $("#job_company_namess").text(emp[0].job_company_name);
-    $("#jobs_namess").text(emp[0].jobs_name);
-    $("#jobs_addressss").text(emp[0].jobs_address);
-    $("#job_expected_salaryss").text(emp[0].job_expected_salary);
-    $("#jobs_descriptionss").text(emp[0].jobs_description);
-    $("#jobs_r_skillsss").text(emp[0].jobs_r_skills);
-    $("#ea_name").text(emp[0].ea_name);
-    $("#jobs_r_experiencess").text(emp[0].jobs_r_experience);
-    $("#jobs_addresssss").text(emp[0].jobs_address);
-    $("#jobs_vacancy_countss").text(emp[0].jobs_vacancy_count);
-    $("#jobs_preferred_timess").text(emp[0].jobs_preferred_time);
-    $("#job_expected_salarysss").text(emp[0].job_expected_salary);
-    $("#full_namess").text(emp[0].user_fname + " " + emp[0].user_lname);
-    $("#user_contactss").text(emp[0].user_contact);
-    $("#user_emailss").text(emp[0].user_email);
+    $("#created_atzz").text(month+" / "+day+" / "+year);
+    $("#jobs_user_idsszz").text(emp[0].jobs_user_id);
+    $("#job_company_namesszz").text(emp[0].job_company_name);
+    $("#jobs_namesszz").text(emp[0].jobs_name);
+    $("#jobs_addresssszz").text(emp[0].jobs_address);
+    $("#job_expected_salarysszz").text(emp[0].job_expected_salary);
+    $("#jobs_descriptionsszz").text(emp[0].jobs_description);
+    $("#jobs_r_skillssszz").text(emp[0].jobs_r_skills);
+    $("#ea_namezz").text(emp[0].ea_name);
+    $("#jobs_r_experiencesszz").text(emp[0].jobs_r_experience);
+    $("#jobs_addressssszz").text(emp[0].jobs_address);
+    $("#jobs_vacancy_countsszz").text(emp[0].jobs_vacancy_count);
+    $("#jobs_preferred_timesszz").text(emp[0].jobs_preferred_time);
+    $("#job_expected_salaryssszz").text(emp[0].job_expected_salary);
+    $("#full_namesszz").text(emp[0].user_fname + " " + emp[0].user_lname);
+    $("#user_contactsszz").text(emp[0].user_contact);
+    $("#user_emailsszz").text(emp[0].user_email);
     // alert("user_contactss");
 });  
 

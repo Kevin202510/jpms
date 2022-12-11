@@ -257,8 +257,8 @@ else if(isset($_POST["logout"])){
   <div class="modal fade" id="logout" tabindex="-1" role="dialog" aria-labelledby="logoutLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="logoutLabel">Logout</h5>
+        <div class="modal-header"  style="background-color:#28a745;">
+            <h5 style="margin-left:200px;" class="modal-title" id="logoutLabel">Logout</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button>
@@ -266,8 +266,8 @@ else if(isset($_POST["logout"])){
         <div class="modal-body">
         <form method="POST">
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary" name="logout">Logout</button>
+                <button style="border-radius:20px; margin-right:10px; background-color:#28a745;" type="button"  class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button style="border-radius:20px; margin-right:140px; background-color:#28a745;" type="submit"  class="btn btn-secondary" name="logout">Logout</button>
             </div>
         </form>
         </div>
@@ -281,22 +281,24 @@ else if(isset($_POST["logout"])){
   <div class="modal fade" id="profile" tabindex="-1" role="dialog" aria-labelledby="settingsLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="settingsLabel">Profile koto</h5>
+        <div class="modal-header" style="background-color:#28a745;">
+            <h5 style="margin-left:190px;" class="modal-title" id="settingsLabel">Profile koto</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button>
         </div>
-        <div class="modal-body">
+
+
+        <div class="modal-body" >
         <form method="POST">
 
       
 
           <input type="hidden" class="form-control" name="user_id" id="user_idz">
 
-        <center>  <div class="col-md-12 text-left text-md-center ">
+        <div class="col-md-12 text-left text-md-center ">
             <img class="rounded-circle img-fluid" src="https://i.pravatar.cc/175?img=32" alt="Profile Photo" />
-          </div></center>
+          </div>
                      <div style="text-align:center;">       
                             <h2 id="user_fnamez"></h2>
                            
@@ -322,8 +324,8 @@ else if(isset($_POST["logout"])){
   <div class="modal fade" id="editusers" tabindex="-1" role="dialog" aria-labelledby="settingsLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="settingsLabel">Settings</h5>
+        <div class="modal-header"  style="background-color:#28a745;">
+            <h5 style="margin-left:200px;" class="modal-title" id="settingsLabel">Settings</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button>
@@ -339,6 +341,11 @@ else if(isset($_POST["logout"])){
                     <center>  <div class="col-md-3 text-left text-md-center mb-3">
             <img class="rounded-circle img-fluid" src="assets/img/profile-img.jpg" alt="Profile Photo" />
           </div></center>
+
+          <div class="col-md-3 text-left text-md-center mb-3">
+            <img class="rounded-circle img-fluid" src="profile/<?php echo $data["user_profile_img"];?>" alt="Profile Photo" /><br><br>
+            <button style="float:right; margin-right:30px;" type="button" class="btn btn-success" data-id="<?php echo $_SESSION['USERID']; ?>" id="uploadProfile">Change Profile Picture</button>
+          </div>
 
                     <div class="form-group">
                                  <label for="exampleInputPassword1">First Name</label>
@@ -367,8 +374,8 @@ else if(isset($_POST["logout"])){
            
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary" name="edituser">Update</button>
+                <button style="border-radius:20px; margin-right:10px; background-color:#28a745;" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button style="border-radius:20px; margin-right:150px; background-color:#28a745;" type="submit" class="btn btn-primary" name="edituser">Update</button>
             </div>
         </form>
         </div>

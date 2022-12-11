@@ -98,7 +98,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
 
 
 
-
+                                  
 <!-- ViewMODAL -->
 
 <div class="modal fade" id="viewsModal" tabindex="-1" role="dialog" aria-labelledby="viewsModalLabel" aria-hidden="true">
@@ -114,7 +114,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                 <div class="modal-body">
                  
 
-                <div class="card" style="background-color:brown;">
+                <div class="card" style="background-color:;">
                       
                     <div class="card-body" >
                     <div class="col-md-12 text-left text-md-center" >        

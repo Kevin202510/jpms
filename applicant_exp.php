@@ -118,8 +118,8 @@ if(isset($_POST['deleteexp'])) {
             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">ADD EXPERIENCE</h5>
+                <div class="modal-header" style="background-color:#28a745;" >
+                    <h5 style="margin-left:150px;" class="modal-title" id="exampleModalLabel">ADD EXPERIENCE</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
@@ -159,8 +159,8 @@ if(isset($_POST['deleteexp'])) {
                 
                 
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary" name="addexp">Save changes</button>
+                        <button style="border-radius:20px; margin-right:10px;"  type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button style="border-radius:20px; margin-right:45px;"  type="submit" class="btn btn-primary" name="addexp">Save changes</button>
                     </div>
                 </form>
                 </div>
@@ -174,8 +174,8 @@ if(isset($_POST['deleteexp'])) {
 <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="editModalLabel">Modal title</h5>
+                <div class="modal-header" style="background-color:#28a745;">
+                    <h5  style="margin-left:145px;"class="modal-title" id="editModalLabel">Update Experience</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
@@ -213,8 +213,8 @@ if(isset($_POST['deleteexp'])) {
                 
                 
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary" name="editexp">Update changes</button>
+                        <button style="border-radius:20px; margin-right:10px;"  type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button style="border-radius:20px; margin-right:40px;"  type="submit" class="btn btn-primary" name="editexp">Update changes</button>
                     </div>
                 </form>
                 </div>
@@ -227,8 +227,8 @@ if(isset($_POST['deleteexp'])) {
          <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="deleteModalLabel">Modal title</h5>
+                <div class="modal-header" style="background-color:#28a745;">
+                    <h5 style="margin-left:150px;" class="modal-title" id="deleteModalLabel">Delete Experience</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
@@ -237,8 +237,8 @@ if(isset($_POST['deleteexp'])) {
                 <form method="POST">
                     <input type="hidden" class="form-control" name="ae_id" id="ae_idss">
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary" name="deleteexp">Delete</button>
+                        <button style="border-radius:20px; margin-right:10px;"  type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button style="border-radius:20px; margin-right:75px;"  type="submit" class="btn btn-primary" name="deleteexp">Delete</button>
                     </div>
                 </form>
                 </div>

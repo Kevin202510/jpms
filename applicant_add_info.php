@@ -125,8 +125,8 @@ if(isset($_POST['deleteinfo'])) {
             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">ADD ADDITIONAL INFO</h5>
+                <div class="modal-header"  style="background-color:#28a745;">
+                    <h5 style="margin-left:130px;" class="modal-title" id="exampleModalLabel">ADD ADDITIONAL INFO</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
@@ -147,13 +147,27 @@ if(isset($_POST['deleteinfo'])) {
                     </div>
 
                     <div class="form-group">
-                        <label for="exampleInputPassword1">Preferred Work</label>
-                        <input type="text" class="form-control" name="aai_wfh_os" id="aai_wfh_os" placeholder="Preferred Work"required>
-                    </div>
+                        <label for="exampleInputPassword1">Preferred Work</label><br>
+                        <select class="form-control" name="aai_wfh_os" id="aai_wfh_os">
+                            <option value="ON Site">ON Site</option>
+                            <option value="Work Form Home">Work Form Home</option>
+
+                         </select>
+                    </div><br><br>
+
+                   
+                  
+
+
+
+
+
+
+
 
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary" name="addinfo">Save changes</button>
+                        <button style="border-radius:20px; margin-right:10px;" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button style="border-radius:20px; margin-right:50px;" type="submit" class="btn btn-primary" name="addinfo">Save changes</button>
                     </div>
                 </form>
                 </div>
@@ -167,8 +181,8 @@ if(isset($_POST['deleteinfo'])) {
 <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="editModalLabel">UPDATE ADDITIONAL INFO</h5>
+                <div class="modal-header"  style="background-color:#28a745;">
+                    <h5 style="margin-left:105px;" class="modal-title" id="editModalLabel">UPDATE ADDITIONAL INFO</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
@@ -187,17 +201,22 @@ if(isset($_POST['deleteinfo'])) {
                         <label for="exampleInputPassword1">Preferred Location</label>
                         <input type="text" class="form-control" name="aai_location" id="aai_locations" placeholder="Preferred Location"required>
                     </div>
+         
+
 
                     <div class="form-group">
-                        <label for="exampleInputPassword1">Preferred Work</label>
-                        <input type="text" class="form-control" name="aai_wfh_os" id="aai_wfh_oss" placeholder="Preferred Word"required>
-                    </div>
+                        <label for="exampleInputPassword1">Preferred Work</label><br>
+                        <select class="form-control" name="aai_wfh_os" id="aai_wfh_oss">
+                            <option value="ON Site">ON Site</option>
+                            <option value="Work Form Home">Work Form Home</option>
 
+                         </select>
+                    </div><br><br>
                 
                 
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary" name="editinfo">Update changes</button>
+                        <button style="border-radius:20px; margin-right:10px;" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button style="border-radius:20px; margin-right:40px;" type="submit" class="btn btn-primary" name="editinfo">Update changes</button>
                     </div>
                 </form>
                 </div>
@@ -210,8 +229,8 @@ if(isset($_POST['deleteinfo'])) {
          <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="deleteModalLabel">DELETE ADDITIONAL INFO</h5>
+                <div class="modal-header"  style="background-color:#28a745;">
+                    <h5 style="margin-left:105px;" class="modal-title" id="deleteModalLabel">DELETE ADDITIONAL INFO</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
@@ -220,8 +239,8 @@ if(isset($_POST['deleteinfo'])) {
                 <form method="POST">
                     <input type="hidden" class="form-control" name="aai_id" id="aai_idss">
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary" name="deleteinfo">Delete</button>
+                        <button style="border-radius:20px; margin-right:10px;" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button style="border-radius:20px; margin-right:80px;" type="submit" class="btn btn-primary" name="deleteinfo">Delete</button>
                     </div>
                 </form>
                 </div>

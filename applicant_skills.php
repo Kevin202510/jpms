@@ -110,8 +110,8 @@ if(isset($_POST['deleteskills'])) {
             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">ADD SKILL</h5>
+                <div class="modal-header"  style="background-color:#28a745;">
+                    <h5  style="margin-left:185px;" class="modal-title" id="exampleModalLabel">ADD SKILL</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
@@ -127,8 +127,8 @@ if(isset($_POST['deleteskills'])) {
                     </div>
 
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary" name="addskills">SUBMIT</button>
+                        <button style="border-radius:20px; margin-right:10px;" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button style="border-radius:20px; margin-right:70px;" type="submit" class="btn btn-primary" name="addskills">SUBMIT</button>
                     </div>
                 </form>
                 </div>
@@ -143,8 +143,8 @@ if(isset($_POST['deleteskills'])) {
 <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="editModalLabel">ADD SKILL</h5>
+                <div class="modal-header"style="background-color:#28a745;">
+                    <h5 style="margin-left:190px;"class="modal-title" id="editModalLabel">ADD SKILL</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
@@ -161,8 +161,8 @@ if(isset($_POST['deleteskills'])) {
 
                 
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary" name="editskills">UPDATE</button>
+                        <button style="border-radius:20px; margin-right:10px;" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button style="border-radius:20px; margin-right:70px;" type="submit" class="btn btn-primary" name="editskills">UPDATE</button>
                     </div>
                 </form>
                 </div>
@@ -175,8 +175,8 @@ if(isset($_POST['deleteskills'])) {
          <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="deleteModalLabel">DELETE SKILL</h5>
+                <div class="modal-header" style="background-color:#28a745;">
+                    <h5 style="margin-left:170px;" class="modal-title" id="deleteModalLabel">DELETE SKILL</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
@@ -185,8 +185,8 @@ if(isset($_POST['deleteskills'])) {
                 <form method="POST">
                     <input type="hidden" class="form-control" name="as_id" id="as_idss">
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary" name="deleteskills">DELETE</button>
+                        <button style="border-radius:20px; margin-right:10px;" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button style="border-radius:20px; margin-right:70px;" type="submit" class="btn btn-primary" name="deleteskills">DELETE</button>
                     </div>
                 </form>
                 </div>
