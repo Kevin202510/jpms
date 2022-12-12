@@ -55,7 +55,8 @@ $crudapi = new CRUDAPI();
                 // echo "The file ". htmlspecialchars( basename( $_FILES["filesToUpload"]["name"])). " has been uploaded.";
                 header("location:applicantinformation.php");
             } else {
-            echo "Sorry, there was an error uploading your file.";
+                header("location:applicantinformation.php");
+
             }
         }
 

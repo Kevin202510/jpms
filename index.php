@@ -4,12 +4,6 @@ include_once("classes/CRUDAPI.php");
 $crudapi = new CRUDAPI(); 
 
 
-
-
-
-
-
-
 if (isset($_POST['login'])) {
 
     $username= $_POST['user_email'];
@@ -48,23 +42,11 @@ if (isset($_POST['login'])) {
         
             header("location:  applicantinformation.php");
         }
-
-        
-
     }
-    
-   
-   
-
 }   
 
 
-    
-
-
-
-
-if(isset($_POST['register'])) {	
+if(isset($_POST['subreg'])) {	
 
     $user_fname = $crudapi->escape_string($_POST['user_fname']);
     $user_lname = $crudapi->escape_string($_POST['user_lname']);
@@ -95,6 +77,33 @@ if(isset($_POST['register'])) {
     }
     
     }   
+
+    if(isset($_POST['apply'])) {	
+
+        $job_app_job_id = $crudapi->escape_string($_POST['job_idss']);
+        $job_app_user_id  = $crudapi->escape_string($_POST['user_id']);
+        
+          
+        $result = $crudapi->execute("INSERT INTO job_applicants(job_app_job_id,job_app_user_id) VALUES('$job_app_job_id','$job_app_user_id')");
+  
+        echo '<script>alert("Apply SUCCESS");</script>';
+        // header("location: index.php");
+
+       }
+
+    
+    // if(isset($_POST['apply'])) {	
+
+    //     $job_app_job_id = $crudapi->escape_string($_POST['job_app_job_id']);
+    //     $job_app_user_id  = $crudapi->escape_string($_POST['job_app_user_id ']);
+        
+          
+    //     $result = $crudapi->execute("INSERT INTO users(job_app_job_id,job_app_user_id) VALUES('$job_app_job_id','$job_app_user_id')");
+  
+    //     echo '<script>alert("Apply SUCCESS");</script>';
+    //     header("location: index.php");
+
+
 
 ?>
 
@@ -179,11 +188,11 @@ if(isset($_POST['register'])) {
                     <?php if($data['job_company_logo']===NULL){ ?>
                     <a href="#"><img src="assets/img/icon/job-list1.png" alt=""></a>
                     <?php }else{?>
-                    <a href="#"><img src="company_logo/<?php echo $data['job_company_logo'] ?>" alt="" width="100"></a>
+                    <a><img src="company_logo/<?php echo $data['job_company_logo'] ?>" alt="" width="100"></a>
                     <?php } ?>
                 </div>
                 <div class="job-tittle job-tittle2">
-                    <a href="#">
+                   
                         <h4><?php echo strtoupper($data['job_company_name']); ?></h4>
                     </a>
                     <ul>
@@ -196,7 +205,7 @@ if(isset($_POST['register'])) {
             </div>
             <div class="items-link items-link2 f-right">
                 <!-- <a href="job_details.php">Full Time</a> -->
-                <button type="button" data-id="<?php echo $data['jobs_id']; ?>" class="btn btn-primary" style="border-radius:30px; color:blue; border:none;" id="view"><i class="bi bi-eye-fill"></i>View</button>
+                <button type="button" data-id="<?php echo $data['jobs_id']; ?>" class="btn btn-primary" style="border-radius:30px; color:black; border:none;" id="view"><i class="bi bi-eye-fill"></i>View</button>
                 <span>7 hours ago</span>
             </div>
         </div>
@@ -384,18 +393,23 @@ if(isset($_POST['register'])) {
       </main>
 
 
+
+
 <!-- register MODAL -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-md" role="document">
+            <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                             <div class="modal-header " style="background-color:#1AA478; ">
-                            <h5 style="margin-left:190px;" id="exampleModalLabel">Register</h5>
+                             <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                              </button>
                            </div>
                     <div class="modal-body">
                         <form method="POST">
+
+                        <input type="hidden" class="form-control" name="user_id" id="user_id">
+                    <input type="hidden" class="form-control" name="user_role_id" id="user_role_id">
 
                              <div class="form-group">
                                  <label for="exampleInputPassword1">First Name</label>
@@ -424,35 +438,31 @@ if(isset($_POST['register'])) {
 
                              <div class="form-group">
                                  <label for="exampleInputPassword1">Password</label>
-                                 <input type="password" class="form-control" name="user_password" id="user_passwords" placeholder="Password" required>
+                                 <input type="password" class="form-control" name="user_password" id="user_password" placeholder="Password" required>
                              </div>
 
                              <div class="form-group">
                                  <label for="exampleInputPassword1">Confirm Password</label>
-                                 <input type="password" class="form-control" name="conuser_password" id="conuser_passwords" placeholder="Confirm Password" required>
+                                 <input type="password" class="form-control" name="conuser_password" id="conuser_password" placeholder="Confirm Password" required>
                              </div>
 
-                    
-                        <label for="exampleInputPassword1">Role</label><br>
-                        <select name="user_role_id" id="user_role_id" >
-                        <option value="4">Applicant</option>
-                            <option value="3">Employer</option>
-                        </select><br><br>
-                    
-                     
+                             <label for="exampleInputPassword1">role</label><br>
+                             <select name="user_role_id" id="user_role_id">
+                                 <option value="4">Applicant</option> 
+                                 <option value="3">Employer</option> 
+                            </select><br><br>
 
-                                <div class="modal-footer" style="background-color:#13e9a5;">
-                                    
-                            <button style="border-radius:20px;  margin-right:125px;" type="submit" class="btn " id="subreg" name="register">REGISTERED</button>
-                                     
-                                    </div>
+                            
+                                <div class="modal-footer">
+                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                     <button type="submit" class="btn btn-primary" name="subreg">REGISTERED</button>
+                               </div>
                          </form>
                     </div>
                 </div>
             </div>
          </div>
 <!-- register MODAL -->
-
 
 
 <!-- login MODAL -->
@@ -551,9 +561,14 @@ if(isset($_POST['register'])) {
                         <div class="single-job-items mb-50">
                  
                             <div class="job-items">
-                                <div class="company-img company-img-details">
-                                    <img src="assets/img/icon/job-list1.png" alt="">
-                                </div>
+                            
+                            <div class="company-img">
+                                <?php if($data['job_company_logo']===NULL){ ?>
+                                <a><img src="assets/img/icon/job-list1.png" alt=""></a>
+                                <?php }else{?>
+                                <a><img src="company_logo/<?php echo $data['job_company_logo'] ?>" alt="" width="100"></a>
+                                <?php } ?>
+                            </div>
                                 <div class="job-tittle">
                                     
                                         <h4 id="job_company_namesszz"></h4>
@@ -615,10 +630,11 @@ if(isset($_POST['register'])) {
                               <li>Vacancy : <span id="jobs_vacancy_countsszz"></span></li>
                               <li>Job nature : <span id="jobs_preferred_timesszz"></span></li>
                               <li>Salary :  <span id="job_expected_salaryssszz"></span></li>
-                              <li>Application date : <span>12 Sep 2020</span></li>
+                              
                           </ul>
                          <div class="apply-btn2">
-                            <a href="#" class="btn">Apply Now</a>
+                         <button type="button" data-id="<?php echo $data['jobs_id']; ?>" class="btn btn-primary" style="color:fff; border:none;" id="apply">Apply Now</button>
+                            
                          </div>
                         
                        </div>
@@ -647,6 +663,40 @@ if(isset($_POST['register'])) {
          </div>
 
 
+       <!-- apply MODAL -->
+     <div class="modal fade" id="applyModal" tabindex="-1" role="dialog" aria-labelledby="applyModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-md" role="document">
+                <div class="modal-content">
+                             <div class="modal-header " style="background-color:#1AA478; ">
+                            <h5 style="margin-left:205px;" id="applyModalLabel">Apply</h5>
+                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                             </button>
+                           </div>
+                    <div class="modal-body">
+                        <form method="POST">
+
+                        <input type="text" class="form-control" name="user_id" id="user_id">
+
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="job_idss" id="job_app_job_id">
+                        </div>
+  
+
+                                <div class="modal-footer" style="background-color:#13e9a5;">
+                                    
+                            <button style="border-radius:20px;  margin-right:150px;" type="submit" class="btn " name="apply">Apply</button>
+                                     
+                                    </div>
+                         </form>
+                    </div>
+                </div>
+            </div>
+         </div>
+         <input type="hidden" id="idid">
+         <input type="hidden" id="idss" value="<?php echo $_SESSION['USERID']; ?>">
+<!-- apply MODAL -->
+
 
 
 <?php include('applicantsviews/footer.php'); ?>
@@ -669,6 +719,19 @@ if(isset($_POST['register'])) {
         // $("#as_user_id").val($("user_id").val());
         $("#exampleModal").modal("show");
     });
+
+
+    $("#apply").click(function(){
+        // $("#as_user_id").val($("user_id").val());
+
+        $("#job_app_job_id").val($("#idid").val());
+    $("#user_id").val($("#idss").val());
+
+
+        $("#applyModal").modal("show");
+    });
+
+
 
     $("#logins").click(function(){
         // $("#as_user_id").val($("user_id").val());
@@ -698,6 +761,7 @@ $.post("admin panel/update_jobs.php",{USER_IDsss: USER_IDss},function(data,statu
 
     $("#created_atzz").text(month+" / "+day+" / "+year);
     $("#jobs_user_idsszz").text(emp[0].jobs_user_id);
+    
     $("#job_company_namesszz").text(emp[0].job_company_name);
     $("#jobs_namesszz").text(emp[0].jobs_name);
     $("#jobs_addresssszz").text(emp[0].jobs_address);

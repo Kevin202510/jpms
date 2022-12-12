@@ -167,18 +167,18 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                         <!-- job single -->
 
 
-                        <div class="single-job-items mb-50">
+                        <div class="single-job-items mb-50" style="border:solid black 2px;">
                  
                             <div class="job-items">
                                 <div class="company-img company-img-details">
-                                    <img src="assets/img/icon/job-list1.png" alt="">
+                                    <img src="https://i.pravatar.cc/175?img=32" alt="">
                                 </div>
                                 <div class="job-tittle">
                                     
                                         <h4 id="job_company_namess"></h4>
                                    
                                     <ul>
-                                    <i style="color:#78828d;" class="fa fa-user"></i> <li id="jobs_namess"></li>
+                                        <i style="color:#78828d;" class="fa fa-user"></i> <li id="jobs_namess"></li>
                                         <i  style="color:#78828d;" class="fas fa-map-marker-alt"></i> <li id="jobs_addressss"></li>
                                         <i style="color:#78828d;" class="fas fa">PHP</i> <li id="job_expected_salaryss"></li>
                                     </ul>
@@ -223,7 +223,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                     </div>
                     <!-- Right Content -->
                     <div class="col-xl-4 col-lg-4">
-                        <div class="post-details3  mb-50">
+                        <div class="post-details3  mb-50" style="border:solid black 2px;">
                             <!-- Small Section Tittle -->
                            <div class="small-section-tittle">
                                <h4>Job Overview</h4>
@@ -236,9 +236,9 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                               <li>Salary :  <span id="job_expected_salarysss"></span></li>
                               <li>Application date : <span>12 Sep 2020</span></li>
                           </ul>
-                         <div class="apply-btn2">
+                         <!-- <div class="apply-btn2">
                             <a href="#" class="btn">Apply Now</a>
-                         </div>
+                         </div> -->
                         
                        </div>
                         <div class="post-details4  mb-50">

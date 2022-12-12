@@ -75,7 +75,7 @@ $("body").on('click','#settings',function(e){
         alert(USER_IDs);
         $.post("admin panel/updateusers.php",{USER_ID: USER_IDs},function(data,status){
             var emp = JSON.parse(data);
-            $("#user_idss").val(emp[0].user_id);
+            $("#user_id_ss").val(emp[0].user_id);
             $("#user_role_idss").val(emp[0].user_role_id);
             $("#user_fnamess").val(emp[0].user_fname);
             $("#user_lnamess").val(emp[0].user_lname);
@@ -89,6 +89,12 @@ $("body").on('click','#settings',function(e){
         $("#editusers").modal("show");
 
     });
+
+    $("#uploadProfile").click(function(e){
+        var users_id = $(e.currentTarget).data('id');
+        $("#user_ids").val(users_id);
+        $("#exampleModals").modal("show");
+      });
  
 });
 

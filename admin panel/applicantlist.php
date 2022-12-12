@@ -104,7 +104,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
             </thead>
             <tbody id="table-main">
                 <?php 
-              $query = "SELECT * FROM `users` LEFT JOIN roles ON roles.id = users.user_role_id where users.user_role_id = 4";
+              $query = "SELECT * FROM `users` LEFT JOIN requirements ON requirements.requirements_user_id = users.user_id where user_role_id = 4";
               $result = $crudapi->getData($query);
               $number = 1;
               foreach ($result as $key => $data) {
@@ -123,7 +123,9 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                           <button type="button" data-id="<?php echo $data['user_id']; ?>" id="view" style="border: transparent; color: blue; background: transparent;"><i class="bi bi-eye-fill"></i></button>
                           <button type="button" data-id="<?php echo $data['user_id']; ?>" id="editbtn" style="border: transparent; color: green; background: transparent;"><i class="bi bi-pencil-fill"></i></button>
                        <button type="button" data-id="<?php echo $data['user_id']; ?>" id="deletebtn" style="border: transparent; color: red; background: transparent;"> <i class="bi bi-trash-fill"></i></button>
-                       </div>
+                       <button type="button" data-id="<?php echo $data['requirements_filename']; ?>" class="btn btn-primary" id="viewreqs">Requarments</button>
+                      
+                      </div>
               </td>
               </tr>
           <?php $number++; } ?>
@@ -302,15 +304,11 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                     
         <div class="modal-body">
                            
-            <div class="card">
-              <div class="container" style="width:100px; height:100px; background-color:green;">
-                  <a type="button" style="width:50px; height:50px; background-color:red;" href="sample.php?pdfname=KEVIN FELIX CALUAG.pdf">CV</a> 
+        <div class="card">
+              <div class="container" style="width:300px; height:300px; ">
+                  <a type="button" id="cvs" style="width:100px; height:50px; margin-top:250px; margin-left:90px; text-align:center; background-color:#28a745;">CV</a> 
               </div>
             </div>
-            <img class="brand-image img-circle" id="preview" src="{{ asset('img/others/roa1.jpg') }}" width="200" height="150" />
-                                <label class="form-control" for="book_image"><span class="fa fa-camera"></span>&nbsp;Select Image</label>
-                                <input type="file" name="book_image" id="book_image" style="margin: 0 auto; visibility: hidden; display: none;">
-
 
         </div>
     </div>
@@ -360,9 +358,14 @@ $.post("updateapplicant.php",{USER_IDsss: USER_IDs},function(data,status){
 $("#viewModal").modal("show");
 });
 
-$("#viewreq").click(function(){
+$("body").on('click','#viewreqs',function(e){
+  // alert($(e.currentTarget).data('id'));
+  var filename = $(e.currentTarget).data('id');
+  $("#cvs").prop("href", "sample1.php?pdfname="+filename);
 $("#viewrequarments").modal("show");
 });
+
+
 
 function printDivContent() {
  	var divElementContents = document.getElementById("printContent").innerHTML;

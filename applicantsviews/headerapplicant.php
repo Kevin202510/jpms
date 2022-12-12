@@ -1,11 +1,19 @@
+
 <?php if(isset($_POST["logout"])){
   session_destroy();
   echo '<script>location.href="index.php";</script>';
 }
+
  ?>
 
 
-<?php if(isset($_POST['edituser'])) {	
+<?php
+include_once("classes/CRUDAPI.php");
+$crudapi = new CRUDAPI(); 
+
+
+
+if(isset($_POST['edituser'])) {	
 
 $user_id  = $crudapi->escape_string($_POST['user_id']);
 $user_fname = $crudapi->escape_string($_POST['user_fname']);
@@ -17,7 +25,8 @@ $address = $crudapi->escape_string($_POST['address']);
   $result = $crudapi->execute("UPDATE users SET user_fname='$user_fname',user_lname='$user_lname',user_contact='$user_contact',user_email='$user_email',address='$address' WHERE user_id = '$user_id' ");
   
   echo '<script>alert("UPDATED SUCCESS");</script>';
-  header("location:applicantlist.php");
+  echo '<script>location.href="applicantinformation.php";</script>';
+  // header("location:applicantinformation.php");
 }
 
 ?>
@@ -133,16 +142,26 @@ $address = $crudapi->escape_string($_POST['address']);
         <div class="modal-body">
         <form method="POST">
 
-      
+        <?php 
+               if(isset($_SESSION['USERROLE'])){
+                $profile= $_SESSION['USERID'];
+               $role=$_SESSION['USERROLE'];
+              $query = "SELECT * FROM `users` LEFT JOIN roles ON roles.id = users.user_role_id where users.user_role_id =$role";
+              $result = $crudapi->getData($query);  
+              $number = 1;
+             
+              foreach ($result as $key => $data) {
+                if(strtoupper($data["user_id"]) == $profile ){
+                ?>
 
           <input type="hidden" class="form-control" name="user_id" id="user_idzz">
 
           <center>  <div class="col-md-12 text-left text-md-center ">
-            <img class="rounded-circle img-fluid" src="https://i.pravatar.cc/175?img=32" alt="Profile Photo" />
+          <img class="rounded-circle img-fluid" src="profile/<?php echo $data["user_profile_img"];?>" alt="Profile Photo" width="100" />
           </div></center>
                      <div style="text-align:center;">       
                             <h2 id="user_fnamezz"></h2>
-                           
+
                                     <hr>
                               
                                     <ul style="text-align:left;">                               
@@ -153,10 +172,9 @@ $address = $crudapi->escape_string($_POST['address']);
                                     </ul>
 
                        </div>       
-                     </div>
-                            
-                         
-        </form>
+                     </div>              
+             </form>
+           
         </div>
         </div>
     </div>
@@ -178,12 +196,14 @@ $address = $crudapi->escape_string($_POST['address']);
 
         <form method="POST">
 
-          <input type="hidden" class="form-control" name="user_id" id="user_idss">
+          <input type="hidden" class="form-control" name="user_id" id="user_id_ss">
                     <input type="hidden" class="form-control" name="user_role_id" id="user_role_idss">
 
                     <center>  <div class="col-md-3 text-left text-md-center mb-3">
-            <img class="rounded-circle img-fluid" src="assets/img/profile-img.jpg" alt="Profile Photo" />
-          </div></center>
+                    <img class="rounded-circle img-fluid" src="profile/<?php echo $data["user_profile_img"];?>" alt="Profile Photo" width="100" /><br><br>
+                             <button style="float:right; margin-right:30px;" type="button" class="btn btn-success" data-id="<?php echo $_SESSION['USERID']; ?>" id="uploadProfile">Change Profile Picture</button>
+                            </div>
+                  </center>
 
                     <div class="form-group">
                                  <label for="exampleInputPassword1">First Name</label>
@@ -220,6 +240,6 @@ $address = $crudapi->escape_string($_POST['address']);
         </div>
     </div>
   </div>
-  
+  <?php }}} ?>
 
   <?php include("applicantsetting.php"); ?>

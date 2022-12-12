@@ -26,22 +26,30 @@
                 <div class="right-caption">
                     <!-- Section Tittle -->
                     <div class="section-tittle section-tittle2">
-                        <span>What we are doing</span>
-                        <h2>24k Talented people are getting Jobs</h2>
+                        
+                        <h2>About</h2>
                     </div>
                     <div class="support-caption">
-                        <p class="pera-top">Mollit anim laborum duis au dolor in voluptate velit ess cillum dolore eu lore dsu quality mollit anim laborumuis au dolor in voluptate velit cillum.</p>
-                        <p>Mollit anim laborum.Duis aute irufg dhjkolohr in re voluptate velit esscillumlore eu quife nrulla parihatur. Excghcepteur signjnt occa cupidatat non inulpadeserunt mollit aboru. temnthp incididbnt ut labore mollit anim laborum suis aute.</p>
-                        <a href="about.html" class="btn post-btn">Post a job</a>
+                        <p class="pera-top">Job Portal connects job seekers and recruiters by accurately 
+                            matching candidate profiles to the relevant job openings. While most job 
+                            portals only focus on getting candidates the next job, Job Portal focuses on 
+                            the entire career growth of candidates. Job portal  works closely to bridge the
+                            gap between talent & opportunities and offers end-to-end recruitment solutions. 
+                            Job portal brings candidates and top employers under one roof. Employers can 
+                            advertise the vacancies by taking  the  membership,  logging  in  and  posting  
+                            the  job information  with  the  eligibility  criteria  for  the  jobs.  This 
+                            software establishes a direct connection between the employer and the job seeker. 
+                            A job seeker can directly visit this portal and  view  the  job
+                        </p>     
                     </div>
                 </div>
             </div>
             <div class="col-xl-6 col-lg-6">
                 <div class="support-location-img">
-                    <img src="assets/img/service/support-img.jpg" alt="">
+                    <img src="assets/img/service/support-imgs.png" alt="">
                     <div class="support-img-cap text-center">
                         <p>Since</p>
-                        <span>1994</span>
+                        <span>2022</span>
                     </div>
                 </div>
             </div>
@@ -100,75 +108,9 @@
     </div>
 </div>
 <!-- How  Apply Process End-->
-<!-- Testimonial Start -->
-<div class="testimonial-area testimonial-padding">
-    <div class="container">
-        <!-- Testimonial contents -->
-        <div class="row d-flex justify-content-center">
-            <div class="col-xl-8 col-lg-8 col-md-10">
-                <div class="h1-testimonial-active dot-style">
-                    <!-- Single Testimonial -->
-                    <div class="single-testimonial text-center">
-                        <!-- Testimonial Content -->
-                        <div class="testimonial-caption ">
-                            <!-- founder -->
-                            <div class="testimonial-founder  ">
-                                <div class="founder-img mb-30">
-                                    <img src="assets/img/testmonial/testimonial-founder.png" alt="">
-                                    <span>Margaret Lawson</span>
-                                    <p>Creative Director</p>
-                                </div>
-                            </div>
-                            <div class="testimonial-top-cap">
-                                <p>“I am at an age where I just want to be fit and healthy our bodies are our responsibility! So start caring for your body and it will care for you. Eat clean it will care for you and workout hard.”</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Single Testimonial -->
-                    <div class="single-testimonial text-center">
-                        <!-- Testimonial Content -->
-                        <div class="testimonial-caption ">
-                            <!-- founder -->
-                            <div class="testimonial-founder  ">
-                                <div class="founder-img mb-30">
-                                    <img src="assets/img/testmonial/testimonial-founder.png" alt="">
-                                    <span>Margaret Lawson</span>
-                                    <p>Creative Director</p>
-                                </div>
-                            </div>
-                            <div class="testimonial-top-cap">
-                                <p>“I am at an age where I just want to be fit and healthy our bodies are our responsibility! So start caring for your body and it will care for you. Eat clean it will care for you and workout hard.”</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Single Testimonial -->
-                    <div class="single-testimonial text-center">
-                        <!-- Testimonial Content -->
-                        <div class="testimonial-caption ">
-                            <!-- founder -->
-                            <div class="testimonial-founder  ">
-                                <div class="founder-img mb-30">
-                                    <img src="assets/img/testmonial/testimonial-founder.png" alt="">
-                                    <span>Margaret Lawson</span>
-                                    <p>Creative Director</p>
-                                </div>
-                            </div>
-                            <div class="testimonial-top-cap">
-                                <p>“I am at an age where I just want to be fit and healthy our bodies are our responsibility! So start caring for your body and it will care for you. Eat clean it will care for you and workout hard.”</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Testimonial End -->
 
 
-<!-- Blog Area Start -->
-<div class="home-blog-area blog-h-padding">
-    <div class="container">
+
         
 </main>
 <?php include('applicantsviews/footer.php'); ?>

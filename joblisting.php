@@ -1,6 +1,32 @@
 <?php session_start(); ?>
 <?php include('applicantsviews/head.php'); ?>
     <!-- Preloader Start -->
+
+
+<?php 
+include_once("classes/CRUDAPI.php");
+$crudapi = new CRUDAPI(); 
+
+       if(isset($_POST['applymoko'])) {	
+
+        $job_app_job_id = $crudapi->escape_string($_POST['job_idss']);
+        $job_app_user_id  = $crudapi->escape_string($_POST['user_id']);
+        
+          
+        $result = $crudapi->execute("INSERT INTO job_applicants(job_app_job_id,job_app_user_id) VALUES('$job_app_job_id','$job_app_user_id')");
+  
+        echo '<script>alert("Apply SUCCESS");</script>';
+        // header("location: index.php");
+
+       }
+
+
+?>
+
+
+
+
+
     
     <!-- Preloader Start -->
     <?php include('applicantsviews/header.php'); ?>
@@ -149,12 +175,12 @@
                  
                             <div class="job-items">
                                 <div class="company-img company-img-details">
-                                    <a href="#"><img src="assets/img/icon/job-list1.png" alt=""></a>
+                                    <a><img src="assets/img/icon/job-list1.png" alt=""></a>
                                 </div>
                                 <div class="job-tittle">
-                                    <a href="#">
+                                   
                                         <h4 id="job_company_namess"></h4>
-                                    </a>
+                                  
                                     <ul>
                                         <li id="jobs_namess"></li>
                                         <li id="jobs_addressss"></li>
@@ -210,10 +236,10 @@
                               <li>Vacancy : <span id="jobs_vacancy_countss"></span></li>
                               <li>Job nature : <span id="jobs_preferred_timess"></span></li>
                               <li>Salary :  <span id="job_expected_salarysss"></span></li>
-                              <li>Application date : <span>12 Sep 2020</span></li>
+                            
                           </ul>
                          <div class="apply-btn2">
-                            <a href="#" class="btn">Apply Now</a>
+                         <button type="button" data-id="<?php echo $data['jobs_id']; ?>" class="btn btn-primary" style="color:fff; border:none;" id="applyjob">Apply Now</button>
                          </div>
                         
                        </div>
@@ -241,6 +267,40 @@
             </div>
          </div>
 <!-- View    -->
+
+
+     <!-- apply MODAL -->
+     <div class="modal fade" id="applyModal" tabindex="-1" role="dialog" aria-labelledby="applyModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-md" role="document">
+                <div class="modal-content">
+                             <div class="modal-header " style="background-color:#1AA478; ">
+                            <h5 style="margin-left:205px;" id="applyModalLabel">Apply</h5>
+                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                             </button>
+                           </div>
+                    <div class="modal-body">
+                        <form method="POST">
+
+                        <input type="text" class="form-control" name="user_id" id="user_id">
+
+                            <div class="form-group">
+                                 <input type="text" class="form-control" name="job_idss" id="job_app_job_id">
+                             </div>
+                              
+                                <div class="modal-footer" style="background-color:#13e9a5;">
+                                    
+                            <button style="border-radius:20px;  margin-right:150px;" type="submit" class="btn " name="applymoko">Apply</button>
+                                     
+                                    </div>
+                         </form>
+                    </div>
+                </div>
+            </div>
+         </div>
+         <input type="hidden" id="idid">
+         <input type="hidden" id="idss" value="<?php echo $_SESSION['USERID']; ?>">
+<!-- apply MODAL -->
         
     </main>
 <?php include('applicantsviews/footer.php'); ?>
@@ -258,8 +318,8 @@ var USER_IDss = $(e.currentTarget).data('id');
  alert(USER_IDss);
 $.post("admin panel/update_jobs.php",{USER_IDsss: USER_IDss},function(data,status){
     var emp = JSON.parse(data);
-    console.log(emp[0]);
-    $("#jobs_idss").text(emp[0].jobs_id);
+    // console.log(emp[0]);
+    $("#idid").val(emp[0].jobs_id);
     let newdate = new Date(emp[0].created_at);
     var day = newdate.getDate();
     var month = newdate.getMonth() + 1;
@@ -287,6 +347,18 @@ $.post("admin panel/update_jobs.php",{USER_IDsss: USER_IDss},function(data,statu
 $("#viewsssModal").modal("show");
 
 });
+
+$("#applyjob").click(function(){
+        // $("#as_user_id").val($("user_id").val());
+
+        $("#job_app_job_id").val($("#idid").val());
+    $("#user_id").val($("#idss").val());
+       
+
+
+        $("#applyModal").modal("show");
+    });
+
 })
 
  
