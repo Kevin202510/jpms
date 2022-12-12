@@ -442,14 +442,19 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                     <!-- Left Content -->
                     <div class="col-xl-7 col-lg-8">
                         <!-- job single -->
-
+                         
 
                         <div class="single-job-items mb-50">
                  
                             <div class="job-items">
-                                <div class="company-img company-img-details">
-                                    <img src="assets/img/icon/job-list1.png" alt="">
-                                </div>
+                                 
+                            <div class="company-img">
+                                <?php if($data['job_company_logo']===NULL){ ?>
+                                <a><img src="assets/img/icon/job-list1.png" alt=""></a>
+                                <?php }else{?>
+                                <a><img src="company_logo/<?php echo $data['job_company_logo'] ?>" alt="" width="100"></a>
+                                <?php } ?>
+                            </div>
                                 <div class="job-tittle">
                                     
                                         <h4 id="job_company_namess"></h4>
@@ -511,7 +516,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                               <li>Vacancy : <span id="jobs_vacancy_countss"></span></li>
                               <li>Job nature : <span id="jobs_preferred_timess"></span></li>
                               <li>Salary :  <span id="job_expected_salarysss"></span></li>
-                              <li>Application date : <span>12 Sep 2020</span></li>
+                              
                           </ul>
                          <!-- <div class="apply-btn2">
                             <a href="#" class="btn">Apply Now</a>
@@ -535,7 +540,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
             </div>
        
         </div>
-        
+      
                   </div>
               
                 </div>

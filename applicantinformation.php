@@ -18,11 +18,11 @@
  
     <div class="card justify-content-center">
     
-      <div class="card-body" style="width:1100px; ">
+      <div class="card-body" style="width:1100px;">
       <div id="printContent">
     
       
-    <header class="bg-primary bg-gradient text-white py-5">
+    <header class="g text-white py-5" style="background-color:#28a745;">
       <div class="container">
       
       <?php 
@@ -39,7 +39,7 @@
         <div class="row">
           <div class="col-md-3 text-left text-md-center mb-3">
             <img class="rounded-circle img-fluid" src="profile/<?php echo $data["user_profile_img"];?>" alt="Profile Photo" /><br><br>
-            <button style="float:right; margin-right:30px;" type="button" class="btn btn-success" data-id="<?php echo $_SESSION['USERID']; ?>" id="uploadProfile">Change Profile Picture</button>
+            <button style="float:right; margin-right:30px;" type="button" class="btn btn-success" data-id="<?php echo $_SESSION['USERID']; ?>" id="uploadProfile">Profile</button>
           </div>
           <div class="col-md-9">
             <br> <br> <br> <br> <br> <br> <br>
@@ -92,7 +92,7 @@
     </nav>
     
       <div class="row">
-        <div class="col-md mb-5">
+        <div class="col-md mb-5" style="background-color:#28a745;">
           <h2 class="mb-5">Work Experience</h2>
           
 
@@ -119,7 +119,7 @@
         </div>
 
         <div class="row">
-        <div class="col-md mb-5">
+        <div class="col-md mb-5" style="background-color:#28a745;">
           <h2 class="mb-5">Education</h2>
 
           <?php 
@@ -149,7 +149,7 @@
 
 
       <div class="row">
-        <div class="col-md mb-5">
+        <div class="col-md mb-5" style="background-color:#28a745;">
           <h2 class="mb-5">Skills</h2>      
           
           <?php 

@@ -29,6 +29,70 @@ $address = $crudapi->escape_string($_POST['address']);
   // header("location:applicantinformation.php");
 }
 
+
+
+if(isset($_POST['uploadCV'])){
+
+  $target_dir = "cvs/";
+  $target_file = $target_dir . basename($_FILES["filesToUpload"]["name"]);
+  $uploadOk = 1;
+  $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+
+  $id = $_POST['user_id'];
+  $profile = $_FILES["filesToUpload"]["name"];
+
+  $result = $crudapi->execute("INSERT INTO requirements(requirements_filename,requirements_user_id) VALUES('$profile','$id')");
+
+  if (file_exists($target_file)) {
+      echo "Sorry, file already exists.";
+      $uploadOk = 0;
+  }else{
+      if (move_uploaded_file($_FILES["filesToUpload"]["tmp_name"], $target_file)) {
+          // echo "The file ". htmlspecialchars( basename( $_FILES["filesToUpload"]["name"])). " has been uploaded.";
+          header("location:applicantinformation.php");
+      } else {
+      echo "Sorry, there was an error uploading your file.";
+      }
+  }
+
+  // if($newAPIFunctions){
+  //     header("location:applicantinformation.php");
+  // }else{
+  //     echo '<script>alert("May Error!");</script>';
+  // }
+}else if(isset($_POST['uploadProfile'])){
+
+  $target_dir = "profile/";
+  $target_file = $target_dir . basename($_FILES["filesToUpload"]["name"]);
+  $uploadOk = 1;
+  $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+
+  $id = $_POST['user_id'];
+  $profile = $_FILES["filesToUpload"]["name"];
+
+  $result = $crudapi->execute("UPDATE `users` SET user_profile_img='$profile' WHERE user_id='$id' ");
+
+  if (file_exists($target_file)) {
+      echo "Sorry, file already exists.";
+      $uploadOk = 0;
+  }else{
+      if (move_uploaded_file($_FILES["filesToUpload"]["tmp_name"], $target_file)) {
+          // echo "The file ". htmlspecialchars( basename( $_FILES["filesToUpload"]["name"])). " has been uploaded.";
+          header("location:applicantinformation.php");
+      } else {
+          header("location:applicantinformation.php");
+
+      }
+  }
+
+  // if($newAPIFunctions){
+  //     header("location:applicantinformation.php");
+  // }else{
+  //     echo '<script>alert("May Error!");</script>';
+  // }
+}
+
+
 ?>
 
 <header>
@@ -134,10 +198,10 @@ $address = $crudapi->escape_string($_POST['address']);
     <div class="modal-dialog" role="document">
         <div class="modal-content">
         <div class="modal-header" style="background-color:#28a745;">
-            <h5 style="margin-left:180px;" class="modal-title" id="settingsLabel">Profile koto</h5>
+            <h5 style="margin-left:180px;" class="modal-title" id="settingsLabel">Profile</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
-            </button>
+            </button> 
         </div>
         <div class="modal-body">
         <form method="POST">
@@ -241,5 +305,42 @@ $address = $crudapi->escape_string($_POST['address']);
     </div>
   </div>
   <?php }}} ?>
+
+<!-- upload profile -->
+
+  <div class="modal fade" id="uploadModals" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method="post" action="uploadCV.php" enctype="multipart/form-data">
+            <input type="text" name="user_id" id="user_ids">
+            <input type="hidden" name="uploadProfile">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+              </div>
+              <div class="custom-file">
+                <input type="file" class="custom-file-input" name="filesToUpload" aria-describedby="inputGroupFileAddon01">
+                <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+              </div>
+            </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Save changes</button>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- upload profile -->
+
 
   <?php include("applicantsetting.php"); ?>

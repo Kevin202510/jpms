@@ -90,10 +90,10 @@ $("body").on('click','#settings',function(e){
 
     });
 
-    $("#uploadProfile").click(function(e){
+    $("#upload_Profile").click(function(e){
         var users_id = $(e.currentTarget).data('id');
-        $("#user_ids").val(users_id);
-        $("#exampleModals").modal("show");
+        $("#user_id_s").val(users_id);
+        $("#uploadModals").modal("show");
       });
  
 });

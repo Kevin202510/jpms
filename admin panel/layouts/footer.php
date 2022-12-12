@@ -105,14 +105,16 @@ $("body").on('click','#settings',function(e){
   })
   
 
-  $(document).ready(function(){
+  
+ 
+$(document).ready(function(){
       $("#uploadCV").click(function(e){
         var users_id = $(e.currentTarget).data('id');
         $("#user_id").val(users_id);
         $("#exampleModal").modal("show");
       });
 
-      $("#uploadProfile").click(function(e){
+      $("#uploadProfiles").click(function(e){
         var users_id = $(e.currentTarget).data('id');
         $("#user_ids").val(users_id);
         $("#exampleModals").modal("show");

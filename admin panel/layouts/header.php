@@ -27,7 +27,79 @@ $address = $crudapi->escape_string($_POST['address']);
 else if(isset($_POST["logout"])){
   session_destroy();
   header("location: ../index.php");
-}?>
+}
+
+
+
+if(isset($_POST['uploadCV'])){
+
+  $target_dir = "cvs/";
+  $target_file = $target_dir . basename($_FILES["filesToUpload"]["name"]);
+  $uploadOk = 1;
+  $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+  
+  $id = $_POST['user_id'];
+  $profile = $_FILES["filesToUpload"]["name"];
+  
+  $result = $crudapi->execute("INSERT INTO requirements(requirements_filename,requirements_user_id) VALUES('$profile','$id')");
+  
+  if (file_exists($target_file)) {
+      echo "Sorry, file already exists.";
+      $uploadOk = 0;
+  }else{
+      if (move_uploaded_file($_FILES["filesToUpload"]["tmp_name"], $target_file)) {
+          // echo "The file ". htmlspecialchars( basename( $_FILES["filesToUpload"]["name"])). " has been uploaded.";
+          header("location:applicantinformation.php");
+      } else {
+      echo "Sorry, there was an error uploading your file.";
+      }
+  }
+  
+  // if($newAPIFunctions){
+  //     header("location:applicantinformation.php");
+  // }else{
+  //     echo '<script>alert("May Error!");</script>';
+  // }
+  }else if(isset($_POST['uploadProfiles'])){
+  
+  $target_dir = "../profile/";
+  $target_file = $target_dir . basename($_FILES["filesToUpload"]["name"]);
+  $uploadOk = 1;
+  $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+  
+  $id = $_POST['user_id'];
+  $profile = $_FILES["filesToUpload"]["name"];
+  
+  $result = $crudapi->execute("UPDATE `users` SET user_profile_img='$profile' WHERE user_id='$id' ");
+  
+  if (file_exists($target_file)) {
+      echo "Sorry, file already exists.";
+      $uploadOk = 0;
+  }else{
+      if (move_uploaded_file($_FILES["filesToUpload"]["tmp_name"], $target_file)) {
+          // echo "The file ". htmlspecialchars( basename( $_FILES["filesToUpload"]["name"])). " has been uploaded.";
+          header("location:applicantinformation.php");
+      } else {
+          header("location:applicantinformation.php");
+  
+      }
+  }
+  
+  // if($newAPIFunctions){
+  //     header("location:applicantinformation.php");
+  // }else{
+  //     echo '<script>alert("May Error!");</script>';
+  // }
+  }
+  
+
+
+
+
+
+
+
+?>
 <header id="header" class="header fixed-top d-flex align-items-center" style="background-color:#1AA478;">
   
     <div class="d-flex align-items-center justify-content-between">
@@ -335,19 +407,15 @@ else if(isset($_POST["logout"])){
 
       
 
-          <input type="hidden" class="form-control" name="user_id" id="user_idss">
+                    <input type="hidden" class="form-control" name="user_id" id="user_idss">
                     <input type="hidden" class="form-control" name="user_role_id" id="user_role_idss">
 
-                    <center>  <div class="col-md-3 text-left text-md-center mb-3">
-            <img class="rounded-circle img-fluid" src="assets/img/profile-img.jpg" alt="Profile Photo" />
-          </div></center>
+                            <center><div class="col-md-3 text-left text-md-center mb-3">
+                            <img class="rounded-circle img-fluid" src="../profile/<?php echo $data["user_profile_img"];?>" alt="Profile Photo" /><br><br>
+                            <button style="float:right; margin-right:30px;" type="button" class="btn btn-success" data-id="<?php echo $_SESSION['USERID']; ?>" id="upload_Profile">Profile</button>
+                          </div></center><br><br>
 
-          <div class="col-md-3 text-left text-md-center mb-3">
-            <img class="rounded-circle img-fluid" src="profile/<?php echo $data["user_profile_img"];?>" alt="Profile Photo" /><br><br>
-            <button style="float:right; margin-right:30px;" type="button" class="btn btn-success" data-id="<?php echo $_SESSION['USERID']; ?>" id="uploadProfile">Change Profile Picture</button>
-          </div>
-
-                    <div class="form-group">
+                          <div class="form-group">
                                  <label for="exampleInputPassword1">First Name</label>
                                  <input type="text" class="form-control" name="user_fname" id="user_fnamess" placeholder="First Name" required>
                             </div>
@@ -382,3 +450,39 @@ else if(isset($_POST["logout"])){
         </div>
     </div>
   </div>
+
+  <!-- upload profile -->
+
+  <div class="modal fade" id="uploadModals" tabindex="-1" role="dialog" aria-labelledby="uploadModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="uploadModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- <form method="post" action="uploadCV.php" enctype="multipart/form-data">
+            <input type="text" name="user_id" id="user_id_s">
+            <input type="hidden" name="uploadProfile">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+              </div>
+              <div class="custom-file">
+                <input type="file" class="custom-file-input" name="filesToUpload" aria-describedby="inputGroupFileAddon01">
+                <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+              </div>
+            </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Save changes</button>
+        </div>
+        </form> -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- upload profile -->

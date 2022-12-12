@@ -238,7 +238,7 @@ if(isset($_POST['subreg'])) {
                     </div>
                     <div class="process-cap">
                         <h5>1. Search a job</h5>
-                    <p>Sorem spsum dolor sit amsectetur adipisclit, seddo eiusmod tempor incididunt ut laborea.</p>
+                    <p>Search a Job you love and you will never have to work a day in your life</p>
                     </div>
                 </div>
             </div>
@@ -249,7 +249,7 @@ if(isset($_POST['subreg'])) {
                     </div>
                     <div class="process-cap">
                         <h5>2. Apply for job</h5>
-                    <p>Sorem spsum dolor sit amsectetur adipisclit, seddo eiusmod tempor incididunt ut laborea.</p>
+                    <p>It's time to start living the life we've imagined</p>
                     </div>
                 </div>
             </div>
@@ -260,7 +260,7 @@ if(isset($_POST['subreg'])) {
                     </div>
                     <div class="process-cap">
                         <h5>3. Get your job</h5>
-                    <p>Sorem spsum dolor sit amsectetur adipisclit, seddo eiusmod tempor incididunt ut laborea.</p>
+                    <p>I never dreamed about success. I worked for it</p>
                     </div>
                 </div>
             </div>
