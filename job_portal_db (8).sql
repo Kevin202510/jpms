@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 09, 2022 at 07:20 PM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 7.4.33
+-- Generation Time: Dec 13, 2022 at 09:24 AM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 7.3.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -33,14 +33,14 @@ CREATE TABLE `applicant_additional_info` (
   `aai_location` varchar(100) NOT NULL,
   `aai_wfh_os` varchar(100) NOT NULL,
   `aai_user_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `applicant_additional_info`
 --
 
 INSERT INTO `applicant_additional_info` (`aai_id`, `aai_expected_salary`, `aai_location`, `aai_wfh_os`, `aai_user_id`) VALUES
-(1, '100', 'general tinio', 'online', 38);
+(1, '100', 'general tinio', 'Work Form Home', 38);
 
 -- --------------------------------------------------------
 
@@ -54,14 +54,7 @@ CREATE TABLE `applicant_educationbg` (
   `aebg_school_name` varchar(100) NOT NULL,
   `aebg_year_graduate` varchar(100) NOT NULL,
   `aebg_education_attainment_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `applicant_educationbg`
---
-
-INSERT INTO `applicant_educationbg` (`aebg_id`, `aebg_user_id`, `aebg_school_name`, `aebg_year_graduate`, `aebg_education_attainment_id`) VALUES
-(1, 38, 'Nueva Ecija University of Science and Technology', '2022-12-13', 3);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -77,15 +70,7 @@ CREATE TABLE `applicant_experience` (
   `ae_position` varchar(100) NOT NULL,
   `ae_from` varchar(100) NOT NULL,
   `ae_to` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `applicant_experience`
---
-
-INSERT INTO `applicant_experience` (`ae_id`, `ae_user_id`, `ae_companyname`, `ae_companyaddress`, `ae_position`, `ae_from`, `ae_to`) VALUES
-(1, 29, 'asdasdasd', 'asdasda', 'sdasdas', '2022-12-03', '2022-12-03'),
-(2, 38, 'Comapany Name', 'Comapany Address', 'Position', '2022-12-02', '2022-12-13');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -97,14 +82,7 @@ CREATE TABLE `applicant_skills` (
   `as_id` int(11) NOT NULL,
   `as_user_id` int(11) NOT NULL,
   `as_skillname` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `applicant_skills`
---
-
-INSERT INTO `applicant_skills` (`as_id`, `as_user_id`, `as_skillname`) VALUES
-(1, 38, 'web developer');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -115,7 +93,7 @@ INSERT INTO `applicant_skills` (`as_id`, `as_user_id`, `as_skillname`) VALUES
 CREATE TABLE `education_attainment` (
   `ea_id` int(11) NOT NULL,
   `ea_name` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `education_attainment`
@@ -141,7 +119,7 @@ CREATE TABLE `jobs` (
   `job_company_name` varchar(100) NOT NULL,
   `jobs_name` varchar(100) NOT NULL,
   `jobs_address` varchar(100) NOT NULL,
-  `jobs_description` varchar(100) NOT NULL,
+  `jobs_description` longtext NOT NULL,
   `jobs_r_skills` varchar(100) NOT NULL,
   `jobs_r_education_id` int(11) NOT NULL,
   `jobs_preferred_time` varchar(100) NOT NULL,
@@ -150,21 +128,15 @@ CREATE TABLE `jobs` (
   `job_expected_salary` varchar(100) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `jobs_user_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `jobs`
 --
 
 INSERT INTO `jobs` (`jobs_id`, `job_company_logo`, `job_company_name`, `jobs_name`, `jobs_address`, `jobs_description`, `jobs_r_skills`, `jobs_r_education_id`, `jobs_preferred_time`, `jobs_r_experience`, `jobs_vacancy_count`, `job_expected_salary`, `created_at`, `jobs_user_id`) VALUES
-(31, 'Kevin F. Caluag.jpg', 'Comapany Name', 'Position', 'manila', 'Description', 'Skills', 5, 'Part Time', 'Experience', '9', '8', '2022-12-04 10:27:03', 30),
-(33, 'qrcode_mushroommonitoringsystemv2-production.up.railway.app (2).png', 'Name', 'Web Dev', 'general tinio nueva ecija', 'fhsfsgfhjgfshsgfhjgsdhjfsfg', 'sjfhsdfdsgfhsgfhsjgfshjfgsjhfg', 3, 'Part Time', 'sfdfhsghfjsgdfhsgfhsjgfshgfsjhgfskgshfgsdhjfgdshgfshgf', '2', '455', '2022-12-04 10:27:03', 30),
-(35, '313788361_2497306877076540_1469489385254321468_n.jpg', 'asdasd', 'asdasd', 'asdasd', 'asdasdas', '1', 1, 'Part Time', 'asdasdas', '2', '2', '2022-12-04 10:27:17', 30),
-(36, NULL, 'asdasd', 'asdasd', 'asdasd', 'asdasdas', '1', 1, 'Full Time', 'asdasdas', '2', '2', '2022-12-04 10:28:11', 30),
-(37, NULL, 'sdfsdf', 'sdfsd', 'dsfsd', 'sdfsd', '1', 1, 'sfsdf', 'sfsd', '2', '2', '2022-12-05 05:08:14', 30),
-(38, NULL, 'SAS', 'sadas', 'asdas', 'asdas', '1', 3, 'Full Time', 'asda', '1', '1', '2022-12-05 05:09:58', 30),
-(39, NULL, 'vcbvn', 'vbnvb', 'vnvb', 'vbnvb', '1', 0, 'vbnvb', 'vbn', '8', '8', '2022-12-05 05:14:09', 30),
-(40, NULL, 'dfgdf', 'dfgd', 'dfgd', 'dfgd', 'dfgdf', 1, 'Full Time', 'fdgd', '6', '6', '2022-12-05 05:17:45', 30);
+(54, '2019-Abante-Tonite-Ampalaya.jpg', 'Dempsey Resource Management Inc.', 'Manager', 'Quezon City', '(DEMPSEY) is an executive search and referral services company.  We do assist our client companies in the sourcing of competent and qualified candidates to fill up various job positions in their organization.  The job positions we are targeting for our referred candidates are those intended for direct hiring by our clients. Our company is not a contracting agency.  We do not hire and deploy people to other companies for contractual, temporary jobs or even special projects.', 'Design, Marketing, Writing', 1, 'Full Time', '2 Years', '2', '20000', '2022-12-13 05:37:57', 46),
+(55, '2019-Abante-Tonite-Ampalaya.jpg', 'Dempsey Resource Management Inc.', 'CEO', 'Quezon City', '(DEMPSEY) is an executive search and referral services company.  We do assist our client companies in the sourcing of competent and qualified candidates to fill up various job positions in their organization.  The job positions we are targeting for our referred candidates are those intended for direct hiring by our clients. Our company is not a contracting agency.  We do not hire and deploy people to other companies for contractual, temporary jobs or even special projects.', 'Design, Marketing, Writing', 3, 'Full Time', '3 Years', '3', '30000', '2022-12-13 05:39:19', 47);
 
 -- --------------------------------------------------------
 
@@ -178,15 +150,15 @@ CREATE TABLE `job_applicants` (
   `job_app_user_id` int(11) NOT NULL,
   `date_apply` timestamp NOT NULL DEFAULT current_timestamp(),
   `requirements_id_applicant` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `job_applicants`
 --
 
 INSERT INTO `job_applicants` (`job_app_id`, `job_app_job_id`, `job_app_user_id`, `date_apply`, `requirements_id_applicant`) VALUES
-(4, 31, 38, '2022-12-09 16:54:50', 1),
-(5, 36, 30, '2022-12-09 17:04:46', NULL);
+(27, 54, 48, '2022-12-13 05:40:31', NULL),
+(28, 55, 49, '2022-12-13 05:41:22', NULL);
 
 -- --------------------------------------------------------
 
@@ -198,14 +170,16 @@ CREATE TABLE `requirements` (
   `requirements_id` int(11) NOT NULL,
   `requirements_filename` varchar(255) NOT NULL,
   `requirements_user_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `requirements`
 --
 
 INSERT INTO `requirements` (`requirements_id`, `requirements_filename`, `requirements_user_id`) VALUES
-(1, 'Doc1.pdf', 38);
+(1, 'Doc1.pdf', 38),
+(2, 'IT-SIA01-SYSTEM-INTEGRATION-AND-ARCHITECTURE.pdf', 38),
+(3, 'UNIT-II-XSS-Temporary-File-Abuse-Session-Hijacking.pptx.pdf', 38);
 
 -- --------------------------------------------------------
 
@@ -216,7 +190,7 @@ INSERT INTO `requirements` (`requirements_id`, `requirements_filename`, `require
 CREATE TABLE `roles` (
   `id` int(11) NOT NULL,
   `display_name` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `roles`
@@ -244,19 +218,18 @@ CREATE TABLE `users` (
   `address` varchar(100) NOT NULL,
   `user_password` varchar(255) NOT NULL,
   `user_role_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`user_id`, `user_profile_img`, `user_fname`, `user_lname`, `user_contact`, `user_email`, `address`, `user_password`, `user_role_id`) VALUES
-(29, NULL, 'kevin', 'felix', '90809890', 'kfc202510@gmail.com', 'bago general tinio ne', '5f4dcc3b5aa765d61d8327deb882cf99', 4),
-(30, NULL, 'asdasd', 'asdasdasda', '3424234', 'employer@gmail.com', 'wewerwe', '5f4dcc3b5aa765d61d8327deb882cf99', 3),
 (31, NULL, 'admin', 'admin', '0987622132', 'admin@gmail.com', 'adsadasd', '5f4dcc3b5aa765d61d8327deb882cf99', 1),
-(32, NULL, 'employee', 'lname', '0987654321', 'employee@gmail.com', 'address', '5f4dcc3b5aa765d61d8327deb882cf99', 2),
-(37, NULL, 'sfd', 'sdfs', '0987654321', 'adsd', 'sada', 'd8578edf8458ce06fbc5bb76a58c5ca4', 4),
-(38, 'qrcode_mushroommonitoringsystemv2-production.up.railway.app (2).png', 'REY', 'JOHN', '098765431', 'reyjohnpaul@gmail.com', 'asdsadasd', '5f4dcc3b5aa765d61d8327deb882cf99', 4);
+(46, NULL, 'John Paul', 'Parchamento', '09876543211', 'johnpaul@gmail.com', 'Nazareth General Tinio Nueva Ecija', '5f4dcc3b5aa765d61d8327deb882cf99', 3),
+(47, NULL, 'Rey John Paul', 'Limbo', '09876543222', 'reyjohnpaul@gmail.com', 'Concepion General Tinio Nueva Ecija', '5f4dcc3b5aa765d61d8327deb882cf99', 3),
+(48, NULL, 'Kerby John', 'Badillo', '09876543333', 'kerbyjohn@gmail.com', 'San Pedro General Tinio Nueva Ecija', '5f4dcc3b5aa765d61d8327deb882cf99', 4),
+(49, NULL, 'John Paulo', 'Javier', '09876544444', 'johnpaulo@gmail.com', 'Concepion General Tinio Nueva Ecija', '5f4dcc3b5aa765d61d8327deb882cf99', 4);
 
 --
 -- Indexes for dumped tables
@@ -338,25 +311,25 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `applicant_additional_info`
 --
 ALTER TABLE `applicant_additional_info`
-  MODIFY `aai_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `aai_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `applicant_educationbg`
 --
 ALTER TABLE `applicant_educationbg`
-  MODIFY `aebg_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `aebg_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `applicant_experience`
 --
 ALTER TABLE `applicant_experience`
-  MODIFY `ae_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ae_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `applicant_skills`
 --
 ALTER TABLE `applicant_skills`
-  MODIFY `as_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `as_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `education_attainment`
@@ -368,19 +341,19 @@ ALTER TABLE `education_attainment`
 -- AUTO_INCREMENT for table `jobs`
 --
 ALTER TABLE `jobs`
-  MODIFY `jobs_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `jobs_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT for table `job_applicants`
 --
 ALTER TABLE `job_applicants`
-  MODIFY `job_app_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `job_app_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `requirements`
 --
 ALTER TABLE `requirements`
-  MODIFY `requirements_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `requirements_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `roles`
@@ -392,7 +365,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `user_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- Constraints for dumped tables
