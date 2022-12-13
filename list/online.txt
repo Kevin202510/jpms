@@ -1,0 +1,84 @@
+problem in online
+
+   email varify
+
+   dashboard
+----------------------------
+  < applicant >
+
+1 job post____update skill error
+
+2  applicant   home wala ung  dropdown ____________check
+
+3 upload cv dapat isa lang
+
+ < Employer >
+
+4 job view _____view image_ 
+
+5 view job post time of post
+
+6 view company logo
+
+7 job Separate 
+
+
+  < admin >
+
+8  profile
+
+2 	
+
+
+
+	
+ 1  job post____update skill error
+
+ 2  applicant__ settings edit profile error  ___________________check
+
+ 3  time of post
+
+ 4  profile picture_________________check
+
+ 5  applicant   home wala ung  dropdown
+
+ 6 upload cv dapat isa lang
+   
+ 7  job view _____view image_ 
+
+ 8 user delete and password _______________________check
+
+ 9 applicant_educ__edit and add _____________check
+
+ 10 view company logo
+
+ 11 close modal
+ 
+ 12 dashboard 
+
+ 13 admin view cv ________________________check
+
+ 14 apply ______________check
+
+ 15 applicant edit profile______________check
+  
+ 16 employer apply Separate  ____________
+
+
+
+
+$newDBCRUD->update('customer_walkin',['checkout_status'=>'1'],"cw_id='$cw_id'");
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 		 
