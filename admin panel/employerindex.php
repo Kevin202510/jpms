@@ -200,7 +200,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
 <!-- ADDMODAL -->
 
             <div class="modal fade" id="exampleModals" tabindex="-1" role="dialog" aria-labelledby="exampleModalsLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
+            <div class="modal-dialog modal-xl" role="document">
                 <div class="modal-content">
                 <div class="modal-header" style="background-color: #28a745;">
                     <h5 Style="margin-left:160px; " class="modal-title" id="exampleModalsLabel"> ADD JOB POST</h5>
@@ -212,38 +212,46 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                 <form method="POST" enctype="multipart/form-data">
                     <input type="hidden" class="form-control" name="jobs_id" id="jobs_id">
                     <input type="hidden" class="form-control" name="jobs_user_id" id="jobs_user_id">
-
+                
                     <div class="custom-file">
                         <input type="file" class="custom-file-input" name="filesToUpload" aria-describedby="inputGroupFileAddon01">
                         <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
                     </div>
-
-                    <div class="form-group">
+                <div class="row">
+                    <div class="form-group col-6">
                         <label for="exampleInputPassword1">Comapany Name</label>
                         <input type="text" class="form-control" name="job_company_name" id="job_company_name" placeholder="Comapany Name" required>
                     </div>
+               
 
-                    <div class="form-group">
+                    <div class="form-group col-6">
                         <label for="exampleInputPassword1">Position</label>
                         <input type="text" class="form-control" name="jobs_name" id="jobs_name" placeholder="Comapany Position" required>
                     </div>
-
-                    <div class="form-group">
+                </div>
+                <div class="row">
+                    <div class="form-group  col-6">
                         <label for="exampleInputPassword1">Comapany Address</label>
                         <input type="text" class="form-control" name="jobs_address" id="jobs_address" placeholder="Comapany Address"required>
                     </div>
-
-                    <div class="form-group">
+                    <div class="form-group col-6">
+                        <label for="exampleInputPassword1">Vacancy</label>
+                        <input type="number" class="form-control" name="jobs_vacancy_count" id="jobs_vacancy_count" placeholder="Vacancy"required>
+                    </div>
+                    </div> 
+            <div class="row">
+                    <div class="form-group  col-6">
                         <label for="exampleInputPassword1">Description</label>
-                        <input type="text" class="form-control" name="jobs_description" id="jobs_description" placeholder="Description"required>
+                        <textarea type="text" style="width:500px;" class="form-control" name="jobs_description" id="jobs_description" placeholder="Description"required></textarea>
                     </div>
-
-                    <div class="form-group">
+                   
+                    <div class="form-group  col-6">
                         <label for="exampleInputPassword1">Skills</label>
-                        <input type="text" class="form-control" name="jobs_r_skills" id="jobs_r_skills" placeholder="Skills"required>
+                        <textarea type="text" style="width:500px;" class="form-control" name="jobs_r_skills" id="jobs_r_skills" placeholder="Skills"required></textarea>
                     </div>
-
-                    <div class="form-group">
+             </div>
+                    <div class="row">
+                    <div class="form-group col-6">
                         <label for="exampleInputPassword1">Education</label>
                         <select name="jobs_r_education_id" id="jobs_r_education_id">
                           <?php 
@@ -260,29 +268,27 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                     </div>
 
 
-                    <div class="form-group">
+                    <div class="form-group col-6">
                         <label for="exampleInputPassword1">Preferred Time</label>
                         <select name="jobs_preferred_time" id="jobs_preferred_time">
                             <option value="Full Time">Full Time</option>
                             <option value="Part Time">Part Time</option>
                               </select>
                             </div>
+                              </div>
 
-                    <div class="form-group">
+                              <div class="row">
+                    <div class="form-group col-6">
                         <label for="exampleInputPassword1">Required Experience</label>
                         <input type="text" class="form-control" name="jobs_r_experience" id="jobs_r_experience" placeholder="Experience"required>
                     </div>
 
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Vacancy</label>
-                        <input type="number" class="form-control" name="jobs_vacancy_count" id="jobs_vacancy_count" placeholder="Vacancy"required>
-                    </div> 
-                    
-                    <div class="form-group">
+         
+                    <div class="form-group col-6">
                         <label for="exampleInputPassword1">Salary</label>
                         <input type="number" class="form-control" name="job_expected_salary" id="job_expected_salary" placeholder="Salary"required>
                     </div>
-                
+                    </div>
                     <div class="modal-footer">
                         <button style="border-radius:20px; margin-right:10px; 10px; background-color:#28a745;" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <button style="border-radius:20px; margin-right:150px; 10px; background-color:#28a745;" type="submit" class="btn btn-primary" name="addjobs">ADD</button>
@@ -300,7 +306,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                 <div class="modal-header" style="background-color:#28a745;">
-                    <h5 style="margin-left:175px;"class="modal-title" id="exampleModalLabel">Edit Job Post</h5>
+                    <h5 style="margin-left:175px;" class="modal-title" id="exampleModalLabel">Edit Job Post</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
@@ -351,8 +357,8 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                           ?>
                           <option value="<?php echo $data['ea_id']; ?>"><?php echo $data['ea_name']; ?></option>
                         <?php }?>
-                        </select>
 
+                        </select>
 
                         <div class="form-group">
                         <label for="exampleInputPassword1">Preferred Time</label>
@@ -472,6 +478,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                        
                         <div class="job-post-details">
                             <div class="post-details1 mb-50">
+
                                 <!-- Small Section Tittle -->
                                 <div class="small-section-tittle">
                                     <h4>Job Description</h4>
@@ -480,6 +487,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                             </div>
                             <div class="post-details2  mb-50">
                                  <!-- Small Section Tittle -->
+
                                 <div class="small-section-tittle">
                                     <h4>Required Knowledge, Skills, and Abilities</h4>
                                 </div>
@@ -505,10 +513,10 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                     </div>
                     <!-- Right Content -->
                     <div class="col-xl-4 col-lg-4">
-                        <div class="post-details3  mb-50" style="border:solid black 2px;">
+                        <div class="post-details3  mb-50">
                             <!-- Small Section Tittle -->
                            <div class="small-section-tittle">
-                             <center>  <h4>Job Overview</h4></center>
+                            <h4>Job Overview</h4>
                            </div>
                           <ul>
                               <li>Posted date : <span id="created_at"></span></li>

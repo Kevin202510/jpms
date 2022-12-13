@@ -78,7 +78,7 @@ if(isset($_POST['subreg'])) {
     
     }   
 
-    if(isset($_POST['apply'])) {	
+    if(isset($_POST['jobapply'])) {	
 
         $job_app_job_id = $crudapi->escape_string($_POST['job_idss']);
         $job_app_user_id  = $crudapi->escape_string($_POST['user_id']);
@@ -87,7 +87,7 @@ if(isset($_POST['subreg'])) {
         $result = $crudapi->execute("INSERT INTO job_applicants(job_app_job_id,job_app_user_id) VALUES('$job_app_job_id','$job_app_user_id')");
   
         echo '<script>alert("Apply SUCCESS");</script>';
-        // header("location: index.php");
+         header("location: index.php");
 
        }
 
@@ -188,7 +188,7 @@ if(isset($_POST['subreg'])) {
                     <?php if($data['job_company_logo']===NULL){ ?>
                     <a href="#"><img src="assets/img/icon/job-list1.png" alt=""></a>
                     <?php }else{?>
-                    <a><img src="company_logo/<?php echo $data['job_company_logo'] ?>" alt="" width="100"></a>
+                    <a><img src="company_logo/<?php echo $data['job_company_logo'] ?>" alt="" width="100" height="100"></a>
                     <?php } ?>
                 </div>
                 <div class="job-tittle job-tittle2">
@@ -399,8 +399,8 @@ if(isset($_POST['subreg'])) {
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                             <div class="modal-header">
-                              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                             <div class="modal-header" style="background-color:#1AA478;">
+                              <h5 style="margin-left:200px;" class="modal-title" id="exampleModalLabel">Register</h5>
                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                              </button>
@@ -432,9 +432,31 @@ if(isset($_POST['subreg'])) {
                              </div>
 
                              <div class="form-group">
-                                 <label for="exampleInputPassword1">Address</label>
-                                 <input type="text" class="form-control" name="address" id="address" placeholder="Address" required>
-                             </div>
+                                 
+                        <label for="exampleInputPassword1">Address</label><br>
+                        <select name="address" id="address">
+                            <option value="Padolina General Tinio Nueva Ecija">Padolina General Tinio Nueva Ecija</option>
+                            <option value="Concepion General Tinio Nueva Ecija">Concepion General Tinio Nueva Ecija</option>
+                            <option value="Rio Chico General Tinio Nueva Ecija">Rio Chico General Tinio Nueva Ecija</option>
+                            <option value="Pias General Tinio Nueva Ecija">Pias General Tinio Nueva Ecija</option>
+                            <option value="Nazareth General Tinio Nueva Ecija">Nazareth General Tinio Nueva Ecija</option>
+                            <option value="Bago General Tinio Nueva Ecija">Bago General Tinio Nueva Ecija</option>
+                            <option value="Poblacion west General Tinio Nueva Ecija">Poblacion west General Tinio Nueva Ecija</option>
+                            <option value="Poblacion East General Tinio Nueva Ecija">Poblacion East General Tinio Nueva Ecija</option>
+                            <option value="Poblacion Central General Tinio Nueva Ecija">Poblacion Central General Tinio Nueva Ecija</option>
+                            <option value="San Pedro General Tinio Nueva Ecija">San Pedro General Tinio Nueva Ecija</option>
+                            <option value="Sampaguita General Tinio Nueva Ecija">Sampaguita General Tinio Nueva Ecija</option>
+                            <option value="Pulong Matong General Tinio Nueva Ecija">Pulong Matong General Tinio Nueva Ecija</option>
+                            <option value="Palale General Tinio Nueva Ecija">Palale General Tinio Nueva Ecija</option>
+                            </select>
+                            </div><br><br>
+                            
+
+
+
+
+
+
 
                              <div class="form-group">
                                  <label for="exampleInputPassword1">Password</label>
@@ -454,8 +476,8 @@ if(isset($_POST['subreg'])) {
 
                             
                                 <div class="modal-footer">
-                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                     <button type="submit" class="btn btn-primary" name="subreg">REGISTERED</button>
+                                     <button style="border-radius:20px; margin-right:10px;" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                     <button style="border-radius:20px; margin-right:50px;"type="submit" class="btn btn-primary" name="subreg">REGISTERED</button>
                                </div>
                          </form>
                     </div>
@@ -560,15 +582,12 @@ if(isset($_POST['subreg'])) {
 
                         <div class="single-job-items mb-50">
                  
-                            <div class="job-items">
-                            
-                            <div class="company-img">
-                                <?php if($data['job_company_logo']===NULL){ ?>
-                                <a><img src="assets/img/icon/job-list1.png" alt=""></a>
-                                <?php }else{?>
-                                <a><img src="company_logo/<?php echo $data['job_company_logo'] ?>" alt="" width="100"></a>
-                                <?php } ?>
-                            </div>
+                        <div class="job-items">
+                               
+                                <a><img id="job_company_logo" alt="" width="100" height="100"></a>
+                                
+                           
+                          
                                 <div class="job-tittle">
                                     
                                         <h4 id="job_company_namesszz"></h4>
@@ -633,7 +652,7 @@ if(isset($_POST['subreg'])) {
                               
                           </ul>
                          <div class="apply-btn2">
-                         <button type="button" data-id="<?php echo $data['jobs_id']; ?>" class="btn btn-primary" style="color:fff; border:none;" id="apply">Apply Now</button>
+                         <button type="button" data-id="<?php echo $data['jobs_id']; ?>" class="btn btn-primary" style="color:fff; border:none;" id="applys">Apply Now</button>
                             
                          </div>
                         
@@ -667,7 +686,7 @@ if(isset($_POST['subreg'])) {
      <div class="modal fade" id="applyModal" tabindex="-1" role="dialog" aria-labelledby="applyModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-md" role="document">
                 <div class="modal-content">
-                             <div class="modal-header " style="background-color:#1AA478; ">
+                             <div class="modal-header " style="background-color:#1AA478;">
                             <h5 style="margin-left:205px;" id="applyModalLabel">Apply</h5>
                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
@@ -676,16 +695,15 @@ if(isset($_POST['subreg'])) {
                     <div class="modal-body">
                         <form method="POST">
 
-                        <input type="text" class="form-control" name="user_id" id="user_id">
+                        <input type="text" class="form-control" name="user_id" id="user_idz">
 
-                        <div class="form-group">
-                            <input type="text" class="form-control" name="job_idss" id="job_app_job_id">
-                        </div>
+                        <input type="text" class="form-control" name="job_idss" id="job_app_job_idz">
+                     
   
 
                                 <div class="modal-footer" style="background-color:#13e9a5;">
                                     
-                            <button style="border-radius:20px;  margin-right:150px;" type="submit" class="btn " name="apply">Apply</button>
+                            <button style="border-radius:20px;  margin-right:150px;" type="submit" class="btn " name="jobapply">Apply</button>
                                      
                                     </div>
                          </form>
@@ -721,15 +739,17 @@ if(isset($_POST['subreg'])) {
     });
 
 
-    $("#apply").click(function(){
+    $("#applys").click(function(){
         // $("#as_user_id").val($("user_id").val());
-
-        $("#job_app_job_id").val($("#idid").val());
-    $("#user_id").val($("#idss").val());
+          // alert(job_app_job_idz)
+        $("#job_app_job_idz").val($("#idid").val());
+        $("#user_idz").val($("#idss").val());
+       
 
 
         $("#applyModal").modal("show");
     });
+
 
 
 
@@ -760,8 +780,14 @@ $.post("admin panel/update_jobs.php",{USER_IDsss: USER_IDss},function(data,statu
     var year = newdate.getFullYear();
 
     $("#created_atzz").text(month+" / "+day+" / "+year);
-    $("#jobs_user_idsszz").text(emp[0].jobs_user_id);
-    
+    $("#jobs_user_idss").text(emp[0].jobs_user_id);
+    let logo; 
+    if(emp[0].job_company_logo==null){
+        logo = "assets/img/icon/job-list1.png";
+    }else{
+        logo = "company_logo/"+emp[0].job_company_logo;
+    }
+    $("#job_company_logo").attr("src",logo);
     $("#job_company_namesszz").text(emp[0].job_company_name);
     $("#jobs_namesszz").text(emp[0].jobs_name);
     $("#jobs_addresssszz").text(emp[0].jobs_address);

@@ -157,8 +157,8 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                             <div class="modal-header">
-                              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                             <div class="modal-header"  style="background-color: #28a745;">
+                              <h5 Style="margin-left:200px;" class="modal-title" id="exampleModalLabel">Users</h5>
                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                              </button>
@@ -210,8 +210,8 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                      
 
                                 <div class="modal-footer">
-                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                     <button type="submit" class="btn btn-primary" name="userregister">REGISTERED</button>
+                                     <button style="border-radius:20px; margin-right:10px; 10px; background-color:#28a745;" type="button" class="btn btn-secondary" data-dismiss="modal">CLOSE</button>
+                                     <button style="border-radius:20px; margin-right:120px; 10px; background-color:#28a745;" type="submit" class="btn btn-primary" name="userregister">REGISTERED</button>
                                </div>
                          </form>
                     </div>
@@ -225,8 +225,8 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
 <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="editModalLabel">Modal title</h5>
+                <div class="modal-header"  style="background-color:#28a745;">
+                    <h5 style="margin-left:185px;"class="modal-title" id="exampleModalLabel" class="modal-title" id="editModalLabel">Edit Users</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
@@ -262,8 +262,8 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                              </div>
 
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary" name="editusers">UPDATE</button>
+                        <button style="border-radius:20px; margin-right:10px; 10px; background-color:#28a745;" type="button" class="btn btn-secondary" data-dismiss="modal">CLOSE</button>
+                        <button style="border-radius:20px; margin-right:130px; 10px; background-color:#28a745;" type="submit" class="btn btn-primary" name="editusers">UPDATE</button>
                     </div>
                 </form>
                 </div>
@@ -277,8 +277,8 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
          <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="deleteModalLabel">Modal title</h5>
+                <div class="modal-header" style="background-color:#28a745;">
+                    <h5 style="margin-left:180px;" class="modal-title" id="deleteModalLabel">Delete Users</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
@@ -286,9 +286,9 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                 <div class="modal-body">
                 <form method="POST">
                     <input type="hidden" class="form-control" name="user_id" id="user_idsss">
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary" name="deleteuser">Delete</button>
+                    <div class="modal-footer"  >
+                        <button style="border-radius:20px; margin-right:10px; background-color:#28a745;" type="button" class="btn btn-secondary" data-dismiss="modal">CLOSE</button>
+                        <button style="border-radius:20px; margin-right:140px; background-color:#28a745;" type="submit" class="btn btn-primary" name="deleteuser">Delete</button>
                     </div>
                 </form>
                 </div>

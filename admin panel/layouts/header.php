@@ -411,10 +411,11 @@ if(isset($_POST['uploadCV'])){
                     <input type="hidden" class="form-control" name="user_role_id" id="user_role_idss">
 
                             <center><div class="col-md-3 text-left text-md-center mb-3">
-                            <img class="rounded-circle img-fluid" src="../profile/<?php echo $data["user_profile_img"];?>" alt="Profile Photo" /><br><br>
-                            <button style="float:right; margin-right:30px;" type="button" class="btn btn-success" data-id="<?php echo $_SESSION['USERID']; ?>" id="upload_Profile">Profile</button>
+                            <img class="rounded-circle img-fluid" src="../profile/<?php echo $data["user_profile_img"];?>" alt="Profile Photo"  width="100" /><br><br>
+                            <button style="float:right; margin-right:30px;" type="button" class="btn btn-success" data-id="<?php echo $_SESSION['USERID']; ?>" id="upload_Profiles">Profile</button>
                           </div></center><br><br>
 
+                      
                           <div class="form-group">
                                  <label for="exampleInputPassword1">First Name</label>
                                  <input type="text" class="form-control" name="user_fname" id="user_fnamess" placeholder="First Name" required>
@@ -453,7 +454,7 @@ if(isset($_POST['uploadCV'])){
 
   <!-- upload profile -->
 
-  <div class="modal fade" id="uploadModals" tabindex="-1" role="dialog" aria-labelledby="uploadModalLabel" aria-hidden="true">
+  <div class="modal fade" id="uploadsModals" tabindex="-1" role="dialog" aria-labelledby="uploadModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -463,7 +464,7 @@ if(isset($_POST['uploadCV'])){
         </button>
       </div>
       <div class="modal-body">
-        <!-- <form method="post" action="uploadCV.php" enctype="multipart/form-data">
+        <form method="post" action="uploadCV.php" enctype="multipart/form-data">
             <input type="text" name="user_id" id="user_id_s">
             <input type="hidden" name="uploadProfile">
             <div class="input-group mb-3">
@@ -479,7 +480,7 @@ if(isset($_POST['uploadCV'])){
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
           <button type="submit" class="btn btn-primary">Save changes</button>
         </div>
-        </form> -->
+        </form>
       </div>
     </div>
   </div>

@@ -126,6 +126,57 @@ $crudapi = new CRUDAPI();
             </div>
         </div>
         <!-- Job List Area End -->
+
+
+        <div class="col">
+        <?php 
+         
+         include_once("classes/CRUDAPI.php");
+         $crudapi = new CRUDAPI(); 
+             $query = " SELECT * FROM `jobs`";
+             $result = $crudapi->getData($query);
+             $number = 1;
+             foreach ($result as $key => $data) { 
+         
+        ?>
+        <div class="single-job-items mb-30">
+            <div class="job-items">
+                <div class="company-img">
+                    <?php if($data['job_company_logo']===NULL){ ?>
+                    <a href="#"><img src="assets/img/icon/job-list1.png" alt=""></a>
+                    <?php }else{?>
+                    <a><img src="company_logo/<?php echo $data['job_company_logo'] ?>" alt="" width="100" height="100"></a>
+                    <?php } ?>
+                </div>
+                <div class="job-tittle job-tittle2">
+                   
+                        <h4><?php echo strtoupper($data['job_company_name']); ?></h4>
+                    </a>
+                    <ul>
+
+                        <li> <i style="color:#78828d;" class="fa fa-user"></i> <?php echo strtoupper($data['jobs_name']); ?></li>
+                        <li><i  style="color:#78828d;" class="fas fa-map-marker-alt"></i></i><?php echo strtoupper($data['jobs_address']); ?></li>
+                        <li><i  style="color:#78828d;" class="fas fa">PHP</i><?php echo strtoupper($data['job_expected_salary']); ?></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="items-link items-link2 f-right">
+                <!-- <a href="job_details.php">Full Time</a> -->
+                <button type="button" data-id="<?php echo $data['jobs_id']; ?>" class="btn btn-primary" style="border-radius:30px; color:black; border:none;" id="view"><i class="bi bi-eye-fill"></i>View</button>
+                <span>7 hours ago</span>
+            </div>
+        </div>
+        <?php }?>
+        </div>
+        <!-- More Btn -->
+        <!-- Section Button -->
+        
+    </div>
+</div>
+
+
+
+
         <!--Pagination Start  -->
         <div class="pagination-area pb-115 text-center">
             <div class="container">
@@ -174,9 +225,7 @@ $crudapi = new CRUDAPI();
                         <div class="single-job-items mb-50">
                  
                             <div class="job-items">
-                                <div class="company-img company-img-details">
-                                    <a><img src="assets/img/icon/job-list1.png" alt=""></a>
-                                </div>
+                            <a><img id="job_company_logo" alt="" width="100" height="100"></a>
                                 <div class="job-tittle">
                                    
                                         <h4 id="job_company_namess"></h4>
@@ -284,9 +333,9 @@ $crudapi = new CRUDAPI();
 
                         <input type="text" class="form-control" name="user_id" id="user_id">
 
-                            <div class="form-group">
+                            
                                  <input type="text" class="form-control" name="job_idss" id="job_app_job_id">
-                             </div>
+                            
                               
                                 <div class="modal-footer" style="background-color:#13e9a5;">
                                     
@@ -311,11 +360,11 @@ $crudapi = new CRUDAPI();
 <script>
   $(document).ready(function(){
   
-  $("body").on('click','#viewsss',function(e){
+  $("body").on('click','#view',function(e){
     //   alert("Asdasd");
 
 var USER_IDss = $(e.currentTarget).data('id');
- alert(USER_IDss);
+ //alert(USER_IDss);
 $.post("admin panel/update_jobs.php",{USER_IDsss: USER_IDss},function(data,status){
     var emp = JSON.parse(data);
     // console.log(emp[0]);
@@ -327,6 +376,14 @@ $.post("admin panel/update_jobs.php",{USER_IDsss: USER_IDss},function(data,statu
 
     $("#created_at").text(month+" / "+day+" / "+year);
     $("#jobs_user_idss").text(emp[0].jobs_user_id);
+
+    let logo; 
+    if(emp[0].job_company_logo==null){
+        logo = "assets/img/icon/job-list1.png";
+    }else{
+        logo = "company_logo/"+emp[0].job_company_logo;
+    }
+    $("#job_company_logo").attr("src",logo);
     $("#job_company_namess").text(emp[0].job_company_name);
     $("#jobs_namess").text(emp[0].jobs_name);
     $("#jobs_addressss").text(emp[0].jobs_address);

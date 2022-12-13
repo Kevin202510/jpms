@@ -141,15 +141,14 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
         
 <div class="modal-dialog modal-xl" role="document">
                 <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="viewModalLabel">View</h5>
- 
-                    <input type="button" value="Click Here" onclick="printDivContent()">
+                <div class="modal-header" style="background-color:#28a745;">
+                    <h5 style="margin-left:490px;" class="modal-title" id="viewModalLabel">View Resume</h5>
 
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
-                    </button>
+                    </button> 
                 </div>
+                <input type="button" value="Click Here" onclick="printDivContent()">
                 <div class="modal-body">
 
 
@@ -295,8 +294,8 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
 <div class="modal fade" id="viewrequarments" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">VIEW REQUARMENTS</h5>
+      <div class="modal-header" style="background-color:#28a745;">
+        <h5 style="margin-left:130px;" class="modal-title" id="exampleModalLabel">VIEW REQUARMENTS</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span> 
           </button>
@@ -356,6 +355,7 @@ $.post("updateapplicant.php",{USER_IDsss: USER_IDs},function(data,status){
 });
 
 $("#viewModal").modal("show");
+
 });
 
 $("body").on('click','#viewreqs',function(e){

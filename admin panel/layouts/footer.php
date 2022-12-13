@@ -67,6 +67,13 @@ $("body").on('click','#settings',function(e){
         alert(USER_IDs);
         $.post("updateusers.php",{USER_ID: USER_IDs},function(data,status){
             var emp = JSON.parse(data);
+            let logo; 
+    if(emp[0].job_company_logo==null){
+        logo = "assets/img/icon/job-list1.png";
+    }else{
+        logo = "company_logo/"+emp[0].job_company_logo;
+    }
+    $("#job_company_logo").attr("src",logo);
             $("#user_idss").val(emp[0].user_id);
             $("#user_role_idss").val(emp[0].user_role_id);
             $("#user_fnamess").val(emp[0].user_fname);
@@ -114,10 +121,10 @@ $(document).ready(function(){
         $("#exampleModal").modal("show");
       });
 
-      $("#uploadProfiles").click(function(e){
+      $("#upload_Profiles").click(function(e){
         var users_id = $(e.currentTarget).data('id');
         $("#user_ids").val(users_id);
-        $("#exampleModals").modal("show");
+        $("#uploadsModals").modal("show");
       });
   });
 

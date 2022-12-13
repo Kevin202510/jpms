@@ -148,8 +148,8 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
 <div class="modal fade" id="viewModal" tabindex="-1" role="dialog" aria-labelledby="viewModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-xl" role="document">
                 <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="viewModalLabel">View</h5>
+                <div class="modal-header" style="background-color:#28a745;">
+                    <h5 style="margin-left: 470px;" class="modal-title" id="viewModalLabel">View Requarments</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
