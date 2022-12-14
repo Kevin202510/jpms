@@ -28,6 +28,7 @@ if (isset($_POST['login'])) {
         if($data['user_role_id']==1 || $data['user_role_id']==2){
             $_SESSION['USERROLE'] = $data['user_role_id'];
             $_SESSION['USERID'] = $data['user_id'];
+            $_SESSION['isVerify'] = $data['email_verified_at'];
             $_SESSION['FULLNAME'] = $data['user_fname']." ".$data['user_lname'];
         
             header("location: admin panel/applicantlist.php");
@@ -35,6 +36,7 @@ if (isset($_POST['login'])) {
         else if($data['user_role_id']==3){
             $_SESSION['USERROLE'] = $data['user_role_id'];
             $_SESSION['USERID'] = $data['user_id'];
+            $_SESSION['isVerify'] = $data['email_verified_at'];
             $_SESSION['FULLNAME'] = $data['user_fname']." ".$data['user_lname'];
         
             header("location: admin panel/employerindex.php");
@@ -42,6 +44,7 @@ if (isset($_POST['login'])) {
 
         else{
             $_SESSION['USERROLE'] = $data['user_role_id'];
+            $_SESSION['isVerify'] = $data['email_verified_at'];
             $_SESSION['FULLNAME'] = $data['user_fname']." ".$data['user_lname'];
             $_SESSION['USERID'] = $data['user_id'];
         
