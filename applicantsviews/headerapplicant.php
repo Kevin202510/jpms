@@ -221,7 +221,7 @@ if(isset($_POST['uploadCV'])){
           <input type="hidden" class="form-control" name="user_id" id="user_idzz">
 
           <center>  <div class="col-md-12 text-left text-md-center ">
-          <img class="rounded-circle img-fluid" src="profile/<?php echo $data["user_profile_img"];?>" alt="Profile Photo" width="100" />
+          <img class="rounded-circle" src="profile/<?php echo $data["user_profile_img"];?>" alt="Profile Photo" width="150" height="150" />
           </div></center>
                      <div style="text-align:center;">       
                             <h2 id="user_fnamezz"></h2>
@@ -263,12 +263,7 @@ if(isset($_POST['uploadCV'])){
           <input type="hidden" class="form-control" name="user_id" id="user_id_ss">
                     <input type="hidden" class="form-control" name="user_role_id" id="user_role_idss">
 
-                    <center>  <div class="col-md-3 text-left text-md-center mb-3">
-                    <img class="rounded-circle img-fluid" src="profile/<?php echo $data["user_profile_img"];?>" alt="Profile Photo" width="100" /><br><br>
-                             <button style="float:right; margin-right:30px;" type="button" class="btn btn-success" data-id="<?php echo $_SESSION['USERID']; ?>" id="uploadProfile">Change Profile Picture</button>
-                            </div>
-                  </center>
-
+                   
                     <div class="form-group">
                                  <label for="exampleInputPassword1">First Name</label>
                                  <input type="text" class="form-control" name="user_fname" id="user_fnamess"  required>

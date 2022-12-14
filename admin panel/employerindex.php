@@ -458,7 +458,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                                 <?php if($data['job_company_logo']===NULL){ ?>
                                 <a><img src="assets/img/icon/job-list1.png" alt=""></a>
                                 <?php }else{?>
-                                <a><img src="company_logo/<?php echo $data['job_company_logo'] ?>" alt="" width="100"></a>
+                                <a><img src="company_logo/<?php echo $data['job_company_logo'] ?>" alt="" width="100" height="100"></a>
                                 <?php } ?>
                             </div>
                                 <div class="job-tittle">

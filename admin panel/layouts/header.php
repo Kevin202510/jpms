@@ -1,6 +1,6 @@
 
 <?php
-session_start();
+// session_start();
 
 
 include_once("./classes/CRUDAPI.php");
@@ -26,7 +26,7 @@ $address = $crudapi->escape_string($_POST['address']);
 }
 else if(isset($_POST["logout"])){
   session_destroy();
-  header("location: ../index.php");
+  header("location:../index.php");
 }
 
 
@@ -37,12 +37,12 @@ if(isset($_POST['uploadCV'])){
   $target_file = $target_dir . basename($_FILES["filesToUpload"]["name"]);
   $uploadOk = 1;
   $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-  
+
   $id = $_POST['user_id'];
   $profile = $_FILES["filesToUpload"]["name"];
-  
+
   $result = $crudapi->execute("INSERT INTO requirements(requirements_filename,requirements_user_id) VALUES('$profile','$id')");
-  
+
   if (file_exists($target_file)) {
       echo "Sorry, file already exists.";
       $uploadOk = 0;
@@ -54,44 +54,43 @@ if(isset($_POST['uploadCV'])){
       echo "Sorry, there was an error uploading your file.";
       }
   }
-  
+
   // if($newAPIFunctions){
   //     header("location:applicantinformation.php");
   // }else{
   //     echo '<script>alert("May Error!");</script>';
   // }
-  }else if(isset($_POST['uploadProfiles'])){
-  
+}else if(isset($_POST['upload_Profile'])){
+
   $target_dir = "../profile/";
   $target_file = $target_dir . basename($_FILES["filesToUpload"]["name"]);
   $uploadOk = 1;
   $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-  
+
   $id = $_POST['user_id'];
   $profile = $_FILES["filesToUpload"]["name"];
-  
+
   $result = $crudapi->execute("UPDATE `users` SET user_profile_img='$profile' WHERE user_id='$id' ");
-  
+
   if (file_exists($target_file)) {
       echo "Sorry, file already exists.";
       $uploadOk = 0;
   }else{
       if (move_uploaded_file($_FILES["filesToUpload"]["tmp_name"], $target_file)) {
           // echo "The file ". htmlspecialchars( basename( $_FILES["filesToUpload"]["name"])). " has been uploaded.";
-          header("location:applicantinformation.php");
+          header("location:employerindex.php");
       } else {
-          header("location:applicantinformation.php");
-  
+        header("location:employerindex.php");
+
       }
   }
-  
+
   // if($newAPIFunctions){
   //     header("location:applicantinformation.php");
   // }else{
   //     echo '<script>alert("May Error!");</script>';
   // }
-  }
-  
+}
 
 
 
@@ -265,7 +264,7 @@ if(isset($_POST['uploadCV'])){
         <li class="nav-item dropdown pe-3">
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+            <img id="profileimg" alt="Profile" class="rounded-circle">
             <span class="d-none d-md-block dropdown-toggle ps-2"><?php echo  $_SESSION['FULLNAME'];?></span>
           </a><!-- End Profile Iamge Icon -->
 
@@ -277,6 +276,8 @@ if(isset($_POST['uploadCV'])){
             <li>
               <hr class="dropdown-divider">
             </li>
+
+            <input type="hidden" id="profilekoto" value="<?php echo $_SESSION['USERID'];?>">
 
             <li>
             <button type="button" class="dropdown-item d-flex align-items-center" id="profilebtn" data-id="<?php echo $_SESSION['USERID'];?>" style="float:right;">
@@ -290,7 +291,7 @@ if(isset($_POST['uploadCV'])){
             </li>
 
             <li>
-            <button type="button" class="dropdown-item d-flex align-items-center" id="settings" data-id="<?php echo $_SESSION['USERID'];?>" style="float:right;">
+            <button type="button" class="dropdown-item d-flex align-items-center" id="settingsz" data-id="<?php echo $_SESSION['USERID'];?>" style="float:right;">
                 <i class="bi bi-box-arrow-right"></i>
                 <span>Settings</span>
               </button>
@@ -369,7 +370,7 @@ if(isset($_POST['uploadCV'])){
           <input type="hidden" class="form-control" name="user_id" id="user_idz">
 
         <div class="col-md-12 text-left text-md-center ">
-            <img class="rounded-circle img-fluid" src="https://i.pravatar.cc/175?img=32" alt="Profile Photo" />
+        <img id="profileimg" alt="Profile" class="rounded-circle">
           </div>
                      <div style="text-align:center;">       
                             <h2 id="user_fnamez"></h2>
@@ -411,7 +412,9 @@ if(isset($_POST['uploadCV'])){
                     <input type="hidden" class="form-control" name="user_role_id" id="user_role_idss">
 
                             <center><div class="col-md-3 text-left text-md-center mb-3">
-                            <img class="rounded-circle img-fluid" src="../profile/<?php echo $data["user_profile_img"];?>" alt="Profile Photo"  width="100" /><br><br>
+                            <img id="profileimg" alt="Profile" class="rounded-circle">
+      
+                            <br><br>
                             <button style="float:right; margin-right:30px;" type="button" class="btn btn-success" data-id="<?php echo $_SESSION['USERID']; ?>" id="upload_Profiles">Profile</button>
                           </div></center><br><br>
 
@@ -452,21 +455,21 @@ if(isset($_POST['uploadCV'])){
     </div>
   </div>
 
-  <!-- upload profile -->
+ <!-- upload profile -->
 
-  <div class="modal fade" id="uploadsModals" tabindex="-1" role="dialog" aria-labelledby="uploadModalLabel" aria-hidden="true">
+ <div class="modal fade" id="uploadModals" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="uploadModalLabel">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <form method="post" action="uploadCV.php" enctype="multipart/form-data">
-            <input type="text" name="user_id" id="user_id_s">
-            <input type="hidden" name="uploadProfile">
+        <form method="post" action="../uploadCV.php" enctype="multipart/form-data">
+            <input type="text" name="user_id" id="user_ids">
+            <input type="hidden" name="upload_Profile">
             <div class="input-group mb-3">
               <div class="input-group-prepend">
                 <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>

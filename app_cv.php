@@ -41,7 +41,7 @@
       </div>
       <div class="modal-body">
         <form method="post" action="uploadCV.php" enctype="multipart/form-data">
-            <input type="text" name="user_id" id="user_ids">
+            <input type="hidden" name="user_id" id="idmoto">
             <input type="hidden" name="uploadProfile">
             <div class="input-group mb-3">
               <div class="input-group-prepend">

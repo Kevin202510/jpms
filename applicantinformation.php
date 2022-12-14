@@ -38,8 +38,8 @@
                 ?>
         <div class="row">
           <div class="col-md-3 text-left text-md-center mb-3">
-            <img class="rounded-circle img-fluid" src="profile/<?php echo $data["user_profile_img"];?>" alt="Profile Photo" /><br><br>
-            <button style="float:right; margin-right:30px;" type="button" class="btn btn-success" data-id="<?php echo $_SESSION['USERID']; ?>" id="uploadProfile">Profile</button>
+            <img class="rounded-circle" src="profile/<?php echo $data["user_profile_img"];?>" alt="Profile Photo" width="200" height="200" /><br><br>
+            <button style=" margin-right:5px; margin-top:-20px" type="button" class="btn btn-success" data-id="<?php echo $data["user_id"]; ?>" id="uploadProfile">Profile</button>
           </div>
           <div class="col-md-9">
             <br> <br> <br> <br> <br> <br> <br>
@@ -221,7 +221,7 @@
 
       $("#uploadProfile").click(function(e){
         var users_id = $(e.currentTarget).data('id');
-        $("#user_ids").val(users_id);
+        $("#idmoto").val(users_id);
         $("#exampleModals").modal("show");
       });
   });
