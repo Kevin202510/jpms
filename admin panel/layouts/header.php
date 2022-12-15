@@ -535,7 +535,10 @@ if($_SESSION['USERROLE'] == 3){
                         <label for="exampleInputPassword1">Verification</label>
                         <input type="text" class="form-control" name="verification_code" id="Verification_code_z" placeholder="Verification" required>
                     </div>
-
+                    <div class="modal-footer">
+               
+               <button style="border-radius:20px; margin-right:150px; background-color:#28a745;" type="submit" class="btn btn-primary" name="edituser">save</button>
+           </div>
         </form>
         </div>
         </div>
@@ -580,7 +583,7 @@ if($_SESSION['USERROLE'] == 3){
                                     </ul>
                        </div>       
                      </div>
-           
+                   
         </form>
         </div>
         </div>
