@@ -249,9 +249,11 @@ if($_SESSION['USERROLE'] == 3){
       
         
         <!-- <img src="assets/img/logo.png" alt=""> -->
-        <span class="d-none d-lg-block" style="color:#3d4d4b; font-size:30px;" >ADMIN</span>
-      
-      <i class="bi bi-list toggle-sidebar-btn" style="margin-left:138px;"></i>
+        <!-- <span class="d-none d-lg-block" style="color:#3d4d4b; font-size:30px;" >ADMIN</span> -->
+        
+                  <a href="index.php"><img src="../assets/img/logo/GT JOB HUNT.gif" alt=""></a>
+         
+      <i class="bi bi-list toggle-sidebar-btn" style="margin-left:45px; "></i>
     </div><!-- End Logo -->
 
 
@@ -537,7 +539,7 @@ if($_SESSION['USERROLE'] == 3){
                     </div>
                     <div class="modal-footer">
                
-               <button style="border-radius:20px; margin-right:150px; background-color:#28a745;" type="submit" class="btn btn-primary" name="edituser">save</button>
+               <button style="border-radius:20px; margin-right:190px; background-color:#28a745;" type="submit" class="btn btn-primary" name="edituser">save</button>
            </div>
         </form>
         </div>
