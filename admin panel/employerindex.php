@@ -415,8 +415,8 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                 <form method="POST">
                     <input type="hidden" class="form-control" name="jobs_id" id="jobs_idss">
                     <div class="modal-footer">
-                        <button style="border-radius:20px; margin-right:10px; 10px; background-color:#28a745;" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button style="border-radius:20px; margin-right:150px; 10px; background-color:#28a745;" type="submit" class="btn btn-primary" name="deletejob">Delete</button>
+                        <button style="border-radius:20px; margin-right:10px; background-color:#28a745;" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button style="border-radius:20px; margin-right:150px; background-color:#28a745;" type="submit" class="btn btn-primary" name="deletejob">Delete</button>
                     </div>
                 </form>
                 </div>

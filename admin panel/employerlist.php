@@ -85,9 +85,13 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
  
               <td>
               <div class="btn-group" role="group" aria-label="Basic example">
-                  <button type="button" id="view_reqs" data-id="<?php echo $data['user_id']; ?>" class="btn btn-primary" style="background-color:blue; color:black; border:none;" >View Requirment</button>
-                  <button type="button" id="views" data-id="<?php echo $data['user_id']; ?>" class="btn btn-primary" style="background-color:transparent; color:blue; border:none;" ><i class="bi bi-eye-fill"></i></button>
-                  <button type="button" id="Deleteemployer" data-id="<?php echo $data['user_id']; ?>" class="btn btn-primary" style="background-color:red; color:blue; border:none;" >Delete</button>
+
+              <button style="background-color:transparent;  border-radius:20px; background-color:#28a745;  border:none; color:#fff;" type="button" id="view_reqs" data-id="<?php echo $data['user_id']; ?>">View Requirment</button>
+                  <button  style="background-color:transparent; color:blue; border:none;" type="button" id="accept" data-id="<?php echo $data['user_id']; ?>"><i class="bi bi-hand-thumbs-up-fill"></i></button>
+                  <button  style="background-color:transparent; color:red; border:none;" type="button" id="reject" data-id="<?php echo $data['user_id']; ?>"><i class="bi bi-hand-thumbs-down-fill"></i></button>
+                  <button style="background-color:transparent; color:blue; border:none;" type="button" id="views" data-id="<?php echo $data['user_id']; ?>"><i class="bi bi-eye-fill"></i></button>
+                  <button style="background-color:transparent; color:red; border:none;" type="button" id="Deleteemployer" data-id="<?php echo $data['user_id']; ?>" ><i class="bi bi-trash-fill"></i></button>
+
                 </div>
 
               </td>
@@ -161,8 +165,8 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                 <form method="POST">
                     <input type="hidden" class="form-control" name="user_id" id="user_idsszzz">
                     <div class="modal-footer">
-                        <button style="border-radius:20px; margin-right:10px;"  type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button style="border-radius:20px; margin-right:75px;"  type="submit" class="btn btn-primary" name="Ban">Ban</button>
+                        <button style="border-radius:20px; margin-right:10px; background-color:#28a745;"  type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button style="border-radius:20px; margin-right:160px; background-color:#28a745;"  type="submit" class="btn btn-primary" name="Ban">Ban</button>
                     </div>
                 </form>
                 </div>
@@ -200,6 +204,62 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
 
 <!-- viewreq -->  
 
+  
+   <!-- Accept MODAL -->
+
+<div class="modal fade" id="acceptModal" tabindex="-1" role="dialog" aria-labelledby="views_ModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-md" role="document">
+                <div class="modal-content">
+                <div class="modal-header" style="background-color:#28a745;">
+                    <h5  style="margin-left:200px;" class="modal-title" id="views_ModalLabel">Profile</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+             
+                <div class="modal-body">
+                 
+
+               
+                
+
+        
+                  </div>
+              
+                </div>
+            </div>
+         </div>
+         </div>
+<!-- Accept  -->
+
+
+ <!-- reject MODAL -->
+
+ <div class="modal fade" id="rejectModal" tabindex="-1" role="dialog" aria-labelledby="view_ModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-md" role="document">
+                <div class="modal-content">
+                <div class="modal-header" style="background-color:#28a745;">
+                    <h5 style="margin-left:200px;" class="modal-title" id="view_ModalLabel">Profile</h5>
+                    <button style="border-radius:20px; margin-right:10px; 10px; background-color:#28a745;" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+             
+                <div class="modal-body">
+                 
+
+               
+                
+
+        
+                  </div>
+              
+                </div>
+            </div>
+         </div>
+         </div>
+<!-- Accept  -->
+
 
 
 <?php include('layouts/footer.php'); ?>
@@ -227,6 +287,39 @@ $.post("updateusers.php",{USER_ID: USER_ID},function(data,status){
 $("#viewsModal").modal("show");
 
 });
+
+
+$("body").on('click','#accept',function(e){
+
+var USER_ID = $(e.currentTarget).data('id');
+//  alert(USER_ID);
+$.post("updateusers.php",{USER_ID: USER_ID},function(data,status){
+    var emp = JSON.parse(data);
+     console.log(emp);
+   
+  
+});
+
+$("#acceptModal").modal("show");
+
+});
+
+
+$("body").on('click','#reject',function(e){
+
+var USER_ID = $(e.currentTarget).data('id');
+//  alert(USER_ID);
+$.post("updateusers.php",{USER_ID: USER_ID},function(data,status){
+    var emp = JSON.parse(data);
+     console.log(emp);
+   
+  
+});
+
+$("#rejectModal").modal("show");
+
+});
+
 
 $("body").on('click','#Deleteemployer',function(e){
         

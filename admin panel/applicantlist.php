@@ -129,8 +129,8 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
               
                        <div class="items-link items-link2 f-right">
                           <!-- <a href="#"><i style="font-size:15px;" class="bi bi-eye-fill"></i></a> -->
-                          <button type="button" data-id="<?php echo $data['user_id']; ?>" id="view" style="border: transparent; color: blue; background: transparent;"><i class="bi bi-eye-fill"></i></button>
                           <button type="button" data-id="<?php echo $data['requirements_filename']; ?>" class="btn btn-primary" id="viewreqs">Requarments</button>
+                          <button type="button" data-id="<?php echo $data['user_id']; ?>" id="view" style="border: transparent; color: blue; background: transparent;"><i class="bi bi-eye-fill"></i></button>
                          <button type="button" data-id="<?php echo $data['user_id']; ?>" id="deleteuser" style="border: transparent; color: red; background: transparent;">Ban</button>
                       
                       
@@ -314,7 +314,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                            
         <div class="card">
               <div class="container" style="width:300px; height:300px; ">
-                  <a type="button" id="cvs" style="width:100px; height:50px; margin-top:250px; margin-left:90px; text-align:center; background-color:#28a745;">CV</a> 
+                  <a type="button" id="cv_s" style="width:100px; height:50px; margin-top:250px; margin-left:90px; text-align:center; background-color:#28a745;">CV</a> 
               </div>
             </div>
 

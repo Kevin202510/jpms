@@ -101,12 +101,12 @@ if(isset($_POST['uploadCV'])){
 ?>
 <header id="header" class="header fixed-top d-flex align-items-center" style="background-color:#1AA478;">
   
-    <div class="d-flex align-items-center justify-content-between">
-      <a href="index.html" class="logo d-flex align-items-center">
+    <div class="d-flex align-items-center justify-content-between fw-bold ">
+      
         <!-- <img src="assets/img/logo.png" alt=""> -->
-        <span class="d-none d-lg-block" style="color:#3d4d4b;">Job Portal</span>
-      </a>
-      <i class="bi bi-list toggle-sidebar-btn"></i>
+        <span class="d-none d-lg-block" style="color:#3d4d4b; font-size:30px;" >ADMIN</span>
+      
+      <i class="bi bi-list toggle-sidebar-btn" style="margin-left:138px;"></i>
     </div><!-- End Logo -->
 
    
