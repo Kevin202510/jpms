@@ -53,25 +53,8 @@
   
 });
 
-$("body").on('click','#profilebtn',function(e){
-        // alert($(e.currentTarget).data('id'));
-        var USER_IDs = $(e.currentTarget).data('id');
-       // alert(USER_IDs);
-        $.post("updateusers.php",{USER_ID: USER_IDs},function(data,status){
-            var emp = JSON.parse(data);
-    
-            $("#profileimg").attr("src","../profile/"+emp[0].user_profile_img);
-            $("#user_idz").text(emp[0].user_id);
-            $("#user_fnamez").text(emp[0].user_fname);
-            $("#user_contactz").text(emp[0].user_contactz);
-            $("#user_emailz").text(emp[0].user_emailz);
-            $("#addressz").text(emp[0].addressz);
-          
-        });
 
-        $("#profile").modal("show");
 
-    });
 
 $("body").on('click','#settings',function(e){
         // alert($(e.currentTarget).data('id'));
@@ -79,13 +62,7 @@ $("body").on('click','#settings',function(e){
         alert(USER_IDs);
         $.post("updateusers.php",{USER_ID: USER_IDs},function(data,status){
             var emp = JSON.parse(data);
-            let logo; 
-    if(emp[0].job_company_logo==null){
-        logo = "assets/img/icon/job-list1.png";
-    }else{
-        logo = "company_logo/"+emp[0].job_company_logo;
-    }
-    $("#job_company_logo").attr("src",logo);
+            $("#profileimgs").attr("src","../profile/"+emp[0].user_profile_img);
             $("#user_idss").val(emp[0].user_id);
             $("#user_role_idss").val(emp[0].user_role_id);
             $("#user_fnamess").val(emp[0].user_fname);
@@ -98,6 +75,26 @@ $("body").on('click','#settings',function(e){
         });
 
         $("#editusers").modal("show");
+
+    });
+
+
+    $("body").on('click','#profilebtn',function(e){
+        // alert($(e.currentTarget).data('id'));
+        var USER_IDs = $(e.currentTarget).data('id');
+        alert(USER_IDs);
+        $.post("updateusers.php",{USER_ID: USER_IDs},function(data,status){
+            var emp = JSON.parse(data);
+            $("#profileimgszz").attr("src","../profile/"+emp[0].user_profile_img);
+            $("#user_idz").text(emp[0].user_id);
+            $("#user_fnamez").text(emp[0].user_fname);
+            $("#user_contactz").text(emp[0].user_contact);
+            $("#user_emailz").text(emp[0].user_email);
+            $("#addressz").text(emp[0].address);
+    
+        });
+
+        $("#profilez").modal("show");
 
     });
 

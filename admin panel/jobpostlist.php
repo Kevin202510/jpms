@@ -26,7 +26,7 @@ $crudapi = new CRUDAPI();
     echo '<script>alert("UPDATED SUCCESS");</script>';
     header("location:job_post.php");
 }
-if(isset($_POST['deletejob'])) {  
+if(isset($_POST['Delete_user'])) {  
 
     $jobs_id = $crudapi->escape_string($_POST['jobs_id']);
       
@@ -127,8 +127,8 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
               
               
                      <div class="btn-group" role="group" aria-label="Basic example">
-                  <button type="button" data-id="<?php echo $data['jobs_id']; ?>" class="btn btn-primary" style="background-color:transparent; color:green; border:none;" id="editbtn"><i class="bi bi-pencil-fill"></i></button>
-                  <button type="button" data-id="<?php echo $data['jobs_id']; ?>" class="btn btn-danger" style="background-color:transparent; color:red; border:none;" id="deletebtn"><i class="bi bi-trash-fill"></i></button>
+                  
+                  <button type="button" data-id="<?php echo $data['jobs_id']; ?>" class="btn btn-danger" style="background-color:transparent; color:red; border:none;" id="delete_btn"><i class="bi bi-trash-fill"></i></button>
                   <button type="button" data-id="<?php echo $data['jobs_id']; ?>" class="btn btn-primary" style="background-color:transparent; color:blue; border:none;" id="view"><i class="bi bi-eye-fill"></i></button>
                 </div>
                      
@@ -267,6 +267,32 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
 <!-- View    -->
 
 
+<!-- delete -->
+<div class="modal fade" id="delete_userModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header" style="background-color:#28a745;">
+                    <h5 style="margin-left:150px;" class="modal-title" id="deleteModalLabel">Delete Experience</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                <form method="POST">
+                    <input type="hidden" class="form-control" name="jobs_id" id="jobs_id_s">
+                    <div class="modal-footer">
+                        <button style="border-radius:20px; margin-right:10px;"  type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button style="border-radius:20px; margin-right:75px;"  type="submit" class="btn btn-primary" name="Delete_user">Delete</button>
+                    </div>
+                </form>
+                </div>
+               
+                </div>
+            </div>
+         </div>
+         <!-- ban delete -->
+
+
 
 
 <?php include('layouts/footer.php'); ?>
@@ -311,6 +337,13 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
 
     });
  
+    $("body").on('click','#delete_btn',function(e){
+        
+        var USER_ID_DELETE = $(e.currentTarget).data('id');
+        $("#jobs_id_s").val(USER_ID_DELETE);
+        $("#delete_userModal").modal("show");
+
+    });
 
     $("#searchData").keyup(function(){
         // alert("asd");

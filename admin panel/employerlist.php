@@ -85,8 +85,9 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
  
               <td>
               <div class="btn-group" role="group" aria-label="Basic example">
-                 
+                  <button type="button" id="view_reqs" data-id="<?php echo $data['user_id']; ?>" class="btn btn-primary" style="background-color:blue; color:black; border:none;" >View Requirment</button>
                   <button type="button" id="views" data-id="<?php echo $data['user_id']; ?>" class="btn btn-primary" style="background-color:transparent; color:blue; border:none;" ><i class="bi bi-eye-fill"></i></button>
+                  <button type="button" id="Deleteemployer" data-id="<?php echo $data['user_id']; ?>" class="btn btn-primary" style="background-color:red; color:blue; border:none;" >Delete</button>
                 </div>
 
               </td>
@@ -142,7 +143,63 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                 </div>
             </div>
          </div>
+         </div>
 <!-- View    -->
+
+
+ <!-- delete -->
+<div class="modal fade" id="DeleteusersModal" tabindex="-1" role="dialog" aria-labelledby="deletesModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header" style="background-color:#28a745;">
+                    <h5 style="margin-left:150px;" class="modal-title" id="deletesModalLabel">Delete Experience</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                <form method="POST">
+                    <input type="hidden" class="form-control" name="user_id" id="user_idsszzz">
+                    <div class="modal-footer">
+                        <button style="border-radius:20px; margin-right:10px;"  type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button style="border-radius:20px; margin-right:75px;"  type="submit" class="btn btn-primary" name="Ban">Ban</button>
+                    </div>
+                </form>
+                </div>
+               
+                </div>
+            </div>
+         </div>
+                     
+         <!-- ban delete -->
+
+         <!-- viewreq -->
+
+<div class="modal fade" id="view_requarments" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color:#28a745;">
+        <h5 style="margin-left:130px;" class="modal-title" id="exampleModalLabel">VIEW REQUARMENTS</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span> 
+          </button>
+        </div>
+                    
+        <div class="modal-body">
+                           
+        <div class="card">
+              <div class="container" style="width:300px; height:300px; ">
+                  <a type="button" id="cv_s" style="width:100px; height:50px; margin-top:250px; margin-left:90px; text-align:center; background-color:#28a745;">CV</a> 
+              </div>
+            </div>
+
+        </div>
+    </div>
+  </div>
+</div>
+
+<!-- viewreq -->  
+
 
 
 <?php include('layouts/footer.php'); ?>
@@ -169,6 +226,21 @@ $.post("updateusers.php",{USER_ID: USER_ID},function(data,status){
 
 $("#viewsModal").modal("show");
 
+});
+
+$("body").on('click','#Deleteemployer',function(e){
+        
+        var USER_ID_DELETE = $(e.currentTarget).data('id');
+        $("#user_idsszzz").val(USER_ID_DELETE);
+        $("#DeleteusersModal").modal("show");
+
+    });
+
+    $("body").on('click','#view_reqs',function(e){
+  // alert($(e.currentTarget).data('id'));
+  var filename = $(e.currentTarget).data('id');
+  $("#cv_s").prop("href", "sample1.php?pdfname="+filename);
+$("#view_requarments").modal("show");
 });
 
 $("#searchData").keyup(function(){

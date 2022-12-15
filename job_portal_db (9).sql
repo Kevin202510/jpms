@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 13, 2022 at 09:24 AM
+-- Generation Time: Dec 15, 2022 at 07:10 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.3.33
 
@@ -179,7 +179,8 @@ CREATE TABLE `requirements` (
 INSERT INTO `requirements` (`requirements_id`, `requirements_filename`, `requirements_user_id`) VALUES
 (1, 'Doc1.pdf', 38),
 (2, 'IT-SIA01-SYSTEM-INTEGRATION-AND-ARCHITECTURE.pdf', 38),
-(3, 'UNIT-II-XSS-Temporary-File-Abuse-Session-Hijacking.pptx.pdf', 38);
+(3, 'UNIT-II-XSS-Temporary-File-Abuse-Session-Hijacking.pptx.pdf', 38),
+(4, 'IMG_20190811_140158.jpg', 49);
 
 -- --------------------------------------------------------
 
@@ -225,11 +226,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `user_profile_img`, `user_fname`, `user_lname`, `user_contact`, `user_email`, `address`, `user_password`, `user_role_id`) VALUES
-(31, NULL, 'admin', 'admin', '0987622132', 'admin@gmail.com', 'adsadasd', '5f4dcc3b5aa765d61d8327deb882cf99', 1),
-(46, NULL, 'John Paul', 'Parchamento', '09876543211', 'johnpaul@gmail.com', 'Nazareth General Tinio Nueva Ecija', '5f4dcc3b5aa765d61d8327deb882cf99', 3),
-(47, NULL, 'Rey John Paul', 'Limbo', '09876543222', 'reyjohnpaul@gmail.com', 'Concepion General Tinio Nueva Ecija', '5f4dcc3b5aa765d61d8327deb882cf99', 3),
+(31, 'IMG_20190811_140211.jpg', 'admin', 'admin', '0987622132', 'admin@gmail.com', 'adsadasd', '5f4dcc3b5aa765d61d8327deb882cf99', 1),
+(46, 'Screenshot_2019-08-11-13-17-36-62.png', 'John Paul', 'Parchamento', '1234567890', 'johnpaul@gmail.com', 'Nazareth General Tinio Nueva Ecija', '5f4dcc3b5aa765d61d8327deb882cf99', 3),
+(47, 'IMG_20190811_140211.jpg', 'Rey John Paul', 'Limbo', '09876543222', 'reyjohnpaul@gmail.com', 'Concepion General Tinio Nueva Ecija', '5f4dcc3b5aa765d61d8327deb882cf99', 3),
 (48, NULL, 'Kerby John', 'Badillo', '09876543333', 'kerbyjohn@gmail.com', 'San Pedro General Tinio Nueva Ecija', '5f4dcc3b5aa765d61d8327deb882cf99', 4),
-(49, NULL, 'John Paulo', 'Javier', '09876544444', 'johnpaulo@gmail.com', 'Concepion General Tinio Nueva Ecija', '5f4dcc3b5aa765d61d8327deb882cf99', 4);
+(49, 'egg.jpg', 'John Paulo', 'Javier', '09876544444', 'johnpaulo@gmail.com', 'Concepion General Tinio Nueva Ecija', '5f4dcc3b5aa765d61d8327deb882cf99', 4);
 
 --
 -- Indexes for dumped tables
@@ -341,7 +342,7 @@ ALTER TABLE `education_attainment`
 -- AUTO_INCREMENT for table `jobs`
 --
 ALTER TABLE `jobs`
-  MODIFY `jobs_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `jobs_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- AUTO_INCREMENT for table `job_applicants`
@@ -353,7 +354,7 @@ ALTER TABLE `job_applicants`
 -- AUTO_INCREMENT for table `requirements`
 --
 ALTER TABLE `requirements`
-  MODIFY `requirements_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `requirements_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `roles`
@@ -365,7 +366,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `user_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- Constraints for dumped tables

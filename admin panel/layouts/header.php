@@ -1,6 +1,6 @@
 
 <?php
-// session_start();
+session_start();
 
 
 include_once("./classes/CRUDAPI.php");
@@ -291,7 +291,7 @@ if(isset($_POST['uploadCV'])){
             </li>
 
             <li>
-            <button type="button" class="dropdown-item d-flex align-items-center" id="settingsz" data-id="<?php echo $_SESSION['USERID'];?>" style="float:right;">
+            <button type="button" class="dropdown-item d-flex align-items-center" id="settings" data-id="<?php echo $_SESSION['USERID'];?>" style="float:right;">
                 <i class="bi bi-box-arrow-right"></i>
                 <span>Settings</span>
               </button>
@@ -351,7 +351,7 @@ if(isset($_POST['uploadCV'])){
 
   <!-- profile -->
 
-  <div class="modal fade" id="profile" tabindex="-1" role="dialog" aria-labelledby="settingsLabel" aria-hidden="true">
+  <div class="modal fade" id="profilez" tabindex="-1" role="dialog" aria-labelledby="settingsLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
         <div class="modal-header" style="background-color:#28a745;">
@@ -370,7 +370,7 @@ if(isset($_POST['uploadCV'])){
           <input type="hidden" class="form-control" name="user_id" id="user_idz">
 
         <div class="col-md-12 text-left text-md-center ">
-        <img id="profileimg" alt="Profile" class="rounded-circle">
+       <img id="profileimgs" alt="Profile" class="rounded-circle" width="150" height="150">
           </div>
                      <div style="text-align:center;">       
                             <h2 id="user_fnamez"></h2>
@@ -412,7 +412,7 @@ if(isset($_POST['uploadCV'])){
                     <input type="hidden" class="form-control" name="user_role_id" id="user_role_idss">
 
                             <center><div class="col-md-3 text-left text-md-center mb-3">
-                            <img id="profileimg" alt="Profile" class="rounded-circle">
+                            <img id="profileimgszz" alt="Profile" class="rounded-circle" width="150" height="150">
       
                             <br><br>
                             <button style="float:right; margin-right:30px;" type="button" class="btn btn-success" data-id="<?php echo $_SESSION['USERID']; ?>" id="upload_Profiles">Profile</button>

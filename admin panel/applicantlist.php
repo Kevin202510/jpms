@@ -38,7 +38,16 @@
       echo '<script>alert("DELETED SUCCESS");</script>';
       header("location: usermanagement.php");
     }
+    
+    if(isset($_POST['Ban'])) {	
 
+      $user_id = $crudapi->escape_string($_POST['user_id']);
+        
+      $result = $crudapi->execute("DELETE from users WHERE user_id = '$user_id' ");
+      
+      echo '<script>alert("DELETED SUCCESS");</script>';
+      header("location:applicantlist.php");
+  }
 
   ?>
 
@@ -121,9 +130,9 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                        <div class="items-link items-link2 f-right">
                           <!-- <a href="#"><i style="font-size:15px;" class="bi bi-eye-fill"></i></a> -->
                           <button type="button" data-id="<?php echo $data['user_id']; ?>" id="view" style="border: transparent; color: blue; background: transparent;"><i class="bi bi-eye-fill"></i></button>
-                          <button type="button" data-id="<?php echo $data['user_id']; ?>" id="editbtn" style="border: transparent; color: green; background: transparent;"><i class="bi bi-pencil-fill"></i></button>
-                       <button type="button" data-id="<?php echo $data['user_id']; ?>" id="deletebtn" style="border: transparent; color: red; background: transparent;"> <i class="bi bi-trash-fill"></i></button>
-                       <button type="button" data-id="<?php echo $data['requirements_filename']; ?>" class="btn btn-primary" id="viewreqs">Requarments</button>
+                          <button type="button" data-id="<?php echo $data['requirements_filename']; ?>" class="btn btn-primary" id="viewreqs">Requarments</button>
+                         <button type="button" data-id="<?php echo $data['user_id']; ?>" id="deleteuser" style="border: transparent; color: red; background: transparent;">Ban</button>
+                      
                       
                       </div>
               </td>
@@ -316,7 +325,30 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
 
 <!-- viewreq -->                      
 
-
+<!-- delete -->
+<div class="modal fade" id="deleteuserModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header" style="background-color:#28a745;">
+                    <h5 style="margin-left:150px;" class="modal-title" id="deleteModalLabel">Delete Experience</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                <form method="POST">
+                    <input type="hidden" class="form-control" name="user_id" id="user_idsszz">
+                    <div class="modal-footer">
+                        <button style="border-radius:20px; margin-right:10px;"  type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button style="border-radius:20px; margin-right:75px;"  type="submit" class="btn btn-primary" name="Ban">Ban</button>
+                    </div>
+                </form>
+                </div>
+               
+                </div>
+            </div>
+         </div>
+         <!-- ban delete -->
 
 <?php include('layouts/footer.php'); ?>
 
@@ -365,7 +397,13 @@ $("body").on('click','#viewreqs',function(e){
 $("#viewrequarments").modal("show");
 });
 
+$("body").on('click','#deleteuser',function(e){
+        
+        var USER_ID_DELETE = $(e.currentTarget).data('id');
+        $("#user_idsszz").val(USER_ID_DELETE);
+        $("#deleteuserModal").modal("show");
 
+    });
 
 function printDivContent() {
  	var divElementContents = document.getElementById("printContent").innerHTML;
