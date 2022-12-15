@@ -54,6 +54,26 @@
 });
 
 
+$("body").on('click','#Verification',function(e){
+        // alert($(e.currentTarget).data('id'));
+        var USER_IDs = $(e.currentTarget).data('id');
+        alert(USER_IDs);
+        $.post("updateusers.php",{USER_ID: USER_IDs},function(data,status){
+            var emp = JSON.parse(data);
+          
+            $("#user_id_z").val(emp[0].user_id);
+            $("#user_email_z").val(emp[0].user_email);
+            $("#Verification_code_z").val(emp[0].Verification_code);
+           
+          
+        });
+
+        $("#verification").modal("show");
+
+    });
+
+
+
 
 
 $("body").on('click','#settings',function(e){

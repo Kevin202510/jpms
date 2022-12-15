@@ -247,6 +247,7 @@ if($_SESSION['USERROLE'] == 3){
   
     <div class="d-flex align-items-center justify-content-between fw-bold ">
       
+        
         <!-- <img src="assets/img/logo.png" alt=""> -->
         <span class="d-none d-lg-block" style="color:#3d4d4b; font-size:30px;" >ADMIN</span>
       
@@ -421,7 +422,7 @@ if($_SESSION['USERROLE'] == 3){
             </li>
 
             <input type="hidden" id="profilekoto" value="<?php echo $_SESSION['USERID'];?>">
-
+              
             <li>
             <button type="button" class="dropdown-item d-flex align-items-center" id="profilebtn" data-id="<?php echo $_SESSION['USERID'];?>" style="float:right;">
                 <i class="bi bi-person"></i>
@@ -432,6 +433,20 @@ if($_SESSION['USERROLE'] == 3){
             <li>
               <hr class="dropdown-divider">
             </li>
+             
+            <li>
+            <button type="button" class="dropdown-item d-flex align-items-center" id="Verification" data-id="<?php echo $_SESSION['USERID'];?>" style="float:right;">
+                <i class="bi bi-box-arrow-right"></i>
+                <span>Verification</span>
+              </button>
+              </a>
+
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+
 
             <li>
             <button type="button" class="dropdown-item d-flex align-items-center" id="settings" data-id="<?php echo $_SESSION['USERID'];?>" style="float:right;">
@@ -490,6 +505,44 @@ if($_SESSION['USERROLE'] == 3){
         </div>
     </div>
   </div>
+
+
+
+    <!-- verification -->
+
+  <div class="modal fade" id="verification" tabindex="-1" role="dialog" aria-labelledby="verificationLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header" style="background-color:#28a745;">
+            <h5 style="margin-left:190px;" class="modal-title" id="verificationLabel">Profile koto</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+
+
+        <div class="modal-body" >
+        <form method="POST">
+                      
+
+                     <input type="hidden" class="form-control" name="user_id" id="user_id_z">
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Email</label>
+                        <input type="text" class="form-control" name="user_email" id="user_email_z" placeholder="Email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Verification</label>
+                        <input type="text" class="form-control" name="verification_code" id="Verification_code_z" placeholder="Verification" required>
+                    </div>
+
+        </form>
+        </div>
+        </div>
+    </div>
+  </div>
+
+
 
 
   <!-- profile -->
