@@ -31,70 +31,214 @@ else if(isset($_POST["logout"])){
 
 
 
-if(isset($_POST['uploadCV'])){
+if(isset($_SESSION['USERROLE'])){
 
-  $target_dir = "cvs/";
-  $target_file = $target_dir . basename($_FILES["filesToUpload"]["name"]);
-  $uploadOk = 1;
-  $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+  if($_SESSION['USERROLE'] == 1){
+            if(isset($_POST['uploadCV'])){
 
-  $id = $_POST['user_id'];
-  $profile = $_FILES["filesToUpload"]["name"];
+              $target_dir = "cvs/";
+              $target_file = $target_dir . basename($_FILES["filesToUpload"]["name"]);
+              $uploadOk = 1;
+              $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 
-  $result = $crudapi->execute("INSERT INTO requirements(requirements_filename,requirements_user_id) VALUES('$profile','$id')");
+              $id = $_POST['user_id'];
+              $profile = $_FILES["filesToUpload"]["name"];
 
-  if (file_exists($target_file)) {
-      echo "Sorry, file already exists.";
-      $uploadOk = 0;
-  }else{
-      if (move_uploaded_file($_FILES["filesToUpload"]["tmp_name"], $target_file)) {
-          // echo "The file ". htmlspecialchars( basename( $_FILES["filesToUpload"]["name"])). " has been uploaded.";
-          header("location:applicantinformation.php");
-      } else {
-      echo "Sorry, there was an error uploading your file.";
-      }
+              $result = $crudapi->execute("INSERT INTO requirements(requirements_filename,requirements_user_id) VALUES('$profile','$id')");
+
+              if (file_exists($target_file)) {
+                  echo "Sorry, file already exists.";
+                  $uploadOk = 0;
+              }else{
+                  if (move_uploaded_file($_FILES["filesToUpload"]["tmp_name"], $target_file)) {
+                      // echo "The file ". htmlspecialchars( basename( $_FILES["filesToUpload"]["name"])). " has been uploaded.";
+                      header("location:applicantlist.php");
+                  } else {
+                  echo "Sorry, there was an error uploading your file.";
+                  }
+              }
+
+              // if($newAPIFunctions){
+              //     header("location:applicantinformation.php");
+              // }else{
+              //     echo '<script>alert("May Error!");</script>';
+              // }
+            }else if(isset($_POST['upload_Profile'])){
+
+              $target_dir = "../profile/";
+              $target_file = $target_dir . basename($_FILES["filesToUpload"]["name"]);
+              $uploadOk = 1;
+              $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+
+              $id = $_POST['user_id'];
+              $profile = $_FILES["filesToUpload"]["name"];
+
+              $result = $crudapi->execute("UPDATE `users` SET user_profile_img='$profile' WHERE user_id='$id' ");
+
+              if (file_exists($target_file)) {
+                  echo "Sorry, file already exists.";
+                  $uploadOk = 0;
+              }else{
+                  if (move_uploaded_file($_FILES["filesToUpload"]["tmp_name"], $target_file)) {
+                      // echo "The file ". htmlspecialchars( basename( $_FILES["filesToUpload"]["name"])). " has been uploaded.";
+                      header("location:applicantlist.php");
+                  } else {
+                    header("location:applicantlist.php");
+
+                  }
+              }
+
+              // if($newAPIFunctions){
+              //     header("location:applicantinformation.php");
+              // }else{
+              //     echo '<script>alert("May Error!");</script>';
+              // }
+            }
+
+            // ///////////////////////////////////////////////////////////////////////////////////
   }
 
-  // if($newAPIFunctions){
-  //     header("location:applicantinformation.php");
-  // }else{
-  //     echo '<script>alert("May Error!");</script>';
-  // }
-}else if(isset($_POST['upload_Profile'])){
 
-  $target_dir = "../profile/";
-  $target_file = $target_dir . basename($_FILES["filesToUpload"]["name"]);
-  $uploadOk = 1;
-  $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+  
+  if($_SESSION['USERROLE'] == 2){
+    if(isset($_POST['uploadCV'])){
 
-  $id = $_POST['user_id'];
-  $profile = $_FILES["filesToUpload"]["name"];
+      $target_dir = "cvs/";
+      $target_file = $target_dir . basename($_FILES["filesToUpload"]["name"]);
+      $uploadOk = 1;
+      $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 
-  $result = $crudapi->execute("UPDATE `users` SET user_profile_img='$profile' WHERE user_id='$id' ");
+      $id = $_POST['user_id'];
+      $profile = $_FILES["filesToUpload"]["name"];
 
-  if (file_exists($target_file)) {
-      echo "Sorry, file already exists.";
-      $uploadOk = 0;
-  }else{
-      if (move_uploaded_file($_FILES["filesToUpload"]["tmp_name"], $target_file)) {
-          // echo "The file ". htmlspecialchars( basename( $_FILES["filesToUpload"]["name"])). " has been uploaded.";
+      $result = $crudapi->execute("INSERT INTO requirements(requirements_filename,requirements_user_id) VALUES('$profile','$id')");
+
+      if (file_exists($target_file)) {
+          echo "Sorry, file already exists.";
+          $uploadOk = 0;
+      }else{
+          if (move_uploaded_file($_FILES["filesToUpload"]["tmp_name"], $target_file)) {
+              // echo "The file ". htmlspecialchars( basename( $_FILES["filesToUpload"]["name"])). " has been uploaded.";
+              header("location:applicantlist.php");
+          } else {
+          echo "Sorry, there was an error uploading your file.";
+          }
+      }
+
+      // if($newAPIFunctions){
+      //     header("location:applicantinformation.php");
+      // }else{
+      //     echo '<script>alert("May Error!");</script>';
+      // }
+    }else if(isset($_POST['upload_Profile'])){
+
+      $target_dir = "../profile/";
+      $target_file = $target_dir . basename($_FILES["filesToUpload"]["name"]);
+      $uploadOk = 1;
+      $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+
+      $id = $_POST['user_id'];
+      $profile = $_FILES["filesToUpload"]["name"];
+
+      $result = $crudapi->execute("UPDATE `users` SET user_profile_img='$profile' WHERE user_id='$id' ");
+
+      if (file_exists($target_file)) {
+          echo "Sorry, file already exists.";
+          $uploadOk = 0;
+      }else{
+          if (move_uploaded_file($_FILES["filesToUpload"]["tmp_name"], $target_file)) {
+              // echo "The file ". htmlspecialchars( basename( $_FILES["filesToUpload"]["name"])). " has been uploaded.";
+              header("location:applicantlist.php");
+          } else {
+            header("location:applicantlist.php");
+
+          }
+      }
+
+      // if($newAPIFunctions){
+      //     header("location:applicantinformation.php");
+      // }else{
+      //     echo '<script>alert("May Error!");</script>';
+      // }
+    }
+
+    // ///////////////////////////////////////////////////////////////////////////////////
+}
+
+
+
+if($_SESSION['USERROLE'] == 3){
+  if(isset($_POST['uploadCV'])){
+
+    $target_dir = "cvs/";
+    $target_file = $target_dir . basename($_FILES["filesToUpload"]["name"]);
+    $uploadOk = 1;
+    $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+
+    $id = $_POST['user_id'];
+    $profile = $_FILES["filesToUpload"]["name"];
+
+    $result = $crudapi->execute("INSERT INTO requirements(requirements_filename,requirements_user_id) VALUES('$profile','$id')");
+
+    if (file_exists($target_file)) {
+        echo "Sorry, file already exists.";
+        $uploadOk = 0;
+    }else{
+        if (move_uploaded_file($_FILES["filesToUpload"]["tmp_name"], $target_file)) {
+            // echo "The file ". htmlspecialchars( basename( $_FILES["filesToUpload"]["name"])). " has been uploaded.";
+            header("location:employerindex.php");
+        } else {
+        echo "Sorry, there was an error uploading your file.";
+        }
+    }
+
+    // if($newAPIFunctions){
+    //     header("location:applicantinformation.php");
+    // }else{
+    //     echo '<script>alert("May Error!");</script>';
+    // }
+  }else if(isset($_POST['upload_Profile'])){
+
+    $target_dir = "../profile/";
+    $target_file = $target_dir . basename($_FILES["filesToUpload"]["name"]);
+    $uploadOk = 1;
+    $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+
+    $id = $_POST['user_id'];
+    $profile = $_FILES["filesToUpload"]["name"];
+
+    $result = $crudapi->execute("UPDATE `users` SET user_profile_img='$profile' WHERE user_id='$id' ");
+
+    if (file_exists($target_file)) {
+        echo "Sorry, file already exists.";
+        $uploadOk = 0;
+    }else{
+        if (move_uploaded_file($_FILES["filesToUpload"]["tmp_name"], $target_file)) {
+            // echo "The file ". htmlspecialchars( basename( $_FILES["filesToUpload"]["name"])). " has been uploaded.";
+            header("location:employerindex.php");
+        } else {
           header("location:employerindex.php");
-      } else {
-        header("location:employerindex.php");
 
-      }
+        }
+    }
+
+    // if($newAPIFunctions){
+    //     header("location:applicantinformation.php");
+    // }else{
+    //     echo '<script>alert("May Error!");</script>';
+    // }
   }
 
-  // if($newAPIFunctions){
-  //     header("location:applicantinformation.php");
-  // }else{
-  //     echo '<script>alert("May Error!");</script>';
-  // }
+  // ///////////////////////////////////////////////////////////////////////////////////
 }
 
 
 
 
+
+
+
+}
 
 
 
@@ -109,7 +253,6 @@ if(isset($_POST['uploadCV'])){
       <i class="bi bi-list toggle-sidebar-btn" style="margin-left:138px;"></i>
     </div><!-- End Logo -->
 
-   
 
     <nav class="header-nav ms-auto">
       <ul class="d-flex align-items-center">
@@ -264,7 +407,7 @@ if(isset($_POST['uploadCV'])){
         <li class="nav-item dropdown pe-3">
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            <img id="profileimg" alt="Profile" class="rounded-circle">
+            <img id="profileimg" alt="Profile" class="rounded-circle" width="40" height="40">
             <span class="d-none d-md-block dropdown-toggle ps-2"><?php echo  $_SESSION['FULLNAME'];?></span>
           </a><!-- End Profile Iamge Icon -->
 
@@ -467,7 +610,7 @@ if(isset($_POST['uploadCV'])){
         </button>
       </div>
       <div class="modal-body">
-        <form method="post" action="../uploadCV.php" enctype="multipart/form-data">
+        <form method="post"  enctype="multipart/form-data">
             <input type="text" name="user_id" id="user_ids">
             <input type="hidden" name="upload_Profile">
             <div class="input-group mb-3">
