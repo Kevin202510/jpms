@@ -505,9 +505,8 @@ if($_SESSION['USERROLE'] == 3){
         <div class="modal-content">
         <div class="modal-header"  style="background-color:#28a745;">
             <h5 style="margin-left:200px;" class="modal-title" id="logoutLabel">Logout</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            
         </div>
         <div class="modal-body">
         <form method="POST">
@@ -530,9 +529,8 @@ if($_SESSION['USERROLE'] == 3){
         <div class="modal-content">
         <div class="modal-header" style="background-color:#28a745;">
             <h5 style="margin-left:190px;" class="modal-title" id="verificationLabel">Profile koto</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            
         </div>
 
 
@@ -570,9 +568,8 @@ if($_SESSION['USERROLE'] == 3){
         <div class="modal-content">
         <div class="modal-header" style="background-color:#28a745;">
             <h5 style="margin-left:190px;" class="modal-title" id="settingsLabel">Profile koto</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            
         </div>
 
 
@@ -613,9 +610,8 @@ if($_SESSION['USERROLE'] == 3){
         <div class="modal-content">
         <div class="modal-header"  style="background-color:#28a745;">
             <h5 style="margin-left:200px;" class="modal-title" id="settingsLabel">Settings</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            
         </div>
         <div class="modal-body">
         <form method="POST">
@@ -676,9 +672,8 @@ if($_SESSION['USERROLE'] == 3){
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          
       </div>
       <div class="modal-body">
         <form method="post"  enctype="multipart/form-data">

@@ -119,10 +119,8 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
  
                     
 
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    
-                    </button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                 
                     
                 </div>
                 <input type="button" value="Click Here" onclick="printDivContent()">
@@ -273,9 +271,8 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
     <div class="modal-content">
       <div class="modal-header" style="background-color:#28a745;">
         <h5 style="margin-left:140px;" class="modal-title" id="exampleModalLabel">VIEW REQUARMENTS</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span> 
-          </button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+           
         </div>
                     
         <div class="modal-body">
