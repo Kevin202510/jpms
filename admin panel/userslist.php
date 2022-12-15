@@ -14,21 +14,7 @@
       $conuser_password  = $crudapi->escape_string($_POST['conuser_password']);
       $user_role_id  = $crudapi->escape_string($_POST['user_role_id']);
   
-      if($user_password != $conuser_password){   
-          echo '<script>alert("password did not match");</script>';
-          // echo "<script type='text/javascript'>
-          //       $(document).ready(function(){
-          //       $('#exampleModalLong').modal('show');
-          //          });
-          //        </script>";
-  
-      }
-      else{
-          echo '<script>alert("password match");</script>';
-  
-                  $hashed_password = md5($user_password);
-  
-      }
+     $hashed_password = md5($user_password);
       $result = $crudapi->execute("INSERT INTO users(user_fname,user_lname,user_contact,user_email,address,user_password,user_role_id) VALUES('$user_fname','$user_lname','$user_contact','$user_email','$address','$hashed_password',$user_role_id)");
         echo '<script>alert("REGISTERED SUCCESS");</script>';
         header("location:userslist.php");  
@@ -185,7 +171,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
 
                              <div class="form-group">
                                  <label for="exampleInputPassword1">Email</label>
-                                 <input type="text" class="form-control" name="user_email" id="user_email" placeholder="Email" required>
+                                 <input type="email" class="form-control" name="user_email" id="user_email" placeholder="Email" required>
                              </div>
 
                              <div class="form-group">
@@ -196,11 +182,11 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                              <div class="form-group">
                                  <label for="exampleInputPassword1">Password</label>
                                  <input type="password" class="form-control" name="user_password" id="user_password" placeholder="Password" required>
-                             </div>
 
-                             <div class="form-group">
-                                 <label for="exampleInputPassword1">Confirm Password</label>
-                                 <input type="password" class="form-control" name="conuser_password" id="conuser_password" placeholder="Confirm Password" required>
+
+                                 <i class="bi bi-eye-fill" id="show_eye" ></i>
+                                 <i class="bi bi-eye-slash-fill d-none" id="hide_eye"></i>
+
                              </div>
 
                              <input type="hidden" class="form-control" name="user_role_id" id="user_role_id" value="2">
@@ -251,7 +237,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
 
                              <div class="form-group">
                                  <label for="exampleInputPassword1">Email</label>
-                                 <input type="text" class="form-control" name="user_email" id="user_emails" placeholder="Email" required>
+                                 <input type="email" class="form-control" name="user_email" id="user_emails" placeholder="Email" required>
                              </div>
 
                              <div class="form-group">
@@ -355,6 +341,23 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
     }
     });
 
+    $("body").on('click','#user_password',function(e){
+        var x = document.getElementById("password");
+        var show_eye = document.getElementById("show_eye");
+        var hide_eye = document.getElementById("hide_eye");
+        hide_eye.classList.remove("d-none");
+        if (x.type === "password") {
+            x.type = "text";
+            show_eye.style.display = "none";
+            hide_eye.style.display = "block";
+        } else {
+            x.type = "password";
+            show_eye.style.display = "block";
+            hide_eye.style.display = "none";
+        }
 
+     
+
+    });
 
   </script>

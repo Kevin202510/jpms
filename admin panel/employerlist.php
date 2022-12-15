@@ -123,7 +123,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                     <div class="card-body" >
                     <div class="col-md-12 text-left text-md-center" >        
                     <center>  
-            <img class="rounded-circle img-fluid" src="https://i.pravatar.cc/175?img=32" alt="Profile Photo" />
+                    <img id="profileimg_s" alt="Profile" class="rounded-circle" width="150" height="150">
           </div></center>
                      <div style="text-align:center;">       
                             <h2 id="full_name"></h2>
@@ -278,7 +278,7 @@ var USER_ID = $(e.currentTarget).data('id');
 $.post("updateusers.php",{USER_ID: USER_ID},function(data,status){
     var emp = JSON.parse(data);
      console.log(emp);
-   
+     $("#profileimg_s").attr("src","../profile/"+emp[0].user_profile_img);
     $("#full_name").text(emp[0].user_fname + " " + emp[0].user_lname);
     $("#address").text(emp[0].address);
     $("#user_contact").text(emp[0].user_contact);

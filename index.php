@@ -177,7 +177,7 @@ if(isset($_POST['subreg'])) {
                             <div class="col-xl-6">
                            
                                 <!-- form -->
-                                <form action="joblisting.php" class="search-box" method="post">
+                                <form action="searchjob1.php" class="search-box" method="post">
 
                                     <div class="input-form"> 
                                         <input style="border-radius:30px;" type="text" name="job_name" id="job_name" placeholder="Job Tittle ">
@@ -219,8 +219,7 @@ if(isset($_POST['subreg'])) {
 
          date_default_timezone_set('Asia/Manila');
 
-         function humanTiming ($time)
-{
+         function humanTiming ($time){ 
 
             $time = time() - $time; // to get the time since that moment
             $time = ($time<1)? 1 : $time;
@@ -271,7 +270,7 @@ if(isset($_POST['subreg'])) {
             </div>
             <div class="items-link items-link2 f-right">
                 <!-- <a href="job_details.php">Full Time</a> -->
-                <button type="button" data-id="<?php echo $data['jobs_id']; ?>" class="btn btn-primary" style="border-radius:30px; color:black; border:none;" id="view"><i class="bi bi-eye-fill"></i>View</button>
+                <button type="button" data-id="<?php echo $data['jobs_id']; ?>" class="btn btn-primary" style="border-radius:30px; color:black; border:none;" id="view_s"><i class="bi bi-eye-fill"></i>View</button>
                 <?php
                 // $eventTime = '2010-04-28 17:25:43';
                 $time = strtotime($data['created_at']);
@@ -631,7 +630,7 @@ if(isset($_POST['subreg'])) {
 
 <!-- view -->
 
-<div class="modal fade" id="viewModal" tabindex="-1" role="dialog" aria-labelledby="viewModalLabel" aria-hidden="true">
+<div class="modal fade" id="view_Modalz" tabindex="-1" role="dialog" aria-labelledby="viewModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                 <div class="modal-header" style="background-color:#28a745;">
@@ -754,28 +753,26 @@ if(isset($_POST['subreg'])) {
          </div>
 
 
+       
+
        <!-- apply MODAL -->
      <div class="modal fade" id="applyModal" tabindex="-1" role="dialog" aria-labelledby="applyModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-md" role="document">
                 <div class="modal-content">
                              <div class="modal-header " style="background-color:#1AA478;">
-                            <h5 style="margin-left:205px;" id="applyModalLabel">Apply</h5>
+                            <h5 style="margin-left:205px;" id="applyModalLabel">LogIn First</h5>
                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                              </button>
                            </div>
                     <div class="modal-body">
                         <form method="POST">
-
-                        <input type="text" class="form-control" name="user_id" id="user_idz">
-
-                        <input type="text" class="form-control" name="job_idss" id="job_app_job_idz">
                      
   
 
                                 <div class="modal-footer" style="background-color:#13e9a5;">
                                     
-                            <button style="border-radius:20px;  margin-right:150px;" type="submit" class="btn " name="jobapply">Apply</button>
+                            <button style="border-radius:20px;  margin-right:150px;" type="submit" class="btn" href="index.php">Please LogIn</button>
                                      
                                     </div>
                          </form>
@@ -838,7 +835,7 @@ if(isset($_POST['subreg'])) {
         }
     });
 
-    $("body").on('click','#view',function(e){
+    $("body").on('click','#view_s',function(e){
 
 var USER_IDss = $(e.currentTarget).data('id');
 //  alert(USER_IDss);
@@ -879,10 +876,9 @@ $.post("admin panel/update_jobs.php",{USER_IDsss: USER_IDss},function(data,statu
 });  
 
 
-$("#viewModal").modal("show");
+$("#view_Modalz").modal("show");
 
 });
-
 
 
   })

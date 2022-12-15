@@ -9,8 +9,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
   </head>
   <button style="float:right;  margin-right:120px;" type="button" class="btn btn-success" data-id="<?php echo $_SESSION['USERID']; ?>" id="uploadCV">Upload CV</button>
-  <input style="float:right;  margin-right:30px;" type="button" class="btn btn-success" value="Click Here" onclick="printDivContent()">
-  
+ 
   <br><br>
   <body style="align-items:center;">
  

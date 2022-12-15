@@ -15,95 +15,19 @@ $crudapi = new CRUDAPI();
 
 
 
+    if(isset($_POST['applyjobs'])) {	
 
-
-
-
-if (isset($_POST['login'])) {
-
-    $username= $_POST['user_email'];
-    $passin= $_POST['user_password'];
-
-
-    $hashed_password = md5($passin);
-    // echo $hashed_password;
+        $job_app_job_id = $crudapi->escape_string($_POST['job_idss']);
+        $job_app_user_id  = $crudapi->escape_string($_POST['user_id']);
+        
+          
+        $result = $crudapi->execute("INSERT INTO job_applicants(job_app_job_id,job_app_user_id) VALUES('$job_app_job_id','$job_app_user_id')");
   
-    $query = "SELECT * FROM `users` where user_email='$username' AND user_password = '$hashed_password'";
-    $result = $crudapi->getData($query);
+        echo '<script>alert("Apply SUCCESS");</script>';
+      
+         header("location: index2.php");
 
-    foreach ($result as $key => $data) {
-
-    
-
-        if($data['user_role_id']==1 || $data['user_role_id']==2){
-            $_SESSION['USERROLE'] = $data['user_role_id'];
-            $_SESSION['USERID'] = $data['user_id'];
-            $_SESSION['FULLNAME'] = $data['user_fname']." ".$data['user_lname'];
-        
-            header("location: admin panel/applicantlist.php");
-        }
-        else if($data['user_role_id']==3){
-            $_SESSION['USERROLE'] = $data['user_role_id'];
-            $_SESSION['USERID'] = $data['user_id'];
-            $_SESSION['FULLNAME'] = $data['user_fname']." ".$data['user_lname'];
-        
-            header("location: admin panel/employerindex.php");
-        }
-
-        else{
-            $_SESSION['USERROLE'] = $data['user_role_id'];
-            $_SESSION['FULLNAME'] = $data['user_fname']." ".$data['user_lname'];
-            $_SESSION['USERID'] = $data['user_id'];
-        
-            header("location:  applicantinformation.php");
-        }
-
-        
-
-    }
-    
-   
-   
-
-}   
-
-
-    
-
-
-
-
-if(isset($_POST['register'])) {	
-
-    $user_fname = $crudapi->escape_string($_POST['user_fname']);
-    $user_lname = $crudapi->escape_string($_POST['user_lname']);
-    $user_contact = $crudapi->escape_string($_POST['user_contact']);
-    $user_email = $crudapi->escape_string($_POST['user_email']);
-    $address = $crudapi->escape_string($_POST['address']);
-    $user_password  = $crudapi->escape_string($_POST['user_password']);
-    $conuser_password  = $crudapi->escape_string($_POST['conuser_password']);
-    $user_role_id  = $crudapi->escape_string($_POST['user_role_id']);
-
-    if($user_password != $conuser_password){   
-        echo '<script>alert("password did not match");</script>';
-        // echo "<script type='text/javascript'>
-        //       $(document).ready(function(){
-        //       $('#exampleModalLong').modal('show');
-        //          });
-        //        </script>";
-
-    }
-    else{
-        echo '<script>alert("password match");</script>';
-
-                $hashed_password = md5($user_password);
-                $result = $crudapi->execute("INSERT INTO users(user_fname,user_lname,user_contact,user_email,address,user_password,user_role_id) VALUES('$user_fname','$user_lname','$user_contact','$user_email','$address','$hashed_password',$user_role_id)");
-      echo '<script>alert("REGISTERED SUCCESS");</script>';
-      header("location:index.php");  
-
-    }
-    
-    }   
+       }
 
 ?>
     
@@ -129,7 +53,7 @@ if(isset($_POST['register'])) {
                             <div class="col-xl-6">
                            
                                 <!-- form -->
-                                <form action="joblisting.php" class="search-box" method="post">
+                                <form action="searchjob.php" class="search-box" method="post">
 
                                     <div class="input-form"> 
                                         <input style="border-radius:30px;" type="text" name="job_name" id="job_name" placeholder="Job Tittle ">
@@ -149,6 +73,98 @@ if(isset($_POST['register'])) {
         <!-- slider Area End-->
         <!-- Our Services Start -->
         
+        <div class="our-services section-pad-t30">
+    <div class="container">
+
+
+
+        <!-- Section Tittle -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-tittle text-center">
+                    
+                    <h2>Jobs</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+        <?php 
+         
+         include_once("classes/CRUDAPI.php");
+         $crudapi = new CRUDAPI(); 
+
+         date_default_timezone_set('Asia/Manila');
+
+         function humanTiming ($time){ 
+
+            $time = time() - $time; // to get the time since that moment
+            $time = ($time<1)? 1 : $time;
+            $tokens = array (
+                31536000 => 'year',
+                2592000 => 'month',
+                604800 => 'week',
+                86400 => 'day',
+                3600 => 'hour',
+                60 => 'minute',
+                1 => 'second'
+            );
+
+            foreach ($tokens as $unit => $text) {
+                if ($time < $unit) continue;
+                $numberOfUnits = floor($time / $unit);
+                return $numberOfUnits.' '.$text.(($numberOfUnits>1)?'s':'');
+            }
+
+        }
+
+             $query = "SELECT * FROM `jobs` LIMIT 10";
+             $result = $crudapi->getData($query);
+             $number = 1;
+             foreach ($result as $key => $data) { 
+         
+        ?>
+        <div class="single-job-items mb-30">
+            <div class="job-items">
+                <div class="company-img">
+                    <?php if($data['job_company_logo']===NULL){ ?>
+                    <a href="#"><img src="assets/img/icon/job-list1.png" alt=""></a>
+                    <?php }else{?>
+                    <a><img src="company_logo/<?php echo $data['job_company_logo'] ?>" alt="" width="100" height="100"></a>
+                    <?php } ?>
+                </div>
+                <div class="job-tittle job-tittle2">
+                   
+                        <h4><?php echo strtoupper($data['job_company_name']); ?></h4>
+                    </a>
+                    <ul>
+
+                        <li> <i style="color:#78828d;" class="fa fa-user"></i> <?php echo strtoupper($data['jobs_name']); ?></li>
+                        <li><i  style="color:#78828d;" class="fas fa-map-marker-alt"></i></i><?php echo strtoupper($data['jobs_address']); ?></li>
+                        <li><i  style="color:#78828d;" class="fas fa">PHP</i><?php echo strtoupper($data['job_expected_salary']); ?></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="items-link items-link2 f-right">
+                <!-- <a href="job_details.php">Full Time</a> -->
+                <button type="button" data-id="<?php echo $data['jobs_id']; ?>" class="btn btn-primary" style="border-radius:30px; color:black; border:none;" id="view_sz"><i class="bi bi-eye-fill"></i>View</button>
+                <?php
+                // $eventTime = '2010-04-28 17:25:43';
+                $time = strtotime($data['created_at']);
+                // $times =
+                // $time = strtotime('2022-12-14 12:00:00');
+                ?>
+                <span><?php echo humanTiming($time).' ago'; ?></span>
+            </div>
+        </div>
+        <?php }?>
+        </div>
+        <!-- More Btn -->
+        <!-- Section Button -->
+        
+    </div>
+</div>
+
+
 
 <!-- How  Apply Process Start-->
 <div class="apply-process-area apply-bg pt-150 pb-150" data-background="assets/img/gallery/how-applybg.png">
@@ -466,6 +482,168 @@ if(isset($_POST['register'])) {
 <!-- logout MODAL -->
 
 
+      <!-- view -->
+
+<div class="modal fade" id="view_Modalsz" tabindex="-1" role="dialog" aria-labelledby="viewModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                <div class="modal-header" style="background-color:#28a745;">
+                    <h5 class="modal-title" id="viewModalLabel">View</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+             
+                <div class="modal-body">
+
+                <!-- job post company Start -->
+        <div class="job-post-company pt-120 pb-120">
+            <div class="container">
+                <div class="row justify-content-between">
+                    <!-- Left Content -->
+                    <div class="col-xl-7 col-lg-8">
+                        <!-- job single -->
+
+
+                        <div class="single-job-items mb-50">
+                 
+                        <div class="job-items">
+                               
+                                <a><img id="job_company_logo" alt="" width="100" height="100"></a>
+                                
+                           
+                          
+                                <div class="job-tittle">
+                                    
+                                        <h4 id="job_company_namesszz"></h4>
+                                   
+                                    <ul>
+                                    <i style="color:#78828d;" class="fa fa-user"></i> <li id="jobs_namesszz"></li>
+                                        <i  style="color:#78828d;" class="fas fa-map-marker-alt"></i> <li id="jobs_addresssszz"></li>
+                                        <i style="color:#78828d;" class="fas fa">PHP</i> <li id="job_expected_salarysszz"></li>
+                                    </ul>
+                                </div>
+                            </div>
+                           
+                        </div>
+                          <!-- job single End -->
+                       
+                        <div class="job-post-details">
+                            <div class="post-details1 mb-50">
+                                <!-- Small Section Tittle -->
+                                <div class="small-section-tittle">
+                                    <h4>Job Description</h4>
+                                </div>
+                                <p id="jobs_descriptionsszz"></p>
+                            </div>
+                            <div class="post-details2  mb-50">
+                                 <!-- Small Section Tittle -->
+                                <div class="small-section-tittle">
+                                    <h4>Required Knowledge, Skills, and Abilities</h4>
+                                </div>
+                               <ul>
+                                   <li id="jobs_r_skillssszz"></li>
+                                  
+                               </ul>
+                            </div>
+                            <div class="post-details2  mb-50">
+                                 <!-- Small Section Tittle -->
+                                <div class="small-section-tittle">
+                                    <h4>Education + Experience</h4>
+                                </div>
+                               <ul>
+                                   <li id="ea_namezz"></li>
+
+                                   <li id="jobs_r_experiencesszz"></li>
+                                   
+                               </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- Right Content -->
+                    <div class="col-xl-4 col-lg-4">
+                        <div class="post-details3  mb-50">
+                            <!-- Small Section Tittle -->
+                           <div class="small-section-tittle">
+                               <h4>Job Overview</h4>
+                           </div>
+                          <ul>
+                              <li>Posted date : <span id="created_atzz"></span></li>
+                              <li>Location : <span id="jobs_addressssszz"></span></li>
+                              <li>Vacancy : <span id="jobs_vacancy_countsszz"></span></li>
+                              <li>Job nature : <span id="jobs_preferred_timesszz"></span></li>
+                              <li>Salary :  <span id="job_expected_salaryssszz"></span></li>
+                              
+                          </ul>
+                         <div class="apply-btn2">
+                         <button type="button" data-id="<?php echo $data['jobs_id']; ?>" class="btn btn-primary" style="color:fff; border:none;" id="applysz">Apply Now</button>
+                            
+                         </div>
+                        
+                       </div>
+                        <div class="post-details4  mb-50">
+                            <!-- Small Section Tittle -->
+                           <div class="small-section-tittle">
+                               <h4>Company Information</h4>
+                           </div>
+                             
+                            <ul>
+                                <li>Name: <span id="full_namesszz"></span></li>
+                                <li>Contact: <span id="user_contactsszz"></span></li>
+                                <li>Email: <span id="user_emailsszz"></span></li>
+                            </ul>
+                       </div>
+                    </div>
+                </div>
+            </div>
+       
+        </div>
+        
+                  </div>
+              
+                </div>
+            </div>
+         </div>
+
+
+       
+
+       <!-- apply MODAL -->
+     <div class="modal fade" id="applyModals" tabindex="-1" role="dialog" aria-labelledby="applyModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-md" role="document">
+                <div class="modal-content">
+                             <div class="modal-header " style="background-color:#1AA478;">
+                            <h5 style="margin-left:205px;" id="applyModalLabel">Apply</h5>
+                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                             </button>
+                           </div>
+                    <div class="modal-body">
+                        <form method="POST">
+
+                        <input type="text" class="form-control" name="user_id" id="user_idz">
+
+                        <input type="text" class="form-control" name="job_idss" id="job_app_job_id_z">
+                     
+  
+
+                                <div class="modal-footer" style="background-color:#13e9a5;">
+                                    
+                            <button style="border-radius:20px;  margin-right:150px;" type="submit" class="btn" id="applyjobs" name="applyjobs">Apply</button>
+                                     
+                                    </div>
+                         </form>
+                    </div>
+                </div>
+            </div>
+         </div>
+         <input type="hidden" id="idid">
+         <input type="hidden" id="idss" value="<?php echo $_SESSION['USERID']; ?>">
+<!-- apply MODAL -->
+
+
+
 
 <?php include('applicantsviews/footer.php'); ?>
 <?php include('applicantsviews/script.php'); ?>
@@ -488,6 +666,64 @@ if(isset($_POST['register'])) {
             alert("PASSWORD DIDN'T MATCH");
         }
     });
+
+
+    $("#applysz").click(function(){
+        // $("#as_user_id").val($("user_id").val());
+          // alert(job_app_job_idz)
+        $("#job_app_job_id_z").val($("#idid").val());
+        $("#user_idz").val($("#idss").val());
+       
+
+
+        $("#applyModals").modal("show");
+    });
+
+                        $("body").on('click','#view_sz',function(e){
+                    var USER_IDss = $(e.currentTarget).data('id');
+                    //  alert(USER_IDss);
+                    $.post("admin panel/update_jobs.php",{USER_IDsss: USER_IDss},function(data,status){
+                        var emp = JSON.parse(data);
+                        console.log(emp[0]);
+                        $("#jobs_idss").text(emp[0].jobs_id);
+                        let newdate = new Date(emp[0].created_at);
+                        var day = newdate.getDate();
+                        var month = newdate.getMonth() + 1;
+                        var year = newdate.getFullYear();
+
+                        $("#created_atzz").text(month+" / "+day+" / "+year);
+                        $("#jobs_user_idss").text(emp[0].jobs_user_id);
+                        let logo; 
+                        if(emp[0].job_company_logo==null){
+                            logo = "assets/img/icon/job-list1.png";
+                        }else{
+                            logo = "company_logo/"+emp[0].job_company_logo;
+                        }
+                        $("#job_company_logo").attr("src",logo);
+                        $("#job_company_namesszz").text(emp[0].job_company_name);
+                        $("#jobs_namesszz").text(emp[0].jobs_name);
+                        $("#jobs_addresssszz").text(emp[0].jobs_address);
+                        $("#job_expected_salarysszz").text(emp[0].job_expected_salary);
+                        $("#jobs_descriptionsszz").text(emp[0].jobs_description);
+                        $("#jobs_r_skillssszz").text(emp[0].jobs_r_skills);
+                        $("#ea_namezz").text(emp[0].ea_name);
+                        $("#jobs_r_experiencesszz").text(emp[0].jobs_r_experience);
+                        $("#jobs_addressssszz").text(emp[0].jobs_address);
+                        $("#jobs_vacancy_countsszz").text(emp[0].jobs_vacancy_count);
+                        $("#jobs_preferred_timesszz").text(emp[0].jobs_preferred_time);
+                        $("#job_expected_salaryssszz").text(emp[0].job_expected_salary);
+                        $("#full_namesszz").text(emp[0].user_fname + " " + emp[0].user_lname);
+                        $("#user_contactsszz").text(emp[0].user_contact);
+                        $("#user_emailsszz").text(emp[0].user_email);
+                        // alert("user_contactss");
+                    });  
+
+
+                    $("#view_Modalsz").modal("show");
+
+                    });
+
+
   })
   
 

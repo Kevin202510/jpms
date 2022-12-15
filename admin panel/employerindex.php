@@ -92,7 +92,80 @@ if(isset($_POST['deletejob'])) {
     
     echo '<script>alert("DELETED SUCCESS");</script>';
     header("location:employerindex.php");
-}       
+}   
+
+
+if(isset($_POST['Business_permit'])){
+
+    $target_dir = "cvs/";
+    $target_file = $target_dir . basename($_FILES["filesToUpload"]["name"]);
+    $uploadOk = 1;
+    $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+
+    $id = $_POST['user_id'];
+    $profile = $_FILES["filesToUpload"]["name"];
+
+    $result = $crudapi->execute("INSERT INTO requirements(requirements_filename,requirements_user_id) VALUES('$profile','$id')");
+
+    if (file_exists($target_file)) {
+        echo "Sorry, file already exists.";
+        $uploadOk = 0;
+    }else{
+        if (move_uploaded_file($_FILES["filesToUpload"]["tmp_name"], $target_file)) {
+            // echo "The file ". htmlspecialchars( basename( $_FILES["filesToUpload"]["name"])). " has been uploaded.";
+            header("location:applicantinformation.php");
+        } else {
+        echo "Sorry, there was an error uploading your file.";
+        }
+    }
+
+    // if($newAPIFunctions){
+    //     header("location:applicantinformation.php");
+    // }else{
+    //     echo '<script>alert("May Error!");</script>';
+    // }
+}else if(isset($_POST['uploadProfile'])){
+
+    $target_dir = "profile/";
+    $target_file = $target_dir . basename($_FILES["filesToUpload"]["name"]);
+    $uploadOk = 1;
+    $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+
+    $id = $_POST['user_id'];
+    $profile = $_FILES["filesToUpload"]["name"];
+
+    $result = $crudapi->execute("UPDATE `users` SET user_profile_img='$profile' WHERE user_id='$id' ");
+
+    if (file_exists($target_file)) {
+        echo "Sorry, file already exists.";
+        $uploadOk = 0;
+    }else{
+        if (move_uploaded_file($_FILES["filesToUpload"]["tmp_name"], $target_file)) {
+            // echo "The file ". htmlspecialchars( basename( $_FILES["filesToUpload"]["name"])). " has been uploaded.";
+            header("location:applicantinformation.php");
+        } else {
+            header("location:applicantinformation.php");
+
+        }
+    }
+
+    // if($newAPIFunctions){
+    //     header("location:applicantinformation.php");
+    // }else{
+    //     echo '<script>alert("May Error!");</script>';
+    // }
+}
+
+
+
+
+
+
+
+
+
+
+
 ?>
 <?php include('layouts/head.php'); ?>
 <?php include('layouts/header.php'); ?>
@@ -215,6 +288,12 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                         <input type="file" class="custom-file-input" name="filesToUpload" aria-describedby="inputGroupFileAddon01">
                         <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
                     </div>
+
+                    <div class="custom-file">
+                    <button style="  margin-right:120px;" type="button" class="btn btn-success" data-id="<?php echo $_SESSION['USERID']; ?>" id="Business_permit">Business permit</button>
+                    </div>
+
+
                 <div class="row">
                     <div class="form-group col-6">
                         <label for="exampleInputPassword1">Comapany Name</label>
@@ -547,8 +626,70 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
          </div>
 <!-- View    -->
 
+<!-- upload -->
+<div class="modal fade" id="example_Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModal_Label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModal_Label">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method="post" action="" enctype="multipart/form-data">
+            <input type="text" name="user_id" id="user_id">
+            <input type="hidden" name="Business_permit">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+              </div>
+              <div class="custom-file">
+                <input type="file" class="custom-file-input" name="filesToUpload" aria-describedby="inputGroupFileAddon01">
+                <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+              </div>
+            </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Save changes</button>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 
-
+<div class="modal fade" id="example_Modals" tabindex="-1" role="dialog" aria-labelledby="example_ModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="example_ModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method="post" action="" enctype="multipart/form-data">
+            <input type="hidden" name="user_id" id="idmoto">
+            <input type="hidden" name="uploadProfile">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+              </div>
+              <div class="custom-file">
+                <input type="file" class="custom-file-input" name="filesToUpload" aria-describedby="inputGroupFileAddon01">
+                <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+              </div>
+            </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Save changes</button>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 
@@ -559,6 +700,18 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
     $("#jobs").click(function(){
         $("#exampleModals").modal("show");
     });
+
+    $("#Business_permit").click(function(e){
+        var users_id = $(e.currentTarget).data('id');
+        $("#user_id").val(users_id);
+        $("#example_Modal").modal("show");
+      });
+
+      $("#uploadProfile").click(function(e){
+        var users_id = $(e.currentTarget).data('id');
+        $("#idmoto").val(users_id);
+        $("#example_Modals").modal("show");
+      });
 
     $("body").on('click','#editbtn',function(e){
         // alert($(e.currentTarget).data('id'));

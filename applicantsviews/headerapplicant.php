@@ -115,13 +115,14 @@ if(isset($_POST['uploadCV'])){
                                 <div class="main-menu">
                                     <nav class="d-none d-md-block">
                                         <ul id="navigation" style="padding-left:0;">
-                                        <li><a href="index2.php" >Home</a></li>
+                                            <li><a href="index2.php" style="text-decoration: none;">Home</a></li>
+                                            <li><a href="joblist.php" style="text-decoration: none;">Job List</a></li>
                                             <li><a href="applicantinformation.php" style="text-decoration: none;">My Profile</a></li>
                                             <li><a href="applicant_exp.php"style="text-decoration: none;">Experiences</a></li>
                                             <li><a href="applicant_educ.php"style="text-decoration: none;">Educations</a></li>
                                             <li><a href="applicant_skills.php"style="text-decoration: none;">Skills</a></li>
                                             <li><a href="applicant_add_info.php"style="text-decoration: none;">Additional Info</a></li>
-                                           
+                                            <li><a href="view_my_jobs.php"style="text-decoration: none;">View My Jobs</a></li>
                                            
                                             <?php if(isset($_SESSION['USERROLE'])){?>
     
