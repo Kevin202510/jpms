@@ -138,8 +138,8 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
           <button type="button" class="btn btn-primary" id="jobs" style=" background-color:#28a745;  width:100px; float:right; border:none;">ADD</button>
           <div class="search-bar">
             <div class="search-form d-flex align-items-center" method="POST" action="#">
-             <input type="text" id="searchData" placeholder="Search By Company Name" title="Enter search keyword">
-            <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+             <input type="text" id="searchData" placeholder="Search By Company Name" style="width:200px;" title="Enter search keyword">
+            
            </div>
       </div>
         </div><!-- End Search Bar -->
@@ -288,7 +288,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                     </div>
                     </div>
                     <div class="modal-footer">
-                        <button style="border-radius:20px; margin-right:10px; 10px; background-color:#28a745;" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" style="border-radius:20px; margin-right:10px; background-color:#28a745;" data-bs-dismiss="modal">Close</button>
                         <button style="border-radius:20px; margin-right:150px; 10px; background-color:#28a745;" type="submit" class="btn btn-primary" name="addjobs">ADD</button>
                     </div>
                 </form>
@@ -387,8 +387,8 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                 
                 
                     <div class="modal-footer">
-                        <button style="border-radius:20px; margin-right:10px; 10px; background-color:#28a745;"" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button style="border-radius:20px; margin-right:120px; 10px; background-color:#28a745;"" type="submit" class="btn btn-primary" name="editjob">Update changes</button>
+                    <button type="button" class="btn btn-secondary" style="border-radius:20px; margin-right:10px; background-color:#28a745;" data-bs-dismiss="modal">Close</button>
+                        <button style="border-radius:20px; margin-right:120px; 10px; background-color:#28a745;" type="submit" class="btn btn-primary" name="editjob">Update changes</button>
                     </div>
                 </form>
                 </div>
@@ -411,7 +411,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                 <form method="POST">
                     <input type="hidden" class="form-control" name="jobs_id" id="jobs_idss">
                     <div class="modal-footer">
-                        <button style="border-radius:20px; margin-right:10px; background-color:#28a745;" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" style="border-radius:20px; margin-right:10px; background-color:#28a745;" data-bs-dismiss="modal">Close</button>
                         <button style="border-radius:20px; margin-right:150px; background-color:#28a745;" type="submit" class="btn btn-primary" name="deletejob">Delete</button>
                     </div>
                 </form>
@@ -450,11 +450,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                             <div class="job-items">
                                  
                             <div class="company-img">
-                                <?php if($data['job_company_logo']===NULL){ ?>
-                                <a><img src="assets/img/icon/job-list1.png" alt=""></a>
-                                <?php }else{?>
-                                <a><img src="company_logo/<?php echo $data['job_company_logo'] ?>" alt="" width="100" height="100"></a>
-                                <?php } ?>
+                            <a><img id="job_company_logos" alt="" width="100" height="100"></a>
                             </div>
                                 <div class="job-tittle">
                                     
@@ -612,7 +608,9 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
             var day = newdate.getDate();
             var month = newdate.getMonth() + 1;
             var year = newdate.getFullYear();
-
+            let logo;
+            logo = "../company_logo/"+emp[0].job_company_logo;
+            $("#job_company_logos").attr("src",logo);
             $("#created_at").text(month+" / "+day+" / "+year);
             $("#jobs_user_idss").text(emp[0].jobs_user_id);
             $("#job_company_namess").text(emp[0].job_company_name);

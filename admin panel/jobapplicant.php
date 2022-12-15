@@ -66,8 +66,8 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
 
           <div class="search-bar" style="float:right;">
           <div class="search-form d-flex align-items-center" method="POST" action="#">
-                      <input type="text" id="searchData" placeholder="Search By Company Name" title="Enter search keyword">
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+               <input type="text" id="searchData" placeholder="Search By Company Name" style="width:200px;" title="Enter search keyword">
+                  
                   </div>
       </div>
           </div><!-- End Search Bar -->
@@ -104,9 +104,11 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
               
               
                        <div class="items-link items-link2 f-right">
+                       <button type="button" data-id="<?php echo $data['job_app_id']; ?>" class="btn btn-primary" id="accept">Accept</button> 
+                       <button type="button" data-id="<?php echo $data['job_app_id']; ?>" class="btn btn-primary" id="delete">Rejected</button>
                         <button type="button" data-id="<?php echo $data['user_id']; ?>" class="btn btn-primary" id="view">View</button>
                         <button type="button" data-id="<?php echo $data['requirements_filename']; ?>" class="btn btn-primary" id="viewreq">Requarments </button>
-                        <button type="button" data-id="<?php echo $data['job_app_id']; ?>" class="btn btn-primary" id="delete">unlike </button>
+                        
                         
                       </div>
                      
@@ -303,8 +305,33 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
 
 <!-- viewreq -->   
 
+     <!-- accept -->
+   <div class="modal fade" id="acceptModal" tabindex="-1" role="dialog" aria-labelledby="acceptModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header" style="background-color:#28a745;">
+                    <h5 style="margin-left:200px;" class="modal-title" id="acceptModalLabel">Unlike</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    
+                </div>
+                <div class="modal-body">
+                <form method="POST">
+                    <input type="hidden" class="form-control" name="job_app_id" id="job_app_id">
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" style="border-radius:20px; margin-right:10px; background-color:#28a745;" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary" name="accepted">Accept</button>
+                    </div>
+                </form>
+                </div>
+               
+                </div>
+            </div>
+         </div>
 
-   <!-- delete -->
+<!-- Accept -->
+
+
+   <!-- Reject -->
    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -317,8 +344,8 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                 <form method="POST">
                     <input type="hidden" class="form-control" name="job_app_id" id="job_app_id">
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary" name="deletejob">Delete</button>
+                    <button type="button" class="btn btn-secondary" style="border-radius:20px; margin-right:10px; background-color:#28a745;" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary" name="deletejob">Rejected</button>
                     </div>
                 </form>
                 </div>
@@ -327,7 +354,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
             </div>
          </div>
 
-<!-- delete -->
+<!-- reject -->
 
 
 <?php include('layouts/footer.php'); ?>
@@ -382,6 +409,15 @@ $("body").on('click','#delete',function(e){
         $("#deleteModal").modal("show");
 
     });
+
+    $("body").on('click','#accept',function(e){
+        var USER_ID_DELETE = $(e.currentTarget).data('id');
+      
+
+      
+        $("#acceptModal").modal("show");
+
+    }); 
 
 
 

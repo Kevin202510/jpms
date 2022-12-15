@@ -47,8 +47,8 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
           
                 <div class="search-bar" style="float:right;">
                     <div class="search-form d-flex align-items-center" method="POST" action="#">
-                      <input type="text" id="searchData" placeholder="Search By Company Name" title="Enter search keyword">
-                      <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+                      <input type="text" id="searchData" placeholder="Search By Company Name" style="width:200px;" title="Enter search keyword">
+                      
                   </div>
                </div>
       </div>

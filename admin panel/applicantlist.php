@@ -92,8 +92,8 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
           <h5><b>Applicants List</b></h5>
           <div class="search-bar" style="float:right;">
                    <div class="search-form d-flex align-items-center" method="POST" action="#">
-                      <input type="text" id="searchData" placeholder="Search By Company Name" title="Enter search keyword">
-                      <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+                      <input type="text" id="searchData" placeholder="Search By Applicant Name" style="width:200px;" title="Enter search keyword">
+                      
                   </div>
       </div>
            
@@ -153,8 +153,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                 <div class="modal-header" style="background-color:#28a745;">
                     <h5 style="margin-left:490px;" class="modal-title" id="viewModalLabel">View Resume</h5>
 
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </button> 
                 </div>
                 <input type="button" value="Click Here" onclick="printDivContent()">
@@ -305,16 +304,23 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
     <div class="modal-content">
       <div class="modal-header" style="background-color:#28a745;">
         <h5 style="margin-left:130px;" class="modal-title" id="exampleModalLabel">VIEW REQUARMENTS</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span> 
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> 
           </button>
         </div>
                     
         <div class="modal-body">
+
+
+
+
+
+
+
+
                            
         <div class="card">
               <div class="container" style="width:300px; height:300px; ">
-                  <a type="button" id="cv_s" style="width:100px; height:50px; margin-top:250px; margin-left:90px; text-align:center; background-color:#28a745;">CV</a> 
+                  <a type="button" id="cv_ss" style="width:100px; height:50px; margin-top:250px; margin-left:90px; text-align:center; background-color:#28a745;">CV</a> 
               </div>
             </div>
 
@@ -331,15 +337,15 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                 <div class="modal-content">
                 <div class="modal-header" style="background-color:#28a745;">
                     <h5 style="margin-left:150px;" class="modal-title" id="deleteModalLabel">Delete Experience</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </button>
                 </div>
                 <div class="modal-body">
                 <form method="POST">
                     <input type="hidden" class="form-control" name="user_id" id="user_idsszz">
                     <div class="modal-footer">
-                        <button style="border-radius:20px; margin-right:10px;"  type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                         <button type="button" class="btn btn-secondary" style="border-radius:20px; margin-right:10px;" data-bs-dismiss="modal">Close</button>
+                        
                         <button style="border-radius:20px; margin-right:75px;"  type="submit" class="btn btn-primary" name="Ban">Ban</button>
                     </div>
                 </form>
@@ -393,7 +399,7 @@ $("#viewModal").modal("show");
 $("body").on('click','#viewreqs',function(e){
   // alert($(e.currentTarget).data('id'));
   var filename = $(e.currentTarget).data('id');
-  $("#cvs").prop("href", "sample1.php?pdfname="+filename);
+  $("#cv_ss").prop("href", "sample1.php?pdfname="+filename);
 $("#viewrequarments").modal("show");
 });
 

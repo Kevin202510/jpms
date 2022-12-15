@@ -79,8 +79,8 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
           
           <div class="search-bar" style="float:right;">
                         <div class="search-form d-flex align-items-center" method="POST" action="#">
-                          <input type="text" id="searchData" placeholder="Search By Company Name" title="Enter search keyword">
-                          <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+                          <input type="text" id="searchData" placeholder="Search By Company Name" style="width:200px;" title="Enter search keyword">
+                         
                       </div>
                  </div>
         </div><!-- End Search Bar -->
@@ -128,8 +128,9 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
               
                      <div class="btn-group" role="group" aria-label="Basic example">
                   
-                  <button type="button" data-id="<?php echo $data['jobs_id']; ?>" class="btn btn-danger" style="background-color:transparent; color:red; border:none;" id="delete_btn"><i class="bi bi-trash-fill"></i></button>
+                  
                   <button type="button" data-id="<?php echo $data['jobs_id']; ?>" class="btn btn-primary" style="background-color:transparent; color:blue; border:none;" id="view"><i class="bi bi-eye-fill"></i></button>
+                  <button type="button" data-id="<?php echo $data['jobs_id']; ?>" class="btn btn-danger" style="background-color:transparent; color:red; border:none;" id="delete_btn"><i class="bi bi-trash-fill"></i></button>
                 </div>
                      
               </td>
@@ -150,8 +151,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                 <div class="modal-content">
                 <div class="modal-header" style="background-color:#28a745;">
                     <h5 style="margin-left: 470px;" class="modal-title" id="viewModalLabel">View Requarments</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </button>
                 </div>
              
@@ -170,9 +170,12 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                         <div class="single-job-items mb-50" style="border:solid black 2px;">
                  
                             <div class="job-items">
-                                <div class="company-img company-img-details">
-                                    <img src="https://i.pravatar.cc/175?img=32" alt="">
-                                </div>
+
+
+                                    <div class="company-img">
+                                    <a><img id="job_company_logoss" alt="" width="100" height="100"></a>
+                                    </div>
+
                                 <div class="job-tittle">
                                     
                                         <h4 id="job_company_namess"></h4>
@@ -273,15 +276,14 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                 <div class="modal-content">
                 <div class="modal-header" style="background-color:#28a745;">
                     <h5 style="margin-left:150px;" class="modal-title" id="deleteModalLabel">Delete Experience</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </button>
                 </div>
                 <div class="modal-body">
                 <form method="POST">
                     <input type="hidden" class="form-control" name="jobs_id" id="jobs_id_s">
                     <div class="modal-footer">
-                        <button style="border-radius:20px; margin-right:10px;"  type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" style="border-radius:20px; margin-right:10px; background-color:#28a745;" data-bs-dismiss="modal">Close</button>
                         <button style="border-radius:20px; margin-right:75px;"  type="submit" class="btn btn-primary" name="Delete_user">Delete</button>
                     </div>
                 </form>
@@ -312,7 +314,9 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
             var day = newdate.getDate();
             var month = newdate.getMonth() + 1;
             var year = newdate.getFullYear();
-
+            let logo;
+            logo = "../company_logo/"+emp[0].job_company_logo;
+            $("#job_company_logoss").attr("src",logo);
             $("#created_at").text(month+" / "+day+" / "+year);
             $("#jobs_user_idss").text(emp[0].jobs_user_id);
             $("#job_company_namess").text(emp[0].job_company_name);

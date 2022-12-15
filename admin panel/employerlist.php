@@ -48,8 +48,8 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                  <h5><b>Employers List</b></h5>
                     <div class="search-bar" style="float:right;">
                         <div class="search-form d-flex align-items-center" method="POST" action="#">
-                          <input type="text" id="searchData" placeholder="Search By Company Name" title="Enter search keyword">
-                          <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+                          <input type="text" id="searchData" placeholder="Search By Employer Name" style="width:200px;" title="Enter search keyword">
+                         
                       </div>
                  </div>
       
@@ -111,8 +111,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                 <div class="modal-content">
                 <div class="modal-header" style="background-color:#28a745;">
                     <h5 style="margin-left:200px;" class="modal-title" id="viewsModalLabel">Profile</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </button>
                 </div>
              
@@ -157,15 +156,15 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                 <div class="modal-content">
                 <div class="modal-header" style="background-color:#28a745;">
                     <h5 style="margin-left:150px;" class="modal-title" id="deletesModalLabel">Delete Experience</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </button>
                 </div>
                 <div class="modal-body">
                 <form method="POST">
                     <input type="hidden" class="form-control" name="user_id" id="user_idsszzz">
+
                     <div class="modal-footer">
-                        <button style="border-radius:20px; margin-right:10px; background-color:#28a745;"  type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" style="border-radius:20px; margin-right:10px; background-color:#28a745;" data-bs-dismiss="modal">Close</button>
                         <button style="border-radius:20px; margin-right:160px; background-color:#28a745;"  type="submit" class="btn btn-primary" name="Ban">Ban</button>
                     </div>
                 </form>
@@ -184,8 +183,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
     <div class="modal-content">
       <div class="modal-header" style="background-color:#28a745;">
         <h5 style="margin-left:130px;" class="modal-title" id="exampleModalLabel">VIEW REQUARMENTS</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span> 
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </button>
         </div>
                     
@@ -212,8 +210,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                 <div class="modal-content">
                 <div class="modal-header" style="background-color:#28a745;">
                     <h5  style="margin-left:200px;" class="modal-title" id="views_ModalLabel">Profile</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </button>
                 </div>
              
@@ -222,7 +219,10 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
 
                
                 
-
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" style="border-radius:20px; margin-right:10px; background-color:#28a745;" data-bs-dismiss="modal">Close</button>
+                        <button style="border-radius:20px; margin-right:160px; background-color:#28a745;"  type="submit" class="btn btn-primary" name="accept">Accept</button>
+                    </div>
         
                   </div>
               
@@ -240,8 +240,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                 <div class="modal-content">
                 <div class="modal-header" style="background-color:#28a745;">
                     <h5 style="margin-left:200px;" class="modal-title" id="view_ModalLabel">Profile</h5>
-                    <button style="border-radius:20px; margin-right:10px; 10px; background-color:#28a745;" type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </button>
                 </div>
              
@@ -250,7 +249,10 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
 
                
                 
-
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" style="border-radius:20px; margin-right:10px; background-color:#28a745;" data-bs-dismiss="modal">Close</button>
+                        <button style="border-radius:20px; margin-right:160px; background-color:#28a745;"  type="submit" class="btn btn-primary" name="reject">Rejected</button>
+                    </div>
         
                   </div>
               
