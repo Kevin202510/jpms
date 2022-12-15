@@ -2,6 +2,11 @@
  session_start();
 include_once("classes/CRUDAPI.php");
 $crudapi = new CRUDAPI(); 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
+require 'vendor/autoload.php';
 
 
 if (isset($_POST['login'])) {
@@ -23,6 +28,7 @@ if (isset($_POST['login'])) {
         if($data['user_role_id']==1 || $data['user_role_id']==2){
             $_SESSION['USERROLE'] = $data['user_role_id'];
             $_SESSION['USERID'] = $data['user_id'];
+            $_SESSION['isVerify'] = $data['email_verified_at'];
             $_SESSION['FULLNAME'] = $data['user_fname']." ".$data['user_lname'];
         
             header("location: admin panel/applicantlist.php");
@@ -30,6 +36,7 @@ if (isset($_POST['login'])) {
         else if($data['user_role_id']==3){
             $_SESSION['USERROLE'] = $data['user_role_id'];
             $_SESSION['USERID'] = $data['user_id'];
+            $_SESSION['isVerify'] = $data['email_verified_at'];
             $_SESSION['FULLNAME'] = $data['user_fname']." ".$data['user_lname'];
         
             header("location: admin panel/employerindex.php");
@@ -37,6 +44,7 @@ if (isset($_POST['login'])) {
 
         else{
             $_SESSION['USERROLE'] = $data['user_role_id'];
+            $_SESSION['isVerify'] = $data['email_verified_at'];
             $_SESSION['FULLNAME'] = $data['user_fname']." ".$data['user_lname'];
             $_SESSION['USERID'] = $data['user_id'];
         
@@ -57,25 +65,57 @@ if(isset($_POST['subreg'])) {
     $conuser_password  = $crudapi->escape_string($_POST['conuser_password']);
     $user_role_id  = $crudapi->escape_string($_POST['user_role_id']);
 
-    if($user_password != $conuser_password){   
-        echo '<script>alert("password did not match");</script>';
-        // echo "<script type='text/javascript'>
-        //       $(document).ready(function(){
-        //       $('#exampleModalLong').modal('show');
-        //          });
-        //        </script>";
+    $mail = new PHPMailer(true);
 
-    }
-    else{
-        echo '<script>alert("password match");</script>';
+    try {
+        //Enable verbose debug output
+        $mail->SMTPDebug = 0;//SMTP::DEBUG_SERVER;
 
+        //Send using SMTP
+        $mail->isSMTP();
+
+        //Set the SMTP server to send through
+        $mail->Host = 'smtp.gmail.com';
+
+        //Enable SMTP authentication
+        $mail->SMTPAuth = true;
+
+        //SMTP username
+        $mail->Username = 'reyjohnpaullimbo18@gmail.com';
+
+        //SMTP password
+        $mail->Password = 'vybkifiixfuboytw';
+
+        //Enable TLS encryption;
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+
+        //TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
+        $mail->Port = 587;
+
+        //Recipients
+        $mail->setFrom('reyjohnpaullimbo18@gmail.com', 'GT JOB HUNT');
+
+        //Add a recipient
+        $mail->addAddress($user_email, $user_fname);
+
+        //Set email format to HTML
+        $mail->isHTML(true);
+
+        $verification_code = substr(number_format(time() * rand(), 0, '', ''), 0, 6);
+
+        $mail->Subject = 'Email verification';
+        $mail->Body    = '<p>Your verification code is: <b style="font-size: 30px;">' . $verification_code . '</b><a href="http://localhost/palasresort/email-verification.php?email="' . $user_email.'">VERIFY MY ACCOUNT</a></p>';
+
+        $mail->send();
+        // echo 'Message has been sent';
                 $hashed_password = md5($user_password);
-                $result = $crudapi->execute("INSERT INTO users(user_fname,user_lname,user_contact,user_email,address,user_password,user_role_id) VALUES('$user_fname','$user_lname','$user_contact','$user_email','$address','$hashed_password',$user_role_id)");
-      echo '<script>alert("REGISTERED SUCCESS");</script>';
-      header("location:index.php");  
-
+                $result = $crudapi->execute("INSERT INTO users(user_fname,user_lname,user_contact,user_email,address,user_password,user_role_id,verification_code) VALUES('$user_fname','$user_lname','$user_contact','$user_email','$address','$hashed_password',$user_role_id,'$verification_code')");
+        header("location: index.php");
+    exit();
+    } catch (Exception $e) {
+        echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
     }
-    
+
     }   
 
     if(isset($_POST['jobapply'])) {	

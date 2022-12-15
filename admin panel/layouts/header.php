@@ -27,6 +27,17 @@ $address = $crudapi->escape_string($_POST['address']);
 else if(isset($_POST["logout"])){
   session_destroy();
   header("location:../index.php");
+}else if(isset($_POST['verifyEmail'])){
+  $user_id  = $crudapi->escape_string($_POST['user_id']);
+  $user_email = $crudapi->escape_string($_POST['user_email']);
+  $verification_code = $crudapi->escape_string($_POST['verification_code']);
+
+  $timestamp = time();
+  $formatted = date('y-m-d h:i:s T', $timestamp);
+  
+  $result = $crudapi->execute("UPDATE users SET email_verified_at='$formatted' WHERE user_id = '$user_id' and verification_code = '$verification_code' ");
+  header("location:employerindex.php");
+
 }
 
 
@@ -437,11 +448,13 @@ if($_SESSION['USERROLE'] == 3){
             </li>
              
             <li>
+              <?php if(isset($_SESSION['isVerify'])==""){ ?>
             <button type="button" class="dropdown-item d-flex align-items-center" id="Verification" data-id="<?php echo $_SESSION['USERID'];?>" style="float:right;">
                 <i class="bi bi-box-arrow-right"></i>
-                <span>Verification</span>
+                <span>Verify Email</span>
               </button>
-              </a>
+              <?php } ?>
+              <!-- </a> -->
 
             </li>
             <li>
@@ -530,7 +543,7 @@ if($_SESSION['USERROLE'] == 3){
                      <input type="hidden" class="form-control" name="user_id" id="user_id_z">
                     <div class="form-group">
                         <label for="exampleInputPassword1">Email</label>
-                        <input type="text" class="form-control" name="user_email" id="user_email_z" placeholder="Email" required>
+                        <input type="text" readonly class="form-control" name="user_email" id="user_email_z" placeholder="Email" required>
                     </div>
 
                     <div class="form-group">
@@ -539,7 +552,7 @@ if($_SESSION['USERROLE'] == 3){
                     </div>
                     <div class="modal-footer">
                
-               <button style="border-radius:20px; margin-right:190px; background-color:#28a745;" type="submit" class="btn btn-primary" name="edituser">save</button>
+               <button style="border-radius:20px; margin-right:150px; background-color:#28a745;" type="submit" class="btn btn-primary" name="verifyEmail">save</button>
            </div>
         </form>
         </div>

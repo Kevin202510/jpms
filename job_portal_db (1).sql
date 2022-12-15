@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 15, 2022 at 07:10 AM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 7.3.33
+-- Generation Time: Dec 14, 2022 at 08:51 PM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 7.4.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -33,7 +33,7 @@ CREATE TABLE `applicant_additional_info` (
   `aai_location` varchar(100) NOT NULL,
   `aai_wfh_os` varchar(100) NOT NULL,
   `aai_user_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `applicant_additional_info`
@@ -54,7 +54,7 @@ CREATE TABLE `applicant_educationbg` (
   `aebg_school_name` varchar(100) NOT NULL,
   `aebg_year_graduate` varchar(100) NOT NULL,
   `aebg_education_attainment_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -70,7 +70,7 @@ CREATE TABLE `applicant_experience` (
   `ae_position` varchar(100) NOT NULL,
   `ae_from` varchar(100) NOT NULL,
   `ae_to` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -82,7 +82,7 @@ CREATE TABLE `applicant_skills` (
   `as_id` int(11) NOT NULL,
   `as_user_id` int(11) NOT NULL,
   `as_skillname` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -93,7 +93,7 @@ CREATE TABLE `applicant_skills` (
 CREATE TABLE `education_attainment` (
   `ea_id` int(11) NOT NULL,
   `ea_name` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `education_attainment`
@@ -128,7 +128,7 @@ CREATE TABLE `jobs` (
   `job_expected_salary` varchar(100) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `jobs_user_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `jobs`
@@ -150,15 +150,7 @@ CREATE TABLE `job_applicants` (
   `job_app_user_id` int(11) NOT NULL,
   `date_apply` timestamp NOT NULL DEFAULT current_timestamp(),
   `requirements_id_applicant` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `job_applicants`
---
-
-INSERT INTO `job_applicants` (`job_app_id`, `job_app_job_id`, `job_app_user_id`, `date_apply`, `requirements_id_applicant`) VALUES
-(27, 54, 48, '2022-12-13 05:40:31', NULL),
-(28, 55, 49, '2022-12-13 05:41:22', NULL);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -170,7 +162,7 @@ CREATE TABLE `requirements` (
   `requirements_id` int(11) NOT NULL,
   `requirements_filename` varchar(255) NOT NULL,
   `requirements_user_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `requirements`
@@ -191,7 +183,7 @@ INSERT INTO `requirements` (`requirements_id`, `requirements_filename`, `require
 CREATE TABLE `roles` (
   `id` int(11) NOT NULL,
   `display_name` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `roles`
@@ -216,21 +208,20 @@ CREATE TABLE `users` (
   `user_lname` varchar(100) NOT NULL,
   `user_contact` varchar(11) NOT NULL,
   `user_email` varchar(100) NOT NULL,
+  `verification_code` varchar(50) DEFAULT NULL,
+  `email_verified_at` varchar(100) DEFAULT NULL,
   `address` varchar(100) NOT NULL,
   `user_password` varchar(255) NOT NULL,
   `user_role_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`user_id`, `user_profile_img`, `user_fname`, `user_lname`, `user_contact`, `user_email`, `address`, `user_password`, `user_role_id`) VALUES
-(31, 'IMG_20190811_140211.jpg', 'admin', 'admin', '0987622132', 'admin@gmail.com', 'adsadasd', '5f4dcc3b5aa765d61d8327deb882cf99', 1),
-(46, 'Screenshot_2019-08-11-13-17-36-62.png', 'John Paul', 'Parchamento', '1234567890', 'johnpaul@gmail.com', 'Nazareth General Tinio Nueva Ecija', '5f4dcc3b5aa765d61d8327deb882cf99', 3),
-(47, 'IMG_20190811_140211.jpg', 'Rey John Paul', 'Limbo', '09876543222', 'reyjohnpaul@gmail.com', 'Concepion General Tinio Nueva Ecija', '5f4dcc3b5aa765d61d8327deb882cf99', 3),
-(48, NULL, 'Kerby John', 'Badillo', '09876543333', 'kerbyjohn@gmail.com', 'San Pedro General Tinio Nueva Ecija', '5f4dcc3b5aa765d61d8327deb882cf99', 4),
-(49, 'egg.jpg', 'John Paulo', 'Javier', '09876544444', 'johnpaulo@gmail.com', 'Concepion General Tinio Nueva Ecija', '5f4dcc3b5aa765d61d8327deb882cf99', 4);
+INSERT INTO `users` (`user_id`, `user_profile_img`, `user_fname`, `user_lname`, `user_contact`, `user_email`, `verification_code`, `email_verified_at`, `address`, `user_password`, `user_role_id`) VALUES
+(31, 'IMG_20190811_140211.jpg', 'admin', 'admin', '0987622132', 'admin@gmail.com', NULL, NULL, 'adsadasd', '5f4dcc3b5aa765d61d8327deb882cf99', 1),
+(52, NULL, 'John Paul', 'Parchamento', '16516596', 'johnpaulparchamento07@gmail.com', '291608', '22-12-14 08:50:09 CET', 'Nazareth General Tinio Nueva Ecija', '5f4dcc3b5aa765d61d8327deb882cf99', 3);
 
 --
 -- Indexes for dumped tables
@@ -366,7 +357,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `user_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- Constraints for dumped tables
