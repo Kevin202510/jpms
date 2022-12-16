@@ -150,7 +150,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
             <div class="modal-dialog modal-xl" role="document">
                 <div class="modal-content">
                 <div class="modal-header" style="background-color:#28a745;">
-                    <h5 style="margin-left: 470px;" class="modal-title" id="viewModalLabel">View Requarments</h5>
+                    <h5 style="margin-left: 470px; color:black;" class="modal-title" id="viewModalLabel">View Requarments</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </button>
                 </div>
@@ -167,7 +167,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                         <!-- job single -->
 
 
-                        <div class="single-job-items mb-50" style="border:solid black 2px;">
+                        <div class="single-job-items mb-50" style="">
                  
                             <div class="job-items">
 
@@ -226,7 +226,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                     </div>
                     <!-- Right Content -->
                     <div class="col-xl-4 col-lg-4">
-                        <div class="post-details3  mb-50" style="border:solid black 2px;">
+                        <div class="post-details3  mb-50" style="">
                             <!-- Small Section Tittle -->
                            <div class="small-section-tittle">
                                <h4>Job Overview</h4>
@@ -252,8 +252,8 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                              
                             <ul>
                                 <li>Name: <span id="full_namess"></span></li>
-                                <li>Contact: <span id="user_contactss"></span></li>
-                                <li>Email: <span id="user_emailss"></span></li>
+                                <li>Contact: <span id="user_contact_ss"></span></li>
+                                <li>Email: <span id="user_email_ss"></span></li>
                             </ul>
                        </div>
                     </div>
@@ -275,7 +275,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                 <div class="modal-header" style="background-color:#28a745;">
-                    <h5 style="margin-left:150px;" class="modal-title" id="deleteModalLabel">Delete Experience</h5>
+                    <h5 style="margin-left:150px; color:black;" class="modal-title" id="deleteModalLabel">Delete Experience</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </button>
                 </div>
@@ -283,8 +283,8 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                 <form method="POST">
                     <input type="hidden" class="form-control" name="jobs_id" id="jobs_id_s">
                     <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" style="border-radius:20px; margin-right:10px; background-color:#28a745;" data-bs-dismiss="modal">Close</button>
-                        <button style="border-radius:20px; margin-right:75px;"  type="submit" class="btn btn-primary" name="Delete_user">Delete</button>
+                    <button style="border-radius:20px; margin-right:10px; background-color:#28a745;" type="button" class="btn btn-secondary"  data-bs-dismiss="modal">Close</button>
+                    <button style="border-radius:20px; margin-right:150px; background-color:#28a745;"  type="submit" class="btn btn-primary" name="Delete_user">Delete</button>
                     </div>
                 </form>
                 </div>
@@ -332,8 +332,8 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
             $("#jobs_preferred_timess").text(emp[0].jobs_preferred_time);
             $("#job_expected_salarysss").text(emp[0].job_expected_salary);
             $("#full_namess").text(emp[0].user_fname + " " + emp[0].user_lname);
-            $("#user_contactss").text(emp[0].user_contact);
-            $("#user_emailss").text(emp[0].user_email);
+            $("#user_contact_ss").text(emp[0].user_contact);
+            $("#user_email_ss").text(emp[0].user_email);
             
         });
         

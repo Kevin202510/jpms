@@ -151,12 +151,12 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
 <div class="modal-dialog modal-xl" role="document">
                 <div class="modal-content">
                 <div class="modal-header" style="background-color:#28a745;">
-                    <h5 style="margin-left:490px;" class="modal-title" id="viewModalLabel">View Resume</h5>
+                    <h5 style="margin-left:490px; color:black;" class="modal-title" id="viewModalLabel">View Resume</h5>
 
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </button> 
                 </div>
-                <input type="button" value="Click Here" onclick="printDivContent()">
+                <!-- <input type="button" value="Click Here" onclick="printDivContent()"> -->
                 <div class="modal-body">
 
 
@@ -175,7 +175,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
    
         <div class="row">
           <div class="col-md-3 text-left text-md-center mb-3">
-            <img class="rounded-circle img-fluid" src="https://i.pravatar.cc/175?img=32" alt="Profile Photo" />
+          <img class="rounded-circle" src="../profile/<?php echo $data["user_profile_img"];?>" alt="Profile Photo" width="200" height="200" />
           </div>
           <div class="col-md-9">
             <h1 id="fullnamezz"></h1>
@@ -225,13 +225,13 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
 
                   
 
-                   <h2 style="font-weight:bold;" id="ae_companynamezz"></h2>
+                   <h2 style="color:black; font-size:17px;" id="ae_companynamezz"></h2>
 
-                              <ul>
-                                  <li style="font-weight:bold;" id="ae_companyaddresszz"><i  style="color:black;" class="fas fa-map-marker-alt"></i></li>
-                                  <li style="font-weight:bold;" id="ae_positionzz"><i  style="color:black;" class="fas fa-briefcase"></i></li>
-                                  <li style="font-weight:bold;" id="ae_fromzz"><i style="color:black;" class="fas fa-calendar"></i></li>
-                                  <li style="font-weight:bold;" id="ae_tozz"><i style="color:black;" class="fas fa-calendar"></i></li>
+                              <ul style="font-size:17px; ">
+                                  <li style=" color:black;" id="ae_companyaddresszz"><i  style="color:black;" class="fas fa-map-marker-alt"></i></li>
+                                  <li style=" color:black;" id="ae_positionzz"><i  style="color:black;" class="fas fa-briefcase"></i></li>
+                                  <li style=" color:black;" id="ae_fromzz"><i style="color:black;" class="fas fa-calendar"></i></li>
+                                  <li style="color:black;" id="ae_tozz"><i style="color:black;" class="fas fa-calendar"></i></li>
                               </ul>
 
                 
@@ -242,11 +242,11 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                  <h2 class="mb-5">Education</h2>
 
                    
-                   <h3 style="font-weight:bold;" id="aebg_school_namezz"></h3>
+                   <h3 style="color:black; font-size:17px;" id="aebg_school_namezz"></h3>
 
                  <ul>
-                    <li style="color:black;" id="aebg_year_graduatezz"><i style="color:black;" class="fas fa-calendar"></i></li>
-                    <li style="color:black;"><span id="aebg_education_attainment_idzz"></span><i style="color:black;" class="fas fa-graduation-cap"></i></li>
+                    <li style="color:black; font-size:17px;" id="aebg_year_graduatezz"><i style="color:black;" class="fas fa-calendar"></i></li>
+                    <li style="color:black; font-size:17px;"><span id="aebg_education_attainment_idzz"></span><i style="color:black;" class="fas fa-graduation-cap"></i></li>
 
                  </ul>
 
@@ -262,7 +262,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
           
                             
 
-                          <h2 style="color:black;" id="as_skillnamezz"></h2>
+                          <h2 style="color:black; font-size:17px;" id="as_skillnamezz"></h2>
 
                               
 
@@ -274,7 +274,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                            <div class="col-md mb-5">
                             <h2 class="mb-5">Additional Information</h2>      
           
-                        <ul>
+                        <ul  style="font-size:17px;">
                          <li style="color:black;" id="aai_expected_salaryzz"><i style="color:black;" class="fas fa-calendar"></i></li>
                         <li style="color:black;" id="aai_locationzz"><i style="color:black;" class="fas fa-graduation-cap"></i></li>
                         <li style="color:black;" id="aai_wfh_oszz"><i style="color:black;" class="fas fa-graduation-cap"></i></li>
@@ -303,24 +303,17 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header" style="background-color:#28a745;">
-        <h5 style="margin-left:130px;" class="modal-title" id="exampleModalLabel">VIEW REQUARMENTS</h5>
+        <h5 style="margin-left:130px; color:black; " class="modal-title" id="exampleModalLabel">VIEW REQUARMENTS</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> 
           </button>
         </div>
                     
         <div class="modal-body">
 
-
-
-
-
-
-
-
-                           
-        <div class="card">
-              <div class="container" style="width:300px; height:300px; ">
-                  <a type="button" id="cv_ss" style="width:100px; height:50px; margin-top:250px; margin-left:90px; text-align:center; background-color:#28a745;">CV</a> 
+               
+        <div >
+              <div class="container">
+                  <a type="button" id="cv_ss" style=" color:black; width:100px; height:50px; margin-left:170px; text-align:center; background-color:#28a745;">CV</a> 
               </div>
             </div>
 
@@ -336,7 +329,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                 <div class="modal-header" style="background-color:#28a745;">
-                    <h5 style="margin-left:150px;" class="modal-title" id="deleteModalLabel">Delete Experience</h5>
+                    <h5 style="margin-left:165px; color:black;" class="modal-title" id="deleteModalLabel">Ban Applicant</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </button>
                 </div>
@@ -344,9 +337,9 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                 <form method="POST">
                     <input type="hidden" class="form-control" name="user_id" id="user_idsszz">
                     <div class="modal-footer">
-                         <button type="button" class="btn btn-secondary" style="border-radius:20px; margin-right:10px;" data-bs-dismiss="modal">Close</button>
+                         <button style="border-radius:20px; margin-right:10px; background-color:#28a745;" type="button" class="btn btn-secondary" style="border-radius:20px; margin-right:10px;" data-bs-dismiss="modal">Close</button>
                         
-                        <button style="border-radius:20px; margin-right:75px;"  type="submit" class="btn btn-primary" name="Ban">Ban</button>
+                        <button style="border-radius:20px; margin-right:160px; background-color:#28a745;"  type="submit" class="btn btn-primary" name="Ban">Ban</button>
                     </div>
                 </form>
                 </div>
@@ -399,8 +392,8 @@ $("#viewModal").modal("show");
 $("body").on('click','#viewreqs',function(e){
   // alert($(e.currentTarget).data('id'));
   var filename = $(e.currentTarget).data('id');
-  $("#cv_ss").prop("href", "sample1.php?pdfname="+filename);
-$("#viewrequarments").modal("show");
+  $("#cv_ss").prop("href", "samples1.php?pdfname="+filename);
+  $("#viewrequarments").modal("show");
 });
 
 $("body").on('click','#deleteuser',function(e){

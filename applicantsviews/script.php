@@ -72,7 +72,7 @@ $("#profile").modal("show");
 $("body").on('click','#settings',function(e){
         // alert($(e.currentTarget).data('id'));
         var USER_IDs = $(e.currentTarget).data('id');
-        alert(USER_IDs);
+        // alert(USER_IDs);
         $.post("admin panel/updateusers.php",{USER_ID: USER_IDs},function(data,status){
             var emp = JSON.parse(data);
             $("#user_id_ss").val(emp[0].user_id);
@@ -95,7 +95,32 @@ $("body").on('click','#settings',function(e){
         $("#user_id_s").val(users_id);
         $("#uploadModals").modal("show");
       });
+
+        $('#check').click(function(){
+        // alert($(this).is(':checked'));
+            if($(this).is(':checked')){
+                $('#user_passwords').attr('type', 'text');
+            }else{
+                $('#user_passwords').attr('type', 'password');
+            }
+        });
+        
  
+});
+
+$("body").on('click','#Verification',function(e){
+    // alert($(e.currentTarget).data('id'));
+    var USER_IDs = $(e.currentTarget).data('id');
+    // alert(USER_IDs);
+    $.post("admin panel/updateusers.php",{USER_ID: USER_IDs},function(data,status){
+        var emp = JSON.parse(data);
+        console.log(emp);
+        $("#user_id_z").val(emp[0].user_id);
+        $("#user_email_z").val(emp[0].user_email);
+    });
+
+    $("#verification").modal("show");
+
 });
 
 

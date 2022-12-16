@@ -15,9 +15,9 @@
  
   <div class="container justify-content-center">
  
-    <div class="card justify-content-center">
+    <div class="card justify-content-center"> 
     
-      <div class="card-body" style="width:1100px;">
+      <div class="card-body" style="width:1100px; background-color:#28a745;">
       <div id="printContent">
     
       
@@ -36,6 +36,7 @@
                 if(strtoupper($data["user_id"]) == $profile ){
                 ?>
         <div class="row">
+          
           <div class="col-md-3 text-left text-md-center mb-3">
             <img class="rounded-circle" src="profile/<?php echo $data["user_profile_img"];?>" alt="Profile Photo" width="200" height="200" /><br><br>
             <button style=" margin-right:5px; margin-top:-20px" type="button" class="btn btn-success" data-id="<?php echo $data["user_id"]; ?>" id="uploadProfile">Profile</button>
@@ -160,7 +161,7 @@
                                       foreach ($result as $key => $data) {
                                   ?>
 
-        <p style="color:black; font-size:20px;"><?php echo strtoupper($data['as_skillname']); ?></p>
+        <p style="color:black; font-size:16px;"><?php echo strtoupper($data['as_skillname']); ?></p>
 
            
 
@@ -172,7 +173,7 @@
     <hr>
 
     <div class="row">
-        <div class="col-md mb-5">
+        <div class="col-md mb-5"  style="background-color:#28a745;">
           <h2 class="mb-5">Additional Information</h2>
 
           <?php 

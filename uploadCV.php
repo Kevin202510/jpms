@@ -16,17 +16,28 @@ $crudapi = new CRUDAPI();
         $id = $_POST['user_id'];
         $profile = $_FILES["filesToUpload"]["name"];
 
-        $result = $crudapi->execute("INSERT INTO requirements(requirements_filename,requirements_user_id) VALUES('$profile','$id')");
+        $query = "SELECT * FROM `requirements` where requirements_user_id=$id";
+        $results = $crudapi->getData($query);
+
+        if(count($results)!=0){
+            $result = $crudapi->execute("UPDATE requirements SET requirements_filename='$profile' where requirements_user_id='$id'");
+        }else{
+            $result = $crudapi->execute("INSERT INTO requirements(requirements_filename,requirements_user_id) VALUES('$profile','$id')");
+        }
+
+        
 
         if (file_exists($target_file)) {
-            echo "Sorry, file already exists.";
+            // echo "Sorry, file already exists.";
             $uploadOk = 0;
+            header("location:applicantinformation.php");
         }else{
             if (move_uploaded_file($_FILES["filesToUpload"]["tmp_name"], $target_file)) {
                 // echo "The file ". htmlspecialchars( basename( $_FILES["filesToUpload"]["name"])). " has been uploaded.";
                 header("location:applicantinformation.php");
             } else {
-            echo "Sorry, there was an error uploading your file.";
+            // echo "Sorry, there was an error uploading your file.";
+            header("location:applicantinformation.php");
             }
         }
 

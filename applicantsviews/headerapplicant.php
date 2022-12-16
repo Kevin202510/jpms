@@ -3,7 +3,6 @@
   session_destroy();
   echo '<script>location.href="index.php";</script>';
 }
-
  ?>
 
 
@@ -27,6 +26,17 @@ $address = $crudapi->escape_string($_POST['address']);
   echo '<script>alert("UPDATED SUCCESS");</script>';
   echo '<script>location.href="applicantinformation.php";</script>';
   // header("location:applicantinformation.php");
+}else if(isset($_POST['verifyEmail'])){
+  $user_id  = $crudapi->escape_string($_POST['user_id']);
+  $user_email = $crudapi->escape_string($_POST['user_email']);
+  $verification_code = $crudapi->escape_string($_POST['verification_code']);
+
+  $timestamp = time();
+  $formatted = date('y-m-d h:i:s T', $timestamp);
+  
+  $result = $crudapi->execute("UPDATE users SET email_verified_at='$formatted' WHERE user_id='$user_id' and verification_code='$verification_code'");
+  echo '<script>location.href="applicantinformation.php";</script>';
+
 }
 
 
@@ -104,9 +114,9 @@ if(isset($_POST['uploadCV'])){
 
                           <div class="col-lg-3 col-md-2">
                              <!-- Logo -->
-                             <div class="logo">
+                             <!-- <div class="logo">
                                 <a href="index.php"><img src="assets/img/logo/logo.png" alt=""></a>
-                            </div>  
+                            </div>   -->
                            </div>
 
                         <div class="col-lg-9 col-md-12">
@@ -117,13 +127,48 @@ if(isset($_POST['uploadCV'])){
                                         <ul id="navigation" style="padding-left:0;">
                                             <li><a href="index2.php" style="text-decoration: none;">Home</a></li>
                                             <li><a href="joblist.php" style="text-decoration: none;">Job List</a></li>
-                                            <li><a href="applicantinformation.php" style="text-decoration: none;">My Profile</a></li>
-                                            <li><a href="applicant_exp.php"style="text-decoration: none;">Experiences</a></li>
-                                            <li><a href="applicant_educ.php"style="text-decoration: none;">Educations</a></li>
-                                            <li><a href="applicant_skills.php"style="text-decoration: none;">Skills</a></li>
-                                            <li><a href="applicant_add_info.php"style="text-decoration: none;">Additional Info</a></li>
+                                            
+
+
+
+              <li class="nav-item dropdown"  >
+           <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Profile</a>
+           <div class="dropdown-menu" >
+         
+              
+           
+                <a href="applicantinformation.php" style="text-decoration: none;  " class="dropdown-item d-flex align-items-center">
+                <i class="bi bi-box-arrow-right"></i>
+                <span>My Profile</span>
+                </a>
+
+              <a href="applicant_exp.php"style="text-decoration: none;" class="dropdown-item d-flex align-items-center">
+                <i class="bi bi-box-arrow-right"></i>
+                <span>Experiences</span>
+                </a>
+
+                <a href="applicant_educ.php"style="text-decoration: none;" class="dropdown-item d-flex align-items-center">
+                <i class="bi bi-box-arrow-right"></i>
+                <span>Educations</span>
+                </a>
+
+              <a href="applicant_skills.php"style="text-decoration: none;" class="dropdown-item d-flex align-items-center">
+                <i class="bi bi-box-arrow-right"></i>
+                <span>Skills</span>
+                </a>
+
+                <a href="applicant_add_info.php"style="text-decoration: none;" class="dropdown-item d-flex align-items-center">
+                <i class="bi bi-box-arrow-right"></i>
+                <span>Additional Info</span>
+                </a>
+              
+           </div>
+      </li>
+
+
+     
                                             <li><a href="view_my_jobs.php"style="text-decoration: none;">View My Jobs</a></li>
-                                           
+                           
                                             <?php if(isset($_SESSION['USERROLE'])){?>
     
     <li class="nav-item dropdown">
@@ -133,7 +178,19 @@ if(isset($_POST['uploadCV'])){
                 <i class="bi bi-person"></i>
                 <span>My Profile</span>
                 </button>
-           
+
+                
+              <?php if(isset($_SESSION['isVerify'])!=" "){ ?>
+            <button type="button" class="dropdown-item d-flex align-items-center" id="Verification" data-id="<?php echo $_SESSION['USERID'];?>" style="float:right;">
+                <i class="bi bi-box-arrow-right"></i>
+                <span>Verify Email</span>
+              </button>
+              <?php } ?>
+              <!-- </a> -->
+         
+
+            
+          
                 <button type="button" class="dropdown-item d-flex align-items-center" id="settings" data-id="<?php echo $_SESSION['USERID'];?>" style="float:right;">
                 <i class="bi bi-box-arrow-right"></i>
                 <span>Settings</span>
@@ -175,7 +232,7 @@ if(isset($_POST['uploadCV'])){
     <div class="modal-dialog" role="document">
         <div class="modal-content">
         <div class="modal-header" style="background-color:#28a745;">
-            <h5 style="margin-left:200px;" class="modal-title" id="logoutLabel">Logout</h5>
+            <h5 style="margin-left:200px; color:black;" class="modal-title" id="logoutLabel">Logout</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button>
@@ -184,7 +241,7 @@ if(isset($_POST['uploadCV'])){
         <form method="POST">
             <div class="modal-footer">
                 <button style="border-radius:20px; margin-right:10px; background-color:#28a745;"  type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button style="border-radius:20px; margin-right:140px; background-color:#28a745;"  type="submit" class="btn btn-primary" name="logout">Logout</button>
+                <button style="border-radius:20px; margin-right:75px; background-color:#28a745;"  type="submit" class="btn btn-primary" name="logout">Logout</button>
             </div>
         </form>
         </div>
@@ -199,7 +256,7 @@ if(isset($_POST['uploadCV'])){
     <div class="modal-dialog" role="document">
         <div class="modal-content">
         <div class="modal-header" style="background-color:#28a745;">
-            <h5 style="margin-left:180px;" class="modal-title" id="settingsLabel">Profile</h5>
+            <h5 style="margin-left:200px;" class="modal-title" id="settingsLabel">Profile</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button> 
@@ -245,14 +302,13 @@ if(isset($_POST['uploadCV'])){
     </div>
   </div>
 
-
    <!-- settings -->
 
    <div class="modal fade" id="editusers" tabindex="-1" role="dialog" aria-labelledby="settingsLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
         <div class="modal-header" style="background-color:#28a745;">
-            <h5  style="margin-left:200px;" class="modal-title" id="settingsLabel">Settings</h5>
+            <h5  style="margin-left:200px; color:black;" class="modal-title" id="settingsLabel">Settings</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button>
@@ -293,7 +349,7 @@ if(isset($_POST['uploadCV'])){
 
             <div class="modal-footer">
                 <button style="border-radius:20px; margin-right:10px; background-color:#28a745;"  type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button style="border-radius:20px; margin-right:140px; background-color:#28a745;"  type="submit" class="btn btn-primary" name="edituser">Update</button>
+                <button style="border-radius:20px; margin-right:75px; background-color:#28a745;"  type="submit" class="btn btn-primary" name="edituser">Update</button>
             </div>
         </form>
         </div>
@@ -337,6 +393,40 @@ if(isset($_POST['uploadCV'])){
 </div>
 
 <!-- upload profile -->
+
+<div class="modal fade" id="verification" tabindex="-1" role="dialog" aria-labelledby="verificationLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header" style="background-color:#28a745;">
+            <h5 style="margin-left:190px; font-weight: bold;  color:black;" class="modal-title" id="verificationLabel">Profile koto</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            
+        </div>
+
+
+        <div class="modal-body" >
+        <form method="POST">
+                      
+
+                     <input type="text" class="form-control" name="user_id" id="user_id_z">
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Email</label>
+                        <input type="text" readonly class="form-control" name="user_email" id="user_email_z" placeholder="Email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Verification</label>
+                        <input type="text" class="form-control" name="verification_code" id="Verification_code_z" placeholder="Verification" required>
+                    </div>
+                    <div class="modal-footer">
+               
+               <button style="border-radius:20px; margin-right:190px; background-color:#28a745;" type="submit" class="btn btn-primary" name="verifyEmail">save</button>
+           </div>
+        </form>
+        </div>
+        </div>
+    </div>
+  </div>
 
 
   <?php include("applicantsetting.php"); ?>

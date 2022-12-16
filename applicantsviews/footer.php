@@ -10,7 +10,7 @@
                              <div class="footer-tittle">
                                  <h4>About Us</h4>
                                  <div class="footer-pera">
-                                     <p>Heaven frucvitful doesn't cover lesser dvsays appear creeping seasons so behold.</p>
+                                     <p>Job Portal connects job seekers and recruiters by accurately matching candidate profiles to the relevant job openings.</p>
                                 </div>
                              </div>
                          </div>
@@ -25,8 +25,8 @@
                                     <li>
                                     <p>Address :General Tinio Nueva Ecija</p>
                                     </li>
-                                    <li><a href="#">Phone : 09876212</a></li>
-                                    <li><a href="#">Email : jobportal@gmail.com</a></li>
+                                    <li>Phone : 09876212</li>
+                                    <li>Email : jobportal@gmail.com</li>
                                 </ul>
                             </div>
 
@@ -37,11 +37,10 @@
                             <div class="footer-tittle">
                                 <h4>Important Link</h4>
                                 <ul>
-                                    <li><a href="#"> View Project</a></li>
-                                    <li><a href="#">Contact Us</a></li>
-                                    <li><a href="#">Testimonial</a></li>
-                                    <li><a href="#">Proparties</a></li>
-                                    <li><a href="#">Support</a></li>
+                                    
+                                    <li><a href="joblisting.php">Find a Job</a></li>
+                                    <li><a href="about.php">About</a></li>
+                                    <li><a href="contact.php">Contact</a></li>
                                 </ul>
                             </div>
                         </div>

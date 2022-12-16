@@ -127,7 +127,7 @@ $crudapi = new CRUDAPI();
             <div class="job-items">
                 <div class="company-img">
                     <?php if($data['job_company_logo']===NULL){ ?>
-                    <a href="#"><img src="assets/img/icon/job-list1.png" alt=""></a>
+                    <a><img src="assets/img/icon/1.gif" alt=""></a>
                     <?php }else{?>
                     <a><img src="company_logo/<?php echo $data['job_company_logo'] ?>" alt="" width="100" height="100"></a>
                     <?php } ?>
@@ -187,7 +187,7 @@ $crudapi = new CRUDAPI();
                     </div>
                     <div class="process-cap">
                         <h5>1. Search a job</h5>
-                    <p>Sorem spsum dolor sit amsectetur adipisclit, seddo eiusmod tempor incididunt ut laborea.</p>
+                    <p>Search a Job you love and you will never have to work a day in your life</p>
                     </div>
                 </div>
             </div>
@@ -198,7 +198,7 @@ $crudapi = new CRUDAPI();
                     </div>
                     <div class="process-cap">
                         <h5>2. Apply for job</h5>
-                    <p>Sorem spsum dolor sit amsectetur adipisclit, seddo eiusmod tempor incididunt ut laborea.</p>
+                    <p>It's time to start living the life we've imagined</p>
                     </div>
                 </div>
             </div>
@@ -209,7 +209,7 @@ $crudapi = new CRUDAPI();
                     </div>
                     <div class="process-cap">
                         <h5>3. Get your job</h5>
-                    <p>Sorem spsum dolor sit amsectetur adipisclit, seddo eiusmod tempor incididunt ut laborea.</p>
+                    <p>I never dreamed about success. I worked for it</p>
                     </div>
                 </div>
             </div>
@@ -336,7 +336,7 @@ $crudapi = new CRUDAPI();
                             
                             <p class="pera2"> Make a Difference with Your Online Resume!</p>
                             
-                             <a href="#" class="border-btn22">Upload your cv</a> 
+                             <!-- <a href="#" class="border-btn22">Upload your cv</a>  -->
                             <!-- <div class="openBtn"> -->
       <!-- <button class="border-btn2 openButton" onclick="openForm()"><strong>resume</strong></button> -->
       </main>
@@ -509,7 +509,11 @@ $crudapi = new CRUDAPI();
                  
                         <div class="job-items">
                                
-                                <a><img id="job_company_logo" alt="" width="100" height="100"></a>
+                        <?php if($data['job_company_logo']===NULL){ ?>
+                    <a><img src="assets/img/icon/1.gif" alt=""></a>
+                    <?php }else{?>
+                    <a><img src="company_logo/<?php echo $data['job_company_logo'] ?>" alt="" width="100" height="100"></a>
+                    <?php } ?>
                                 
                            
                           
@@ -622,9 +626,9 @@ $crudapi = new CRUDAPI();
                     <div class="modal-body">
                         <form method="POST">
 
-                        <input type="text" class="form-control" name="user_id" id="user_idz">
+                        <input type="hidden" class="form-control" name="user_id" id="user_idz">
 
-                        <input type="text" class="form-control" name="job_idss" id="job_app_job_id_z">
+                        <input type="hidden" class="form-control" name="job_idss" id="job_app_job_id_z">
                      
   
 
@@ -695,7 +699,7 @@ $crudapi = new CRUDAPI();
                         $("#jobs_user_idss").text(emp[0].jobs_user_id);
                         let logo; 
                         if(emp[0].job_company_logo==null){
-                            logo = "assets/img/icon/job-list1.png";
+                            logo = "assets/img/icon/1.gif";
                         }else{
                             logo = "company_logo/"+emp[0].job_company_logo;
                         }

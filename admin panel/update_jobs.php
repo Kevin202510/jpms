@@ -12,4 +12,5 @@
         $result = $crudapi->getData($query);
         echo json_encode($result);
     }
+    
 ?>

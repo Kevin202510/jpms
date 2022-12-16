@@ -92,7 +92,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
               
                        <div class="items-link items-link2 f-right">
                        <button type="button" data-id="<?php echo $data['user_id']; ?>" class="btn btn-primary" id="view">View</button>
-                       <button type="button" data-id="<?php echo $data['requirements_filename']; ?>" class="btn btn-primary" id="viewreqs">Requarments</button>
+                       <button type="button" data-id="<?php echo $data['requirements_filename']; ?>" class="btn btn-primary" id="viewreqs">CV</button>
                       </div>
                      
               </td>
@@ -115,7 +115,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
 <div class="modal-dialog modal-xl" role="document">
                 <div class="modal-content">
                 <div class="modal-header" Style="background-color:#28a745;">
-                    <h5 style="margin-left:490px;"class="modal-title" id="viewModalLabel">View Resume</h5>
+                    <h5 style="margin-left:500px; font-weight: bold;  color:black;"class="modal-title" id="viewModalLabel">View Resume</h5>
  
                     
 
@@ -123,11 +123,11 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                  
                     
                 </div>
-                <input type="button" value="Click Here" onclick="printDivContent()">
+                
                 <div class="modal-body">
 
 
-                <div id="printContent">
+                <!-- <div id="printContent"> -->
 
                 <body style="align-items:center;">
 
@@ -142,7 +142,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
    
         <div class="row">
           <div class="col-md-3 text-left text-md-center mb-3">
-            <img class="rounded-circle img-fluid" src="https://i.pravatar.cc/175?img=32" alt="Profile Photo" />
+          <img class="rounded-circle" src="../profile/<?php echo $data["user_profile_img"];?>" alt="Profile Photo" width="200" height="200" />
           </div>
           <div class="col-md-9">
             <h1 id="fullnames"></h1>
@@ -192,9 +192,9 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
 
                   
 
-                   <h2 style="font-weight:bold;" id="ae_companynames"></h2>
+                   <h2 style="font-weight:bold; font-size:17px; color:black" id="ae_companynames"></h2>
 
-                              <ul>
+                              <ul style="font-size:17px; color:black;">
                                   <li style="font-weight:bold;" id="ae_companyaddresss"><i  style="color:black;" class="fas fa-map-marker-alt"></i></li>
                                   <li style="font-weight:bold;" id="ae_positions"><i  style="color:black;" class="fas fa-briefcase"></i></li>
                                   <li style="font-weight:bold;" id="fromto"><i style="color:black;" class="fas fa-calendar"></i></li>
@@ -209,7 +209,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                  <h2 class="mb-5">Education</h2>
 
                    
-                   <h3 style="font-weight:bold;" id="aebg_school_names"></h3>
+                   <h3 style="font-weight:bold; font-size:17px; color:black;" id="aebg_school_names"></h3>
 
                  <ul>
                     <li style="color:black;" id="aebg_year_graduates"><i style="color:black;" class="fas fa-calendar"></i></li>
@@ -229,7 +229,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
           
                             
 
-                          <h2 style="color:black;" id="as_skillnames"></h2>
+                          <h2 style="color:black; font-size:17px;" id="as_skillnames"></h2>
 
                               
 
@@ -241,7 +241,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                            <div class="col-md mb-5">
                             <h2 class="mb-5">Additional Information</h2>      
           
-                        <ul>
+                        <ul  style="font-size:17px;">
                          <li style="color:black;" id="aai_expected_salarys"><i style="color:black;" class="fas fa-calendar"></i></li>
                         <li style="color:black;" id="aai_locations"><i style="color:black;" class="fas fa-graduation-cap"></i></li>
                         <li style="color:black;" id="aai_wfh_oss"><i style="color:black;" class="fas fa-graduation-cap"></i></li>
@@ -270,16 +270,16 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header" style="background-color:#28a745;">
-        <h5 style="margin-left:140px;" class="modal-title" id="exampleModalLabel">VIEW REQUARMENTS</h5>
+        <h5 style="margin-left:135px; font-weight: bold;  color:black;" class="modal-title" id="exampleModalLabel">VIEW REQUARMENTS</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
            
         </div>
                     
         <div class="modal-body">
                            
-            <div class="card">
-              <div class="container" style="width:300px; height:300px; ">
-                  <a type="button" id="cv" style="width:100px; height:50px; margin-top:250px; margin-left:90px; text-align:center; background-color:#28a745;">CV</a> 
+            <div >
+              <div class="modal-footer" >
+                  <a type="button" id="cv" style=" margin-right:160px; width:100px; height:50px;  text-align:center; background-color:#28a745; color:black;">CV</a> 
               </div>
             </div>
            

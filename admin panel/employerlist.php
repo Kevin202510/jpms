@@ -3,6 +3,16 @@
   
   include_once("classes/CRUDAPI.php");
   $crudapi = new CRUDAPI();
+ 
+  if(isset($_POST['deletes'])) {  
+
+    $user_id = $crudapi->escape_string($_POST['user_id']);
+      
+    $result = $crudapi->execute("DELETE from users WHERE user_id = '$user_id' ");
+    
+    echo '<script>alert("DELETED SUCCESS");</script>';
+    header("location:employerlist.php");
+}   
 
     
 ?>
@@ -70,8 +80,8 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
              <tr>
             </thead>
             <tbody id="table-main">
-                <?php 
-                      $query = "SELECT * FROM `users` LEFT JOIN roles ON roles.id = users.user_role_id where users.user_role_id = 3";
+                <?php                               
+                      $query = "SELECT * FROM `users` LEFT JOIN requirements ON requirements.requirements_user_id = users.user_id LEFT JOIN roles ON roles.id = users.user_role_id where users.user_role_id = 3";
                       $result = $crudapi->getData($query);
                       $number = 1;
                       foreach ($result as $key => $data) {
@@ -86,9 +96,8 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
               <td>
               <div class="btn-group" role="group" aria-label="Basic example">
 
-              <button style="background-color:transparent;  border-radius:20px; background-color:#28a745;  border:none; color:#fff;" type="button" id="view_reqs" data-id="<?php echo $data['user_id']; ?>">View Requirment</button>
-                  <button  style="background-color:transparent; color:blue; border:none;" type="button" id="accept" data-id="<?php echo $data['user_id']; ?>"><i class="bi bi-hand-thumbs-up-fill"></i></button>
-                  <button  style="background-color:transparent; color:red; border:none;" type="button" id="reject" data-id="<?php echo $data['user_id']; ?>"><i class="bi bi-hand-thumbs-down-fill"></i></button>
+              <button style="background-color:transparent;  border-radius:20px; background-color:#28a745;  border:none; color:#fff;" type="button" id="view_req_s" data-id="<?php echo $data['requirements_filename']; ?>">View Requirment</button>
+                 
                   <button style="background-color:transparent; color:blue; border:none;" type="button" id="views" data-id="<?php echo $data['user_id']; ?>"><i class="bi bi-eye-fill"></i></button>
                   <button style="background-color:transparent; color:red; border:none;" type="button" id="Deleteemployer" data-id="<?php echo $data['user_id']; ?>" ><i class="bi bi-trash-fill"></i></button>
 
@@ -165,7 +174,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
 
                     <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" style="border-radius:20px; margin-right:10px; background-color:#28a745;" data-bs-dismiss="modal">Close</button>
-                        <button style="border-radius:20px; margin-right:160px; background-color:#28a745;"  type="submit" class="btn btn-primary" name="Ban">Ban</button>
+                        <button style="border-radius:20px; margin-right:160px; background-color:#28a745;"  type="submit" class="btn btn-primary" name="deletes">Delete</button>
                     </div>
                 </form>
                 </div>
@@ -182,16 +191,16 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header" style="background-color:#28a745;">
-        <h5 style="margin-left:130px;" class="modal-title" id="exampleModalLabel">VIEW REQUARMENTS</h5>
+        <h5 style="margin-left:130px; color:black;" class="modal-title" id="exampleModalLabel">VIEW REQUARMENTS</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </button>
         </div>
                     
         <div class="modal-body">
                            
-        <div class="card">
-              <div class="container" style="width:300px; height:300px; ">
-                  <a type="button" id="cv_s" style="width:100px; height:50px; margin-top:250px; margin-left:90px; text-align:center; background-color:#28a745;">CV</a> 
+        <div>
+              <div class="container">
+                  <a type="button" id="cv_sz" style="color:black; width:100px; height:50px;  margin-left:170px; text-align:center; background-color:#28a745; font-size:18px;">business Permet</a> 
               </div>
             </div>
 
@@ -209,7 +218,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
             <div class="modal-dialog modal-md" role="document">
                 <div class="modal-content">
                 <div class="modal-header" style="background-color:#28a745;">
-                    <h5  style="margin-left:200px;" class="modal-title" id="views_ModalLabel">Profile</h5>
+                    <h5  style="margin-left:200px; color:black;" class="modal-title" id="views_ModalLabel">Accept</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </button>
                 </div>
@@ -221,7 +230,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" style="border-radius:20px; margin-right:10px; background-color:#28a745;" data-bs-dismiss="modal">Close</button>
-                        <button style="border-radius:20px; margin-right:160px; background-color:#28a745;"  type="submit" class="btn btn-primary" name="accept">Accept</button>
+                        <button style="border-radius:20px; margin-right:135px; background-color:#28a745;"  type="submit" class="btn btn-primary" name="accept">Accept</button>
                     </div>
         
                   </div>
@@ -239,19 +248,17 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
             <div class="modal-dialog modal-md" role="document">
                 <div class="modal-content">
                 <div class="modal-header" style="background-color:#28a745;">
-                    <h5 style="margin-left:200px;" class="modal-title" id="view_ModalLabel">Profile</h5>
+                    <h5 style="margin-left:200px; color:black;" class="modal-title" id="view_ModalLabel">Reject</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </button>
                 </div>
              
                 <div class="modal-body">
-                 
-
-               
+                
                 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" style="border-radius:20px; margin-right:10px; background-color:#28a745;" data-bs-dismiss="modal">Close</button>
-                        <button style="border-radius:20px; margin-right:160px; background-color:#28a745;"  type="submit" class="btn btn-primary" name="reject">Rejected</button>
+                        <button style="border-radius:20px; margin-right:135px; background-color:#28a745;"  type="submit" class="btn btn-primary" name="reject">Rejected</button>
                     </div>
         
                   </div>
@@ -331,10 +338,10 @@ $("body").on('click','#Deleteemployer',function(e){
 
     });
 
-    $("body").on('click','#view_reqs',function(e){
+    $("body").on('click','#view_req_s',function(e){
   // alert($(e.currentTarget).data('id'));
   var filename = $(e.currentTarget).data('id');
-  $("#cv_s").prop("href", "sample1.php?pdfname="+filename);
+  $("#cv_sz").prop("href", "samples1.php?pdfname="+filename);
 $("#view_requarments").modal("show");
 });
 

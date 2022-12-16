@@ -31,12 +31,12 @@ $crudapi = new CRUDAPI();
     
  <!-- Hero Area Start-->
  <div class="slider-area ">
-            <div class="single-slider slider-height2 d-flex align-items-center" data-background="assets/img/hero/why.jpg">
+            <div class="single-slider slider-height2 d-flex align-items-center" data-background="assets/img/hero/2.jpg">
                 <div class="container">
                     <div class="row">
                         <div class="col-xl-12">
                             <div class="hero-cap text-center">
-                                <h2>Get your job</h2>
+                                <h2></h2>
                             </div>
                         </div>
                     </div>
@@ -63,9 +63,9 @@ $crudapi = new CRUDAPI();
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="count-job mb-35">
-                                            <span>39, 782 Jobs found</span>
+                                            <!-- <span>39, 782 Jobs found</span> -->
                                             <!-- Select job items start -->
-                                            <div class="select-job-items">
+                                            <!-- <div class="select-job-items">
                                                 <span>Sort by</span>
                                                 <select name="select">
                                                     <option value="">None</option>
@@ -73,7 +73,7 @@ $crudapi = new CRUDAPI();
                                                     <option value="">job list</option>
                                                     <option value="">job list</option>
                                                 </select>
-                                            </div>
+                                            </div> -->
                                             <!--  Select job items End-->
                                         </div>
                                     </div>
@@ -162,7 +162,7 @@ $crudapi = new CRUDAPI();
 
 
 
-        <!--Pagination Start  -->
+        <!-- Pagination Start 
         <div class="pagination-area pb-115 text-center">
             <div class="container">
                 <div class="row">
@@ -180,7 +180,7 @@ $crudapi = new CRUDAPI();
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
         <!--Pagination End  -->
 
 
@@ -189,8 +189,8 @@ $crudapi = new CRUDAPI();
 <div class="modal fade" id="view_s_Modal" tabindex="-1" role="dialog" aria-labelledby="viewModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="viewModalLabel">View1</h5>
+                <div class="modal-header" style="background-color:#28a745;">
+                    <h5 style="margin-left:520px;" class="modal-title " id="viewModalLabel">View Post Job</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
@@ -211,11 +211,7 @@ $crudapi = new CRUDAPI();
                  
                             <div class="job-items">
                             <div class="company-img">
-                            <?php if($data['job_company_logo']===NULL){ ?>
-                                <a href="#"><img src="assets/img/icon/job-list1.png" alt=""></a>
-                                <?php }else{?>
-                                <a><img src="company_logo/<?php echo $data['job_company_logo'] ?>" alt="" width="100" height="100"></a>
-                                <?php } ?>
+                            <a><img id="job_company_logozs" alt="" width="100" height="100"></a>
                             </div>
                                 <div class="job-tittle">
                                    
@@ -323,13 +319,13 @@ $crudapi = new CRUDAPI();
                     <div class="modal-body">
                         <form method="POST">
 
-                        <input type="text" class="form-control" name="user_id" id="user_id">
+                        <input type="hidden" class="form-control" name="user_id" id="user_id">
 
                             
-                                 <input type="text" class="form-control" name="job_idss" id="job_app_job_id">
+                                 <input type="hidden" class="form-control" name="job_idss" id="job_app_job_id">
                             
                               
-                                <div class="modal-footer" style="background-color:#13e9a5;">
+                                <div class="modal-footer" >
                                     
                             <button style="border-radius:20px;  margin-right:150px;" type="submit" class="btn " id="applyModals2" name="applymoko">Apply</button>
                                      
@@ -358,6 +354,8 @@ $crudapi = new CRUDAPI();
    
     $("#job_app_job_id").val($("#idid").val());
         $("#user_id").val($("#idss").val());
+        // $("#job_app_job_id").val($("#idid").val());
+        
  
         $("#applyModal").modal("show");
   });
@@ -386,7 +384,7 @@ $.post("admin panel/update_jobs.php",{USER_IDsss: USER_IDss},function(data,statu
     }else{
         logo = "company_logo/"+emp[0].job_company_logo;
     }
-    $("#job_company_logo").attr("src",logo);
+    $("#job_company_logozs").attr("src",logo);
     $("#job_company_namess").text(emp[0].job_company_name);
     $("#jobs_namess").text(emp[0].jobs_name);
     $("#jobs_addressss").text(emp[0].jobs_address);

@@ -211,7 +211,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                 <div class="modal-header"  style="background-color:#28a745;">
-                    <h5 style="margin-left:185px;"class="modal-title" id="exampleModalLabel" class="modal-title" id="editModalLabel">Edit Users</h5>
+                    <h5 style="margin-left:185px; color:black;"class="modal-title" id="exampleModalLabel" class="modal-title" id="editModalLabel">Edit Users</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </button>
                 </div>
@@ -262,7 +262,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                 <div class="modal-header" style="background-color:#28a745;">
-                    <h5 style="margin-left:180px;" class="modal-title" id="deleteModalLabel">Delete Users</h5>
+                    <h5 style="margin-left:180px; color:black;" class="modal-title" id="deleteModalLabel">Delete Users</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </button>
                 </div>

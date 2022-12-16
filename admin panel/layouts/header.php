@@ -262,7 +262,7 @@ if($_SESSION['USERROLE'] == 3){
         <!-- <img src="assets/img/logo.png" alt=""> -->
         <!-- <span class="d-none d-lg-block" style="color:#3d4d4b; font-size:30px;" >ADMIN</span> -->
         
-                  <a href="index.php"><img src="../assets/img/logo/GT JOB HUNT.gif" alt=""></a>
+                  <a><img src="../assets/img/logo/GT JOB HUNT.gif" alt=""></a>
          
       <i class="bi bi-list toggle-sidebar-btn" style="margin-left:45px; "></i>
     </div><!-- End Logo -->
@@ -272,22 +272,22 @@ if($_SESSION['USERROLE'] == 3){
       <ul class="d-flex align-items-center">
 
         <li class="nav-item d-block d-lg-none">
-          <a class="nav-link nav-icon search-bar-toggle " href="#">
+          <a class="nav-link nav-icon search-bar-toggle ">
             <i class="bi bi-search"></i>
           </a>
         </li><!-- End Search Icon-->
 
         <li class="nav-item dropdown">
 
-          <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
-            <i class="bi bi-bell"></i>
-            <span class="badge bg-primary badge-number">4</span>
+          <a class="nav-link nav-icon" >
+           
+            <span class="badge bg-primary badge-number"></span>
           </a><!-- End Notification Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
             <li class="dropdown-header">
-              You have 4 new notifications
-              <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
+             
+              <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2"></span></a>
             </li>
             <li>
               <hr class="dropdown-divider">
@@ -296,9 +296,9 @@ if($_SESSION['USERROLE'] == 3){
             <li class="notification-item">
               <i class="bi bi-exclamation-circle text-warning"></i>
               <div>
-                <h4>Lorem Ipsum</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>30 min. ago</p>
+                <h4></h4>
+                <p></p>
+                <p></p>
               </div>
             </li>
 
@@ -309,9 +309,9 @@ if($_SESSION['USERROLE'] == 3){
             <li class="notification-item">
               <i class="bi bi-x-circle text-danger"></i>
               <div>
-                <h4>Atque rerum nesciunt</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>1 hr. ago</p>
+                <h4></h4>
+                <p></p>
+                <p></p>
               </div>
             </li>
 
@@ -354,9 +354,9 @@ if($_SESSION['USERROLE'] == 3){
 
         <li class="nav-item dropdown">
 
-          <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
-            <i class="bi bi-chat-left-text"></i>
-            <span class="badge bg-success badge-number">3</span>
+          <a class="nav-link nav-icon" >
+           
+            <span class="badge bg-success badge-number"></span>
           </a><!-- End Messages Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
@@ -455,8 +455,9 @@ if($_SESSION['USERROLE'] == 3){
               </button>
               <?php } ?>
               <!-- </a> -->
-
             </li>
+
+            
             <li>
               <hr class="dropdown-divider">
             </li>
@@ -475,12 +476,7 @@ if($_SESSION['USERROLE'] == 3){
               <hr class="dropdown-divider">
             </li>
 
-            <li>
-              <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
-                <i class="bi bi-question-circle"></i>
-                <span>Need Help?</span>
-              </a>
-            </li>
+           
             <li>
               <hr class="dropdown-divider">
             </li>
@@ -504,7 +500,7 @@ if($_SESSION['USERROLE'] == 3){
     <div class="modal-dialog" role="document">
         <div class="modal-content">
         <div class="modal-header"  style="background-color:#28a745;">
-            <h5 style="margin-left:200px;" class="modal-title" id="logoutLabel">Logout</h5>
+            <h5 style="margin-left:200px; font-weight: bold;  color:black;" class="modal-title" id="logoutLabel">Logout</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             
         </div>
@@ -528,7 +524,7 @@ if($_SESSION['USERROLE'] == 3){
     <div class="modal-dialog" role="document">
         <div class="modal-content">
         <div class="modal-header" style="background-color:#28a745;">
-            <h5 style="margin-left:190px;" class="modal-title" id="verificationLabel">Profile koto</h5>
+            <h5 style="margin-left:190px; font-weight: bold;  color:black;" class="modal-title" id="verificationLabel">Profile koto</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             
         </div>
@@ -550,7 +546,7 @@ if($_SESSION['USERROLE'] == 3){
                     </div>
                     <div class="modal-footer">
                
-               <button style="border-radius:20px; margin-right:150px; background-color:#28a745;" type="submit" class="btn btn-primary" name="verifyEmail">save</button>
+               <button style="border-radius:20px; margin-right:190px; background-color:#28a745;" type="submit" class="btn btn-primary" name="verifyEmail">save</button>
            </div>
         </form>
         </div>
@@ -567,7 +563,7 @@ if($_SESSION['USERROLE'] == 3){
     <div class="modal-dialog" role="document">
         <div class="modal-content">
         <div class="modal-header" style="background-color:#28a745;">
-            <h5 style="margin-left:190px;" class="modal-title" id="settingsLabel">Profile koto</h5>
+            <h5 style="margin-left:190px; font-weight: bold;  color:black;" class="modal-title" id="settingsLabel">Profile</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             
         </div>
@@ -609,7 +605,7 @@ if($_SESSION['USERROLE'] == 3){
     <div class="modal-dialog" role="document">
         <div class="modal-content">
         <div class="modal-header"  style="background-color:#28a745;">
-            <h5 style="margin-left:200px;" class="modal-title" id="settingsLabel">Settings</h5>
+            <h5 style="margin-left:200px; font-weight: bold;  color:black;" class="modal-title" id="settingsLabel">Settings</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             
         </div>
@@ -625,7 +621,7 @@ if($_SESSION['USERROLE'] == 3){
                             <img id="profileimgszz" alt="Profile" class="rounded-circle" width="150" height="150">
       
                             <br><br>
-                            <button style="float:right; margin-right:30px;" type="button" class="btn btn-success" data-id="<?php echo $_SESSION['USERID']; ?>" id="upload_Profiles">Profile</button>
+                            <button style="float:right; margin-right:25px;" type="button" class="btn btn-success" data-id="<?php echo $_SESSION['USERID']; ?>" id="upload_Profiles">Profile</button>
                           </div></center><br><br>
 
                       
@@ -670,14 +666,14 @@ if($_SESSION['USERROLE'] == 3){
  <div class="modal fade" id="uploadModals" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+      <div class="modal-header"  style="background-color:#28a745;">
+        <h5 style="margin-left:165px; font-weight: bold;  color:black;" class="modal-title" id="exampleModalLabel">Upload Picture</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           
       </div>
       <div class="modal-body">
         <form method="post"  enctype="multipart/form-data">
-            <input type="text" name="user_id" id="user_ids">
+            <input type="hidden" name="user_id" id="user_ids">
             <input type="hidden" name="upload_Profile">
             <div class="input-group mb-3">
               <div class="input-group-prepend">
@@ -685,12 +681,12 @@ if($_SESSION['USERROLE'] == 3){
               </div>
               <div class="custom-file">
                 <input type="file" class="custom-file-input" name="filesToUpload" aria-describedby="inputGroupFileAddon01">
-                <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                <label class="custom-file-label" for="inputGroupFile01"></label>
               </div>
             </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary">Save changes</button>
+          <button style="border-radius:20px; margin-right:10px; background-color:#28a745;" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button style="border-radius:20px; margin-right:120px; background-color:#28a745;" type="submit" class="btn btn-primary">Save changes</button>
         </div>
         </form>
       </div>

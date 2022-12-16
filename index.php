@@ -251,7 +251,7 @@ if(isset($_POST['subreg'])) {
             <div class="job-items">
                 <div class="company-img">
                     <?php if($data['job_company_logo']===NULL){ ?>
-                    <a href="#"><img src="assets/img/icon/job-list1.png" alt=""></a>
+                    <a href="#"><img src="assets/img/icon/1.gif" alt=""></a>
                     <?php }else{?>
                     <a><img src="company_logo/<?php echo $data['job_company_logo'] ?>" alt="" width="100" height="100"></a>
                     <?php } ?>
@@ -458,7 +458,7 @@ if(isset($_POST['subreg'])) {
                             
                             <p class="pera2"> Make a Difference with Your Online Resume!</p>
                             
-                             <a href="#" class="border-btn22">Upload your cv</a> 
+                             <!-- <a href="#" class="border-btn22">Upload your cv</a>  -->
                             <!-- <div class="openBtn"> -->
       <!-- <button class="border-btn2 openButton" onclick="openForm()"><strong>resume</strong></button> -->
       </main>
@@ -523,12 +523,6 @@ if(isset($_POST['subreg'])) {
                             </div><br><br>
                             
 
-
-
-
-
-
-
                              <div class="form-group">
                                  <label for="exampleInputPassword1">Password</label>
                                  <input type="password" class="form-control" name="user_password" id="user_password" placeholder="Password" required>
@@ -578,7 +572,7 @@ if(isset($_POST['subreg'])) {
 
                              <div class="form-group">
                                  <label for="exampleInputPassword1">Password</label>
-                                 <input type="password" class="form-control" name="user_password" id="user_password" placeholder="Password" required>
+                                 <input type="password" class="form-control" name="user_password" id="user_passwords" placeholder="Password" required><input type='checkbox' id='check' />
                              </div>
 
 
@@ -634,7 +628,7 @@ if(isset($_POST['subreg'])) {
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                 <div class="modal-header" style="background-color:#28a745;">
-                    <h5 class="modal-title" id="viewModalLabel">View</h5>
+                    <h5 style="color:black; margin-left:500px;"class="modal-title" id="viewModalLabel">View Jobs Post</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
@@ -760,7 +754,7 @@ if(isset($_POST['subreg'])) {
             <div class="modal-dialog modal-md" role="document">
                 <div class="modal-content">
                              <div class="modal-header " style="background-color:#1AA478;">
-                            <h5 style="margin-left:205px;" id="applyModalLabel">LogIn First</h5>
+                            <h5 style="margin-left:180px;" id="applyModalLabel">LogIn First</h5>
                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                              </button>
@@ -772,7 +766,7 @@ if(isset($_POST['subreg'])) {
 
                                 <div class="modal-footer" style="background-color:#13e9a5;">
                                     
-                            <button style="border-radius:20px;  margin-right:150px;" type="submit" class="btn" href="index.php">Please LogIn</button>
+                            <button style="border-radius:20px;  margin-right:130px;" type="submit" class="btn" href="index.php">Please LogIn</button>
                                      
                                     </div>
                          </form>

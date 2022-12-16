@@ -95,27 +95,40 @@ if(isset($_POST['deletejob'])) {
 }   
 
 
+
+
 if(isset($_POST['Business_permit'])){
 
-    $target_dir = "cvs/";
-    $target_file = $target_dir . basename($_FILES["filesToUpload"]["name"]);
+    $target_dir = "../cvs/";
+    $target_file = $target_dir . basename($_FILES["filesToUploads"]["name"]);
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 
     $id = $_POST['user_id'];
-    $profile = $_FILES["filesToUpload"]["name"];
+    $profile = $_FILES["filesToUploads"]["name"];
 
-    $result = $crudapi->execute("INSERT INTO requirements(requirements_filename,requirements_user_id) VALUES('$profile','$id')");
+    $query = "SELECT * FROM `requirements` where requirements_user_id=$id";
+    $results = $crudapi->getData($query);
+
+    if(count($results)!=0){
+        $result = $crudapi->execute("UPDATE requirements SET requirements_filename='$profile' where requirements_user_id='$id'");
+    }else{
+        $result = $crudapi->execute("INSERT INTO requirements(requirements_filename,requirements_user_id) VALUES('$profile','$id')");
+    }
+
+    
 
     if (file_exists($target_file)) {
-        echo "Sorry, file already exists.";
+        // echo "Sorry, file already exists.";
         $uploadOk = 0;
+        header("location:employerindex.php");
     }else{
-        if (move_uploaded_file($_FILES["filesToUpload"]["tmp_name"], $target_file)) {
+        if (move_uploaded_file($_FILES["filesToUploads"]["tmp_name"], $target_file)) {
             // echo "The file ". htmlspecialchars( basename( $_FILES["filesToUpload"]["name"])). " has been uploaded.";
-            header("location:applicantinformation.php");
+            header("location:employerindex.php");
         } else {
-        echo "Sorry, there was an error uploading your file.";
+        // echo "Sorry, there was an error uploading your file.";
+        header("location:employerindex.php");
         }
     }
 
@@ -155,10 +168,6 @@ if(isset($_POST['Business_permit'])){
     //     echo '<script>alert("May Error!");</script>';
     // }
 }
-
-
-
-
 
 
 
@@ -212,7 +221,9 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
           <div class="search-bar">
             <div class="search-form d-flex align-items-center" method="POST" action="#">
              <input type="text" id="searchData" placeholder="Search By Company Name" style="width:200px;" title="Enter search keyword">
-            
+             <div class="custom-file col-6">
+                    <button style="  margin-right:120px;" type="button" class="btn btn-success" data-id="<?php echo $_SESSION['USERID']; ?>" id="Business_permit">Business permit</button>
+                    </div>
            </div>
       </div>
         </div><!-- End Search Bar -->
@@ -237,7 +248,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                 <?php 
                    if(isset($_SESSION['USERROLE'])){
                     $jobuser= $_SESSION['USERID'];
-                $query = "SELECT * FROM `jobs` left join users on users.user_id = jobs.jobs_user_id where jobs.jobs_user_id=$jobuser";
+                $query = "SELECT * FROM `jobs` where jobs_user_id=$jobuser";
                 $result = $crudapi->getData($query);
                 $number = 1;
                 foreach ($result as $key => $data) {
@@ -259,6 +270,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                   <button type="button" data-id="<?php echo $data['jobs_id']; ?>" class="btn btn-primary" style="background-color:transparent; color:green; border:none;" id="editbtn"><i class="bi bi-pencil-fill"></i></button>
                   <button type="button" data-id="<?php echo $data['jobs_id']; ?>" class="btn btn-danger" style="background-color:transparent; color:red; border:none;" id="deletebtn"><i class="bi bi-trash-fill"></i></button>
                   <button type="button" data-id="<?php echo $data['jobs_id']; ?>" class="btn btn-primary" style="background-color:transparent; color:blue; border:none;" id="view"><i class="bi bi-eye-fill"></i></button>
+                  <button type="button" data-id="<?php echo $data['requirements_filename']; ?>" class="btn btn-primary" style="background-color:transparent; color:blue; border:none;" id="view_permit">Business permit</button>
                 </div>
                      
               </td>
@@ -276,23 +288,21 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
             <div class="modal-dialog modal-xl" role="document">
                 <div class="modal-content">
                 <div class="modal-header" style="background-color: #28a745;">
-                    <h5 Style="margin-left:160px; " class="modal-title" id="exampleModalsLabel"> ADD JOB POST</h5>
+                    <h5 Style="margin-left:490px; font-weight: bold;  color:black;" class="modal-title" id="exampleModalsLabel"> ADD JOB POST</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                 <form method="POST" enctype="multipart/form-data">
                     <input type="hidden" class="form-control" name="jobs_id" id="jobs_id">
                     <input type="hidden" class="form-control" name="jobs_user_id" id="jobs_user_id">
-                
-                    <div class="custom-file">
+                    <div class="row">
+                    <div class="custom-file col-6">
                         <input type="file" class="custom-file-input" name="filesToUpload" aria-describedby="inputGroupFileAddon01">
-                        <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                        <label class="custom-file-label" for="inputGroupFile01"></label>
                     </div>
 
-                    <div class="custom-file">
-                    <button style="  margin-right:120px;" type="button" class="btn btn-success" data-id="<?php echo $_SESSION['USERID']; ?>" id="Business_permit">Business permit</button>
+                   
                     </div>
-
 
                 <div class="row">
                     <div class="form-group col-6">
@@ -311,20 +321,22 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                         <label for="exampleInputPassword1">Comapany Address</label>
                         <input type="text" class="form-control" name="jobs_address" id="jobs_address" placeholder="Comapany Address"required>
                     </div>
+
                     <div class="form-group col-6">
-                        <label for="exampleInputPassword1">Vacancy</label>
-                        <input type="number" class="form-control" name="jobs_vacancy_count" id="jobs_vacancy_count" placeholder="Vacancy"required>
+                        <label for="exampleInputPassword1">Required Experience</label>
+                        <input type="text" class="form-control" name="jobs_r_experience" id="jobs_r_experience" placeholder="Experience"required>
                     </div>
+                    
                     </div> 
             <div class="row">
                     <div class="form-group  col-6">
                         <label for="exampleInputPassword1">Description</label>
-                        <textarea type="text" style="width:500px;" class="form-control" name="jobs_description" id="jobs_description" placeholder="Description"required></textarea>
+                        <textarea type="text" style="width:500px; height:120px;" class="form-control" name="jobs_description" id="jobs_description" placeholder="Description"required></textarea>
                     </div>
                    
                     <div class="form-group  col-6">
                         <label for="exampleInputPassword1">Skills</label>
-                        <textarea type="text" style="width:500px;" class="form-control" name="jobs_r_skills" id="jobs_r_skills" placeholder="Skills"required></textarea>
+                        <textarea type="text" style="width:500px;  height:120px;" class="form-control" name="jobs_r_skills" id="jobs_r_skills" placeholder="Skills"required></textarea>
                     </div>
              </div>
                     <div class="row">
@@ -354,12 +366,12 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                             </div>
                               </div>
 
-                              <div class="row">
+                    <div class="row">
+                   
                     <div class="form-group col-6">
-                        <label for="exampleInputPassword1">Required Experience</label>
-                        <input type="text" class="form-control" name="jobs_r_experience" id="jobs_r_experience" placeholder="Experience"required>
+                        <label for="exampleInputPassword1">Vacancy</label>
+                        <input type="number" class="form-control" name="jobs_vacancy_count" id="jobs_vacancy_count" placeholder="Vacancy"required>
                     </div>
-
          
                     <div class="form-group col-6">
                         <label for="exampleInputPassword1">Salary</label>
@@ -367,8 +379,8 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                     </div>
                     </div>
                     <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" style="border-radius:20px; margin-right:10px; background-color:#28a745;" data-bs-dismiss="modal">Close</button>
-                        <button style="border-radius:20px; margin-right:150px; 10px; background-color:#28a745;" type="submit" class="btn btn-primary" name="addjobs">ADD</button>
+                        <button  style="border-radius:20px; margin-right:10px; background-color:#28a745;"type="button" class="btn btn-secondary" data-bs-dismiss="modal">CLOSE</button>
+                        <button style="border-radius:20px; margin-right:460px; background-color:#28a745;" type="submit" class="btn btn-primary" name="addjobs">ADD</button>
                     </div>
                 </form>
                 </div>
@@ -380,48 +392,61 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
 
 <!-- UpdateMODAL -->
     <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
+            <div class="modal-dialog  modal-xl" role="document">
                 <div class="modal-content">
                 <div class="modal-header" style="background-color:#28a745;">
-                    <h5 style="margin-left:175px;" class="modal-title" id="exampleModalLabel">Edit Job Post</h5>
+                    <h5 style="margin-left:490px; font-weight: bold;  color:black;" class="modal-title" id="exampleModalLabel">Edit Job Post</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    
+    
                 </div>
                 <div class="modal-body">
                 <form method="POST" enctype="multipart/form-data">
                 <div class="custom-file">
                         <input type="file" class="custom-file-input" name="filesToUpload" aria-describedby="inputGroupFileAddon01">
-                        <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                        <label class="custom-file-label" for="inputGroupFile01"></label>
                     </div>
                     <input type="hidden" class="form-control" name="jobs_id" id="jobs_ids">
                     <input type="hidden" class="form-control" name="jobs_user_id" id="jobs_user_ids">
 
-                    <div class="form-group">
+                    <div class="row">
+                    <div class="form-group col-6">
                         <label for="exampleInputPassword1">Comapany Name</label>
                         <input type="text" class="form-control" name="job_company_name" id="job_company_names" placeholder="Comapany Name" required>
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group col-6">
                         <label for="exampleInputPassword1">Position</label>
                         <input type="text" class="form-control" name="jobs_name" id="jobs_names" placeholder="Comapany Name" required>
                     </div>
+                    </div>
 
-                    <div class="form-group">
+                    <div class="row">
+                    <div class="form-group col-6">
                         <label for="exampleInputPassword1">Comapany Address</label>
                         <input type="text" class="form-control" name="jobs_address" id="jobs_addresss" placeholder="Comapany Address"required>
                     </div>
-
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Description</label>
-                        <input type="text" class="form-control" name="jobs_description" id="jobs_descriptions" placeholder="Description"required>
+                     
+                    <div class="form-group col-6">
+                        <label for="exampleInputPassword1">Experience</label>
+                        <input type="text" class="form-control" name="jobs_r_experience" id="jobs_r_experiences" placeholder="Experience"required>
+                    </div>
+                   
                     </div>
 
-                    <div class="form-group">
+                    <div class="row">
+                    <div class="form-group col-6">
+                    <label for="exampleInputPassword1" >Description</label>
+                        <textarea style="width:500px; height:120px;" type="text" class="form-control" name="jobs_description" id="jobs_descriptions" placeholder="Description"required></textarea>
+                    </div>
+
+                    <div class="form-group  col-6">
                         <label for="exampleInputPassword1">Skills</label>
-                        <input type="text" class="form-control" name="jobs_r_skills" id="jobs_r_skillss" placeholder="Skills"required>
+                        <textarea style="width:500px; height:120px;" type="text" class="form-control" name="jobs_r_skills" id="jobs_r_skillss" placeholder="Skills"required></textarea>
+                    </div>
                     </div>
 
-                    <div class="form-group">
+                    <div class="row">
+                    <div class="form-group col-6">
                         <label for="exampleInputPassword1">Education</label>
                         <select name="jobs_r_education_id" id="jobs_r_education_ids">
                           <?php 
@@ -433,10 +458,10 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                           ?>
                           <option value="<?php echo $data['ea_id']; ?>"><?php echo $data['ea_name']; ?></option>
                         <?php }?>
-
                         </select>
+                     </div>
 
-                        <div class="form-group">
+                        <div class="form-group  col-6">
                         <label for="exampleInputPassword1">Preferred Time</label>
                         <select name="jobs_preferred_time" id="jobs_preferred_times">
 
@@ -448,26 +473,25 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                     </div>
                 </div>
 
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Experience</label>
-                        <input type="text" class="form-control" name="jobs_r_experience" id="jobs_r_experiences" placeholder="Experience"required>
-                    </div>
+                <div class="row">
+                   
 
-                    <div class="form-group">
+                    <div class="form-group  col-6">
                         <label for="exampleInputPassword1">Vacancy</label>
                         <input type="number" class="form-control" name="jobs_vacancy_count" id="jobs_vacancy_counts" placeholder="Vacancy"required>
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group col-6">
                         <label for="exampleInputPassword1">Salary</label>
                         <input type="number" class="form-control" name="job_expected_salary" id="job_expected_salarys" placeholder="Salary"required>
+                    </div>
                     </div>
 
                 
                 
                     <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" style="border-radius:20px; margin-right:10px; background-color:#28a745;" data-bs-dismiss="modal">Close</button>
-                        <button style="border-radius:20px; margin-right:120px; 10px; background-color:#28a745;" type="submit" class="btn btn-primary" name="editjob">Update changes</button>
+                        <button style="border-radius:20px; margin-right:450px; 10px; background-color:#28a745;" type="submit" class="btn btn-primary" name="editjob">Update changes</button>
                     </div>
                 </form>
                 </div>
@@ -482,7 +506,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                 <div class="modal-header" Style="background-color:#28a745;">
-                    <h5 Style="margin-left:160px;" class="modal-title" id="deleteModalLabel">Delete Job Post</h5>
+                    <h5 Style="margin-left:160px; font-weight: bold;  color:black;" class="modal-title" id="deleteModalLabel">Delete Job Post</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     
                 </div>
@@ -508,7 +532,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
             <div class="modal-dialog modal-xl" role="document">
                 <div class="modal-content">
                 <div class="modal-header" Style="background-color:#28a745;">
-                    <h5 style="margin-left:490px;" class="modal-title" id="viewModalLabel">View Job Post</h5>
+                    <h5 style="margin-left:490px; font-weight: bold;  color:black" class="modal-title" id="viewModalLabel">View Job Post</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                    
                 </div>
@@ -630,28 +654,27 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
 <div class="modal fade" id="example_Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModal_Label" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModal_Label">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+      <div class="modal-header"  Style="background-color:#28a745;">
+        <h5  Style="color:black; margin-left:160px;" class="modal-title" id="exampleModal_Label">Business Permit</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        
       </div>
       <div class="modal-body">
         <form method="post" action="" enctype="multipart/form-data">
-            <input type="text" name="user_id" id="user_id">
+            <input type="hidden" name="user_id" id="user_id">
             <input type="hidden" name="Business_permit">
             <div class="input-group mb-3">
               <div class="input-group-prepend">
                 <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
               </div>
               <div class="custom-file">
-                <input type="file" class="custom-file-input" name="filesToUpload" aria-describedby="inputGroupFileAddon01">
-                <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                <input type="file" class="custom-file-input" name="filesToUploads" aria-describedby="inputGroupFileAddon01">
+                <label class="custom-file-label" for="inputGroupFile01"></label>
               </div>
             </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary">Save changes</button>
+        
+          <button style="border-radius:20px; margin-right:160px; background-color:#28a745;" type="submit" class="btn btn-primary">Save changes</button>
         </div>
         </form>
       </div>
@@ -692,6 +715,33 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
 </div>
 
 
+<!-- view business permit -->
+
+<div class="modal fade" id="view_requarments" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color:#28a745;">
+        <h5 style="margin-left:130px; color:black;" class="modal-title" id="exampleModalLabel">VIEW REQUARMENTS</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> 
+          </button>
+        </div>
+                    
+        <div class="modal-body">
+
+               
+        <div>
+              <div class="container">
+                  <a type="button" id="cv_sz" style="width:100px; height:50px; color:black; margin-left:170px; text-align:center; background-color:#28a745;">CV</a> 
+              </div>
+            </div>
+
+        </div>
+    </div>
+  </div>
+</div>
+
+<!-- view permit -->  
+
 
 <?php include('layouts/footer.php'); ?>
 
@@ -700,6 +750,13 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
     $("#jobs").click(function(){
         $("#exampleModals").modal("show");
     });
+
+    $("body").on('click','#view_permit',function(e){
+  // alert($(e.currentTarget).data('id'));
+  var filename = $(e.currentTarget).data('id');
+  $("#cv_sz").prop("href", "sample.php?pdfname="+filename);
+$("#view_requarments").modal("show");
+});
 
     $("#Business_permit").click(function(e){
         var users_id = $(e.currentTarget).data('id');

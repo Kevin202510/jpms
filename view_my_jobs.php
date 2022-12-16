@@ -70,31 +70,31 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
             </thead>
             <tbody id="table-main">
                 <?php 
-              $query = "SELECT * FROM `users` LEFT JOIN requirements ON requirements.requirements_user_id = users.user_id where user_role_id = 4";
+                 if(isset($_SESSION['USERROLE'])){
+                  $app_users= $_SESSION['USERID'];
+              $query = "SELECT * FROM `job_applicants` LEFT JOIN jobs ON jobs.jobs_id = job_applicants.job_app_job_id LEFT JOIN users on users.user_id = job_applicants.job_app_user_id WHERE job_applicants.job_app_user_id = $app_users;";
               $result = $crudapi->getData($query);
               $number = 1;
               foreach ($result as $key => $data) {
                 ?>
-       <tr>
+              <tr>
               <th scope="row"><?php echo $number; ?></th>
-              <td><?php echo strtoupper($data["user_fname"]." ".$data["user_lname"]); ?></td>
-              <td><?php echo strtoupper($data["user_contact"]) ?></td>
-              <td><?php echo strtoupper($data["user_email"]) ?></td>
+              <td><?php echo strtoupper($data["job_company_name"]) ?></td>
+              <td><?php echo strtoupper($data["jobs_name"]) ?></td>
+              <td><?php echo strtoupper($data["date_apply"]) ?></td>
+              <td><?php 
+                  
+                  $statusVal = "Not Approved";
+
+                  if($data['job_application_status']==1){
+                      $statusVal = "Approved";
+                  }
+
+                  echo $statusVal;
               
-              <td>
-              
-              
-                       <div class="items-link items-link2 f-right">
-                          <!-- <a href="#"><i style="font-size:15px;" class="bi bi-eye-fill"></i></a> -->
-                          <!-- <button type="button" data-id="<?php echo $data['requirements_filename']; ?>" class="btn btn-primary" id="viewreqs">Requarments</button>
-                          <button type="button" data-id="<?php echo $data['user_id']; ?>" id="view" style="border: transparent; color: blue; background: transparent;"><i class="bi bi-eye-fill"></i></button>
-                         <button type="button" data-id="<?php echo $data['user_id']; ?>" id="deleteuser" style="border: transparent; color: red; background: transparent;">Ban</button>
-                      
-                       -->
-                      </div>
-              </td>
+              ?></td>
               </tr>
-          <?php $number++; } ?>
+          <?php $number++;}} ?>
         </tbody>
       </table>
 </div>
@@ -106,6 +106,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
 <?php include('applicantsviews/script.php'); ?>
 
 <script>
+
 
 $("#searchData").keyup(function(){
         // alert("asd");

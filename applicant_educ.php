@@ -150,7 +150,7 @@ if(isset($_POST['deleteeduc'])) {
                         <option value="<?php echo $data['ea_id'] ?>"><?php echo $data['ea_name'] ?></option>
                         <?php }?>
                         </select>
-                    </div>
+                    </div><br><br>
 
                     <div class="modal-footer">
                         <button style="border-radius:20px; margin-right:10px;" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -201,11 +201,11 @@ if(isset($_POST['deleteeduc'])) {
                         <option value="<?php echo $data['ea_id'] ?>"><?php echo $data['ea_name'] ?></option>
                         <?php }?>
                         </select>
-                    </div>
+                    </div><br><br>
 
                     <div class="modal-footer">
                         <button style="border-radius:20px; margin-right:10px;" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button style="border-radius:20px; margin-right:90px;" type="submit" class="btn btn-primary" name="editeduc">Update</button>
+                        <button style="border-radius:20px; margin-right:70px;" type="submit" class="btn btn-primary" name="editeduc">Update</button>
                     </div>
                 
                     
