@@ -270,7 +270,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                   <button type="button" data-id="<?php echo $data['jobs_id']; ?>" class="btn btn-primary" style="background-color:transparent; color:green; border:none;" id="editbtn"><i class="bi bi-pencil-fill"></i></button>
                   <button type="button" data-id="<?php echo $data['jobs_id']; ?>" class="btn btn-danger" style="background-color:transparent; color:red; border:none;" id="deletebtn"><i class="bi bi-trash-fill"></i></button>
                   <button type="button" data-id="<?php echo $data['jobs_id']; ?>" class="btn btn-primary" style="background-color:transparent; color:blue; border:none;" id="view"><i class="bi bi-eye-fill"></i></button>
-                  <button type="button" data-id="<?php echo $data['requirements_filename']; ?>" class="btn btn-primary" style="background-color:transparent; color:blue; border:none;" id="view_permit">Business permit</button>
+                  
                 </div>
                      
               </td>
@@ -721,7 +721,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header" style="background-color:#28a745;">
-        <h5 style="margin-left:130px; color:black;" class="modal-title" id="exampleModalLabel">VIEW REQUARMENTS</h5>
+        <h5 style="margin-left:130px; color:black;" class="modal-title" id="exampleModalLabel">VIEW REQUIRMENTS</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> 
           </button>
         </div>
@@ -731,7 +731,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
                
         <div>
               <div class="container">
-                  <a type="button" id="cv_sz" style="width:100px; height:50px; color:black; margin-left:170px; text-align:center; background-color:#28a745;">CV</a> 
+                  <a type="button" id="cv_sz" style="width:100px; height:50px; color:black; margin-left:170px; text-align:center; background-color:#28a745;">View Permit</a> 
               </div>
             </div>
 

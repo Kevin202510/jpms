@@ -2,14 +2,14 @@
 
     <ul class="sidebar-nav" id="sidebar-nav">
    
-       <li class="nav-item">
+       <!-- <li class="nav-item">
         <a class="nav-link collapsed" href="applicantlist.php">
           <i class="bi bi-person-circle"></i>
           <span>ADMIN</span>
         </a>
-      </li><!-- End Profile Page Nav -->
+      </li>End Profile Page Nav -->
 
-      <li class="nav-heading">Pages</li>
+      <li class="nav-heading">Pages</li>    
 
     <li class="nav-item">
         <a class="nav-link collapsed" href="applicantlist.php">
@@ -26,7 +26,7 @@
        <li class="nav-item">
         <a class="nav-link collapsed" href="employerlist.php">
           <i class="bi bi-card-list"></i>
-          <span>Employerlist</span>
+          <span>Employer list</span>
         </a>
       </li> 
 
@@ -41,7 +41,7 @@
       <li class="nav-item">
         <a class="nav-link collapsed" href="userslist.php">
           <i class="bi bi-card-list"></i>
-          <span>Users</span>
+          <span>Staff</span>
         </a>
       </li>
       <!-- End Register Page Nav -->

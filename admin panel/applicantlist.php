@@ -129,7 +129,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
               
                        <div class="items-link items-link2 f-right">
                           <!-- <a href="#"><i style="font-size:15px;" class="bi bi-eye-fill"></i></a> -->
-                          <button type="button" data-id="<?php echo $data['requirements_filename']; ?>" class="btn btn-primary" id="viewreqs">Requarments</button>
+                          <button type="button" data-id="<?php echo $data['requirements_filename']; ?>" class="btn btn-primary" id="viewreqs">Requirments</button>
                           <button type="button" data-id="<?php echo $data['user_id']; ?>" id="view" style="border: transparent; color: blue; background: transparent;"><i class="bi bi-eye-fill"></i></button>
                          <button type="button" data-id="<?php echo $data['user_id']; ?>" id="deleteuser" style="border: transparent; color: red; background: transparent;">Ban</button>
                       
@@ -303,7 +303,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header" style="background-color:#28a745;">
-        <h5 style="margin-left:130px; color:black; " class="modal-title" id="exampleModalLabel">VIEW REQUARMENTS</h5>
+        <h5 style="margin-left:130px; color:black; " class="modal-title" id="exampleModalLabel">VIEW REQUIRMENTS</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> 
           </button>
         </div>
